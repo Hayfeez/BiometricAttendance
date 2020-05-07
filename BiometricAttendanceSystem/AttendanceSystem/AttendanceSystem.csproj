@@ -41,6 +41,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -50,6 +51,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>6F2E8F3CF7F9810E6CCFBE336D266458EA0203D4</ManifestCertificateThumbprint>
@@ -170,6 +172,18 @@
     <Compile Include="Model\ViewModels\AuthViewModel.cs" />
     <Compile Include="Model\ViewModels\AttendanceViewModel.cs" />
     <Compile Include="Model\ViewModels\BulkUpload.cs" />
+    <Compile Include="Pages\PgCourse.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\PgCourse.Designer.cs">
+      <DependentUpon>PgCourse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PgDashboard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\PgDashboard.Designer.cs">
+      <DependentUpon>PgDashboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Repository\CourseRegRepo.cs" />
     <Compile Include="Repository\AttendanceRepo.cs" />
     <Compile Include="Repository\AuthRepo.cs" />
@@ -194,11 +208,20 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BaseClass\SQLiteHandler.cs" />
     <Compile Include="Repository\StudentRepo.cs" />
+    <EmbeddedResource Include="Forms\Container.resx">
+      <DependentUpon>Container.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmAttendance.resx">
       <DependentUpon>FrmAttendance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\PgCourse.resx">
+      <DependentUpon>PgCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\PgDashboard.resx">
+      <DependentUpon>PgDashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
