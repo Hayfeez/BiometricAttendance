@@ -1,0 +1,335 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D3707263-23BF-4429-86BB-99D6E5A60ACE}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>AttendanceUI</RootNamespace>
+    <AssemblyName>AttendanceUI</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FontAwesome.Sharp, Version=5.14.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.Sharp.5.14.0\lib\net472\FontAwesome.Sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite, Version=1.0.113.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Core.1.0.113.1\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.113.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.113.0\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.113.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.113.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Design" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="XanderUI">
+      <HintPath>..\refs\XanderUI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseClass\Base.cs" />
+    <Compile Include="BaseClass\DropdownControls.cs" />
+    <Compile Include="BaseClass\ErrorLogger.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmContainer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmContainer.Designer.cs">
+      <DependentUpon>FrmContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmAssignStaffCourse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmAssignStaffCourse.Designer.cs">
+      <DependentUpon>FrmAssignStaffCourse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmCourseReg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmCourseReg.Designer.cs">
+      <DependentUpon>FrmCourseReg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmTitle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmTitle.Designer.cs">
+      <DependentUpon>FrmTitle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmLevel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmLevel.Designer.cs">
+      <DependentUpon>FrmLevel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmDept.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmDept.Designer.cs">
+      <DependentUpon>FrmDept.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmStaff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmStaff.Designer.cs">
+      <DependentUpon>FrmStaff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmStudent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmStudent.Designer.cs">
+      <DependentUpon>FrmStudent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmSession.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmSession.Designer.cs">
+      <DependentUpon>FrmSession.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmCourse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmCourse.Designer.cs">
+      <DependentUpon>FrmCourse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Login1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Login1.Designer.cs">
+      <DependentUpon>Login1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PgAttendance.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\PgAttendance.Designer.cs">
+      <DependentUpon>PgAttendance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmStaffCourse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmStaffCourse.Designer.cs">
+      <DependentUpon>FrmStaffCourse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PgCourseReg.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\PgCourseReg.Designer.cs">
+      <DependentUpon>PgCourseReg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PgHome.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\PgHome.Designer.cs">
+      <DependentUpon>PgHome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PgUser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\PgUser.Designer.cs">
+      <DependentUpon>PgUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PgStudent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\PgStudent.Designer.cs">
+      <DependentUpon>PgStudent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PgCourse.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\PgCourse.Designer.cs">
+      <DependentUpon>PgCourse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PgSession.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\PgSession.Designer.cs">
+      <DependentUpon>PgSession.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PgDept.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\PgDept.Designer.cs">
+      <DependentUpon>PgDept.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PgReport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\PgReport.Designer.cs">
+      <DependentUpon>PgReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PgSetting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\PgSetting.Designer.cs">
+      <DependentUpon>PgSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmContainer.resx">
+      <DependentUpon>FrmContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmAssignStaffCourse.resx">
+      <DependentUpon>FrmAssignStaffCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmCourseReg.resx">
+      <DependentUpon>FrmCourseReg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmTitle.resx">
+      <DependentUpon>FrmTitle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmLevel.resx">
+      <DependentUpon>FrmLevel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmDept.resx">
+      <DependentUpon>FrmDept.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmStaff.resx">
+      <DependentUpon>FrmStaff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmStudent.resx">
+      <DependentUpon>FrmStudent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmSession.resx">
+      <DependentUpon>FrmSession.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmCourse.resx">
+      <DependentUpon>FrmCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Login1.resx">
+      <DependentUpon>Login1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmStaffCourse.resx">
+      <DependentUpon>FrmStaffCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\PgCourseReg.resx">
+      <DependentUpon>PgCourseReg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\PgHome.resx">
+      <DependentUpon>PgHome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\PgUser.resx">
+      <DependentUpon>PgUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\PgStudent.resx">
+      <DependentUpon>PgStudent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\PgCourse.resx">
+      <DependentUpon>PgCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\PgSession.resx">
+      <DependentUpon>PgSession.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\PgDept.resx">
+      <DependentUpon>PgDept.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\PgReport.resx">
+      <DependentUpon>PgReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\icons8-menu-26.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AttendanceLibrary\AttendanceLibrary.csproj">
+      <Project>{36170858-AC69-4B53-BDD7-5195515A1B13}</Project>
+      <Name>AttendanceLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.3.0\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.3.0\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.113.1\build\net46\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.113.1\build\net46\System.Data.SQLite.Core.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" />
+  <Import Project="..\packages\System.Data.SQLite.Core.1.0.113.1\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.113.1\build\net46\System.Data.SQLite.Core.targets')" />
+</Project>
