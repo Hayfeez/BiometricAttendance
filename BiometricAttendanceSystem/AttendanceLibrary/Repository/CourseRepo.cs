@@ -68,13 +68,13 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public List<Course> GetAllDepartmentCourses(int departmentId)
+        public List<Course> GetAllDepartmentCourses(int departmentId, int levelId = 0)
         {
             try
             {
                 using (var context = new BASContext())
                 {
-                    return context.Courses.Where(a => !a.IsDeleted && a.DepartmentId == departmentId).ToList();
+                    return context.Courses.Where(a => !a.IsDeleted && a.DepartmentId == departmentId && (levelId != 0 && a.LevelId == levelId)).ToList();
                 }
             }
             catch (Exception ex)
@@ -110,6 +110,7 @@ namespace AttendanceLibrary.Repository
                     return "Course with this Title or Course Code exists";
 
                 //oldCourse.DepartmentId = course.DepartmentId;
+                //oldCourse.LevelId = course.LevelId;
                 oldCourse.CourseCode = course.CourseCode;
                 oldCourse.CourseTitle = course.CourseTitle.ToTitleCase();
 

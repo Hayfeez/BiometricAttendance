@@ -14,6 +14,7 @@ namespace AttendanceLibrary.Model
         [Key]
         public int Id { get; set; }
         public int DepartmentId { get; set; }
+        public int LevelId { get; set; }
         public string CourseTitle { get; set; }
         public string CourseCode { get; set; }
         public bool IsDeleted { get; set; }

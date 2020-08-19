@@ -11,6 +11,8 @@ namespace AttendanceLibrary.Model
     [Table("SessionSemester")]
     public class SessionSemester
     {
+        private string _FullName;
+
         [Key]
         public int Id { get; set; }
         public string Session { get; set; }
@@ -18,9 +20,15 @@ namespace AttendanceLibrary.Model
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
 
-        public string Fullname()
+        [NotMapped] public string Fullname
         {
-            return $"{Session} / {Semester}";
+            get => _FullName;
+            set => _FullName = $"{Session} / {Semester}";
         }
+
+        //public string Fullname()
+        //{
+        //    return $"{Session} / {Semester}";
+        //}
     }
 }

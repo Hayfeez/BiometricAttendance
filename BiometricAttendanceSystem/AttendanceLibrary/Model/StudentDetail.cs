@@ -11,6 +11,8 @@ namespace AttendanceLibrary.Model
     [Table("StudentDetail")]
     public class StudentDetail
     {
+        private string _FullName;
+
         [Key]
         public int Id { get; set; }
         public string MatricNo { get; set; }
@@ -23,9 +25,16 @@ namespace AttendanceLibrary.Model
         public bool IsGraduated { get; set; }
         public bool IsDeleted { get; set; }
 
-        public string Fullname()
+        [NotMapped]
+        public string Fullname
         {
-            return $"{Lastname}, {Firstname} {Othername}";
+            get => _FullName;
+            set => _FullName = $"{Lastname}, {Firstname} {Othername}";
         }
+
+        //public string Fullname()
+        //{
+        //    return $"{Lastname}, {Firstname} {Othername}";
+        //}
     }
 }

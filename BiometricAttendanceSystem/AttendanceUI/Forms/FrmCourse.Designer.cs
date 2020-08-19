@@ -44,6 +44,8 @@
             this.lblPageTitle = new System.Windows.Forms.Label();
             this.iconExit = new FontAwesome.Sharp.IconPictureBox();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comboLevel = new System.Windows.Forms.ComboBox();
             this.panelForm.SuspendLayout();
             this.panelBody.SuspendLayout();
             this.panelTop.SuspendLayout();
@@ -61,11 +63,13 @@
             this.panelForm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelForm.Location = new System.Drawing.Point(0, 0);
             this.panelForm.Name = "panelForm";
-            this.panelForm.Size = new System.Drawing.Size(738, 415);
+            this.panelForm.Size = new System.Drawing.Size(738, 493);
             this.panelForm.TabIndex = 0;
             // 
             // panelBody
             // 
+            this.panelBody.Controls.Add(this.label4);
+            this.panelBody.Controls.Add(this.comboLevel);
             this.panelBody.Controls.Add(this.btnSave);
             this.panelBody.Controls.Add(this.txtCourseCode);
             this.panelBody.Controls.Add(this.txtCourseTitle);
@@ -76,7 +80,7 @@
             this.panelBody.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelBody.Location = new System.Drawing.Point(11, 119);
             this.panelBody.Name = "panelBody";
-            this.panelBody.Size = new System.Drawing.Size(716, 285);
+            this.panelBody.Size = new System.Drawing.Size(716, 363);
             this.panelBody.TabIndex = 5;
             // 
             // btnSave
@@ -85,7 +89,7 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Bold);
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(258, 207);
+            this.btnSave.Location = new System.Drawing.Point(258, 243);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(236, 48);
             this.btnSave.TabIndex = 6;
@@ -96,7 +100,7 @@
             // txtCourseCode
             // 
             this.txtCourseCode.Font = new System.Drawing.Font("Calisto MT", 12F);
-            this.txtCourseCode.Location = new System.Drawing.Point(258, 155);
+            this.txtCourseCode.Location = new System.Drawing.Point(258, 191);
             this.txtCourseCode.Name = "txtCourseCode";
             this.txtCourseCode.Size = new System.Drawing.Size(236, 31);
             this.txtCourseCode.TabIndex = 5;
@@ -104,7 +108,7 @@
             // txtCourseTitle
             // 
             this.txtCourseTitle.Font = new System.Drawing.Font("Calisto MT", 12F);
-            this.txtCourseTitle.Location = new System.Drawing.Point(258, 108);
+            this.txtCourseTitle.Location = new System.Drawing.Point(258, 144);
             this.txtCourseTitle.Name = "txtCourseTitle";
             this.txtCourseTitle.Size = new System.Drawing.Size(236, 31);
             this.txtCourseTitle.TabIndex = 4;
@@ -114,7 +118,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Bold);
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
-            this.label3.Location = new System.Drawing.Point(126, 116);
+            this.label3.Location = new System.Drawing.Point(126, 152);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(123, 22);
             this.label3.TabIndex = 3;
@@ -125,7 +129,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
-            this.label2.Location = new System.Drawing.Point(126, 163);
+            this.label2.Location = new System.Drawing.Point(126, 199);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(128, 22);
             this.label2.TabIndex = 2;
@@ -155,7 +159,7 @@
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(11, 404);
+            this.panel3.Location = new System.Drawing.Point(11, 482);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(716, 11);
             this.panel3.TabIndex = 3;
@@ -166,7 +170,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(727, 119);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(11, 296);
+            this.panel2.Size = new System.Drawing.Size(11, 374);
             this.panel2.TabIndex = 2;
             // 
             // panel1
@@ -175,7 +179,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 119);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(11, 296);
+            this.panel1.Size = new System.Drawing.Size(11, 374);
             this.panel1.TabIndex = 1;
             // 
             // panelTop
@@ -233,11 +237,31 @@
             this.lblTitle.TabIndex = 4;
             this.lblTitle.Text = "Add Course";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Bold);
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
+            this.label4.Location = new System.Drawing.Point(126, 107);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(60, 22);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Level";
+            // 
+            // comboLevel
+            // 
+            this.comboLevel.Font = new System.Drawing.Font("Calisto MT", 12F);
+            this.comboLevel.FormattingEnabled = true;
+            this.comboLevel.Location = new System.Drawing.Point(258, 99);
+            this.comboLevel.Name = "comboLevel";
+            this.comboLevel.Size = new System.Drawing.Size(236, 31);
+            this.comboLevel.TabIndex = 7;
+            // 
             // FrmCourse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(738, 415);
+            this.ClientSize = new System.Drawing.Size(738, 493);
             this.Controls.Add(this.panelForm);
             this.Font = new System.Drawing.Font("Calisto MT", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -273,5 +297,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboDept;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox comboLevel;
     }
 }

@@ -90,7 +90,7 @@ namespace AttendanceLibrary.Repository
 
                     LoggedInUser.UserId = staff.Id;
                     LoggedInUser.Email = staff.Email;
-                    LoggedInUser.Fullname = staff.Fullname();
+                    LoggedInUser.Fullname = staff.Fullname;
                     LoggedInUser.IsAdmin = staff.IsAdmin;
                     LoggedInUser.IsSuperAdmin = staff.IsSuperAdmin;
                     LoggedInUser.PasswordChanged = staff.PasswordChanged;

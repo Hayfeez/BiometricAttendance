@@ -8,7 +8,9 @@ using System.Windows.Forms;
 namespace AttendanceUI.BaseClass
 {
    public static class Base
-    {
+   {
+       public const int IdForSelectAll = -200;
+       public const int IdForSelect = -300;
 
         public static void ShowInfo(string caption, string text)
         {

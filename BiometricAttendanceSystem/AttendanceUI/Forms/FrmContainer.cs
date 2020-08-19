@@ -122,16 +122,7 @@ namespace AttendanceUI.Forms
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            var logout = Base.ShowDialog(MessageBoxButtons.YesNo, "Logout?", "Are you sure you want to logout of your session?");
-            if (logout != DialogResult.Yes)
-            {
-                return;
-            }
-
-            this.Hide();
-            Base.ShowSuccess("Success", "You have been successfully logged out");
-            var loginForm = new FrmLogin();
-            loginForm.Show();
+           
         }
 
         private void btnHome_Click(object sender, EventArgs e)
@@ -186,6 +177,35 @@ namespace AttendanceUI.Forms
         {
             ShowPage(new PgReport());
             SetActiveMenu(btnReport);
+        }
+
+        private void iconLogout_Click(object sender, EventArgs e)
+        {
+            var logout = Base.ShowDialog(MessageBoxButtons.YesNo, "Logout?", "Are you sure you want to logout of your session?");
+            if (logout != DialogResult.Yes)
+            {
+                return;
+            }
+
+            this.Hide();
+            Base.ShowSuccess("Success", "You have been successfully logged out");
+            var loginForm = new FrmLogin();
+            loginForm.Show();
+        }
+
+        private void iconUser_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void iconSettings_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void iconAlert_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

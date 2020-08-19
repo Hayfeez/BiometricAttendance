@@ -21,7 +21,7 @@ namespace AttendanceLibrary.BaseClass
        
         public static string ActiveSessionSemester()
         {
-            return ActiveSession.Fullname();
+            return ActiveSession.Fullname;
         }
     }
 }
