@@ -31,8 +31,8 @@
             this.panelForm = new System.Windows.Forms.Panel();
             this.panelBody = new System.Windows.Forms.Panel();
             this.btnSave = new System.Windows.Forms.Button();
-            this.txtCourseCode = new System.Windows.Forms.TextBox();
-            this.txtCourseTitle = new System.Windows.Forms.TextBox();
+            this.txtDeptCode = new System.Windows.Forms.TextBox();
+            this.txtDeptTitle = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -65,8 +65,8 @@
             // panelBody
             // 
             this.panelBody.Controls.Add(this.btnSave);
-            this.panelBody.Controls.Add(this.txtCourseCode);
-            this.panelBody.Controls.Add(this.txtCourseTitle);
+            this.panelBody.Controls.Add(this.txtDeptCode);
+            this.panelBody.Controls.Add(this.txtDeptTitle);
             this.panelBody.Controls.Add(this.label3);
             this.panelBody.Controls.Add(this.label2);
             this.panelBody.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -89,21 +89,21 @@
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // txtCourseCode
+            // txtDeptCode
             // 
-            this.txtCourseCode.Font = new System.Drawing.Font("Calisto MT", 12F);
-            this.txtCourseCode.Location = new System.Drawing.Point(307, 91);
-            this.txtCourseCode.Name = "txtCourseCode";
-            this.txtCourseCode.Size = new System.Drawing.Size(236, 31);
-            this.txtCourseCode.TabIndex = 5;
+            this.txtDeptCode.Font = new System.Drawing.Font("Calisto MT", 12F);
+            this.txtDeptCode.Location = new System.Drawing.Point(307, 91);
+            this.txtDeptCode.Name = "txtDeptCode";
+            this.txtDeptCode.Size = new System.Drawing.Size(236, 31);
+            this.txtDeptCode.TabIndex = 5;
             // 
-            // txtCourseTitle
+            // txtDeptTitle
             // 
-            this.txtCourseTitle.Font = new System.Drawing.Font("Calisto MT", 12F);
-            this.txtCourseTitle.Location = new System.Drawing.Point(307, 44);
-            this.txtCourseTitle.Name = "txtCourseTitle";
-            this.txtCourseTitle.Size = new System.Drawing.Size(236, 31);
-            this.txtCourseTitle.TabIndex = 4;
+            this.txtDeptTitle.Font = new System.Drawing.Font("Calisto MT", 12F);
+            this.txtDeptTitle.Location = new System.Drawing.Point(307, 44);
+            this.txtDeptTitle.Name = "txtDeptTitle";
+            this.txtDeptTitle.Size = new System.Drawing.Size(236, 31);
+            this.txtDeptTitle.TabIndex = 4;
             // 
             // label3
             // 
@@ -243,8 +243,8 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panelBody;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.TextBox txtCourseCode;
-        private System.Windows.Forms.TextBox txtCourseTitle;
+        private System.Windows.Forms.TextBox txtDeptCode;
+        private System.Windows.Forms.TextBox txtDeptTitle;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
     }

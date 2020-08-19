@@ -32,8 +32,8 @@
             this.panelBody = new System.Windows.Forms.Panel();
             this.checkActive = new XanderUI.XUICheckBox();
             this.btnSave = new System.Windows.Forms.Button();
-            this.txtCourseCode = new System.Windows.Forms.TextBox();
-            this.txtCourseTitle = new System.Windows.Forms.TextBox();
+            this.txtSemester = new System.Windows.Forms.TextBox();
+            this.txtSession = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -67,8 +67,8 @@
             // 
             this.panelBody.Controls.Add(this.checkActive);
             this.panelBody.Controls.Add(this.btnSave);
-            this.panelBody.Controls.Add(this.txtCourseCode);
-            this.panelBody.Controls.Add(this.txtCourseTitle);
+            this.panelBody.Controls.Add(this.txtSemester);
+            this.panelBody.Controls.Add(this.txtSession);
             this.panelBody.Controls.Add(this.label3);
             this.panelBody.Controls.Add(this.label2);
             this.panelBody.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -107,21 +107,21 @@
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // txtCourseCode
+            // txtSemester
             // 
-            this.txtCourseCode.Font = new System.Drawing.Font("Calisto MT", 12F);
-            this.txtCourseCode.Location = new System.Drawing.Point(257, 114);
-            this.txtCourseCode.Name = "txtCourseCode";
-            this.txtCourseCode.Size = new System.Drawing.Size(236, 31);
-            this.txtCourseCode.TabIndex = 5;
+            this.txtSemester.Font = new System.Drawing.Font("Calisto MT", 12F);
+            this.txtSemester.Location = new System.Drawing.Point(257, 114);
+            this.txtSemester.Name = "txtSemester";
+            this.txtSemester.Size = new System.Drawing.Size(236, 31);
+            this.txtSemester.TabIndex = 5;
             // 
-            // txtCourseTitle
+            // txtSession
             // 
-            this.txtCourseTitle.Font = new System.Drawing.Font("Calisto MT", 12F);
-            this.txtCourseTitle.Location = new System.Drawing.Point(257, 62);
-            this.txtCourseTitle.Name = "txtCourseTitle";
-            this.txtCourseTitle.Size = new System.Drawing.Size(236, 31);
-            this.txtCourseTitle.TabIndex = 4;
+            this.txtSession.Font = new System.Drawing.Font("Calisto MT", 12F);
+            this.txtSession.Location = new System.Drawing.Point(257, 62);
+            this.txtSession.Name = "txtSession";
+            this.txtSession.Size = new System.Drawing.Size(236, 31);
+            this.txtSession.TabIndex = 4;
             // 
             // label3
             // 
@@ -261,8 +261,8 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panelBody;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.TextBox txtCourseCode;
-        private System.Windows.Forms.TextBox txtCourseTitle;
+        private System.Windows.Forms.TextBox txtSemester;
+        private System.Windows.Forms.TextBox txtSession;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private XanderUI.XUICheckBox checkActive;

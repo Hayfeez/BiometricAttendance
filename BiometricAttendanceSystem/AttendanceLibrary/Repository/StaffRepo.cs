@@ -132,6 +132,7 @@ namespace AttendanceLibrary.Repository
                 oldStaff.Othername = staff.Othername.ToTitleCase();
                 oldStaff.StaffNo = staff.StaffNo;
                 oldStaff.TitleId = staff.TitleId;
+                oldStaff.StaffNo = staff.StaffNo;
                 oldStaff.DepartmentId = staff.DepartmentId;
 
                 return context.SaveChanges() > 0 ? "Staff updated successfully" : "";

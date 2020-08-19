@@ -55,8 +55,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panelTop = new System.Windows.Forms.Panel();
             this.lblPageTitle = new System.Windows.Forms.Label();
-            this.lblTitle = new System.Windows.Forms.Label();
             this.iconExit = new FontAwesome.Sharp.IconPictureBox();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.panelForm.SuspendLayout();
             this.panelBody.SuspendLayout();
             this.panelTop.SuspendLayout();
@@ -371,19 +371,6 @@
             this.lblPageTitle.TabIndex = 1;
             this.lblPageTitle.Text = "Staff Management";
             // 
-            // lblTitle
-            // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblTitle.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(10, 78);
-            this.lblTitle.Margin = new System.Windows.Forms.Padding(10);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(93, 22);
-            this.lblTitle.TabIndex = 4;
-            this.lblTitle.Text = "Add Staff";
-            // 
             // iconExit
             // 
             this.iconExit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -399,6 +386,19 @@
             this.iconExit.TabIndex = 3;
             this.iconExit.TabStop = false;
             this.iconExit.Click += new System.EventHandler(this.iconExit_Click);
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblTitle.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.White;
+            this.lblTitle.Location = new System.Drawing.Point(10, 78);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(10);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(93, 22);
+            this.lblTitle.TabIndex = 4;
+            this.lblTitle.Text = "Add Staff";
             // 
             // FrmStaff
             // 

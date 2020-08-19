@@ -22,6 +22,7 @@ namespace AttendanceLibrary.Model
         public string Email { get; set; }
         public int? DepartmentId { get; set; }
         public int? TitleId { get; set; }
+        public string PhoneNo { get; set; }
         public string Password { get; set; }
         public bool IsAdmin { get; set; }
         public bool PasswordChanged { get; set; }
