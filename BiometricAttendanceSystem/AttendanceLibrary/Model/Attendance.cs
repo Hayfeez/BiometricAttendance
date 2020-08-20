@@ -12,9 +12,9 @@ namespace AttendanceLibrary.Model
     public class Attendance
     {
        [Key]
-        public int Id { get; set; }
-        public int CourseRegistrationId { get; set; }        
-        public int MarkedBy { get; set; }
+        public string Id { get; set; }
+        public string CourseRegistrationId { get; set; }        
+        public string MarkedBy { get; set; }
         public DateTime DateMarked { get; set; }
 
 

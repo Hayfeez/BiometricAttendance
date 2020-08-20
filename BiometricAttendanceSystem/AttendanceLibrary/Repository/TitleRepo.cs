@@ -20,6 +20,7 @@ namespace AttendanceLibrary.Repository
                     if (context.Titles.Any(a => a.Title == newTitle.Title && !a.IsDeleted))
                         return "Title already exists";
 
+                    newTitle.Id = Guid.NewGuid().ToString();
                     context.Titles.Add(newTitle);
                     return context.SaveChanges() > 0 ? "Title added successfully" : "";
                 }
@@ -31,7 +32,7 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public string DeleteTitle(int titleId)
+        public string DeleteTitle(string titleId)
         {
             using (var context = new BASContext())
             {
@@ -65,7 +66,7 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public PersonTitle GetTitle(int titleId)
+        public PersonTitle GetTitle(string titleId)
         {
             try
             {

@@ -20,7 +20,7 @@ namespace AttendanceUI.Forms
     {
         private readonly TitleRepo _repo;
 
-        private readonly int _id;
+        private readonly string _id;
 
         private string ValidateForm()
         {
@@ -30,7 +30,7 @@ namespace AttendanceUI.Forms
             return "";
         }
 
-        private void GetItem(int id)
+        private void GetItem(string id)
         {
             var item = _repo.GetTitle(id);
             if (item == null)
@@ -46,7 +46,7 @@ namespace AttendanceUI.Forms
 
         private void AddOrUpdate(PersonTitle item)
         {
-            var saveItem = _id == 0
+            var saveItem = _id == ""
                 ? _repo.AddTitle(item)
                 : _repo.UpdateTitle(item);
 
@@ -56,18 +56,18 @@ namespace AttendanceUI.Forms
             }
             else
             {
-                saveItem = _id == 0 ? "Title could not be added" : "Title could not be updated";
+                saveItem = _id == "" ? "Title could not be added" : "Title could not be updated";
                 Base.ShowError("Error occured", saveItem);
             }
         }
 
-        public FrmTitle(int titleId = 0)
+        public FrmTitle(string titleId = "")
         {
             InitializeComponent();
             _repo = new TitleRepo();
             _id = titleId;
 
-            if (titleId != 0)
+            if (titleId != "")
             {
                 lblTitle.Text = "Update Title";
                 GetItem(titleId);
@@ -86,6 +86,7 @@ namespace AttendanceUI.Forms
             if (validate == string.Empty)
             {
                 AddOrUpdate(item);
+                this.Close();
             }
             else
             {

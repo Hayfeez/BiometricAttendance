@@ -19,6 +19,7 @@ namespace AttendanceLibrary.Repository
                     if (context.CourseRegistrations.Any(a => a.StudentId == model.StudentId && a.CourseId == model.CourseId && a.SessionSemesterId == model.SessionSemesterId))
                         return "Course already registered";
 
+                    model.Id = Guid.NewGuid().ToString();
                     context.CourseRegistrations.Add(model);
 
                     return context.SaveChanges() > 0 ? "Course registered successfully" : "";
@@ -31,7 +32,7 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public List<CourseRegistration> GetCoursesByStudent(int studentId, int semesterId)
+        public List<CourseRegistration> GetCoursesByStudent(string studentId, string semesterId)
         {
             try
             {
@@ -49,7 +50,7 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public List<CourseRegistration> GetStudentsByCourses(int courseId, int semesterId)
+        public List<CourseRegistration> GetStudentsByCourses(string courseId, string semesterId)
         {
             try
             {

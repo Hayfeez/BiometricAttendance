@@ -8,7 +8,7 @@ namespace AttendanceLibrary.BaseClass
 {
     public static class Constants
     {
-        public static int SuperAdminId = -100;
+        public static string SuperAdminId = "45da7b79-a641-4f9d-971a-8c85c7c516ab"; //-100;
         public static int NoOfFinger = 2;
         public static string DefaultPassword = "12345678";
         public static string SuperAdminNo = "000001";

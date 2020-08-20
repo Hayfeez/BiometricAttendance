@@ -10,7 +10,7 @@ namespace AttendanceLibrary.Repository
 {
    public class AttendanceRepo
     {
-        public int SaveAttendance(int CourseId, int StudentId, int SemesterId, int markedBy)
+        public int SaveAttendance(string CourseId, string StudentId, string SemesterId, string markedBy)
         {
             try
             {
@@ -24,6 +24,7 @@ namespace AttendanceLibrary.Repository
                         return 0;
 
                     context.Attendances.Add(new Attendance { 
+                        Id = Guid.NewGuid().ToString(),
                         CourseRegistrationId = coursseRegId,
                         DateMarked = dateMarked,
                         MarkedBy = markedBy                        
@@ -40,7 +41,7 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public List<AttendanceViewModel> GetAttendanceByCourse(int courseId)
+        public List<AttendanceViewModel> GetAttendanceByCourse(string courseId)
         {
             try
             {
@@ -59,12 +60,12 @@ namespace AttendanceLibrary.Repository
                               {
                                   Id = att.Id,
                                   StudentMatricNo = st.MatricNo,
-                                  StudentName = string.Format("{0} {1} {2}", st.Lastname, st.Firstname, st.Othername),
+                                  StudentName = $"{st.Lastname} {st.Firstname} {st.Othername}",
                                   StudentLevel = le.Level,
                                   Course = c.CourseCode + " - " + c.CourseTitle ,
                                   DateMarked = att.DateMarked.Date,
-                                  MarkedBy = string.Format("{0} {1} {2}", l.Lastname, l.Firstname, l.Othername),
-                                  SessionSemester = string.Format("{0} - {1}", s.Session, s.Semester),
+                                  MarkedBy = $"{l.Lastname} {l.Firstname} {l.Othername}",
+                                  SessionSemester = $"{s.Session} - {s.Semester}",
                                   DepartmentName = dep.DepartmentName,
                                   TimeIn = att.DateMarked.ToShortTimeString()
                               }
@@ -78,7 +79,7 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public List<AttendanceViewModel> GetTodayAttendanceByCourse(int courseId)
+        public List<AttendanceViewModel> GetTodayAttendanceByCourse(string courseId)
         {
             try
             {
@@ -97,7 +98,7 @@ namespace AttendanceLibrary.Repository
                               {
                                   Id = att.Id,
                                   StudentMatricNo = st.MatricNo,
-                                  StudentName = string.Format("{0} {1} {2}", st.Lastname, st.Firstname, st.Othername),
+                                  StudentName = $"{st.Lastname} {st.Firstname} {st.Othername}",
                                   DateMarked = att.DateMarked.Date,
                                   TimeIn = att.DateMarked.ToShortTimeString()
                                  }
@@ -110,7 +111,7 @@ namespace AttendanceLibrary.Repository
                 throw ex;
             }
         }
-        public List<AttendanceViewModel> GetAttendanceByStudent(int studentId)
+        public List<AttendanceViewModel> GetAttendanceByStudent(string studentId)
         {
             try
             {
@@ -129,12 +130,12 @@ namespace AttendanceLibrary.Repository
                               {
                                   Id = att.Id,
                                   StudentMatricNo = st.MatricNo,
-                                  StudentName = string.Format("{0} {1} {2}", st.Lastname, st.Firstname, st.Othername),
+                                  StudentName = $"{st.Lastname} {st.Firstname} {st.Othername}",
                                   StudentLevel = le.Level,
                                   Course = c.CourseCode + " - " + c.CourseTitle,
                                   DateMarked = att.DateMarked.Date,
-                                  MarkedBy = string.Format("{0} {1} {2}", l.Lastname, l.Firstname, l.Othername),
-                                  SessionSemester = string.Format("{0} - {1}", s.Session, s.Semester),
+                                  MarkedBy = $"{l.Lastname} {l.Firstname} {l.Othername}",
+                                  SessionSemester = $"{s.Session} - {s.Semester}",
                                   DepartmentName = dep.DepartmentName,
                                   TimeIn = att.DateMarked.ToShortTimeString()
                               }
@@ -148,7 +149,7 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public List<AttendanceViewModel> GetAttendanceByStudentForCourse(int studentId, int courseId)
+        public List<AttendanceViewModel> GetAttendanceByStudentForCourse(string studentId, string courseId)
         {
             try
             {
@@ -167,12 +168,12 @@ namespace AttendanceLibrary.Repository
                               {
                                   Id = att.Id,
                                   StudentMatricNo = st.MatricNo,
-                                  StudentName = string.Format("{0} {1} {2}", st.Lastname, st.Firstname, st.Othername),
+                                  StudentName = $"{st.Lastname} {st.Firstname} {st.Othername}",
                                   StudentLevel = le.Level,
                                   Course = c.CourseCode + " - " + c.CourseTitle,
                                   DateMarked = att.DateMarked.Date,
-                                  MarkedBy = string.Format("{0} {1} {2}", l.Lastname, l.Firstname, l.Othername),
-                                  SessionSemester = string.Format("{0} - {1}", s.Session, s.Semester),
+                                  MarkedBy = $"{l.Lastname} {l.Firstname} {l.Othername}",
+                                  SessionSemester = $"{s.Session} - {s.Semester}",
                                   DepartmentName = dep.DepartmentName,
                                   TimeIn = att.DateMarked.ToShortTimeString()
                               }

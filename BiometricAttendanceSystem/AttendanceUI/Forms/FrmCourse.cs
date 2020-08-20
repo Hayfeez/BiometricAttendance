@@ -20,7 +20,7 @@ namespace AttendanceUI.Forms
     {
         private readonly CourseRepo _repo;
 
-        private readonly int _id;
+        private readonly string _id;
 
         private void LoadDropdowns()
         {
@@ -30,10 +30,10 @@ namespace AttendanceUI.Forms
 
         private string ValidateForm()
         {
-            if (int.Parse(comboDept.SelectedValue.ToString()) == Base.IdForSelect)
+            if (comboDept.SelectedValue.ToString() == Base.IdForSelect)
                 return "Department is required";
 
-            if (int.Parse(comboLevel.SelectedValue.ToString()) == Base.IdForSelect)
+            if (comboLevel.SelectedValue.ToString() == Base.IdForSelect)
                 return "Level is required";
 
             if (txtCourseTitle.Text == "")
@@ -45,7 +45,7 @@ namespace AttendanceUI.Forms
             return "";
         }
 
-        private void GetItem(int id)
+        private void GetItem(string id)
         {
             var item = _repo.GetCourse(id);
             if (item == null)
@@ -64,7 +64,7 @@ namespace AttendanceUI.Forms
 
         private void AddOrUpdate(Course item)
         {
-            var saveItem = _id == 0
+            var saveItem = _id == ""
                 ? _repo.AddCourse(item)
                 : _repo.UpdateCourse(item);
 
@@ -74,19 +74,19 @@ namespace AttendanceUI.Forms
             }
             else
             {
-                saveItem = _id == 0 ? "Course could not be added" : "Course could not be updated";
+                saveItem = _id == "" ? "Course could not be added" : "Course could not be updated";
                 Base.ShowError("Error occured", saveItem);
             }
         }
 
-        public FrmCourse(int courseId = 0)
+        public FrmCourse(string courseId = "")
         {
             InitializeComponent();
             _repo = new CourseRepo();
             _id = courseId;
             LoadDropdowns();
 
-            if (courseId != 0)
+            if (courseId != "")
             {
                 lblTitle.Text = "Update Course";
                 comboLevel.Enabled = false;
@@ -102,14 +102,15 @@ namespace AttendanceUI.Forms
                 Id = _id,
                 CourseCode = txtCourseCode.Text.ToUpper(),
                 CourseTitle = txtCourseTitle.Text.ToTitleCase(),
-                DepartmentId = int.Parse(comboDept.SelectedValue.ToString()),
-                LevelId = int.Parse(comboLevel.SelectedValue.ToString())
+                DepartmentId = comboDept.SelectedValue.ToString(),
+                LevelId = comboLevel.SelectedValue.ToString()
             };
 
              var validate = ValidateForm();
              if (validate == string.Empty)
              {
                  AddOrUpdate(item);
+                 this.Close();
              }
              else
              {

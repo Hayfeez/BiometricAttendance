@@ -21,6 +21,7 @@ namespace AttendanceLibrary.Repository
                     if (context.Departments.Any(a => a.DepartmentCode == newDepartment.DepartmentCode || a.DepartmentName == newDepartment.DepartmentName  && !a.IsDeleted))
                         return "Department with this name or Department Code exists";
 
+                    newDepartment.Id = Guid.NewGuid().ToString();
                     context.Departments.Add(newDepartment);
                     return context.SaveChanges() > 0 ? "Department added successfully" : "";
 
@@ -33,7 +34,7 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public string DeleteDepartment(int DepartmentId)
+        public string DeleteDepartment(string DepartmentId)
         {
             using (var context = new BASContext())
             {
@@ -67,7 +68,7 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public Department GetDepartment(int DepartmentId)
+        public Department GetDepartment(string DepartmentId)
         {
             try
             {

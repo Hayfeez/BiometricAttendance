@@ -20,7 +20,7 @@ namespace AttendanceUI.Forms
     {
         private readonly StudentRepo _repo;
 
-        private readonly int _id;
+        private readonly string _id;
 
         private void LoadDropdowns()
         {
@@ -29,7 +29,7 @@ namespace AttendanceUI.Forms
 
         private string ValidateForm()
         {
-            if (int.Parse(comboDept.SelectedValue.ToString()) == Base.IdForSelect)
+            if ((comboDept.SelectedValue.ToString()) == Base.IdForSelect)
                 return "Department is required";
 
             if (txtSurname.Text == "")
@@ -47,7 +47,7 @@ namespace AttendanceUI.Forms
             return "";
         }
 
-        private void GetItem(int id)
+        private void GetItem(string id)
         {
             var item = _repo.GetStudent(id);
             if (item == null)
@@ -69,7 +69,7 @@ namespace AttendanceUI.Forms
 
         private void AddOrUpdate(StudentDetail item)
         {
-            var saveItem = _id == 0
+            var saveItem = _id == ""
                 ? _repo.AddStudent(item)
                 : _repo.UpdateStudent(item);
 
@@ -79,18 +79,18 @@ namespace AttendanceUI.Forms
             }
             else
             {
-                saveItem = _id == 0 ? "Student could not be added" : "Student could not be updated";
+                saveItem = _id == "" ? "Student could not be added" : "Student could not be updated";
                 Base.ShowError("Error occured", saveItem);
             }
         }
 
-        public FrmStudent(int studentId = 0)
+        public FrmStudent(string studentId = "")
         {
             InitializeComponent();
             _repo = new StudentRepo();
             _id = studentId;
             LoadDropdowns();
-            if (studentId != 0)
+            if (studentId != "")
             {
                 lblTitle.Text = "Update Student";
                 comboDept.Enabled = false;
@@ -103,7 +103,7 @@ namespace AttendanceUI.Forms
             var item = new StudentDetail()
             {
                 Id = _id,
-                DepartmentId = int.Parse(comboDept.SelectedValue.ToString()),
+                DepartmentId = (comboDept.SelectedValue.ToString()),
                 Lastname = txtSurname.Text.ToTitleCase(),
                 Firstname = txtFirstname.Text.ToTitleCase(),
                 Othername = txtOthername.Text.ToTitleCase(),
@@ -116,6 +116,7 @@ namespace AttendanceUI.Forms
             if (validate == string.Empty)
             {
                 AddOrUpdate(item);
+                this.Close();
             }
             else
             {

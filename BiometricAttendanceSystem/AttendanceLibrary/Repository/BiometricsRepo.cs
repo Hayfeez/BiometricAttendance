@@ -19,7 +19,8 @@ namespace AttendanceLibrary.Repository
 				{
 					var studentFingers = context.StudentFingers.Where(a => a.StudentId == data.StudentId);
 					if (studentFingers.Count() < Constants.NoOfFinger)
-					{
+                    {
+                        data.Id = Guid.NewGuid().ToString();
 						context.StudentFingers.Add(data);
 						context.SaveChanges();
 						return "Finger saved successfully";
@@ -50,7 +51,8 @@ namespace AttendanceLibrary.Repository
 					}
 
 					foreach (var item in data)
-					{										
+                    {
+                        item.Id = Guid.NewGuid().ToString();
 						context.StudentFingers.Add(item);						
 					}
 
@@ -70,8 +72,7 @@ namespace AttendanceLibrary.Repository
 		{
 			try
 			{
-				
-				using (var context = new BASContext())
+                using (var context = new BASContext())
 				{
 					return context.StudentFingers.ToList();				
 

@@ -120,7 +120,7 @@ namespace AttendanceUI.BaseClass
             dropDown.ValueMember = "Id";
         }
 
-        public static void LoadCourses(ref ComboBox dropDown, int deptId, int levelId, bool includeAll = false)
+        public static void LoadCourses(ref ComboBox dropDown, string deptId, string levelId, bool includeAll = false)
         {
             var repo = new CourseRepo();
             var allItems = repo.GetAllDepartmentCourses(deptId, levelId);
@@ -147,7 +147,7 @@ namespace AttendanceUI.BaseClass
             dropDown.ValueMember = "Id";
         }
 
-        public static void LoadStaff(ref ComboBox dropDown, int deptId, bool includeAll = false)
+        public static void LoadStaff(ref ComboBox dropDown, string deptId, bool includeAll = false)
         {
             var repo = new StaffRepo();
             var allItems = repo.GetAllDepartmentStaff(deptId);
@@ -174,7 +174,7 @@ namespace AttendanceUI.BaseClass
             dropDown.ValueMember = "Id";
         }
 
-        public static void LoadStudents(ref ComboBox dropDown, int deptId, int levelId = 0, bool includeGrad = false, bool includeAll = false)
+        public static void LoadStudents(ref ComboBox dropDown, string deptId, string levelId = "", bool includeGrad = false, bool includeAll = false)
         {
             var repo = new StudentRepo();
             var allItems = repo.GetAllDepartmentStudents(deptId, includeGrad);

@@ -13,8 +13,8 @@ namespace AttendanceLibrary.Model
     public class StudentFinger
     {
         [Key]
-        public int Id { get; set; }
-        public int StudentId { get; set; }
+        public string Id { get; set; }
+        public string StudentId { get; set; }
         public byte[] FingerTemplate { get; set; }
      //   [NotMapped]
      //   public Bitmap FingerTemplateBitmap { get; set; }

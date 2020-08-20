@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using AttendanceLibrary.Model;
+
 namespace AttendanceLibrary.BaseClass
 {
     public class SQLiteHandler
     {
         public static SQLiteConnection conn;
-        static readonly string DataFolder = @"C:\BAS3196D-621C-478A-81F7-39J16EF4A"; // AppDomain.CurrentDomain.BaseDirectory; //;
+        static readonly string DataFolder = @"C:\BAS4196D-621C-478A-81F7-49J16EF2B"; // AppDomain.CurrentDomain.BaseDirectory; //;
         public static string SQLiteDB = DataFolder + @"\BAS.sqlite";
        
         public static string ConnectionString()
@@ -52,21 +54,23 @@ namespace AttendanceLibrary.BaseClass
         {
             try
             {
-                string tablesSql = "Create TABLE if not exists PersonTitle(Id integer Primary Key autoincrement, Title varchar(50) not null, IsDeleted bit not null default 0); " +
-                    "Create TABLE IF NOT EXISTS StudentLevel(Id integer Primary Key autoincrement, Level varchar(5) not null, IsDeleted bit not null default 0);" +
-                    "Create Table if not exists Department(Id integer Primary Key autoincrement,  DepartmentName varchar(200), DepartmentCode varchar(10), IsDeleted bit not null default 0);" +
-                    "Create TABLE if not exists StudentDetail(Id integer Primary Key autoincrement, MatricNo varchar(50) not null, Firstname varchar(50) not null, Othername varchar(50), Lastname varchar(50) not null, Email varchar(150), DepartmentId int not null, PhoneNo varchar(11),  IsGraduated bit not null default 0, IsDeleted bit not null default 0);" +
-                    "Create table if not exists StaffDetail(Id integer Primary Key autoincrement, StaffNo varchar(50) not null, Firstname varchar(50) not null, Othername varchar(50), Lastname varchar(50) not null, Email varchar(150), DepartmentId int, TitleId int, Password varchar(50) not null, IsAdmin bit not null, PasswordChanged bit not null default 0, IsSuperAdmin bit not null default 0, IsDeleted bit not null default 0);" +
-                    "Create Table if not exists Course(Id integer Primary Key autoincrement, DepartmentId int not null,  CourseTitle varchar(200), CourseCode varchar(10), IsDeleted bit not null default 0);" +
-                    "Create Table if not exists SessionSemester(Id integer Primary Key autoincrement,  Session varchar(50), Semester varchar(50), IsActive bit not null default 0, IsDeleted bit not null default 0 ); " +
-                    "Create Table if not exists StudentFinger(Id integer Primary Key autoincrement, StudentId int not null, FingerTemplate BLOB);" +
-                    "Create Table if not exists CourseRegistration(Id integer Primary Key autoincrement, SessionSemesterId int not null, StudentId int not null, CourseId int not null, LevelId int not null, RegisteredBy int not null, DateRegistered datetime); " +
-                    "Create Table if not exists Attendance(Id integer Primary Key autoincrement, CourseRegistrationId int not null, MarkedBy int not null, DateMarked datetime); " +
-                    "Create Table if not exists SystemSetting(Id integer Primary Key autoincrement, NoOfFinger int not null, SuperAdminLastname varchar(50) not null,  SuperAdminFirstname varchar(50) not null,  SuperAdminEmail varchar(150) not null,  SuperAdminPassword varchar(500) not null, SuperAdminNo varchar(50) not null); ";
-                   
-                SQLiteCommand cmd = new SQLiteCommand(tablesSql, con);
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandTimeout = 0; 
+                var tablesSql = "Create TABLE if not exists PersonTitle(Id varchar(50) Primary Key, Title varchar(50) not null, IsDeleted bit not null default 0); " +
+                    "Create TABLE IF NOT EXISTS StudentLevel(Id varchar(50) Primary Key, Level varchar(5) not null, IsDeleted bit not null default 0);" +
+                    "Create Table if not exists Department(Id varchar(50) Primary Key,  DepartmentName varchar(200), DepartmentCode varchar(10), IsDeleted bit not null default 0);" +
+                    "Create TABLE if not exists StudentDetail(Id varchar(50) Primary Key, MatricNo varchar(50) not null, Firstname varchar(50) not null, Othername varchar(50), Lastname varchar(50) not null, Email varchar(150), DepartmentId varchar(50) not null, PhoneNo varchar(11),  IsGraduated bit not null default 0, IsDeleted bit not null default 0);" +
+                    "Create table if not exists StaffDetail(Id varchar(50) Primary Key, StaffNo varchar(50) not null, Firstname varchar(50) not null, Othername varchar(50), Lastname varchar(50) not null, Email varchar(150), PhoneNo varchar(11), DepartmentId varchar(50), TitleId varchar(50), Password varchar(50) not null, IsAdmin bit not null, PasswordChanged bit not null default 0, IsSuperAdmin bit not null default 0, IsDeleted bit not null default 0);" +
+                    "Create Table if not exists Course(Id varchar(50) Primary Key, DepartmentId varchar(50) not null, LevelId varchar(50) not null, CourseTitle varchar(200), CourseCode varchar(10), IsDeleted bit not null default 0);" +
+                    "Create Table if not exists SessionSemester(Id varchar(50) Primary Key,  Session varchar(50), Semester varchar(50), IsActive bit not null default 0, IsDeleted bit not null default 0 ); " +
+                    "Create Table if not exists StudentFinger(Id varchar(50) Primary Key, StudentId varchar(50) not null, FingerTemplate BLOB);" +
+                    "Create Table if not exists CourseRegistration(Id varchar(50) Primary Key, SessionSemesterId varchar(50) not null, StudentId varchar(50) not null, CourseId varchar(50) not null, LevelId varchar(50) not null, RegisteredBy varchar(50) not null, DateRegistered datetime); " +
+                    "Create Table if not exists Attendance(Id varchar(50) Primary Key, CourseRegistrationId varchar(50) not null, MarkedBy varchar(50) not null, DateMarked datetime); " +
+                    "Create Table if not exists SystemSetting(Id varchar(50) Primary Key, NoOfFinger int not null, SuperAdminLastname varchar(50) not null,  SuperAdminFirstname varchar(50) not null,  SuperAdminEmail varchar(150) not null,  SuperAdminPassword varchar(500) not null, SuperAdminNo varchar(50) not null); ";
+
+                var cmd = new SQLiteCommand(tablesSql, con)
+                {
+                    CommandType = CommandType.Text,
+                    CommandTimeout = 0
+                };
                 con.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -94,22 +98,23 @@ namespace AttendanceLibrary.BaseClass
                     CommandTimeout = 0
                 };
                 con.Open();
-                int ret = int.Parse(cmd.ExecuteScalar().ToString());
+                var ret = int.Parse(cmd.ExecuteScalar().ToString());
                 if(ret < 1)
                 {                    
                     var encryptPwd = PasswordHash.sha256(Constants.SuperAdminPassword);
-                    var seedQuery = $"insert into SystemSetting(NoOfFinger, SuperAdminLastname, SuperAdminFirstname, SuperAdminEmail, SuperAdminPassword, SuperAdminNo) values " +
-                     $"('{Constants.NoOfFinger}','{Constants.SuperAdminLastname}', '{Constants.SuperAdminFirstname}', '{Constants.SuperAdminEmail}', '{encryptPwd}', {Constants.SuperAdminNo});";
+                    var seedQuery = $"insert into SystemSetting(Id, NoOfFinger, SuperAdminLastname, SuperAdminFirstname, SuperAdminEmail, SuperAdminPassword, SuperAdminNo) values " +
+                     $"('{Guid.NewGuid().ToString()}', '{Constants.NoOfFinger}','{Constants.SuperAdminLastname}', '{Constants.SuperAdminFirstname}', '{Constants.SuperAdminEmail}', '{encryptPwd}', {Constants.SuperAdminNo});";
                    
                     foreach (var item in Titles())
                     {
-                        seedQuery += $"insert into PersonTitle(Title) values ('{item}');";
+                        seedQuery += $"insert into PersonTitle(Id, Title) values ('{item.Id}', '{item.Title}');";
                     }
 
                     foreach (var item in Levels())
                     {
-                        seedQuery += $"insert into StudentLevel(Level) values ('{item}');";
+                        seedQuery += $"insert into StudentLevel(Id, Level) values ('{item.Id}', '{item.Level}');";
                     }
+
                     cmd = new SQLiteCommand(seedQuery, con)
                     {
                         CommandType = CommandType.Text,
@@ -133,33 +138,32 @@ namespace AttendanceLibrary.BaseClass
             }
         }
 
-         private static List<string> Titles()
+         private static List<PersonTitle> Titles()
          {
-            var titles = new List<string>
+            var titles = new List<PersonTitle>
             {
-                "Mr.",
-                "Dr.",
-                "Miss",
-                "Mrs",
-                "Dr.(Miss)",
-                "Dr.(Mrs)",
-                "Prof.",
-                "Prof.(Mrs)"
+                new PersonTitle { Id = Guid.NewGuid().ToString(), Title = "Mr."},
+                new PersonTitle { Id = Guid.NewGuid().ToString(), Title = "Dr."},
+                new PersonTitle { Id = Guid.NewGuid().ToString(), Title = "Miss"},
+                new PersonTitle { Id = Guid.NewGuid().ToString(), Title = "Mrs"},
+                new PersonTitle { Id = Guid.NewGuid().ToString(), Title = "Dr.(Miss)"},
+                new PersonTitle { Id = Guid.NewGuid().ToString(), Title = "Dr.(Mrs)"},
+                new PersonTitle { Id = Guid.NewGuid().ToString(), Title = "Prof."},
+                new PersonTitle { Id = Guid.NewGuid().ToString(), Title = "Prof.(Mrs)"}
             };
 
             return titles;
          }
 
-         private static List<string> Levels()
+         private static List<StudentLevel> Levels()
          {
-            var levels = new List<string>
+            var levels = new List<StudentLevel>
             {
-                "100",
-                "200",
-                "300",
-                "400",
-                "500",
-                "600"
+                new StudentLevel() { Id = Guid.NewGuid().ToString(), Level = "100"},
+                new StudentLevel() { Id = Guid.NewGuid().ToString(), Level = "200"},
+                new StudentLevel() { Id = Guid.NewGuid().ToString(), Level = "300"}, 
+                new StudentLevel() { Id = Guid.NewGuid().ToString(), Level = "400"},
+                new StudentLevel() { Id = Guid.NewGuid().ToString(), Level = "500"}
             };
 
             return levels;

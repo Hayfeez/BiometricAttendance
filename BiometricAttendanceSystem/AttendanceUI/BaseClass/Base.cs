@@ -11,8 +11,8 @@ namespace AttendanceUI.BaseClass
 {
    public static class Base
    {
-       public const int IdForSelectAll = -200;
-       public const int IdForSelect = -300;
+       public const string IdForSelectAll = "c94cb05a-a323-4761-9c89-ad8911239a05"; //-200;
+       public const string IdForSelect = "dc3454c8-7447-49d9-8b21-dbc50395535a"; //-300;
 
         #region Alerts
 

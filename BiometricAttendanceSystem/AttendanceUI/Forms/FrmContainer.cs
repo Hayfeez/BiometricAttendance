@@ -28,7 +28,7 @@ namespace AttendanceUI.Forms
             _sessionRepo = new SessionSemesterRepo();
             _panelWidth = panelMenu.Width;
             _isCollapsed = false;
-            if (LoggedInUser.UserId == 0)
+            if (LoggedInUser.UserId == "")
             {
                 this.Close();
                 var loginForm = new FrmLogin();

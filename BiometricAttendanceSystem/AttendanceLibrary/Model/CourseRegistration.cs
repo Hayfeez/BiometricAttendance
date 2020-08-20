@@ -12,12 +12,12 @@ namespace AttendanceLibrary.Model
     public class CourseRegistration
     {
         [Key]
-        public int Id { get; set; }
-        public int SessionSemesterId { get; set; }
-        public int StudentId { get; set; }
-        public int LevelId { get; set; }
-        public int CourseId { get; set; }
-        public int RegisteredBy { get; set; }
+        public string Id { get; set; }
+        public string SessionSemesterId { get; set; }
+        public string StudentId { get; set; }
+        public string LevelId { get; set; }
+        public string CourseId { get; set; }
+        public string RegisteredBy { get; set; }
         public DateTime DateRegistered { get; set; }
     }
 }

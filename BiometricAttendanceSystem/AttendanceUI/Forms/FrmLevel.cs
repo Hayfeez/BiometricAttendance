@@ -19,7 +19,7 @@ namespace AttendanceUI.Forms
     {
         private readonly LevelRepo _repo;
 
-        private readonly int _id;
+        private readonly string _id;
 
         private string ValidateForm()
         {
@@ -29,7 +29,7 @@ namespace AttendanceUI.Forms
             return "";
         }
 
-        private void GetItem(int id)
+        private void GetItem(string id)
         {
             var item = _repo.GetLevel(id);
             if (item == null)
@@ -45,7 +45,7 @@ namespace AttendanceUI.Forms
 
         private void AddOrUpdate(StudentLevel item)
         {
-            var saveItem = _id == 0
+            var saveItem = _id == ""
                 ? _repo.AddLevel(item)
                 : _repo.UpdateLevel(item);
 
@@ -55,18 +55,18 @@ namespace AttendanceUI.Forms
             }
             else
             {
-                saveItem = _id == 0 ? "Level could not be added" : "Level could not be updated";
+                saveItem = _id == "" ? "Level could not be added" : "Level could not be updated";
                 Base.ShowError("Error occured", saveItem);
             }
         }
 
-        public FrmLevel(int levelId = 0)
+        public FrmLevel(string levelId = "")
         {
             InitializeComponent();
             _repo = new LevelRepo();
             _id = levelId;
 
-            if (levelId != 0)
+            if (levelId != "")
             {
                 lblTitle.Text = "Update Level";
                 GetItem(levelId);
@@ -85,6 +85,7 @@ namespace AttendanceUI.Forms
             if (validate == string.Empty)
             {
                 AddOrUpdate(item);
+                this.Close();
             }
             else
             {

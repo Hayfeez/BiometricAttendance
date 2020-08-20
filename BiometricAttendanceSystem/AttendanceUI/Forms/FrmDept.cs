@@ -20,7 +20,7 @@ namespace AttendanceUI.Forms
     {
         private readonly DepartmentRepo _repo;
 
-        private readonly int _id;
+        private readonly string _id;
         
         private string ValidateForm()
         {
@@ -33,7 +33,7 @@ namespace AttendanceUI.Forms
             return "";
         }
 
-        private void GetItem(int id)
+        private void GetItem(string id)
         {
             var item = _repo.GetDepartment(id);
             if (item == null)
@@ -50,7 +50,7 @@ namespace AttendanceUI.Forms
 
         private void AddOrUpdate(Department item)
         {
-            var saveItem = _id == 0
+            var saveItem = _id == ""
                 ? _repo.AddDepartment(item)
                 : _repo.UpdateDepartment(item);
 
@@ -60,18 +60,18 @@ namespace AttendanceUI.Forms
             }
             else
             {
-                saveItem = _id == 0 ? "Department could not be added" : "Department could not be updated";
+                saveItem = _id == "" ? "Department could not be added" : "Department could not be updated";
                 Base.ShowError("Error occured", saveItem);
             }
         }
        
-        public FrmDept(int deptId = 0)
+        public FrmDept(string deptId = "")
         {
             InitializeComponent();
             _repo = new DepartmentRepo();
             _id = deptId;
 
-            if (deptId != 0)
+            if (deptId != "")
             {
                 lblTitle.Text = "Update Department";
                 GetItem(deptId);
@@ -91,6 +91,7 @@ namespace AttendanceUI.Forms
             if (validate == string.Empty)
             {
                 AddOrUpdate(item);
+                this.Close();
             }
             else
             {

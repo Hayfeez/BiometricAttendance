@@ -8,7 +8,7 @@ namespace AttendanceLibrary.Model.ViewModels
 {
     public class AttendanceViewModel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string SessionSemester { get; set; }
         public string Course { get; set; }
         public string DepartmentName { get; set; }

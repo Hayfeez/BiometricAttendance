@@ -14,7 +14,7 @@ namespace AttendanceLibrary.Model
         private string _FullName;
 
         [Key]
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Session { get; set; }
         public string Semester { get; set; }
         public bool IsActive { get; set; }

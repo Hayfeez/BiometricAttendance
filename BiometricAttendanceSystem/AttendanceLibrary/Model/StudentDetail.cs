@@ -14,13 +14,13 @@ namespace AttendanceLibrary.Model
         private string _FullName;
 
         [Key]
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string MatricNo { get; set; }
         public string Firstname { get; set; }
         public string Othername { get; set; }
         public string Lastname { get; set; }
         public string Email { get; set; }
-        public int DepartmentId { get; set; }
+        public string DepartmentId { get; set; }
         public string PhoneNo { get; set; }
         public bool IsGraduated { get; set; }
         public bool IsDeleted { get; set; }

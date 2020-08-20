@@ -21,6 +21,7 @@ namespace AttendanceLibrary.Repository
                     if (context.Courses.Any(a => a.CourseCode == newCourse.CourseCode || a.CourseTitle == newCourse.CourseTitle && a.DepartmentId == newCourse.DepartmentId && !a.IsDeleted))
                         return "Course with this Title or Course Code exists";
 
+                    newCourse.Id = Guid.NewGuid().ToString();
                     context.Courses.Add(newCourse);
                     return context.SaveChanges() > 0 ? "Course added successfully" : "";
 
@@ -33,7 +34,7 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public string DeleteCourse(int courseId)
+        public string DeleteCourse(string courseId)
         {
             using (var context = new BASContext())
             {
@@ -68,13 +69,13 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public List<Course> GetAllDepartmentCourses(int departmentId, int levelId = 0)
+        public List<Course> GetAllDepartmentCourses(string departmentId, string levelId = "")
         {
             try
             {
                 using (var context = new BASContext())
                 {
-                    return context.Courses.Where(a => !a.IsDeleted && a.DepartmentId == departmentId && (levelId != 0 && a.LevelId == levelId)).ToList();
+                    return context.Courses.Where(a => !a.IsDeleted && a.DepartmentId == departmentId && (levelId != "" && a.LevelId == levelId)).ToList();
                 }
             }
             catch (Exception ex)
@@ -83,7 +84,7 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public Course GetCourse(int courseId)
+        public Course GetCourse(string courseId)
         {
             try
             {

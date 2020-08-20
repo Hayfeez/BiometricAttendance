@@ -27,6 +27,7 @@ namespace AttendanceLibrary.Repository
                         }
                     }
 
+                    newSem.Id = Guid.NewGuid().ToString();
                     context.SessionSemesters.Add(newSem);
                     return context.SaveChanges() > 0 ? "Session/Semester added successfully" : "";
                 }
@@ -38,7 +39,7 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public string DeleteSessionSemester(int semId)
+        public string DeleteSessionSemester(string semId)
         {
             using (var context = new BASContext())
             {
@@ -72,7 +73,7 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public SessionSemester GetSessionSemester(int semId)
+        public SessionSemester GetSessionSemester(string semId)
         {
             try
             {

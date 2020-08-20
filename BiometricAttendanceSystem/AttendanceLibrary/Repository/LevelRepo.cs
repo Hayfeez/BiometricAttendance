@@ -20,6 +20,7 @@ namespace AttendanceLibrary.Repository
                     //if (context.Levels.Any(a => a.LevelRank == newLevel.LevelRank && !a.IsDeleted))
                     //    return "A Level already exist for this Level rank";
 
+                    newLevel.Id = Guid.NewGuid().ToString();
                     context.Levels.Add(newLevel);
 
                     return context.SaveChanges() > 0 ? "Level added successfully" : "";
@@ -33,7 +34,7 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public string DeleteLevel(int levelId)
+        public string DeleteLevel(string levelId)
         {
             using (var context = new BASContext())
             {
@@ -67,7 +68,7 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public StudentLevel GetLevel(int levelId)
+        public StudentLevel GetLevel(string levelId)
         {
             try
             {

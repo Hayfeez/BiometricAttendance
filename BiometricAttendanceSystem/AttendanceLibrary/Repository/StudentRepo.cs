@@ -21,6 +21,7 @@ namespace AttendanceLibrary.Repository
                     if (context.Students.Any(a => a.MatricNo == newStudent.MatricNo || a.Email == newStudent.Email && !a.IsDeleted))
                         return "Student with this Matric number or Email address exists";
 
+                    newStudent.Id = Guid.NewGuid().ToString();
                     context.Students.Add(newStudent);
                     return context.SaveChanges() > 0 ? "Student added successfully" : "";
                 }
@@ -32,7 +33,7 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public string AddBulkStudent(List<BulkStudent> data, int levelId)
+        public string AddBulkStudent(List<BulkStudent> data, string levelId)
         {
             try
             {
@@ -49,7 +50,7 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public string DeleteStudent(int studentId)
+        public string DeleteStudent(string studentId)
         {
             using (var context = new BASContext())
             {
@@ -68,7 +69,7 @@ namespace AttendanceLibrary.Repository
 
         }
 
-        public string GraduateStudent(int studentId)
+        public string GraduateStudent(string studentId)
         {
             using (var context = new BASContext())
             {
@@ -101,7 +102,7 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public List<StudentDetail> GetAllDepartmentStudents(int departmentId, bool isGraduate = false)
+        public List<StudentDetail> GetAllDepartmentStudents(string departmentId, bool isGraduate = false)
         {
             try
             {
@@ -116,7 +117,7 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public StudentDetail GetStudent(int studentId)
+        public StudentDetail GetStudent(string studentId)
         {
             try
             {

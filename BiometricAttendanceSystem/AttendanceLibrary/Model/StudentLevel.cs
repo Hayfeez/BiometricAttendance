@@ -12,7 +12,7 @@ namespace AttendanceLibrary.Model
     public class StudentLevel
     {
         [Key]
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Level { get; set; }
         //public int LevelRank { get; set; }
         public bool IsDeleted { get; set; }

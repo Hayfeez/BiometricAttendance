@@ -22,6 +22,7 @@ namespace AttendanceLibrary.Repository
                     if (context.Staff.Any(a => a.StaffNo == newStaff.StaffNo || a.Email == newStaff.Email && !a.IsDeleted))
                         return "Staff with this Staff number or Email address exists";
 
+                    newStaff.Id = Guid.NewGuid().ToString();
                     context.Staff.Add(newStaff);
                     return context.SaveChanges() > 0 ? "Staff added successfully" : "";
                 }                    
@@ -49,7 +50,7 @@ namespace AttendanceLibrary.Repository
                 throw ex;
             }
         }
-        public string DeleteStaff(int staffId)
+        public string DeleteStaff(string staffId)
         {
             using (var context = new BASContext())
             {
@@ -84,7 +85,7 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public List<StaffDetail> GetAllDepartmentStaff(int departmentId)
+        public List<StaffDetail> GetAllDepartmentStaff(string departmentId)
         {
             try
             {
@@ -99,7 +100,7 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public StaffDetail GetStaff(int staffId)
+        public StaffDetail GetStaff(string staffId)
         {
             try
             {
@@ -139,7 +140,7 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public string UpdateStaffAdminStatus(int staffId, bool isAdmin)
+        public string UpdateStaffAdminStatus(string staffId, bool isAdmin)
         {
             using (var context = new BASContext())
             {

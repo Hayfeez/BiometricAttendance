@@ -10,7 +10,7 @@ namespace AttendanceLibrary.Model
     public class SystemSetting
     {
         [Key]
-        public int Id { get; set; }
+        public string Id { get; set; }
         public int NoOfFinger { get; set; }
         public string SuperAdminLastname { get; set; }
         public string SuperAdminFirstname { get; set; }
