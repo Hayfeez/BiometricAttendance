@@ -24,7 +24,7 @@ namespace AttendanceLibrary.Repository
 
                     newStaff.Id = Guid.NewGuid().ToString();
                     context.Staff.Add(newStaff);
-                    return context.SaveChanges() > 0 ? "Staff added successfully" : "";
+                    return context.SaveChanges() > 0 ? "" : "Staff could not be added";
                 }                    
                 
             }
@@ -62,7 +62,7 @@ namespace AttendanceLibrary.Repository
                 {
                     //context.Staff.Remove(staff);
                     staff.IsDeleted = true;
-                    return context.SaveChanges() > 0 ? "Staff deleted successfully" : "";
+                    return context.SaveChanges() > 0 ? "" : "Staff could not be updated";
                 }
 
                 return "Staff not found";
@@ -136,7 +136,7 @@ namespace AttendanceLibrary.Repository
                 oldStaff.StaffNo = staff.StaffNo;
                 oldStaff.DepartmentId = staff.DepartmentId;
 
-                return context.SaveChanges() > 0 ? "Staff updated successfully" : "";
+                return context.SaveChanges() > 0 ? "" : "Staff could not be updated";
             }
         }
 
@@ -150,9 +150,8 @@ namespace AttendanceLibrary.Repository
 
                 staff.IsAdmin = isAdmin;
                 return context.SaveChanges() > 0 
-                    ? isAdmin 
-                        ? "Staff is now an admin" : "Staff is no longer an admin" 
-                    : "";
+                    ? ""
+                    : "Operation failed";
 
             }
         }

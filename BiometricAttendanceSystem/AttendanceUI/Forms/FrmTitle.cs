@@ -50,14 +50,13 @@ namespace AttendanceUI.Forms
                 ? _repo.AddTitle(item)
                 : _repo.UpdateTitle(item);
 
-            if (saveItem != string.Empty)
+            if (saveItem == string.Empty)
             {
-                Base.ShowSuccess("Success", saveItem);
+                Base.ShowSuccess("Success", "Title saved successfully");
             }
             else
             {
-                saveItem = _id == "" ? "Title could not be added" : "Title could not be updated";
-                Base.ShowError("Error occured", saveItem);
+                Base.ShowError("Failed", saveItem);
             }
         }
 

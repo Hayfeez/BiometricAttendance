@@ -22,8 +22,7 @@ namespace AttendanceLibrary.Repository
                     {
                         data.Id = Guid.NewGuid().ToString();
 						context.StudentFingers.Add(data);
-						context.SaveChanges();
-						return "Finger saved successfully";
+                        return context.SaveChanges() > 0 ? "" : "Finger could not be saved";
 					}
 					else
 						return "Required no of fingers already saved";
@@ -56,11 +55,10 @@ namespace AttendanceLibrary.Repository
 						context.StudentFingers.Add(item);						
 					}
 
-					context.SaveChanges();
-					
+                    return context.SaveChanges() > 0 ? "" : "Finger could not be saved";
+
 				}
 
-				return "Fingers saved successfully";
 			}
 			catch (Exception ex)
 			{

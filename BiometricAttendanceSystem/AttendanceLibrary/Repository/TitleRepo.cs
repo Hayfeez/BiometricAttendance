@@ -22,7 +22,7 @@ namespace AttendanceLibrary.Repository
 
                     newTitle.Id = Guid.NewGuid().ToString();
                     context.Titles.Add(newTitle);
-                    return context.SaveChanges() > 0 ? "Title added successfully" : "";
+                    return context.SaveChanges() > 0 ? "" : "Title could not be added";
                 }
 
             }
@@ -43,7 +43,7 @@ namespace AttendanceLibrary.Repository
                 if (Title != null)
                 {
                     Title.IsDeleted = true;
-                    return context.SaveChanges() > 0 ? "Title deleted successfully" : "";
+                    return context.SaveChanges() > 0 ? "" : "Title could not be deleted";
                 }
 
                 return "Title not found";
@@ -93,7 +93,7 @@ namespace AttendanceLibrary.Repository
                     return "Title already exist";
 
                 oldTitle.Title = title.Title.ToTitleCase();
-                return context.SaveChanges() > 0 ? "Title updated successfully" : "";
+                return context.SaveChanges() > 0 ? "" : "Title could not be updated";
             }
         }
     }

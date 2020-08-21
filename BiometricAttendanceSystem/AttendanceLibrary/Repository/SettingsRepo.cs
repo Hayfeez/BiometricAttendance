@@ -41,7 +41,7 @@ namespace AttendanceLibrary.Repository
                 oldSetting.SuperAdminPassword = PasswordHash.sha256(setting.SuperAdminPassword);
                 oldSetting.NoOfFinger = setting.NoOfFinger;
 
-                return context.SaveChanges() > 0 ? "Setting updated successfully" : "";
+                return context.SaveChanges() > 0 ? "" : "Settings could not be updated";
             }
         }
     }

@@ -23,7 +23,7 @@ namespace AttendanceLibrary.Repository
 
                     newDepartment.Id = Guid.NewGuid().ToString();
                     context.Departments.Add(newDepartment);
-                    return context.SaveChanges() > 0 ? "Department added successfully" : "";
+                    return context.SaveChanges() > 0 ? "" : "Department could not be added";
 
                 }                    
                 
@@ -45,7 +45,7 @@ namespace AttendanceLibrary.Repository
                 if (Department != null)
                 {
                     Department.IsDeleted = true;
-                    return context.SaveChanges() > 0 ? "Department deleted successfully" : "";
+                    return context.SaveChanges() > 0 ? "" : "Department could not be deleted";
                 }
 
                 return "Department not found";
@@ -97,7 +97,7 @@ namespace AttendanceLibrary.Repository
                 oldDepartment.DepartmentCode = Department.DepartmentCode;
                 oldDepartment.DepartmentName = Department.DepartmentName.ToTitleCase();
 
-                return context.SaveChanges() > 0 ? "Department updated successfully" : "";
+                return context.SaveChanges() > 0 ? "" : "Department could not be updated";
             }
         }
 

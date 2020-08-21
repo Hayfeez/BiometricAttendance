@@ -23,7 +23,7 @@ namespace AttendanceLibrary.Repository
 
                     newStudent.Id = Guid.NewGuid().ToString();
                     context.Students.Add(newStudent);
-                    return context.SaveChanges() > 0 ? "Student added successfully" : "";
+                    return context.SaveChanges() > 0 ? "" : "Student could not be added";
                 }
 
             }
@@ -61,7 +61,7 @@ namespace AttendanceLibrary.Repository
                 if (student != null)
                 {
                     student.IsDeleted = true;
-                    return context.SaveChanges() > 0 ? "Student deleted successfully" : "";
+                    return context.SaveChanges() > 0 ? "" : "Student could not be deleted";
                 }
 
                 return "Student not found";
@@ -78,7 +78,7 @@ namespace AttendanceLibrary.Repository
                 if (student != null)
                 {
                     student.IsGraduated = true;
-                    return context.SaveChanges() > 0 ? "Student has been marked graduated successfully" : "";
+                    return context.SaveChanges() > 0 ? "" : "Operation failed";
                  
                 }
 
@@ -151,7 +151,7 @@ namespace AttendanceLibrary.Repository
                 oldStudent.PhoneNo = student.PhoneNo;
                 oldStudent.DepartmentId = student.DepartmentId;
 
-                return context.SaveChanges() > 0 ? "Student updated successfully" : "";
+                return context.SaveChanges() > 0 ? "" : "Student could not be updated";
             }
         }
     }

@@ -27,7 +27,7 @@ namespace AttendanceLibrary.Repository
                     d.Password = pwd.NewPassword;
                     d.PasswordChanged = true;
 
-                    return context.SaveChanges() > 0 ? "Password changed successfully" : "";
+                    return context.SaveChanges() > 0 ? "" : "Password could not be updated";
                 }                    
                 
             }

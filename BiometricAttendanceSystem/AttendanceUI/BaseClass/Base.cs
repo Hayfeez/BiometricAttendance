@@ -69,11 +69,16 @@ namespace AttendanceUI.BaseClass
             return dT;
         }
 
-        public static void AddEditDeleteToGrid(ref DataGridView dataGrid)
+        public static void AddEditDeleteToGrid(ref DataGridView dataGrid, bool noItems)
         {
+            //TODO: check if the columns exist, don't add otherwise add
+
+            if (noItems)
+                return;
+
             //DataGridViewImageColumn delbut = new DataGridViewImageColumn();
             //Edit link
-            DataGridViewLinkColumn Editlink = new DataGridViewLinkColumn();
+            var Editlink = new DataGridViewLinkColumn();
             Editlink.UseColumnTextForLinkValue = true;
             Editlink.HeaderText = "Edit";
             Editlink.DataPropertyName = "lnkColumn";
@@ -83,7 +88,7 @@ namespace AttendanceUI.BaseClass
 
             //Delete link
 
-            DataGridViewLinkColumn Deletelink = new DataGridViewLinkColumn();
+            var Deletelink = new DataGridViewLinkColumn();
             Deletelink.UseColumnTextForLinkValue = true;
             Deletelink.HeaderText = "Delete";
             Deletelink.DataPropertyName = "lnkColumn";

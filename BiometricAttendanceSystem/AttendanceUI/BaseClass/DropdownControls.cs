@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using AttendanceLibrary.Model;
+using AttendanceLibrary.Model.ViewModels;
 using AttendanceLibrary.Repository;
 
 namespace AttendanceUI.BaseClass
@@ -123,11 +124,11 @@ namespace AttendanceUI.BaseClass
         public static void LoadCourses(ref ComboBox dropDown, string deptId, string levelId, bool includeAll = false)
         {
             var repo = new CourseRepo();
-            var allItems = repo.GetAllDepartmentCourses(deptId, levelId);
+            var allItems = repo.GetAllCoursesSlim(deptId, levelId);
 
             if (includeAll)
             {
-                allItems.Insert(0, new Course()
+                allItems.Insert(0, new Course
                 {
                     CourseTitle = "Select All",
                     Id = Base.IdForSelectAll

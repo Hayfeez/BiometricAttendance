@@ -55,14 +55,13 @@ namespace AttendanceUI.Forms
                 ? _repo.AddSessionSemester(item)
                 : _repo.UpdateSessionSemester(item);
 
-            if (saveItem != string.Empty)
+            if (saveItem == string.Empty)
             {
-                Base.ShowSuccess("Success", saveItem);
+                Base.ShowSuccess("Success", "Session/Semester saved successfully");
             }
             else
             {
-                saveItem = _id == "" ? "Session/Semester could not be added" : "Session/Semester could not be updated";
-                Base.ShowError("Error occured", saveItem);
+                Base.ShowError("Failed", saveItem);
             }
         }
 

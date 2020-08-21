@@ -78,6 +78,7 @@
     <Compile Include="Model\StudentFinger.cs" />
     <Compile Include="Model\StudentLevel.cs" />
     <Compile Include="Model\SystemSetting.cs" />
+    <Compile Include="Model\ViewModels\CourseList.cs" />
     <Compile Include="Model\ViewModels\AttendanceViewModel.cs" />
     <Compile Include="Model\ViewModels\AuthViewModel.cs" />
     <Compile Include="Model\ViewModels\BulkUpload.cs" />

@@ -61,7 +61,8 @@ namespace AttendanceUI.Forms
             }
             else
             {
-                comboDept.SelectedItem = item.DepartmentId;
+                comboDept.SelectedValue = item.DepartmentId;
+                comboTitle.SelectedValue = item.TitleId;
                 txtSurname.Text = item.Lastname;
                 txtFirstname.Text = item.Firstname;
                 txtOthername.Text = item.Othername;
@@ -79,14 +80,13 @@ namespace AttendanceUI.Forms
                 ? _repo.AddStaff(item)
                 : _repo.UpdateStaff(item);
 
-            if (saveItem != string.Empty)
+            if (saveItem == string.Empty)
             {
-                Base.ShowSuccess("Success", saveItem);
+                Base.ShowSuccess("Success", "Staff saved successfully");
             }
             else
             {
-                saveItem = _id == "" ? "Staff could not be added" : "Staff could not be updated";
-                Base.ShowError("Error occured", saveItem);
+                Base.ShowError("Failed", saveItem);
             }
         }
 

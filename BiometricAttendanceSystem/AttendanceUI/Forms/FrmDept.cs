@@ -54,14 +54,13 @@ namespace AttendanceUI.Forms
                 ? _repo.AddDepartment(item)
                 : _repo.UpdateDepartment(item);
 
-            if (saveItem != string.Empty)
+            if (saveItem == string.Empty)
             {
-                Base.ShowSuccess("Success", saveItem);
+                Base.ShowSuccess("Success", "Department saved successfully");
             }
             else
             {
-                saveItem = _id == "" ? "Department could not be added" : "Department could not be updated";
-                Base.ShowError("Error occured", saveItem);
+                Base.ShowError("Failed", saveItem);
             }
         }
        

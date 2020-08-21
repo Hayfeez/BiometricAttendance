@@ -22,7 +22,7 @@ namespace AttendanceLibrary.Repository
                     model.Id = Guid.NewGuid().ToString();
                     context.CourseRegistrations.Add(model);
 
-                    return context.SaveChanges() > 0 ? "Course registered successfully" : "";
+                    return context.SaveChanges() > 0 ? "" : "Course could not be registered";
 
                 }
             }

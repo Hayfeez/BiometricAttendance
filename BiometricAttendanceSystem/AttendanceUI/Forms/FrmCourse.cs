@@ -55,8 +55,8 @@ namespace AttendanceUI.Forms
             }
             else
             {
-                comboLevel.SelectedItem = item.LevelId;
-                comboDept.SelectedItem = item.DepartmentId;
+                comboLevel.SelectedValue = item.LevelId;
+                comboDept.SelectedValue = item.DepartmentId;
                 txtCourseCode.Text = item.CourseCode;
                 txtCourseTitle.Text = item.CourseTitle;
             }
@@ -68,14 +68,13 @@ namespace AttendanceUI.Forms
                 ? _repo.AddCourse(item)
                 : _repo.UpdateCourse(item);
 
-            if (saveItem != string.Empty)
+            if (saveItem == string.Empty)
             {
-                Base.ShowSuccess("Success", saveItem);
+                Base.ShowSuccess("Success", "Course saved successfully");
             }
             else
             {
-                saveItem = _id == "" ? "Course could not be added" : "Course could not be updated";
-                Base.ShowError("Error occured", saveItem);
+                Base.ShowError("Failed", saveItem);
             }
         }
 

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using AttendanceLibrary.BaseClass;
+using AttendanceLibrary.Model.ViewModels;
 
 namespace AttendanceLibrary.Repository
 {
@@ -23,7 +24,7 @@ namespace AttendanceLibrary.Repository
 
                     newCourse.Id = Guid.NewGuid().ToString();
                     context.Courses.Add(newCourse);
-                    return context.SaveChanges() > 0 ? "Course added successfully" : "";
+                    return context.SaveChanges() > 0 ? "" : "Course could not be added";
 
                 }                    
                 
@@ -46,7 +47,7 @@ namespace AttendanceLibrary.Repository
                 {
                     //context.Staff.Remove(staff);
                     course.IsDeleted = true;
-                    return context.SaveChanges() > 0 ? "Course deleted successfully" : "";
+                    return context.SaveChanges() > 0 ? "" : "Course could not be deleted";
                 }
 
                 return "Course not found";
@@ -54,13 +55,66 @@ namespace AttendanceLibrary.Repository
             
         }
 
-        public List<Course> GetAllCourses()
+        //public List<CourseList> GetAllCourses()
+        //{
+        //    try
+        //    {
+        //        using (var context = new BASContext())
+        //        {                    
+        //            //return context.Courses.Where(a => !a.IsDeleted)
+        //            //    .Join(context.Departments, c => c.DepartmentId, d => d.Id, (c, d) => new
+        //            //    {
+        //            //        course = c,
+        //            //        deptName = d.DepartmentName
+        //            //    })
+        //            //    .Join(context.Levels, x => x.course.LevelId, d => d.Id, (course, d) => new
+        //            //    {
+        //            //        course,
+        //            //        levelName = d.Level
+        //            //    }).Select(x=> new CourseList
+        //            //    {
+        //            //        CourseCode = x.course.
+        //            //    })
+
+        //            return (from c in context.Courses
+        //                          where !c.IsDeleted
+        //                          join d in context.Departments on c.DepartmentId equals d.Id
+        //                          join l in context.Levels on c.LevelId equals l.Id
+        //                          select new CourseList
+        //                          {
+        //                              CourseCode = c.CourseCode,
+        //                              CourseTitle = c.CourseTitle,
+        //                              Id = c.Id,
+        //                              Department = d.DepartmentName,
+        //                              Level = l.Level
+        //                          }).ToList();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
+
+        public List<CourseList> GetAllCourses(string departmentId = "", string levelId = "")
         {
             try
             {
                 using (var context = new BASContext())
-                {                    
-                    return context.Courses.Where(a => !a.IsDeleted).ToList();                   
+                {
+                    return (from c in context.Courses
+                            where !c.IsDeleted && (departmentId == "" || c.DepartmentId == departmentId) && (levelId == "" || c.LevelId == levelId)
+                            join d in context.Departments on c.DepartmentId equals d.Id
+                            join l in context.Levels on c.LevelId equals l.Id
+                            select new CourseList
+                            {
+                                CourseCode = c.CourseCode,
+                                CourseTitle = c.CourseTitle,
+                                Id = c.Id,
+                                Department = d.DepartmentName,
+                                Level = l.Level
+                            }).ToList();
+
                 }
             }
             catch (Exception ex)
@@ -69,13 +123,15 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public List<Course> GetAllDepartmentCourses(string departmentId, string levelId = "")
+        public List<Course> GetAllCoursesSlim(string departmentId = "", string levelId = "")
         {
             try
             {
                 using (var context = new BASContext())
                 {
-                    return context.Courses.Where(a => !a.IsDeleted && a.DepartmentId == departmentId && (levelId != "" && a.LevelId == levelId)).ToList();
+                    return context.Courses
+                        .Where(c => !c.IsDeleted && (departmentId != "" && c.DepartmentId == departmentId) && (levelId != "" && c.LevelId == levelId))
+                        .ToList();
                 }
             }
             catch (Exception ex)
@@ -107,7 +163,7 @@ namespace AttendanceLibrary.Repository
                 if (oldCourse == null)
                     return "Course not found";
 
-                if (context.Courses.Any(a => a.CourseTitle == course.CourseTitle || a.CourseCode == course.CourseCode  && !a.IsDeleted && a.Id != course.Id))
+                if (context.Courses.Any(a => !a.IsDeleted && a.Id != course.Id && (a.CourseTitle == course.CourseTitle || a.CourseCode == course.CourseCode)))
                     return "Course with this Title or Course Code exists";
 
                 //oldCourse.DepartmentId = course.DepartmentId;
@@ -115,7 +171,7 @@ namespace AttendanceLibrary.Repository
                 oldCourse.CourseCode = course.CourseCode;
                 oldCourse.CourseTitle = course.CourseTitle.ToTitleCase();
 
-                return context.SaveChanges() > 0 ? "Course updated successfully" : "";
+                return context.SaveChanges() > 0 ? "" : "Course could not be updated";
 
             }
         }

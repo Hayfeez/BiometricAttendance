@@ -49,14 +49,13 @@ namespace AttendanceUI.Forms
                 ? _repo.AddLevel(item)
                 : _repo.UpdateLevel(item);
 
-            if (saveItem != string.Empty)
+            if (saveItem == string.Empty)
             {
-                Base.ShowSuccess("Success", saveItem);
+                Base.ShowSuccess("Success", "Level saved successfully");
             }
             else
             {
-                saveItem = _id == "" ? "Level could not be added" : "Level could not be updated";
-                Base.ShowError("Error occured", saveItem);
+                Base.ShowError("Failed", saveItem);
             }
         }
 

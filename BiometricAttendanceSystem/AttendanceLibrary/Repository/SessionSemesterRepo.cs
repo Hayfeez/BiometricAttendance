@@ -29,7 +29,7 @@ namespace AttendanceLibrary.Repository
 
                     newSem.Id = Guid.NewGuid().ToString();
                     context.SessionSemesters.Add(newSem);
-                    return context.SaveChanges() > 0 ? "Session/Semester added successfully" : "";
+                    return context.SaveChanges() > 0 ? "" : "Session/Semester could not be added";
                 }
 
             }
@@ -50,7 +50,7 @@ namespace AttendanceLibrary.Repository
                 if (SessionSemester != null)
                 {
                     SessionSemester.IsDeleted = true;
-                    return context.SaveChanges() > 0 ? "Session/Semester deleted successfully" : "";
+                    return context.SaveChanges() > 0 ? "" : "Session/Semester could not be deleted";
                 }
 
                 return "Session/Semester not found";
@@ -127,7 +127,7 @@ namespace AttendanceLibrary.Repository
                     }
                 }
 
-                return context.SaveChanges() > 0 ? "Session/Semester updated successfully" : "";
+                return context.SaveChanges() > 0 ? "" : "Session/Semester could not be updated";
             }
         }
     }

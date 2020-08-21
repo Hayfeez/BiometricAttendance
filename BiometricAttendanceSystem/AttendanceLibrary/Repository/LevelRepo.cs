@@ -23,7 +23,7 @@ namespace AttendanceLibrary.Repository
                     newLevel.Id = Guid.NewGuid().ToString();
                     context.Levels.Add(newLevel);
 
-                    return context.SaveChanges() > 0 ? "Level added successfully" : "";
+                    return context.SaveChanges() > 0 ? "" : "Level could not be added";
 
                 }
 
@@ -45,7 +45,7 @@ namespace AttendanceLibrary.Repository
                 if (level != null)
                 {
                     level.IsDeleted = true;
-                    return context.SaveChanges() > 0 ? "Level deleted successfully" : "";
+                    return context.SaveChanges() > 0 ? "" : "Level could not be deleted";
                 }
 
                 return "Level not found";
@@ -98,7 +98,7 @@ namespace AttendanceLibrary.Repository
 
                 oldLevel.Level = level.Level;
 
-                return context.SaveChanges() > 0 ? "Level updated successfully" : "";
+                return context.SaveChanges() > 0 ? "" : "Level could not be updated";
 
             }
         }
