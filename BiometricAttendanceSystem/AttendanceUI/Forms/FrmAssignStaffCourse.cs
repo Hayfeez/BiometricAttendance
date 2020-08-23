@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using AttendanceLibrary.BaseClass;
 using AttendanceLibrary.Model;
 using AttendanceLibrary.Repository;
 
@@ -70,6 +71,12 @@ namespace AttendanceUI.Forms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (!LoggedInUser.IsAdmin)
+            {
+                Base.ShowError("Access Denied", "You do not have the required permission");
+                return;
+            }
+
             _staffId = comboStaff.SelectedValue.ToString() == Base.IdForSelect ? "" : comboStaff.SelectedValue.ToString();
 
             if (_staffId == "")

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using AttendanceLibrary.BaseClass;
 using AttendanceLibrary.Repository;
 
 using AttendanceUI.BaseClass;
@@ -62,6 +63,11 @@ namespace AttendanceUI.Pages
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            if (!LoggedInUser.IsAdmin)
+            {
+                Base.ShowError("Access Denied", "You do not have the required permission");
+                return;
+            }
             var sessionForm = new FrmSession();
             sessionForm.ShowDialog();
             LoadData();
@@ -93,6 +99,12 @@ namespace AttendanceUI.Pages
                 //  var d = (DataGridView)sender;
                 //  var df = d.SelectedCells[0].Value.ToString();
                 //  if(df == "Edit") (df == "Delete")
+
+                if (!LoggedInUser.IsAdmin)
+                {
+                    Base.ShowError("Access Denied", "You do not have the required permission");
+                    return;
+                }
 
                 //edit column 
                 if (e.ColumnIndex == 0)

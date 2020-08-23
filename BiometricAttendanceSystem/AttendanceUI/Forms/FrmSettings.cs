@@ -135,7 +135,12 @@ namespace AttendanceUI.Forms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-           
+            if (!LoggedInUser.IsSuperAdmin)
+            {
+                Base.ShowError("Access Denied", "Only a System Administrator can update System Settings");
+                return;
+            }
+
             var validate = ValidateSettingsForm();
             if (validate == string.Empty)
             {

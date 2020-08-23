@@ -81,7 +81,7 @@ namespace AttendanceUI.BaseClass
             var editlink = new DataGridViewLinkColumn
             {
                 UseColumnTextForLinkValue = true,
-                HeaderText = "Edit",
+                HeaderText = "",
                 DataPropertyName = "lnkColumn",
                 LinkBehavior = LinkBehavior.SystemDefault,
                 Text = "Edit"
@@ -91,7 +91,7 @@ namespace AttendanceUI.BaseClass
             var deletelink = new DataGridViewLinkColumn
             {
                 UseColumnTextForLinkValue = true,
-                HeaderText = "Delete",
+                HeaderText = "",
                 DataPropertyName = "lnkColumn",
                 LinkBehavior = LinkBehavior.SystemDefault,
                 Text = "Delete"
@@ -116,7 +116,7 @@ namespace AttendanceUI.BaseClass
             var deletelink = new DataGridViewLinkColumn
             {
                 UseColumnTextForLinkValue = true,
-                HeaderText = "Delete",
+                HeaderText = "",
                 DataPropertyName = "lnkColumn",
                 LinkBehavior = LinkBehavior.SystemDefault,
                 Text = "Delete"

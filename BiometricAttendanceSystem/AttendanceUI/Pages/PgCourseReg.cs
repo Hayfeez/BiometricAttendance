@@ -3,6 +3,7 @@ using System.Data;
 using System.Drawing.Text;
 using System.Windows.Forms;
 
+using AttendanceLibrary.BaseClass;
 using AttendanceLibrary.Repository;
 
 using AttendanceUI.BaseClass;
@@ -88,6 +89,11 @@ namespace AttendanceUI.Pages
 
         private void btnImport_Click(object sender, EventArgs e)
         {
+            if (!LoggedInUser.IsAdmin)
+            {
+                Base.ShowError("Access Denied", "You do not have the required permission");
+                return;
+            }
             var courseRegForm = new FrmUploadCourseReg();
             courseRegForm.ShowDialog();
             LoadData();
@@ -102,6 +108,12 @@ namespace AttendanceUI.Pages
         {
             try
             {
+                if (!LoggedInUser.IsAdmin)
+                {
+                    Base.ShowError("Access Denied", "You do not have the required permission");
+                    return;
+                }
+
                 //delete column
                 if (e.ColumnIndex == 0)
                 {

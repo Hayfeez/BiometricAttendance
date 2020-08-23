@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using AttendanceLibrary.BaseClass;
 using AttendanceLibrary.Repository;
 
 using AttendanceUI.BaseClass;
@@ -93,6 +94,12 @@ namespace AttendanceUI.Forms
 
         private void btnAddNew_Click(object sender, EventArgs e)
         {
+            if (!LoggedInUser.IsAdmin)
+            {
+                Base.ShowError("Access Denied", "You do not have the required permission");
+                return;
+            }
+
             var courseStaffForm = new FrmAssignStaffCourse();
             courseStaffForm.ShowDialog();
             LoadData();
@@ -127,6 +134,12 @@ namespace AttendanceUI.Forms
         {
             try
             {
+                if (!LoggedInUser.IsAdmin)
+                {
+                    Base.ShowError("Access Denied", "You do not have the required permission");
+                    return;
+                }
+
                 //delete column
                 if (e.ColumnIndex == 0)
                 {

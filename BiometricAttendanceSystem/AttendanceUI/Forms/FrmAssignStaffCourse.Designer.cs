@@ -30,6 +30,7 @@
         {
             this.panelForm = new System.Windows.Forms.Panel();
             this.panelBody = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.checkCourses = new System.Windows.Forms.CheckedListBox();
             this.comboStaff = new System.Windows.Forms.ComboBox();
             this.comboLevel = new System.Windows.Forms.ComboBox();
@@ -46,7 +47,6 @@
             this.iconExit = new FontAwesome.Sharp.IconPictureBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.label4 = new System.Windows.Forms.Label();
             this.panelForm.SuspendLayout();
             this.panelBody.SuspendLayout();
             this.panelTop.SuspendLayout();
@@ -83,6 +83,17 @@
             this.panelBody.Name = "panelBody";
             this.panelBody.Size = new System.Drawing.Size(759, 492);
             this.panelBody.TabIndex = 1;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Bold);
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
+            this.label4.Location = new System.Drawing.Point(17, 157);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(84, 22);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Courses";
             // 
             // checkCourses
             // 
@@ -253,17 +264,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Bold);
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
-            this.label4.Location = new System.Drawing.Point(17, 157);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(84, 22);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Courses";
             // 
             // FrmAssignStaffCourse
             // 

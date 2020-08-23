@@ -120,10 +120,6 @@ namespace AttendanceUI.Forms
             SetActiveMenu(btnHome);
         }
 
-        private void btnLogout_Click(object sender, EventArgs e)
-        {
-           
-        }
 
         private void btnHome_Click(object sender, EventArgs e)
         {
@@ -201,6 +197,12 @@ namespace AttendanceUI.Forms
 
         private void iconSettings_Click(object sender, EventArgs e)
         {
+            if (!LoggedInUser.IsAdmin)
+            {
+                Base.ShowError("Access Denied", "You do not have the required permission");
+                return;
+            }
+
             var settingsForm = new FrmSettings();
             settingsForm.ShowDialog();
         }
