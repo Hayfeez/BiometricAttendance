@@ -120,7 +120,6 @@ namespace AttendanceUI.Pages
                         updateForm.ShowDialog();
                         LoadData();
                     }
-
                 }
 
                 //delete column
@@ -133,12 +132,13 @@ namespace AttendanceUI.Pages
                         var response = _repo.DeleteStaff(id);
 
                         if (response == string.Empty)
+                        {
                             Base.ShowInfo("Success", "Staff deleted successfully");
+                            LoadData();
+                        }
 
                         else
                             Base.ShowError("Failed", response);
-
-                        LoadData();
                     }
                 }
 

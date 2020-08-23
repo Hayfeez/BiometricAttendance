@@ -118,12 +118,13 @@ namespace AttendanceUI.Pages
                         var response = _repo.DeleteDepartment(id);
 
                         if (response == string.Empty)
+                        {
                             Base.ShowInfo("Success", "Department deleted successfully");
+                            LoadData();
+                        }
 
                         else
                             Base.ShowError("Failed", response);
-
-                        LoadData();
                     }
                 }
 

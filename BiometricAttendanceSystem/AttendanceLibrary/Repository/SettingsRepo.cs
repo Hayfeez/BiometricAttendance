@@ -36,9 +36,9 @@ namespace AttendanceLibrary.Repository
 
                 oldSetting.SuperAdminFirstname = setting.SuperAdminFirstname;
                 oldSetting.SuperAdminLastname = setting.SuperAdminLastname;
-                oldSetting.SuperAdminNo = setting.SuperAdminNo;
                 oldSetting.SuperAdminEmail = setting.SuperAdminEmail;
                 oldSetting.SuperAdminPassword = PasswordHash.sha256(setting.SuperAdminPassword);
+                oldSetting.UserDefaultPassword = PasswordHash.sha256(setting.UserDefaultPassword);
                 oldSetting.NoOfFinger = setting.NoOfFinger;
 
                 return context.SaveChanges() > 0 ? "" : "Settings could not be updated";

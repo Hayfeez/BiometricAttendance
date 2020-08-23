@@ -71,6 +71,7 @@ namespace AttendanceUI.Forms
             if (saveItem == string.Empty)
             {
                 Base.ShowSuccess("Success", "Course saved successfully");
+                this.Close();
             }
             else
             {
@@ -109,7 +110,6 @@ namespace AttendanceUI.Forms
              if (validate == string.Empty)
              {
                  AddOrUpdate(item);
-                 this.Close();
              }
              else
              {

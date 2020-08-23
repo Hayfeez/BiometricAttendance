@@ -129,11 +129,11 @@
             this.iconExit.ForeColor = System.Drawing.Color.Red;
             this.iconExit.IconChar = FontAwesome.Sharp.IconChar.TimesCircle;
             this.iconExit.IconColor = System.Drawing.Color.Red;
-            this.iconExit.IconSize = 59;
-            this.iconExit.Location = new System.Drawing.Point(762, 13);
+            this.iconExit.IconSize = 53;
+            this.iconExit.Location = new System.Drawing.Point(797, 13);
             this.iconExit.Margin = new System.Windows.Forms.Padding(4);
             this.iconExit.Name = "iconExit";
-            this.iconExit.Size = new System.Drawing.Size(88, 59);
+            this.iconExit.Size = new System.Drawing.Size(53, 59);
             this.iconExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.iconExit.TabIndex = 14;
             this.iconExit.TabStop = false;

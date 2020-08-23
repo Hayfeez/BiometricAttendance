@@ -195,12 +195,14 @@ namespace AttendanceUI.Forms
 
         private void iconUser_Click(object sender, EventArgs e)
         {
-
+            var frm = new FrmUserProfile();
+            frm.ShowDialog();
         }
 
         private void iconSettings_Click(object sender, EventArgs e)
         {
-
+            var settingsForm = new FrmSettings();
+            settingsForm.ShowDialog();
         }
 
         private void iconAlert_Click(object sender, EventArgs e)

@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseClass\Helper.cs" />
     <Compile Include="BaseClass\LoggedInUser.cs" />
     <Compile Include="BaseClass\PasswordHash.cs" />
     <Compile Include="BaseClass\SQLiteHandler.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Repository\AttendanceRepo.cs" />
     <Compile Include="Repository\AuthRepo.cs" />
     <Compile Include="Repository\BiometricsRepo.cs" />
+    <Compile Include="Repository\DashboardRepo.cs" />
     <Compile Include="Repository\StaffCourseRepo.cs" />
     <Compile Include="Repository\CourseRegRepo.cs" />
     <Compile Include="Repository\CourseRepo.cs" />

@@ -25,7 +25,7 @@ namespace AttendanceLibrary.Repository
                     var defaultPwd = context.SystemSettings.First().UserDefaultPassword;
 
                     newStaff.Id = Guid.NewGuid().ToString();
-                    newStaff.Password = PasswordHash.sha256(defaultPwd);
+                    newStaff.Password = defaultPwd;
                     context.Staff.Add(newStaff);
                     return context.SaveChanges() > 0 ? "" : "Staff could not be added";
                 }                    

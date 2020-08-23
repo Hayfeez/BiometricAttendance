@@ -17,19 +17,20 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                if (pwd.NewPassword != pwd.ConfirmNewPassword) return "New password and confirm new password must match";
-
+                pwd.OldPassword = PasswordHash.sha256(pwd.OldPassword);
+                pwd.NewPassword = PasswordHash.sha256(pwd.NewPassword);
                 using (var context = new BASContext())
                 {
                     var d = context.Staff.SingleOrDefault(a => a.Email == pwd.Email && a.Password == pwd.OldPassword);
-                    if (d == null) return "Old Password is not valid";
+                    if (d == null)
+                        return "Current Password is not valid";
 
                     d.Password = pwd.NewPassword;
                     d.PasswordChanged = true;
 
                     return context.SaveChanges() > 0 ? "" : "Password could not be updated";
-                }                    
-                
+                }
+
             }
             catch (Exception ex)
             {
@@ -39,8 +40,7 @@ namespace AttendanceLibrary.Repository
 
         public string StaffSignOut()
         {
-            return "";                
-            
+            return "";
         }
 
         public ChangePassword StaffForgotPassword(ForgotPassword model)
@@ -54,7 +54,7 @@ namespace AttendanceLibrary.Repository
                     return new ChangePassword
                     {
                         Email = d.Email,
-                        isReset = true,
+                        IsReset = true,
                         OldPassword = d.Password
                     };
                 }
@@ -85,8 +85,11 @@ namespace AttendanceLibrary.Repository
                         LoggedInUser.IsAdmin = true;
                         LoggedInUser.IsSuperAdmin = true;
                         LoggedInUser.PasswordChanged = true;
+                        LoggedInUser.Department = "System Administrator";
                         return true;
                     }
+
+                    var deptRepo = new DepartmentRepo();
 
                     LoggedInUser.UserId = staff.Id;
                     LoggedInUser.Email = staff.Email;
@@ -94,8 +97,9 @@ namespace AttendanceLibrary.Repository
                     LoggedInUser.IsAdmin = staff.IsAdmin;
                     LoggedInUser.IsSuperAdmin = staff.IsSuperAdmin;
                     LoggedInUser.PasswordChanged = staff.PasswordChanged;
-                    return true;
+                    LoggedInUser.Department = deptRepo.GetDepartment(staff.DepartmentId)?.DepartmentName;
 
+                    return true;
                 }
             }
             catch (Exception ex)

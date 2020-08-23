@@ -403,6 +403,7 @@ namespace AttendanceUI.Forms
             this.iconAlert.Size = new System.Drawing.Size(44, 35);
             this.iconAlert.TabIndex = 8;
             this.iconAlert.TabStop = false;
+            this.iconAlert.Visible = false;
             this.iconAlert.Click += new System.EventHandler(this.iconAlert_Click);
             // 
             // iconSettings

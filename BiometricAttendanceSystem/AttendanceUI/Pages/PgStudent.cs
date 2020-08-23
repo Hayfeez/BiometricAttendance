@@ -134,12 +134,13 @@ namespace AttendanceUI.Pages
                         var response = _repo.DeleteStudent(id);
 
                         if (response == string.Empty)
+                        {
                             Base.ShowInfo("Success", "Student deleted successfully");
+                            LoadData();
+                        }
 
                         else
                             Base.ShowError("Failed", response);
-
-                        LoadData();
                     }
                 }
 

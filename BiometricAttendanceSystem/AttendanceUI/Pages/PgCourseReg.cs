@@ -88,7 +88,7 @@ namespace AttendanceUI.Pages
 
         private void btnImport_Click(object sender, EventArgs e)
         {
-            var courseRegForm = new FrmCourseReg();
+            var courseRegForm = new FrmUploadCourseReg();
             courseRegForm.ShowDialog();
             LoadData();
         }
@@ -112,12 +112,14 @@ namespace AttendanceUI.Pages
                         var response = _repo.DeleteCourseReg(id);
 
                         if (response == string.Empty)
+                        {
                             Base.ShowInfo("Success", "Registered Course deleted successfully");
+                            LoadData();
+                        }
 
                         else
                             Base.ShowError("Failed", response);
 
-                        LoadData();
                     }
                 }
 

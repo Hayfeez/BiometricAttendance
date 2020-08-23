@@ -1,6 +1,6 @@
 ﻿namespace AttendanceUI.Forms
 {
-    partial class FrmCourseReg
+    partial class FrmUploadCourseReg
     {
         /// <summary>
         /// Required designer variable.
@@ -35,6 +35,9 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.dataGrid = new System.Windows.Forms.DataGridView();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.btnDownload = new System.Windows.Forms.Button();
+            this.lblFile = new System.Windows.Forms.Label();
+            this.btnChooseFile = new System.Windows.Forms.Button();
             this.lblCurrentSemester = new System.Windows.Forms.Label();
             this.comboDept = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -51,9 +54,6 @@
             this.iconExit = new FontAwesome.Sharp.IconPictureBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.btnChooseFile = new System.Windows.Forms.Button();
-            this.lblFile = new System.Windows.Forms.Label();
-            this.btnDownload = new System.Windows.Forms.Button();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.panelForm.SuspendLayout();
             this.panelBody.SuspendLayout();
@@ -97,7 +97,7 @@
             this.panel6.Location = new System.Drawing.Point(0, 620);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(759, 57);
-            this.panel6.TabIndex = 7;
+            this.panel6.TabIndex = 0;
             // 
             // btnUpload
             // 
@@ -108,7 +108,7 @@
             this.btnUpload.Location = new System.Drawing.Point(261, 12);
             this.btnUpload.Name = "btnUpload";
             this.btnUpload.Size = new System.Drawing.Size(236, 33);
-            this.btnUpload.TabIndex = 6;
+            this.btnUpload.TabIndex = 0;
             this.btnUpload.Text = "Upload";
             this.btnUpload.UseVisualStyleBackColor = false;
             this.btnUpload.Visible = false;
@@ -139,7 +139,7 @@
             this.dataGrid.RowTemplate.Height = 24;
             this.dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGrid.Size = new System.Drawing.Size(759, 428);
-            this.dataGrid.TabIndex = 3;
+            this.dataGrid.TabIndex = 0;
             // 
             // panel4
             // 
@@ -158,7 +158,43 @@
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(759, 249);
-            this.panel4.TabIndex = 6;
+            this.panel4.TabIndex = 0;
+            // 
+            // btnDownload
+            // 
+            this.btnDownload.BackColor = System.Drawing.Color.Green;
+            this.btnDownload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDownload.Font = new System.Drawing.Font("Calisto MT", 10F, System.Drawing.FontStyle.Bold);
+            this.btnDownload.ForeColor = System.Drawing.Color.White;
+            this.btnDownload.Location = new System.Drawing.Point(207, 205);
+            this.btnDownload.Name = "btnDownload";
+            this.btnDownload.Size = new System.Drawing.Size(176, 33);
+            this.btnDownload.TabIndex = 0;
+            this.btnDownload.Text = "Download Template";
+            this.btnDownload.UseVisualStyleBackColor = false;
+            this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
+            // 
+            // lblFile
+            // 
+            this.lblFile.AutoSize = true;
+            this.lblFile.Font = new System.Drawing.Font("Calisto MT", 10F, System.Drawing.FontStyle.Bold);
+            this.lblFile.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblFile.Location = new System.Drawing.Point(187, 169);
+            this.lblFile.Name = "lblFile";
+            this.lblFile.Size = new System.Drawing.Size(36, 20);
+            this.lblFile.TabIndex = 0;
+            this.lblFile.Text = "File";
+            // 
+            // btnChooseFile
+            // 
+            this.btnChooseFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
+            this.btnChooseFile.Location = new System.Drawing.Point(16, 164);
+            this.btnChooseFile.Name = "btnChooseFile";
+            this.btnChooseFile.Size = new System.Drawing.Size(147, 31);
+            this.btnChooseFile.TabIndex = 4;
+            this.btnChooseFile.Text = "Choose File";
+            this.btnChooseFile.UseVisualStyleBackColor = true;
+            this.btnChooseFile.Click += new System.EventHandler(this.btnChooseFile_Click);
             // 
             // lblCurrentSemester
             // 
@@ -297,7 +333,7 @@
             this.lblPageTitle.Margin = new System.Windows.Forms.Padding(10);
             this.lblPageTitle.Name = "lblPageTitle";
             this.lblPageTitle.Size = new System.Drawing.Size(257, 31);
-            this.lblPageTitle.TabIndex = 1;
+            this.lblPageTitle.TabIndex = 0;
             this.lblPageTitle.Text = "Course Registration";
             // 
             // iconExit
@@ -326,55 +362,19 @@
             this.lblTitle.Margin = new System.Windows.Forms.Padding(10);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(224, 22);
-            this.lblTitle.TabIndex = 4;
+            this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Import Course Register";
             // 
             // openFileDialog
             // 
             this.openFileDialog.Filter = "Excel files|*.xlsx";
             // 
-            // btnChooseFile
-            // 
-            this.btnChooseFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
-            this.btnChooseFile.Location = new System.Drawing.Point(16, 164);
-            this.btnChooseFile.Name = "btnChooseFile";
-            this.btnChooseFile.Size = new System.Drawing.Size(147, 31);
-            this.btnChooseFile.TabIndex = 6;
-            this.btnChooseFile.Text = "Choose File";
-            this.btnChooseFile.UseVisualStyleBackColor = true;
-            this.btnChooseFile.Click += new System.EventHandler(this.btnChooseFile_Click);
-            // 
-            // lblFile
-            // 
-            this.lblFile.AutoSize = true;
-            this.lblFile.Font = new System.Drawing.Font("Calisto MT", 10F, System.Drawing.FontStyle.Bold);
-            this.lblFile.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblFile.Location = new System.Drawing.Point(187, 169);
-            this.lblFile.Name = "lblFile";
-            this.lblFile.Size = new System.Drawing.Size(36, 20);
-            this.lblFile.TabIndex = 8;
-            this.lblFile.Text = "File";
-            // 
-            // btnDownload
-            // 
-            this.btnDownload.BackColor = System.Drawing.Color.Green;
-            this.btnDownload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDownload.Font = new System.Drawing.Font("Calisto MT", 10F, System.Drawing.FontStyle.Bold);
-            this.btnDownload.ForeColor = System.Drawing.Color.White;
-            this.btnDownload.Location = new System.Drawing.Point(207, 205);
-            this.btnDownload.Name = "btnDownload";
-            this.btnDownload.Size = new System.Drawing.Size(176, 33);
-            this.btnDownload.TabIndex = 9;
-            this.btnDownload.Text = "Download Template";
-            this.btnDownload.UseVisualStyleBackColor = false;
-            this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
-            // 
             // saveFileDialog
             // 
             this.saveFileDialog.FileName = "CourseRegisterTemplate";
             this.saveFileDialog.Filter = "Excel files|*.xlsx";
             // 
-            // FrmCourseReg
+            // FrmUploadCourseReg
             // 
             this.AcceptButton = this.btnPreview;
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
@@ -384,7 +384,7 @@
             this.Font = new System.Drawing.Font("Calisto MT", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "FrmCourseReg";
+            this.Name = "FrmUploadCourseReg";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FrmCourse";
             this.Load += new System.EventHandler(this.FrmCourseReg_Load);

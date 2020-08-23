@@ -109,11 +109,29 @@
     <Compile Include="Forms\FrmAssignStaffCourse.Designer.cs">
       <DependentUpon>FrmAssignStaffCourse.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FrmCourseReg.cs">
+    <Compile Include="Forms\FrmChangePassword.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FrmCourseReg.Designer.cs">
-      <DependentUpon>FrmCourseReg.cs</DependentUpon>
+    <Compile Include="Forms\FrmChangePassword.Designer.cs">
+      <DependentUpon>FrmChangePassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmUserProfile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmUserProfile.Designer.cs">
+      <DependentUpon>FrmUserProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmSettings.Designer.cs">
+      <DependentUpon>FrmSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmUploadCourseReg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmUploadCourseReg.Designer.cs">
+      <DependentUpon>FrmUploadCourseReg.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FrmTitle.cs">
       <SubType>Form</SubType>
@@ -223,12 +241,6 @@
     <Compile Include="Pages\PgReport.Designer.cs">
       <DependentUpon>PgReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pages\PgSetting.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Pages\PgSetting.Designer.cs">
-      <DependentUpon>PgSetting.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\FrmContainer.resx">
@@ -237,8 +249,17 @@
     <EmbeddedResource Include="Forms\FrmAssignStaffCourse.resx">
       <DependentUpon>FrmAssignStaffCourse.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FrmCourseReg.resx">
-      <DependentUpon>FrmCourseReg.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FrmChangePassword.resx">
+      <DependentUpon>FrmChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmUserProfile.resx">
+      <DependentUpon>FrmUserProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmSettings.resx">
+      <DependentUpon>FrmSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmUploadCourseReg.resx">
+      <DependentUpon>FrmUploadCourseReg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmTitle.resx">
       <DependentUpon>FrmTitle.cs</DependentUpon>

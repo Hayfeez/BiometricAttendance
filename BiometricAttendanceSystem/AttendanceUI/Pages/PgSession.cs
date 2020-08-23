@@ -118,12 +118,13 @@ namespace AttendanceUI.Pages
                         var response = _repo.DeleteSessionSemester(id);
 
                         if (response == string.Empty)
+                        {
                             Base.ShowInfo("Success", "Session/Semester deleted successfully");
+                            LoadData();
+                        }
 
                         else
                             Base.ShowError("Failed", response);
-
-                        LoadData();
                     }
                 }
 

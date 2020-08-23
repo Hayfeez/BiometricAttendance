@@ -142,12 +142,13 @@ namespace AttendanceUI.Pages
                         var response = _repo.DeleteCourse(id);
 
                         if (response == string.Empty)
+                        {
                             Base.ShowInfo("Success", "Course deleted successfully");
+                            LoadData();
+                        }
 
                         else
                             Base.ShowError("Failed", response);
-                           
-                        LoadData();
                     }
                 }
 

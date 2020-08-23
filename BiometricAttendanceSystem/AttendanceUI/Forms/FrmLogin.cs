@@ -50,14 +50,22 @@ namespace AttendanceUI.Forms
                     return;
                 }
 
-                if(_authRepo.StaffLogin(model))
+                if (_authRepo.StaffLogin(model))
                 {
+                    if (!LoggedInUser.IsSuperAdmin && !LoggedInUser.PasswordChanged) // first time login
+                    {
+                        Base.ShowInfo("First time Login", "This is your first login. Kindly change your password");
+                        var pwdForm = new FrmChangePassword(LoggedInUser.Email);
+                        pwdForm.ShowDialog();
+                    }
+
                     using (var dashboard = new FrmContainer())
                     {
                         this.Hide();
                         this.ShowInTaskbar = false;
                         dashboard.ShowDialog();
                     }
+
                 }
                 else
                 {

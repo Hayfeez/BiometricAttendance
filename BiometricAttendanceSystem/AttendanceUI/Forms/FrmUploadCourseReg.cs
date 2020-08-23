@@ -20,7 +20,7 @@ using Microsoft.Office.Interop.Excel;
 
 namespace AttendanceUI.Forms
 {
-    public partial class FrmCourseReg : Form
+    public partial class FrmUploadCourseReg : Form
     {
         private string _deptId = "";
         private string _levelId = "";
@@ -50,7 +50,7 @@ namespace AttendanceUI.Forms
             }
         }
 
-        public FrmCourseReg()
+        public FrmUploadCourseReg()
         {
             InitializeComponent();
         }
@@ -96,7 +96,7 @@ namespace AttendanceUI.Forms
 
         private void btnPreview_Click(object sender, EventArgs e)
         {
-            if (lblFile.Text == "")
+            if (lblFile.Text == "" || selectedFile == "")
                 return;
         }
 

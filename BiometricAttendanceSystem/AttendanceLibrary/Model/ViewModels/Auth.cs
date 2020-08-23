@@ -18,7 +18,7 @@ namespace AttendanceLibrary.Model.ViewModels
         public string OldPassword { get; set; }
         public string NewPassword { get; set; }
         public string ConfirmNewPassword { get; set; }
-        public bool isReset { get; set; }
+        public bool IsReset { get; set; }
     }
 
     public class ForgotPassword

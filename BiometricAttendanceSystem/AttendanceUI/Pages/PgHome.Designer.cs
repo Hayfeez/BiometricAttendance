@@ -38,10 +38,12 @@
             this.clock1 = new XanderUI.XUIClock();
             this.cardDate = new XanderUI.XUICard();
             this.panelBody = new System.Windows.Forms.Panel();
-            this.panelAttendance = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelCourseReg = new System.Windows.Forms.Panel();
+            this.panelAttendance = new System.Windows.Forms.Panel();
             this.panelHeader.SuspendLayout();
             this.panelBody.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -101,7 +103,7 @@
             this.cardStudent.Size = new System.Drawing.Size(169, 114);
             this.cardStudent.TabIndex = 4;
             this.cardStudent.Text1 = "Students";
-            this.cardStudent.Text2 = "123";
+            this.cardStudent.Text2 = "";
             this.cardStudent.Text3 = "";
             // 
             // cardUsers
@@ -116,7 +118,7 @@
             this.cardUsers.Size = new System.Drawing.Size(169, 114);
             this.cardUsers.TabIndex = 3;
             this.cardUsers.Text1 = "Users";
-            this.cardUsers.Text2 = "123";
+            this.cardUsers.Text2 = "";
             this.cardUsers.Text3 = "";
             // 
             // cardSession
@@ -130,9 +132,9 @@
             this.cardSession.Name = "cardSession";
             this.cardSession.Size = new System.Drawing.Size(169, 114);
             this.cardSession.TabIndex = 2;
-            this.cardSession.Text1 = "Session";
+            this.cardSession.Text1 = "Active Session";
             this.cardSession.Text2 = "";
-            this.cardSession.Text3 = "2019/2020 - First";
+            this.cardSession.Text3 = "";
             // 
             // clock1
             // 
@@ -167,14 +169,13 @@
             this.cardDate.Name = "cardDate";
             this.cardDate.Size = new System.Drawing.Size(169, 114);
             this.cardDate.TabIndex = 0;
-            this.cardDate.Text1 = "Today\'s Date";
+            this.cardDate.Text1 = "Today";
             this.cardDate.Text2 = "";
-            this.cardDate.Text3 = "date";
+            this.cardDate.Text3 = "";
             // 
             // panelBody
             // 
-            this.panelBody.Controls.Add(this.panelAttendance);
-            this.panelBody.Controls.Add(this.panelCourseReg);
+            this.panelBody.Controls.Add(this.tableLayoutPanel1);
             this.panelBody.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelBody.Location = new System.Drawing.Point(18, 161);
             this.panelBody.Margin = new System.Windows.Forms.Padding(4);
@@ -182,27 +183,37 @@
             this.panelBody.Size = new System.Drawing.Size(922, 441);
             this.panelBody.TabIndex = 2;
             // 
-            // panelAttendance
+            // tableLayoutPanel1
             // 
-            this.panelAttendance.AutoScroll = true;
-            this.panelAttendance.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panelAttendance.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelAttendance.Location = new System.Drawing.Point(443, 0);
-            this.panelAttendance.Margin = new System.Windows.Forms.Padding(10, 15, 3, 3);
-            this.panelAttendance.Name = "panelAttendance";
-            this.panelAttendance.Size = new System.Drawing.Size(479, 441);
-            this.panelAttendance.TabIndex = 1;
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.panelAttendance, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panelCourseReg, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(922, 441);
+            this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panelCourseReg
             // 
-            this.panelCourseReg.AutoScroll = true;
-            this.panelCourseReg.BackColor = System.Drawing.Color.Gold;
-            this.panelCourseReg.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelCourseReg.Location = new System.Drawing.Point(0, 0);
-            this.panelCourseReg.Margin = new System.Windows.Forms.Padding(3, 15, 10, 3);
+            this.panelCourseReg.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panelCourseReg.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelCourseReg.Location = new System.Drawing.Point(3, 3);
             this.panelCourseReg.Name = "panelCourseReg";
-            this.panelCourseReg.Size = new System.Drawing.Size(443, 441);
+            this.panelCourseReg.Size = new System.Drawing.Size(455, 435);
             this.panelCourseReg.TabIndex = 0;
+            // 
+            // panelAttendance
+            // 
+            this.panelAttendance.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelAttendance.Location = new System.Drawing.Point(464, 3);
+            this.panelAttendance.Name = "panelAttendance";
+            this.panelAttendance.Size = new System.Drawing.Size(455, 435);
+            this.panelAttendance.TabIndex = 1;
             // 
             // PgHome
             // 
@@ -217,8 +228,10 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "PgHome";
             this.Size = new System.Drawing.Size(958, 602);
+            this.Load += new System.EventHandler(this.PgHome_Load);
             this.panelHeader.ResumeLayout(false);
             this.panelBody.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -235,6 +248,7 @@
         private XanderUI.XUICard cardUsers;
         private XanderUI.XUICard cardSession;
         private XanderUI.XUIClock clock1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panelAttendance;
         private System.Windows.Forms.Panel panelCourseReg;
     }
