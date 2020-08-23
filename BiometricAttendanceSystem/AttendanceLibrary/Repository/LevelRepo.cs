@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using AttendanceLibrary.DataContext;
+
 namespace AttendanceLibrary.Repository
 {
     public class LevelRepo
@@ -13,7 +15,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     if (context.Levels.Any(a => a.Level == newLevel.Level && !a.IsDeleted))
                         return "Level already exists";
@@ -36,7 +38,7 @@ namespace AttendanceLibrary.Repository
 
         public string DeleteLevel(string levelId)
         {
-            using (var context = new BASContext())
+            using (var context = new SqliteContext())
             {
                 if (context.CourseRegistrations.Any(a => a.LevelId == levelId))
                     return "Level cannot be deleted because it is in use";
@@ -57,7 +59,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     return context.Levels.Where(a => !a.IsDeleted).ToList();
                 }
@@ -72,7 +74,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     return context.Levels.SingleOrDefault(a => a.Id == levelId && !a.IsDeleted);
                 }
@@ -87,7 +89,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     return context.Levels.SingleOrDefault(a => a.Level == name && !a.IsDeleted);
                 }
@@ -100,7 +102,7 @@ namespace AttendanceLibrary.Repository
 
         public string UpdateLevel(StudentLevel level)
         {
-            using (var context = new BASContext())
+            using (var context = new SqliteContext())
             {
                 var oldLevel = context.Levels.SingleOrDefault(a => a.Id == level.Id && !a.IsDeleted);
                 if (oldLevel == null)

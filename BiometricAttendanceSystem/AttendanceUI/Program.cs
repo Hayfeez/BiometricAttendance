@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using AttendanceLibrary.BaseClass;
+using AttendanceLibrary.Model;
 
+using AttendanceUI.BaseClass;
 using AttendanceUI.Forms;
 
 namespace AttendanceUI
@@ -22,15 +24,12 @@ namespace AttendanceUI
             Application.SetCompatibleTextRenderingDefault(false);
             try
             {
-                SQLiteHandler.CreateSqliteDb();
-                SQLiteHandler.CreateTable();
-                SQLiteHandler.SeedData();
-
+                Helper.SeedData();
                 Application.Run(new FrmLogin());
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error has occured while initializing the database. " + ex.Message + " Inner exception: " + ex.InnerException, "Table Creation error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Base.ShowError("ERROR", "An error has occured" + ex.Message + " Inner exception: " + ex.InnerException);
             }
         }
     }

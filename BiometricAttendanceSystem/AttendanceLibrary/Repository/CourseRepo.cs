@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using AttendanceLibrary.BaseClass;
+using AttendanceLibrary.DataContext;
 using AttendanceLibrary.Model.ViewModels;
 
 namespace AttendanceLibrary.Repository
@@ -17,7 +18,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     if (context.Courses.Any(a => a.CourseCode == newCourse.CourseCode || a.CourseTitle == newCourse.CourseTitle && a.DepartmentId == newCourse.DepartmentId && !a.IsDeleted))
                         return "Course with this Title or Course Code exists";
@@ -37,7 +38,7 @@ namespace AttendanceLibrary.Repository
 
         public string DeleteCourse(string courseId)
         {
-            using (var context = new BASContext())
+            using (var context = new SqliteContext())
             {
                 if (context.CourseRegistrations.Any(a => a.CourseId == courseId))
                     return "Course cannot be deleted because it has course registration records";
@@ -59,7 +60,7 @@ namespace AttendanceLibrary.Repository
         //{
         //    try
         //    {
-        //        using (var context = new BASContext())
+        //        using (var context = new SqliteContext())
         //        {                    
         //            //return context.Courses.Where(a => !a.IsDeleted)
         //            //    .Join(context.Departments, c => c.DepartmentId, d => d.Id, (c, d) => new
@@ -100,7 +101,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     return (from c in context.Courses
                             where !c.IsDeleted && (departmentId == "" || c.DepartmentId == departmentId) && (levelId == "" || c.LevelId == levelId)
@@ -127,7 +128,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     return context.Courses
                         .Where(c => !c.IsDeleted && (departmentId == "" || c.DepartmentId == departmentId) && (levelId == "" || c.LevelId == levelId))
@@ -144,7 +145,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     return context.Courses.SingleOrDefault(a => a.Id == courseId  && !a.IsDeleted);
                 }
@@ -157,7 +158,7 @@ namespace AttendanceLibrary.Repository
 
         public string UpdateCourse(Course course)
         {
-            using (var context = new BASContext())
+            using (var context = new SqliteContext())
             {
                 var oldCourse = context.Courses.SingleOrDefault(a => a.Id == course.Id && !a.IsDeleted);
                 if (oldCourse == null)

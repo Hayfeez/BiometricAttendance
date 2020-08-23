@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using AttendanceLibrary.BaseClass;
+using AttendanceLibrary.DataContext;
 
 namespace AttendanceLibrary.Repository
 {
@@ -17,7 +18,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     if (context.Staff.Any(a => a.StaffNo == newStaff.StaffNo || a.Email == newStaff.Email && !a.IsDeleted))
                         return "Staff with this Staff number or Email address exists";
@@ -41,7 +42,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     return "";
 
@@ -55,7 +56,7 @@ namespace AttendanceLibrary.Repository
         }
         public string DeleteStaff(string staffId)
         {
-            using (var context = new BASContext())
+            using (var context = new SqliteContext())
             {
                 if (context.Attendances.Any(a => a.MarkedBy == staffId))
                     return "Staff cannot be deleted because (s)he has marked attendance for a course";
@@ -77,7 +78,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {                    
                     return context.Staff.Where(a => !a.IsDeleted).ToList();                   
                 }
@@ -92,7 +93,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     return context.Staff.Where(a => !a.IsDeleted && a.DepartmentId == departmentId).ToList();
                 }
@@ -107,7 +108,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     var dt = (
                         from st in context.Staff
@@ -140,7 +141,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     return context.Staff.SingleOrDefault(a => a.Id == staffId  && !a.IsDeleted);
                 }
@@ -153,7 +154,7 @@ namespace AttendanceLibrary.Repository
 
         public string UpdateStaff(StaffDetail staff)
         {
-            using (var context = new BASContext())
+            using (var context = new SqliteContext())
             {
                 var oldStaff = context.Staff.SingleOrDefault(a => a.Id == staff.Id && !a.IsDeleted);
                 if (oldStaff == null)
@@ -178,7 +179,7 @@ namespace AttendanceLibrary.Repository
 
         public string UpdateStaffAdminStatus(string staffId, bool isAdmin)
         {
-            using (var context = new BASContext())
+            using (var context = new SqliteContext())
             {
                 var staff = context.Staff.SingleOrDefault(a => a.Id == staffId && !a.IsDeleted);
                 if (staff == null)

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using AttendanceLibrary.BaseClass;
+using AttendanceLibrary.DataContext;
 
 namespace AttendanceLibrary.Repository
 {
@@ -15,7 +16,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     if (context.SessionSemesters.Any(a => a.Session == newSem.Session && a.Semester == newSem.Semester && !a.IsDeleted))
                         return "Session and Semester already exist";
@@ -47,7 +48,7 @@ namespace AttendanceLibrary.Repository
 
         public string DeleteSessionSemester(string semId)
         {
-            using (var context = new BASContext())
+            using (var context = new SqliteContext())
             {
                 if (context.CourseRegistrations.Any(a => a.SessionSemesterId == semId))
                     return "Session Semester cannot be deleted because it has course registration records";
@@ -71,7 +72,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     return context.SessionSemesters.Where(a => !a.IsDeleted).ToList();
                 }
@@ -86,7 +87,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     return context.SessionSemesters.SingleOrDefault(a => a.Id == semId && !a.IsDeleted);
                 }
@@ -101,7 +102,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     return context.SessionSemesters.SingleOrDefault(a => a.IsActive && !a.IsDeleted);
                 }
@@ -114,7 +115,7 @@ namespace AttendanceLibrary.Repository
 
         public string UpdateSessionSemester(SessionSemester sem)
         {
-            using (var context = new BASContext())
+            using (var context = new SqliteContext())
             {
                 var oldSem = context.SessionSemesters.SingleOrDefault(a => a.Id == sem.Id && !a.IsDeleted);
                 if (oldSem == null)

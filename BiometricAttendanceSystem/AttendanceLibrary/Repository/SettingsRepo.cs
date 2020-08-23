@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using AttendanceLibrary.BaseClass;
+using AttendanceLibrary.DataContext;
 
 namespace AttendanceLibrary.Repository
 {
@@ -15,7 +16,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     return context.SystemSettings.FirstOrDefault();
                 }
@@ -28,7 +29,7 @@ namespace AttendanceLibrary.Repository
 
         public string UpdateSetting(SystemSetting setting)
         {
-            using (var context = new BASContext())
+            using (var context = new SqliteContext())
             {
                 var oldSetting = context.SystemSettings.FirstOrDefault();
                 if (oldSetting == null)

@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using AttendanceLibrary.DataContext;
+
 namespace AttendanceLibrary.Repository
 {
    public class StaffCourseRepo
@@ -14,7 +16,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     if (context.StaffCourses.Any(a => a.StaffId == model.StaffId && a.CourseId == model.CourseId))
                         return "Course already assigned to staff";
@@ -38,7 +40,7 @@ namespace AttendanceLibrary.Repository
             try
             {
                 var skipped = new List<string>();
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     var toAdd = new List<StaffCourse>();
                     foreach (var courseId in courseIds)
@@ -69,7 +71,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     var item = context.StaffCourses.SingleOrDefault(x => x.Id == id);
                     if (item == null)
@@ -89,7 +91,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     var dt = (from att in context.StaffCourses
                               join cou in context.Courses on att.CourseId equals cou.Id
@@ -118,7 +120,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     var dt = (from att in context.StaffCourses
                               join cou in context.Courses on att.CourseId equals cou.Id

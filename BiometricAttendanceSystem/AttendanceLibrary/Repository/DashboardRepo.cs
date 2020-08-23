@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using AttendanceLibrary.DataContext;
+
 namespace AttendanceLibrary.Repository
 {
     public class DashboardRepo
@@ -13,7 +15,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     return context.Students.Count(a => !a.IsDeleted && !a.IsGraduated);
                 }
@@ -28,7 +30,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     return context.Staff.Count(a => !a.IsDeleted);
                 }

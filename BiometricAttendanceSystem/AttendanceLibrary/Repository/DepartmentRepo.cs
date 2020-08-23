@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using AttendanceLibrary.BaseClass;
+using AttendanceLibrary.DataContext;
 
 namespace AttendanceLibrary.Repository
 {
@@ -16,7 +17,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     if (context.Departments.Any(a => a.DepartmentCode == newDepartment.DepartmentCode || a.DepartmentName == newDepartment.DepartmentName  && !a.IsDeleted))
                         return "Department with this name or Department Code exists";
@@ -36,7 +37,7 @@ namespace AttendanceLibrary.Repository
 
         public string DeleteDepartment(string DepartmentId)
         {
-            using (var context = new BASContext())
+            using (var context = new SqliteContext())
             {
                 if (context.Courses.Any(a => a.DepartmentId == DepartmentId))
                     return "Department cannot be deleted because it has courses";
@@ -57,7 +58,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {                    
                     return context.Departments.Where(a => !a.IsDeleted).ToList();                   
                 }
@@ -72,7 +73,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     return context.Departments.SingleOrDefault(a => a.Id == DepartmentId  && !a.IsDeleted);
                 }
@@ -85,7 +86,7 @@ namespace AttendanceLibrary.Repository
 
         public string UpdateDepartment(Department Department)
         {
-            using (var context = new BASContext())
+            using (var context = new SqliteContext())
             {
                 var oldDepartment = context.Departments.SingleOrDefault(a => a.Id == Department.Id && !a.IsDeleted);
                 if (oldDepartment == null)

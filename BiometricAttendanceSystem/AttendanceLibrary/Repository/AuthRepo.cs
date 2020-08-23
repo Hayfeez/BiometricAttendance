@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using AttendanceLibrary.BaseClass;
+using AttendanceLibrary.DataContext;
 
 namespace AttendanceLibrary.Repository
 {
@@ -19,7 +20,7 @@ namespace AttendanceLibrary.Repository
             {
                 pwd.OldPassword = PasswordHash.sha256(pwd.OldPassword);
                 pwd.NewPassword = PasswordHash.sha256(pwd.NewPassword);
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     var d = context.Staff.SingleOrDefault(a => a.Email == pwd.Email && a.Password == pwd.OldPassword);
                     if (d == null)
@@ -47,7 +48,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     var d = context.Staff.SingleOrDefault(a => a.Email == model.Email);
                     if (d == null) return null;
@@ -69,7 +70,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
 
                     var staff = context.Staff.SingleOrDefault(a => !a.IsDeleted && a.Email == model.Email && a.Password == model.Password);

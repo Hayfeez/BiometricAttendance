@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using AttendanceLibrary.BaseClass;
+using AttendanceLibrary.DataContext;
 
 namespace AttendanceLibrary.Repository
 {
@@ -16,7 +17,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     if (context.Students.Any(a => a.MatricNo == newStudent.MatricNo || a.Email == newStudent.Email && !a.IsDeleted))
                         return "Student with this Matric number or Email address exists";
@@ -37,7 +38,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     return "";
 
@@ -52,7 +53,7 @@ namespace AttendanceLibrary.Repository
 
         public string DeleteStudent(string studentId)
         {
-            using (var context = new BASContext())
+            using (var context = new SqliteContext())
             {
                 if (context.CourseRegistrations.Any(a => a.StudentId == studentId))
                     return "Student cannot be deleted because (s)he has registered for a course";
@@ -71,7 +72,7 @@ namespace AttendanceLibrary.Repository
 
         public string GraduateStudent(string studentId)
         {
-            using (var context = new BASContext())
+            using (var context = new SqliteContext())
             {
                 
                 var student = context.Students.SingleOrDefault(a => a.Id == studentId);
@@ -91,7 +92,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     return context.Students.Where(a => !a.IsDeleted && a.IsGraduated == isGraduate).ToList();
                 }
@@ -107,7 +108,7 @@ namespace AttendanceLibrary.Repository
             try
             {
                 //TODO: get student level id from current session and courseregistration
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     return context.Students.Where(a => !a.IsDeleted && a.DepartmentId == departmentId && a.IsGraduated == isGraduate).ToList();
                 }
@@ -123,7 +124,7 @@ namespace AttendanceLibrary.Repository
             try
             {
                 //TODO: get student level id from current session and courseregistration
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     var dt = (context.Students
                         .Join(context.Departments, st => st.DepartmentId, dep => dep.Id, (st, dep) => new
@@ -155,7 +156,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     return context.Students.SingleOrDefault(a => a.Id == studentId && !a.IsDeleted);
                 }
@@ -170,7 +171,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     return context.Students.SingleOrDefault(a => a.MatricNo == matricNo && !a.IsDeleted);
                 }
@@ -183,7 +184,7 @@ namespace AttendanceLibrary.Repository
 
         public string UpdateStudent(StudentDetail student)
         {
-            using (var context = new BASContext())
+            using (var context = new SqliteContext())
             {
                 var oldStudent = context.Students.SingleOrDefault(a => a.Id == student.Id && !a.IsDeleted);
                 if (oldStudent == null)

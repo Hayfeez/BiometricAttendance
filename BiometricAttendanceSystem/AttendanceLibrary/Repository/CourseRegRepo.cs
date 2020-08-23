@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using AttendanceLibrary.BaseClass;
+using AttendanceLibrary.DataContext;
 
 namespace AttendanceLibrary.Repository
 {
@@ -16,7 +17,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     if (context.CourseRegistrations.Any(a => a.StudentId == model.StudentId && a.CourseId == model.CourseId && a.SessionSemesterId == model.SessionSemesterId))
                         return "Course already registered";
@@ -42,7 +43,7 @@ namespace AttendanceLibrary.Repository
                 var levelRepo = new LevelRepo();
                // var sessionRepo = new SessionSemesterRepo();
                 
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     var activeSession = LoggedInUser.ActiveSession; //sessionRepo.GetActiveSessionSemester();
                     if (activeSession == null)
@@ -91,7 +92,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     if (context.Attendances.Any(a => a.CourseRegistrationId == id))
                         return "Registered Course cannot be deleted";
@@ -114,7 +115,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     var dt = (from att in context.CourseRegistrations
                               join sem in context.SessionSemesters on att.SessionSemesterId equals sem.Id
@@ -149,7 +150,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     var dt = (from att in context.CourseRegistrations
                               join sem in context.SessionSemesters on att.SessionSemesterId equals sem.Id

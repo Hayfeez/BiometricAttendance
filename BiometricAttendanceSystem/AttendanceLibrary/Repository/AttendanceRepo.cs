@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using AttendanceLibrary.DataContext;
+
 namespace AttendanceLibrary.Repository
 {
    public class AttendanceRepo
@@ -14,7 +16,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     var dateMarked = DateTime.Now;
                     //get courseregId
@@ -45,7 +47,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     var dt = (from att in context.Attendances
                               join reg in context.CourseRegistrations on att.CourseRegistrationId equals reg.Id
@@ -83,7 +85,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     var dt = (from att in context.Attendances
                               join reg in context.CourseRegistrations on att.CourseRegistrationId equals reg.Id
@@ -115,7 +117,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     var dt = (from att in context.Attendances
                               join reg in context.CourseRegistrations on att.CourseRegistrationId equals reg.Id
@@ -153,7 +155,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     var dt = (from att in context.Attendances
                               join reg in context.CourseRegistrations on att.CourseRegistrationId equals reg.Id

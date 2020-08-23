@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using AttendanceLibrary.DataContext;
+
 namespace AttendanceLibrary.Repository
 {
     public class BiometricsRepo
@@ -15,7 +17,7 @@ namespace AttendanceLibrary.Repository
         {
 			try
 			{
-				using (var context = new BASContext())
+				using (var context = new SqliteContext())
                 {
                     var fingerCount = context.SystemSettings.First().NoOfFinger;
 					var studentFingers = context.StudentFingers.Where(a => a.StudentId == data.StudentId);
@@ -40,7 +42,7 @@ namespace AttendanceLibrary.Repository
 			try
 			{
                
-				using (var context = new BASContext())
+				using (var context = new SqliteContext())
 				{
                     var fingerCount = context.SystemSettings.First().NoOfFinger;
                     if (data.Count() != fingerCount)
@@ -73,7 +75,7 @@ namespace AttendanceLibrary.Repository
 		{
 			try
 			{
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
 				{
 					return context.StudentFingers.ToList();				
 

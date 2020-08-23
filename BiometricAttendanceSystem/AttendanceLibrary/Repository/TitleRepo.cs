@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using AttendanceLibrary.BaseClass;
+using AttendanceLibrary.DataContext;
 
 namespace AttendanceLibrary.Repository
 {
@@ -15,7 +16,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     if (context.Titles.Any(a => a.Title == newTitle.Title && !a.IsDeleted))
                         return "Title already exists";
@@ -34,7 +35,7 @@ namespace AttendanceLibrary.Repository
 
         public string DeleteTitle(string titleId)
         {
-            using (var context = new BASContext())
+            using (var context = new SqliteContext())
             {
                 if (context.Staff.Any(a => a.TitleId == titleId))
                     return "Title cannot be deleted because it is in use";
@@ -55,7 +56,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     return context.Titles.Where(a => !a.IsDeleted).ToList();
                 }
@@ -70,7 +71,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new BASContext())
+                using (var context = new SqliteContext())
                 {
                     return context.Titles.SingleOrDefault(a => a.Id == titleId && !a.IsDeleted);
                 }
@@ -83,7 +84,7 @@ namespace AttendanceLibrary.Repository
 
         public string UpdateTitle(PersonTitle title)
         {
-            using (var context = new BASContext())
+            using (var context = new SqliteContext())
             {
                 var oldTitle = context.Titles.SingleOrDefault(a => a.Id == title.Id && !a.IsDeleted);
                 if (oldTitle == null)
