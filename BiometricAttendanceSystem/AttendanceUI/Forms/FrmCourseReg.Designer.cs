@@ -30,12 +30,19 @@
         {
             this.panelForm = new System.Windows.Forms.Panel();
             this.panelBody = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.btnUpload = new System.Windows.Forms.Button();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.dataGrid = new System.Windows.Forms.DataGridView();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.lblCurrentSemester = new System.Windows.Forms.Label();
-            this.btnPreview = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.comboDept = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboCourse = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboLevel = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnPreview = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -43,13 +50,17 @@
             this.lblPageTitle = new System.Windows.Forms.Label();
             this.iconExit = new FontAwesome.Sharp.IconPictureBox();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.comboLevel = new System.Windows.Forms.ComboBox();
-            this.comboCourse = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.btnChooseFile = new System.Windows.Forms.Button();
+            this.lblFile = new System.Windows.Forms.Label();
+            this.btnDownload = new System.Windows.Forms.Button();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.panelForm.SuspendLayout();
             this.panelBody.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
+            this.panel4.SuspendLayout();
             this.panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconExit)).BeginInit();
             this.SuspendLayout();
@@ -65,99 +76,182 @@
             this.panelForm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelForm.Location = new System.Drawing.Point(0, 0);
             this.panelForm.Name = "panelForm";
-            this.panelForm.Size = new System.Drawing.Size(781, 622);
+            this.panelForm.Size = new System.Drawing.Size(781, 807);
             this.panelForm.TabIndex = 0;
             // 
             // panelBody
             // 
-            this.panelBody.Controls.Add(this.comboBox3);
-            this.panelBody.Controls.Add(this.label4);
-            this.panelBody.Controls.Add(this.comboCourse);
-            this.panelBody.Controls.Add(this.comboLevel);
-            this.panelBody.Controls.Add(this.lblCurrentSemester);
-            this.panelBody.Controls.Add(this.btnPreview);
-            this.panelBody.Controls.Add(this.label3);
-            this.panelBody.Controls.Add(this.label2);
-            this.panelBody.Controls.Add(this.label1);
-            this.panelBody.Controls.Add(this.comboDept);
+            this.panelBody.Controls.Add(this.panel6);
+            this.panelBody.Controls.Add(this.panel5);
+            this.panelBody.Controls.Add(this.panel4);
             this.panelBody.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelBody.Location = new System.Drawing.Point(11, 119);
             this.panelBody.Name = "panelBody";
-            this.panelBody.Size = new System.Drawing.Size(759, 492);
-            this.panelBody.TabIndex = 5;
+            this.panelBody.Size = new System.Drawing.Size(759, 677);
+            this.panelBody.TabIndex = 1;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.btnUpload);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel6.Location = new System.Drawing.Point(0, 620);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(759, 57);
+            this.panel6.TabIndex = 7;
+            // 
+            // btnUpload
+            // 
+            this.btnUpload.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
+            this.btnUpload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpload.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Bold);
+            this.btnUpload.ForeColor = System.Drawing.Color.White;
+            this.btnUpload.Location = new System.Drawing.Point(261, 12);
+            this.btnUpload.Name = "btnUpload";
+            this.btnUpload.Size = new System.Drawing.Size(236, 33);
+            this.btnUpload.TabIndex = 6;
+            this.btnUpload.Text = "Upload";
+            this.btnUpload.UseVisualStyleBackColor = false;
+            this.btnUpload.Visible = false;
+            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.dataGrid);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel5.Location = new System.Drawing.Point(0, 249);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(759, 428);
+            this.panel5.TabIndex = 6;
+            // 
+            // dataGrid
+            // 
+            this.dataGrid.AllowUserToAddRows = false;
+            this.dataGrid.AllowUserToDeleteRows = false;
+            this.dataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGrid.BackgroundColor = System.Drawing.Color.White;
+            this.dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGrid.Location = new System.Drawing.Point(0, 0);
+            this.dataGrid.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGrid.Name = "dataGrid";
+            this.dataGrid.ReadOnly = true;
+            this.dataGrid.RowHeadersWidth = 51;
+            this.dataGrid.RowTemplate.Height = 24;
+            this.dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGrid.Size = new System.Drawing.Size(759, 428);
+            this.dataGrid.TabIndex = 3;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.btnDownload);
+            this.panel4.Controls.Add(this.lblFile);
+            this.panel4.Controls.Add(this.btnChooseFile);
+            this.panel4.Controls.Add(this.lblCurrentSemester);
+            this.panel4.Controls.Add(this.comboDept);
+            this.panel4.Controls.Add(this.label1);
+            this.panel4.Controls.Add(this.comboCourse);
+            this.panel4.Controls.Add(this.label2);
+            this.panel4.Controls.Add(this.comboLevel);
+            this.panel4.Controls.Add(this.label3);
+            this.panel4.Controls.Add(this.btnPreview);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(759, 249);
+            this.panel4.TabIndex = 6;
             // 
             // lblCurrentSemester
             // 
             this.lblCurrentSemester.AutoSize = true;
             this.lblCurrentSemester.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Bold);
             this.lblCurrentSemester.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
-            this.lblCurrentSemester.Location = new System.Drawing.Point(288, 13);
+            this.lblCurrentSemester.Location = new System.Drawing.Point(290, 19);
             this.lblCurrentSemester.Name = "lblCurrentSemester";
             this.lblCurrentSemester.Size = new System.Drawing.Size(155, 22);
-            this.lblCurrentSemester.TabIndex = 7;
+            this.lblCurrentSemester.TabIndex = 0;
             this.lblCurrentSemester.Text = "Active Semester";
             // 
-            // btnPreview
+            // comboDept
             // 
-            this.btnPreview.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
-            this.btnPreview.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPreview.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Bold);
-            this.btnPreview.ForeColor = System.Drawing.Color.White;
-            this.btnPreview.Location = new System.Drawing.Point(282, 154);
-            this.btnPreview.Name = "btnPreview";
-            this.btnPreview.Size = new System.Drawing.Size(236, 33);
-            this.btnPreview.TabIndex = 6;
-            this.btnPreview.Text = "Preview File";
-            this.btnPreview.UseVisualStyleBackColor = false;
-            this.btnPreview.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Bold);
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
-            this.label3.Location = new System.Drawing.Point(397, 60);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(60, 22);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Level";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Bold);
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
-            this.label2.Location = new System.Drawing.Point(10, 116);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(76, 22);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Course";
+            this.comboDept.Font = new System.Drawing.Font("Calisto MT", 12F);
+            this.comboDept.FormattingEnabled = true;
+            this.comboDept.Location = new System.Drawing.Point(144, 63);
+            this.comboDept.Name = "comboDept";
+            this.comboDept.Size = new System.Drawing.Size(236, 31);
+            this.comboDept.TabIndex = 1;
+            this.comboDept.SelectedIndexChanged += new System.EventHandler(this.comboDept_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
-            this.label1.Location = new System.Drawing.Point(10, 65);
+            this.label1.Location = new System.Drawing.Point(12, 71);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(119, 22);
-            this.label1.TabIndex = 1;
+            this.label1.TabIndex = 0;
             this.label1.Text = "Department";
             // 
-            // comboDept
+            // comboCourse
             // 
-            this.comboDept.Font = new System.Drawing.Font("Calisto MT", 12F);
-            this.comboDept.FormattingEnabled = true;
-            this.comboDept.Location = new System.Drawing.Point(142, 57);
-            this.comboDept.Name = "comboDept";
-            this.comboDept.Size = new System.Drawing.Size(236, 31);
-            this.comboDept.TabIndex = 0;
+            this.comboCourse.Font = new System.Drawing.Font("Calisto MT", 12F);
+            this.comboCourse.FormattingEnabled = true;
+            this.comboCourse.Location = new System.Drawing.Point(144, 113);
+            this.comboCourse.Name = "comboCourse";
+            this.comboCourse.Size = new System.Drawing.Size(574, 31);
+            this.comboCourse.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Bold);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
+            this.label2.Location = new System.Drawing.Point(12, 122);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(76, 22);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Course";
+            // 
+            // comboLevel
+            // 
+            this.comboLevel.Font = new System.Drawing.Font("Calisto MT", 12F);
+            this.comboLevel.FormattingEnabled = true;
+            this.comboLevel.Location = new System.Drawing.Point(482, 62);
+            this.comboLevel.Name = "comboLevel";
+            this.comboLevel.Size = new System.Drawing.Size(236, 31);
+            this.comboLevel.TabIndex = 2;
+            this.comboLevel.SelectedIndexChanged += new System.EventHandler(this.comboLevel_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Bold);
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
+            this.label3.Location = new System.Drawing.Point(399, 66);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(60, 22);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Level";
+            // 
+            // btnPreview
+            // 
+            this.btnPreview.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
+            this.btnPreview.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPreview.Font = new System.Drawing.Font("Calisto MT", 10F, System.Drawing.FontStyle.Bold);
+            this.btnPreview.ForeColor = System.Drawing.Color.White;
+            this.btnPreview.Location = new System.Drawing.Point(389, 205);
+            this.btnPreview.Name = "btnPreview";
+            this.btnPreview.Size = new System.Drawing.Size(208, 33);
+            this.btnPreview.TabIndex = 5;
+            this.btnPreview.Text = "Preview Selected File";
+            this.btnPreview.UseVisualStyleBackColor = false;
+            this.btnPreview.Click += new System.EventHandler(this.btnPreview_Click);
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(11, 611);
+            this.panel3.Location = new System.Drawing.Point(11, 796);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(759, 11);
             this.panel3.TabIndex = 3;
@@ -168,7 +262,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(770, 119);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(11, 503);
+            this.panel2.Size = new System.Drawing.Size(11, 688);
             this.panel2.TabIndex = 2;
             // 
             // panel1
@@ -177,7 +271,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 119);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(11, 503);
+            this.panel1.Size = new System.Drawing.Size(11, 688);
             this.panel1.TabIndex = 1;
             // 
             // panelTop
@@ -235,53 +329,57 @@
             this.lblTitle.TabIndex = 4;
             this.lblTitle.Text = "Import Course Register";
             // 
-            // comboLevel
+            // openFileDialog
             // 
-            this.comboLevel.Font = new System.Drawing.Font("Calisto MT", 12F);
-            this.comboLevel.FormattingEnabled = true;
-            this.comboLevel.Location = new System.Drawing.Point(480, 56);
-            this.comboLevel.Name = "comboLevel";
-            this.comboLevel.Size = new System.Drawing.Size(236, 31);
-            this.comboLevel.TabIndex = 8;
+            this.openFileDialog.Filter = "Excel files|*.xlsx";
             // 
-            // comboCourse
+            // btnChooseFile
             // 
-            this.comboCourse.Font = new System.Drawing.Font("Calisto MT", 12F);
-            this.comboCourse.FormattingEnabled = true;
-            this.comboCourse.Location = new System.Drawing.Point(142, 107);
-            this.comboCourse.Name = "comboCourse";
-            this.comboCourse.Size = new System.Drawing.Size(236, 31);
-            this.comboCourse.TabIndex = 9;
+            this.btnChooseFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
+            this.btnChooseFile.Location = new System.Drawing.Point(16, 164);
+            this.btnChooseFile.Name = "btnChooseFile";
+            this.btnChooseFile.Size = new System.Drawing.Size(147, 31);
+            this.btnChooseFile.TabIndex = 6;
+            this.btnChooseFile.Text = "Choose File";
+            this.btnChooseFile.UseVisualStyleBackColor = true;
+            this.btnChooseFile.Click += new System.EventHandler(this.btnChooseFile_Click);
             // 
-            // comboBox3
+            // lblFile
             // 
-            this.comboBox3.Font = new System.Drawing.Font("Calisto MT", 12F);
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(480, 107);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(236, 31);
-            this.comboBox3.TabIndex = 11;
+            this.lblFile.AutoSize = true;
+            this.lblFile.Font = new System.Drawing.Font("Calisto MT", 10F, System.Drawing.FontStyle.Bold);
+            this.lblFile.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblFile.Location = new System.Drawing.Point(187, 169);
+            this.lblFile.Name = "lblFile";
+            this.lblFile.Size = new System.Drawing.Size(36, 20);
+            this.lblFile.TabIndex = 8;
+            this.lblFile.Text = "File";
             // 
-            // label4
+            // btnDownload
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Bold);
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
-            this.label4.Location = new System.Drawing.Point(397, 116);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(46, 22);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "File";
+            this.btnDownload.BackColor = System.Drawing.Color.Green;
+            this.btnDownload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDownload.Font = new System.Drawing.Font("Calisto MT", 10F, System.Drawing.FontStyle.Bold);
+            this.btnDownload.ForeColor = System.Drawing.Color.White;
+            this.btnDownload.Location = new System.Drawing.Point(207, 205);
+            this.btnDownload.Name = "btnDownload";
+            this.btnDownload.Size = new System.Drawing.Size(176, 33);
+            this.btnDownload.TabIndex = 9;
+            this.btnDownload.Text = "Download Template";
+            this.btnDownload.UseVisualStyleBackColor = false;
+            this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
             // 
-            // openFileDialog1
+            // saveFileDialog
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            this.saveFileDialog.FileName = "CourseRegisterTemplate";
+            this.saveFileDialog.Filter = "Excel files|*.xlsx";
             // 
             // FrmCourseReg
             // 
+            this.AcceptButton = this.btnPreview;
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(781, 622);
+            this.ClientSize = new System.Drawing.Size(781, 807);
             this.Controls.Add(this.panelForm);
             this.Font = new System.Drawing.Font("Calisto MT", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -289,9 +387,14 @@
             this.Name = "FrmCourseReg";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FrmCourse";
+            this.Load += new System.EventHandler(this.FrmCourseReg_Load);
             this.panelForm.ResumeLayout(false);
             this.panelBody.ResumeLayout(false);
-            this.panelBody.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconExit)).EndInit();
@@ -316,10 +419,17 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboDept;
         private System.Windows.Forms.Label lblCurrentSemester;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboCourse;
         private System.Windows.Forms.ComboBox comboLevel;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Button btnUpload;
+        private System.Windows.Forms.DataGridView dataGrid;
+        private System.Windows.Forms.Button btnChooseFile;
+        private System.Windows.Forms.Label lblFile;
+        private System.Windows.Forms.Button btnDownload;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
     }
 }

@@ -26,4 +26,13 @@ namespace AttendanceLibrary.Model.ViewModels
         public string Email { get; set; }
         public string Title { get; set; }
     }
+
+    public class BulkStudentCourseReg
+    {
+        public string MatricNo { get; set; }
+        public string Lastname { get; set; }
+        public string Firstname { get; set; }
+        public string Othername { get; set; }
+        public string Level { get; set; }
+    }
 }

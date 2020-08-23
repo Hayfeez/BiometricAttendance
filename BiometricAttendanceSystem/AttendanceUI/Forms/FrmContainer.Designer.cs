@@ -35,50 +35,50 @@ namespace AttendanceUI.Forms
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmContainer));
             this.panelMenu = new System.Windows.Forms.Panel();
             this.panelActive = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panelRight = new System.Windows.Forms.Panel();
-            this.panelControls = new System.Windows.Forms.Panel();
-            this.panelWelcome = new System.Windows.Forms.Panel();
-            this.lblUsername = new System.Windows.Forms.Label();
-            this.lblRole = new System.Windows.Forms.Label();
-            this.panelHeader = new System.Windows.Forms.Panel();
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.panelFooter = new System.Windows.Forms.Panel();
-            this.lblFooter = new System.Windows.Forms.Label();
-            this.xuiFormHandle1 = new XanderUI.XUIFormHandle();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.iconAlert = new FontAwesome.Sharp.IconPictureBox();
-            this.iconSettings = new FontAwesome.Sharp.IconPictureBox();
-            this.iconLogout = new FontAwesome.Sharp.IconPictureBox();
-            this.iconUser = new FontAwesome.Sharp.IconPictureBox();
-            this.iconMinimize = new FontAwesome.Sharp.IconPictureBox();
-            this.iconExit = new FontAwesome.Sharp.IconPictureBox();
+            this.btnStudentMgt = new XanderUI.XUIButton();
+            this.btnSession = new XanderUI.XUIButton();
             this.btnReport = new XanderUI.XUIButton();
             this.btnAttendance = new XanderUI.XUIButton();
             this.btnCourseReg = new XanderUI.XUIButton();
             this.btnUserMgt = new XanderUI.XUIButton();
-            this.btnStudentMgt = new XanderUI.XUIButton();
             this.btnCourseMgt = new XanderUI.XUIButton();
             this.btnDept = new XanderUI.XUIButton();
-            this.btnSession = new XanderUI.XUIButton();
             this.btnHome = new XanderUI.XUIButton();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.iconUserImage = new FontAwesome.Sharp.IconPictureBox();
             this.iconMenu = new FontAwesome.Sharp.IconPictureBox();
+            this.panelRight = new System.Windows.Forms.Panel();
+            this.panelControls = new System.Windows.Forms.Panel();
+            this.panelWelcome = new System.Windows.Forms.Panel();
+            this.iconAlert = new FontAwesome.Sharp.IconPictureBox();
+            this.iconSettings = new FontAwesome.Sharp.IconPictureBox();
+            this.iconLogout = new FontAwesome.Sharp.IconPictureBox();
+            this.iconUser = new FontAwesome.Sharp.IconPictureBox();
+            this.lblUsername = new System.Windows.Forms.Label();
+            this.lblRole = new System.Windows.Forms.Label();
+            this.panelHeader = new System.Windows.Forms.Panel();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.iconMinimize = new FontAwesome.Sharp.IconPictureBox();
+            this.iconExit = new FontAwesome.Sharp.IconPictureBox();
+            this.panelFooter = new System.Windows.Forms.Panel();
             this.iconCopyright = new FontAwesome.Sharp.IconPictureBox();
+            this.lblFooter = new System.Windows.Forms.Label();
+            this.xuiFormHandle1 = new XanderUI.XUIFormHandle();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panelMenu.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconUserImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconMenu)).BeginInit();
             this.panelRight.SuspendLayout();
             this.panelWelcome.SuspendLayout();
-            this.panelHeader.SuspendLayout();
-            this.panelFooter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconAlert)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconSettings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconLogout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconUser)).BeginInit();
+            this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconExit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconUserImage)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconMenu)).BeginInit();
+            this.panelFooter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconCopyright)).BeginInit();
             this.SuspendLayout();
             // 
@@ -108,10 +108,208 @@ namespace AttendanceUI.Forms
             // panelActive
             // 
             this.panelActive.BackColor = System.Drawing.Color.OrangeRed;
-            this.panelActive.Location = new System.Drawing.Point(5, 264);
+            this.panelActive.Location = new System.Drawing.Point(10, 208);
             this.panelActive.Name = "panelActive";
             this.panelActive.Size = new System.Drawing.Size(10, 50);
-            this.panelActive.TabIndex = 14;
+            this.panelActive.TabIndex = 0;
+            // 
+            // btnStudentMgt
+            // 
+            this.btnStudentMgt.BackgroundColor = System.Drawing.Color.Transparent;
+            this.btnStudentMgt.ButtonImage = ((System.Drawing.Image)(resources.GetObject("btnStudentMgt.ButtonImage")));
+            this.btnStudentMgt.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnStudentMgt.ButtonText = "Student Management";
+            this.btnStudentMgt.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(201)))), ((int)(((byte)(60)))));
+            this.btnStudentMgt.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnStudentMgt.CornerRadius = 5;
+            this.btnStudentMgt.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStudentMgt.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnStudentMgt.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnStudentMgt.HoverTextColor = System.Drawing.Color.Black;
+            this.btnStudentMgt.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnStudentMgt.Location = new System.Drawing.Point(23, 609);
+            this.btnStudentMgt.Name = "btnStudentMgt";
+            this.btnStudentMgt.Size = new System.Drawing.Size(288, 50);
+            this.btnStudentMgt.TabIndex = 0;
+            this.btnStudentMgt.TextColor = System.Drawing.Color.Black;
+            this.btnStudentMgt.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnStudentMgt.Click += new System.EventHandler(this.btnStudentMgt_Click);
+            // 
+            // btnSession
+            // 
+            this.btnSession.BackgroundColor = System.Drawing.Color.Transparent;
+            this.btnSession.ButtonImage = ((System.Drawing.Image)(resources.GetObject("btnSession.ButtonImage")));
+            this.btnSession.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnSession.ButtonText = "Session/Semester";
+            this.btnSession.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(201)))), ((int)(((byte)(60)))));
+            this.btnSession.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnSession.CornerRadius = 5;
+            this.btnSession.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSession.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnSession.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnSession.HoverTextColor = System.Drawing.Color.Black;
+            this.btnSession.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnSession.Location = new System.Drawing.Point(23, 402);
+            this.btnSession.Name = "btnSession";
+            this.btnSession.Size = new System.Drawing.Size(288, 50);
+            this.btnSession.TabIndex = 0;
+            this.btnSession.TextColor = System.Drawing.Color.Black;
+            this.btnSession.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnSession.Click += new System.EventHandler(this.btnSession_Click);
+            // 
+            // btnReport
+            // 
+            this.btnReport.BackgroundColor = System.Drawing.Color.Transparent;
+            this.btnReport.ButtonImage = ((System.Drawing.Image)(resources.GetObject("btnReport.ButtonImage")));
+            this.btnReport.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnReport.ButtonText = "Report";
+            this.btnReport.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(201)))), ((int)(((byte)(60)))));
+            this.btnReport.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnReport.CornerRadius = 5;
+            this.btnReport.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReport.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnReport.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnReport.HoverTextColor = System.Drawing.Color.Black;
+            this.btnReport.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnReport.Location = new System.Drawing.Point(23, 816);
+            this.btnReport.Name = "btnReport";
+            this.btnReport.Size = new System.Drawing.Size(288, 50);
+            this.btnReport.TabIndex = 0;
+            this.btnReport.TextColor = System.Drawing.Color.Black;
+            this.btnReport.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
+            // 
+            // btnAttendance
+            // 
+            this.btnAttendance.BackgroundColor = System.Drawing.Color.Transparent;
+            this.btnAttendance.ButtonImage = ((System.Drawing.Image)(resources.GetObject("btnAttendance.ButtonImage")));
+            this.btnAttendance.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnAttendance.ButtonText = "Atttendance";
+            this.btnAttendance.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(201)))), ((int)(((byte)(60)))));
+            this.btnAttendance.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnAttendance.CornerRadius = 5;
+            this.btnAttendance.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAttendance.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnAttendance.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnAttendance.HoverTextColor = System.Drawing.Color.Black;
+            this.btnAttendance.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnAttendance.Location = new System.Drawing.Point(23, 747);
+            this.btnAttendance.Name = "btnAttendance";
+            this.btnAttendance.Size = new System.Drawing.Size(288, 50);
+            this.btnAttendance.TabIndex = 0;
+            this.btnAttendance.TextColor = System.Drawing.Color.Black;
+            this.btnAttendance.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnAttendance.Click += new System.EventHandler(this.btnAttendance_Click);
+            // 
+            // btnCourseReg
+            // 
+            this.btnCourseReg.BackgroundColor = System.Drawing.Color.Transparent;
+            this.btnCourseReg.ButtonImage = ((System.Drawing.Image)(resources.GetObject("btnCourseReg.ButtonImage")));
+            this.btnCourseReg.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnCourseReg.ButtonText = "Course Registration";
+            this.btnCourseReg.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(201)))), ((int)(((byte)(60)))));
+            this.btnCourseReg.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnCourseReg.CornerRadius = 5;
+            this.btnCourseReg.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCourseReg.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnCourseReg.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnCourseReg.HoverTextColor = System.Drawing.Color.Black;
+            this.btnCourseReg.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnCourseReg.Location = new System.Drawing.Point(23, 540);
+            this.btnCourseReg.Name = "btnCourseReg";
+            this.btnCourseReg.Size = new System.Drawing.Size(288, 50);
+            this.btnCourseReg.TabIndex = 0;
+            this.btnCourseReg.TextColor = System.Drawing.Color.Black;
+            this.btnCourseReg.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnCourseReg.Click += new System.EventHandler(this.btnCourseReg_Click);
+            // 
+            // btnUserMgt
+            // 
+            this.btnUserMgt.BackgroundColor = System.Drawing.Color.Transparent;
+            this.btnUserMgt.ButtonImage = ((System.Drawing.Image)(resources.GetObject("btnUserMgt.ButtonImage")));
+            this.btnUserMgt.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnUserMgt.ButtonText = "User Management";
+            this.btnUserMgt.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(201)))), ((int)(((byte)(60)))));
+            this.btnUserMgt.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnUserMgt.CornerRadius = 5;
+            this.btnUserMgt.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUserMgt.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnUserMgt.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnUserMgt.HoverTextColor = System.Drawing.Color.Black;
+            this.btnUserMgt.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnUserMgt.Location = new System.Drawing.Point(23, 678);
+            this.btnUserMgt.Name = "btnUserMgt";
+            this.btnUserMgt.Size = new System.Drawing.Size(288, 50);
+            this.btnUserMgt.TabIndex = 0;
+            this.btnUserMgt.TextColor = System.Drawing.Color.Black;
+            this.btnUserMgt.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnUserMgt.Click += new System.EventHandler(this.btnUserMgt_Click);
+            // 
+            // btnCourseMgt
+            // 
+            this.btnCourseMgt.BackgroundColor = System.Drawing.Color.Transparent;
+            this.btnCourseMgt.ButtonImage = ((System.Drawing.Image)(resources.GetObject("btnCourseMgt.ButtonImage")));
+            this.btnCourseMgt.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnCourseMgt.ButtonText = "Course Management";
+            this.btnCourseMgt.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(201)))), ((int)(((byte)(60)))));
+            this.btnCourseMgt.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnCourseMgt.CornerRadius = 5;
+            this.btnCourseMgt.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCourseMgt.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnCourseMgt.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnCourseMgt.HoverTextColor = System.Drawing.Color.Black;
+            this.btnCourseMgt.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnCourseMgt.Location = new System.Drawing.Point(23, 471);
+            this.btnCourseMgt.Name = "btnCourseMgt";
+            this.btnCourseMgt.Size = new System.Drawing.Size(288, 50);
+            this.btnCourseMgt.TabIndex = 0;
+            this.btnCourseMgt.TextColor = System.Drawing.Color.Black;
+            this.btnCourseMgt.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnCourseMgt.Click += new System.EventHandler(this.btnCourseMgt_Click);
+            // 
+            // btnDept
+            // 
+            this.btnDept.BackgroundColor = System.Drawing.Color.Transparent;
+            this.btnDept.ButtonImage = ((System.Drawing.Image)(resources.GetObject("btnDept.ButtonImage")));
+            this.btnDept.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnDept.ButtonText = "Department";
+            this.btnDept.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(201)))), ((int)(((byte)(60)))));
+            this.btnDept.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnDept.CornerRadius = 5;
+            this.btnDept.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDept.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnDept.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnDept.HoverTextColor = System.Drawing.Color.Black;
+            this.btnDept.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnDept.Location = new System.Drawing.Point(23, 333);
+            this.btnDept.Name = "btnDept";
+            this.btnDept.Size = new System.Drawing.Size(288, 50);
+            this.btnDept.TabIndex = 0;
+            this.btnDept.TextColor = System.Drawing.Color.Black;
+            this.btnDept.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnDept.Click += new System.EventHandler(this.btnDept_Click);
+            // 
+            // btnHome
+            // 
+            this.btnHome.BackgroundColor = System.Drawing.Color.Transparent;
+            this.btnHome.ButtonImage = ((System.Drawing.Image)(resources.GetObject("btnHome.ButtonImage")));
+            this.btnHome.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnHome.ButtonText = "Home";
+            this.btnHome.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(201)))), ((int)(((byte)(60)))));
+            this.btnHome.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnHome.CornerRadius = 5;
+            this.btnHome.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHome.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnHome.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnHome.HoverTextColor = System.Drawing.Color.Black;
+            this.btnHome.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnHome.Location = new System.Drawing.Point(23, 264);
+            this.btnHome.Name = "btnHome";
+            this.btnHome.Size = new System.Drawing.Size(288, 50);
+            this.btnHome.TabIndex = 0;
+            this.btnHome.TextColor = System.Drawing.Color.Black;
+            this.btnHome.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
             // 
             // panel1
             // 
@@ -123,7 +321,35 @@ namespace AttendanceUI.Forms
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(331, 178);
-            this.panel1.TabIndex = 2;
+            this.panel1.TabIndex = 0;
+            // 
+            // iconUserImage
+            // 
+            this.iconUserImage.BackColor = System.Drawing.Color.Transparent;
+            this.iconUserImage.ForeColor = System.Drawing.Color.Black;
+            this.iconUserImage.IconChar = FontAwesome.Sharp.IconChar.UserCircle;
+            this.iconUserImage.IconColor = System.Drawing.Color.Black;
+            this.iconUserImage.IconSize = 98;
+            this.iconUserImage.Location = new System.Drawing.Point(84, 30);
+            this.iconUserImage.Name = "iconUserImage";
+            this.iconUserImage.Size = new System.Drawing.Size(98, 103);
+            this.iconUserImage.TabIndex = 2;
+            this.iconUserImage.TabStop = false;
+            // 
+            // iconMenu
+            // 
+            this.iconMenu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.iconMenu.BackColor = System.Drawing.Color.Transparent;
+            this.iconMenu.ForeColor = System.Drawing.Color.Black;
+            this.iconMenu.IconChar = FontAwesome.Sharp.IconChar.Bars;
+            this.iconMenu.IconColor = System.Drawing.Color.Black;
+            this.iconMenu.IconSize = 35;
+            this.iconMenu.Location = new System.Drawing.Point(284, 6);
+            this.iconMenu.Name = "iconMenu";
+            this.iconMenu.Size = new System.Drawing.Size(44, 35);
+            this.iconMenu.TabIndex = 1;
+            this.iconMenu.TabStop = false;
+            this.iconMenu.Click += new System.EventHandler(this.iconMenu_Click);
             // 
             // panelRight
             // 
@@ -148,7 +374,7 @@ namespace AttendanceUI.Forms
             this.panelControls.Location = new System.Drawing.Point(5, 183);
             this.panelControls.Name = "panelControls";
             this.panelControls.Size = new System.Drawing.Size(733, 718);
-            this.panelControls.TabIndex = 5;
+            this.panelControls.TabIndex = 1;
             // 
             // panelWelcome
             // 
@@ -163,85 +389,7 @@ namespace AttendanceUI.Forms
             this.panelWelcome.Location = new System.Drawing.Point(5, 81);
             this.panelWelcome.Name = "panelWelcome";
             this.panelWelcome.Size = new System.Drawing.Size(733, 102);
-            this.panelWelcome.TabIndex = 2;
-            // 
-            // lblUsername
-            // 
-            this.lblUsername.AutoSize = true;
-            this.lblUsername.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblUsername.Font = new System.Drawing.Font("Calisto MT", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsername.ForeColor = System.Drawing.Color.White;
-            this.lblUsername.Location = new System.Drawing.Point(21, 25);
-            this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(104, 22);
-            this.lblUsername.TabIndex = 3;
-            this.lblUsername.Text = "User name";
-            // 
-            // lblRole
-            // 
-            this.lblRole.AutoSize = true;
-            this.lblRole.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblRole.Font = new System.Drawing.Font("Calisto MT", 10.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRole.ForeColor = System.Drawing.Color.White;
-            this.lblRole.Location = new System.Drawing.Point(21, 58);
-            this.lblRole.Name = "lblRole";
-            this.lblRole.Size = new System.Drawing.Size(73, 22);
-            this.lblRole.TabIndex = 4;
-            this.lblRole.Text = "User role";
-            // 
-            // panelHeader
-            // 
-            this.panelHeader.Controls.Add(this.lblTitle);
-            this.panelHeader.Controls.Add(this.iconMinimize);
-            this.panelHeader.Controls.Add(this.iconExit);
-            this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelHeader.Location = new System.Drawing.Point(5, 5);
-            this.panelHeader.Margin = new System.Windows.Forms.Padding(4);
-            this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(733, 76);
-            this.panelHeader.TabIndex = 1;
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Bookman Old Style", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(201)))), ((int)(((byte)(60)))));
-            this.lblTitle.Location = new System.Drawing.Point(17, 25);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(576, 32);
-            this.lblTitle.TabIndex = 4;
-            this.lblTitle.Text = "Biometric Student Attendance System";
-            // 
-            // panelFooter
-            // 
-            this.panelFooter.Controls.Add(this.iconCopyright);
-            this.panelFooter.Controls.Add(this.lblFooter);
-            this.panelFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelFooter.Location = new System.Drawing.Point(5, 901);
-            this.panelFooter.Name = "panelFooter";
-            this.panelFooter.Size = new System.Drawing.Size(733, 44);
-            this.panelFooter.TabIndex = 4;
-            // 
-            // lblFooter
-            // 
-            this.lblFooter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblFooter.AutoSize = true;
-            this.lblFooter.Font = new System.Drawing.Font("Bookman Old Style", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFooter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(201)))), ((int)(((byte)(60)))));
-            this.lblFooter.Location = new System.Drawing.Point(571, 12);
-            this.lblFooter.Name = "lblFooter";
-            this.lblFooter.Size = new System.Drawing.Size(157, 20);
-            this.lblFooter.TabIndex = 5;
-            this.lblFooter.Text = "Copyrights 2020";
-            // 
-            // xuiFormHandle1
-            // 
-            this.xuiFormHandle1.DockAtTop = true;
-            this.xuiFormHandle1.HandleControl = this;
-            // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.panelWelcome.TabIndex = 1;
             // 
             // iconAlert
             // 
@@ -299,6 +447,53 @@ namespace AttendanceUI.Forms
             this.iconUser.TabStop = false;
             this.iconUser.Click += new System.EventHandler(this.iconUser_Click);
             // 
+            // lblUsername
+            // 
+            this.lblUsername.AutoSize = true;
+            this.lblUsername.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblUsername.Font = new System.Drawing.Font("Calisto MT", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsername.ForeColor = System.Drawing.Color.White;
+            this.lblUsername.Location = new System.Drawing.Point(21, 25);
+            this.lblUsername.Name = "lblUsername";
+            this.lblUsername.Size = new System.Drawing.Size(104, 22);
+            this.lblUsername.TabIndex = 0;
+            this.lblUsername.Text = "User name";
+            // 
+            // lblRole
+            // 
+            this.lblRole.AutoSize = true;
+            this.lblRole.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblRole.Font = new System.Drawing.Font("Calisto MT", 10.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRole.ForeColor = System.Drawing.Color.White;
+            this.lblRole.Location = new System.Drawing.Point(21, 58);
+            this.lblRole.Name = "lblRole";
+            this.lblRole.Size = new System.Drawing.Size(73, 22);
+            this.lblRole.TabIndex = 0;
+            this.lblRole.Text = "User role";
+            // 
+            // panelHeader
+            // 
+            this.panelHeader.Controls.Add(this.lblTitle);
+            this.panelHeader.Controls.Add(this.iconMinimize);
+            this.panelHeader.Controls.Add(this.iconExit);
+            this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelHeader.Location = new System.Drawing.Point(5, 5);
+            this.panelHeader.Margin = new System.Windows.Forms.Padding(4);
+            this.panelHeader.Name = "panelHeader";
+            this.panelHeader.Size = new System.Drawing.Size(733, 76);
+            this.panelHeader.TabIndex = 0;
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Bookman Old Style", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(201)))), ((int)(((byte)(60)))));
+            this.lblTitle.Location = new System.Drawing.Point(17, 25);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(576, 32);
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Text = "Biometric Student Attendance System";
+            // 
             // iconMinimize
             // 
             this.iconMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -329,231 +524,15 @@ namespace AttendanceUI.Forms
             this.iconExit.TabStop = false;
             this.iconExit.Click += new System.EventHandler(this.iconExit_Click);
             // 
-            // btnReport
+            // panelFooter
             // 
-            this.btnReport.BackgroundColor = System.Drawing.Color.Transparent;
-            this.btnReport.ButtonImage = ((System.Drawing.Image)(resources.GetObject("btnReport.ButtonImage")));
-            this.btnReport.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
-            this.btnReport.ButtonText = "Report";
-            this.btnReport.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(201)))), ((int)(((byte)(60)))));
-            this.btnReport.ClickTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnReport.CornerRadius = 5;
-            this.btnReport.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReport.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnReport.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.btnReport.HoverTextColor = System.Drawing.Color.Black;
-            this.btnReport.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnReport.Location = new System.Drawing.Point(23, 816);
-            this.btnReport.Name = "btnReport";
-            this.btnReport.Size = new System.Drawing.Size(288, 50);
-            this.btnReport.TabIndex = 11;
-            this.btnReport.TextColor = System.Drawing.Color.Black;
-            this.btnReport.Vertical_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
-            // 
-            // btnAttendance
-            // 
-            this.btnAttendance.BackgroundColor = System.Drawing.Color.Transparent;
-            this.btnAttendance.ButtonImage = ((System.Drawing.Image)(resources.GetObject("btnAttendance.ButtonImage")));
-            this.btnAttendance.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
-            this.btnAttendance.ButtonText = "Atttendance";
-            this.btnAttendance.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(201)))), ((int)(((byte)(60)))));
-            this.btnAttendance.ClickTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnAttendance.CornerRadius = 5;
-            this.btnAttendance.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAttendance.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnAttendance.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.btnAttendance.HoverTextColor = System.Drawing.Color.Black;
-            this.btnAttendance.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnAttendance.Location = new System.Drawing.Point(23, 747);
-            this.btnAttendance.Name = "btnAttendance";
-            this.btnAttendance.Size = new System.Drawing.Size(288, 50);
-            this.btnAttendance.TabIndex = 10;
-            this.btnAttendance.TextColor = System.Drawing.Color.Black;
-            this.btnAttendance.Vertical_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnAttendance.Click += new System.EventHandler(this.btnAttendance_Click);
-            // 
-            // btnCourseReg
-            // 
-            this.btnCourseReg.BackgroundColor = System.Drawing.Color.Transparent;
-            this.btnCourseReg.ButtonImage = ((System.Drawing.Image)(resources.GetObject("btnCourseReg.ButtonImage")));
-            this.btnCourseReg.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
-            this.btnCourseReg.ButtonText = "Course Registration";
-            this.btnCourseReg.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(201)))), ((int)(((byte)(60)))));
-            this.btnCourseReg.ClickTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnCourseReg.CornerRadius = 5;
-            this.btnCourseReg.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCourseReg.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnCourseReg.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.btnCourseReg.HoverTextColor = System.Drawing.Color.Black;
-            this.btnCourseReg.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnCourseReg.Location = new System.Drawing.Point(23, 540);
-            this.btnCourseReg.Name = "btnCourseReg";
-            this.btnCourseReg.Size = new System.Drawing.Size(288, 50);
-            this.btnCourseReg.TabIndex = 9;
-            this.btnCourseReg.TextColor = System.Drawing.Color.Black;
-            this.btnCourseReg.Vertical_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnCourseReg.Click += new System.EventHandler(this.btnCourseReg_Click);
-            // 
-            // btnUserMgt
-            // 
-            this.btnUserMgt.BackgroundColor = System.Drawing.Color.Transparent;
-            this.btnUserMgt.ButtonImage = ((System.Drawing.Image)(resources.GetObject("btnUserMgt.ButtonImage")));
-            this.btnUserMgt.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
-            this.btnUserMgt.ButtonText = "User Management";
-            this.btnUserMgt.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(201)))), ((int)(((byte)(60)))));
-            this.btnUserMgt.ClickTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnUserMgt.CornerRadius = 5;
-            this.btnUserMgt.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUserMgt.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnUserMgt.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.btnUserMgt.HoverTextColor = System.Drawing.Color.Black;
-            this.btnUserMgt.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnUserMgt.Location = new System.Drawing.Point(23, 678);
-            this.btnUserMgt.Name = "btnUserMgt";
-            this.btnUserMgt.Size = new System.Drawing.Size(288, 50);
-            this.btnUserMgt.TabIndex = 8;
-            this.btnUserMgt.TextColor = System.Drawing.Color.Black;
-            this.btnUserMgt.Vertical_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnUserMgt.Click += new System.EventHandler(this.btnUserMgt_Click);
-            // 
-            // btnStudentMgt
-            // 
-            this.btnStudentMgt.BackgroundColor = System.Drawing.Color.Transparent;
-            this.btnStudentMgt.ButtonImage = ((System.Drawing.Image)(resources.GetObject("btnStudentMgt.ButtonImage")));
-            this.btnStudentMgt.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
-            this.btnStudentMgt.ButtonText = "Student Management";
-            this.btnStudentMgt.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(201)))), ((int)(((byte)(60)))));
-            this.btnStudentMgt.ClickTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnStudentMgt.CornerRadius = 5;
-            this.btnStudentMgt.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStudentMgt.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnStudentMgt.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.btnStudentMgt.HoverTextColor = System.Drawing.Color.Black;
-            this.btnStudentMgt.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnStudentMgt.Location = new System.Drawing.Point(23, 609);
-            this.btnStudentMgt.Name = "btnStudentMgt";
-            this.btnStudentMgt.Size = new System.Drawing.Size(288, 50);
-            this.btnStudentMgt.TabIndex = 7;
-            this.btnStudentMgt.TextColor = System.Drawing.Color.Black;
-            this.btnStudentMgt.Vertical_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnStudentMgt.Click += new System.EventHandler(this.btnStudentMgt_Click);
-            // 
-            // btnCourseMgt
-            // 
-            this.btnCourseMgt.BackgroundColor = System.Drawing.Color.Transparent;
-            this.btnCourseMgt.ButtonImage = ((System.Drawing.Image)(resources.GetObject("btnCourseMgt.ButtonImage")));
-            this.btnCourseMgt.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
-            this.btnCourseMgt.ButtonText = "Course Management";
-            this.btnCourseMgt.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(201)))), ((int)(((byte)(60)))));
-            this.btnCourseMgt.ClickTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnCourseMgt.CornerRadius = 5;
-            this.btnCourseMgt.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCourseMgt.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnCourseMgt.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.btnCourseMgt.HoverTextColor = System.Drawing.Color.Black;
-            this.btnCourseMgt.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnCourseMgt.Location = new System.Drawing.Point(23, 471);
-            this.btnCourseMgt.Name = "btnCourseMgt";
-            this.btnCourseMgt.Size = new System.Drawing.Size(288, 50);
-            this.btnCourseMgt.TabIndex = 6;
-            this.btnCourseMgt.TextColor = System.Drawing.Color.Black;
-            this.btnCourseMgt.Vertical_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnCourseMgt.Click += new System.EventHandler(this.btnCourseMgt_Click);
-            // 
-            // btnDept
-            // 
-            this.btnDept.BackgroundColor = System.Drawing.Color.Transparent;
-            this.btnDept.ButtonImage = ((System.Drawing.Image)(resources.GetObject("btnDept.ButtonImage")));
-            this.btnDept.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
-            this.btnDept.ButtonText = "Department";
-            this.btnDept.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(201)))), ((int)(((byte)(60)))));
-            this.btnDept.ClickTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnDept.CornerRadius = 5;
-            this.btnDept.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDept.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnDept.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.btnDept.HoverTextColor = System.Drawing.Color.Black;
-            this.btnDept.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnDept.Location = new System.Drawing.Point(23, 333);
-            this.btnDept.Name = "btnDept";
-            this.btnDept.Size = new System.Drawing.Size(288, 50);
-            this.btnDept.TabIndex = 5;
-            this.btnDept.TextColor = System.Drawing.Color.Black;
-            this.btnDept.Vertical_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnDept.Click += new System.EventHandler(this.btnDept_Click);
-            // 
-            // btnSession
-            // 
-            this.btnSession.BackgroundColor = System.Drawing.Color.Transparent;
-            this.btnSession.ButtonImage = ((System.Drawing.Image)(resources.GetObject("btnSession.ButtonImage")));
-            this.btnSession.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
-            this.btnSession.ButtonText = "Session/Semester";
-            this.btnSession.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(201)))), ((int)(((byte)(60)))));
-            this.btnSession.ClickTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnSession.CornerRadius = 5;
-            this.btnSession.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSession.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnSession.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.btnSession.HoverTextColor = System.Drawing.Color.Black;
-            this.btnSession.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnSession.Location = new System.Drawing.Point(23, 402);
-            this.btnSession.Name = "btnSession";
-            this.btnSession.Size = new System.Drawing.Size(288, 50);
-            this.btnSession.TabIndex = 4;
-            this.btnSession.TextColor = System.Drawing.Color.Black;
-            this.btnSession.Vertical_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnSession.Click += new System.EventHandler(this.btnSession_Click);
-            // 
-            // btnHome
-            // 
-            this.btnHome.BackgroundColor = System.Drawing.Color.Transparent;
-            this.btnHome.ButtonImage = ((System.Drawing.Image)(resources.GetObject("btnHome.ButtonImage")));
-            this.btnHome.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
-            this.btnHome.ButtonText = "Home";
-            this.btnHome.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(201)))), ((int)(((byte)(60)))));
-            this.btnHome.ClickTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnHome.CornerRadius = 5;
-            this.btnHome.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHome.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnHome.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.btnHome.HoverTextColor = System.Drawing.Color.Black;
-            this.btnHome.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnHome.Location = new System.Drawing.Point(23, 264);
-            this.btnHome.Name = "btnHome";
-            this.btnHome.Size = new System.Drawing.Size(288, 50);
-            this.btnHome.TabIndex = 3;
-            this.btnHome.TextColor = System.Drawing.Color.Black;
-            this.btnHome.Vertical_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
-            // 
-            // iconUserImage
-            // 
-            this.iconUserImage.BackColor = System.Drawing.Color.Transparent;
-            this.iconUserImage.ForeColor = System.Drawing.Color.Black;
-            this.iconUserImage.IconChar = FontAwesome.Sharp.IconChar.UserCircle;
-            this.iconUserImage.IconColor = System.Drawing.Color.Black;
-            this.iconUserImage.IconSize = 98;
-            this.iconUserImage.Location = new System.Drawing.Point(84, 30);
-            this.iconUserImage.Name = "iconUserImage";
-            this.iconUserImage.Size = new System.Drawing.Size(98, 103);
-            this.iconUserImage.TabIndex = 2;
-            this.iconUserImage.TabStop = false;
-            // 
-            // iconMenu
-            // 
-            this.iconMenu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.iconMenu.BackColor = System.Drawing.Color.Transparent;
-            this.iconMenu.ForeColor = System.Drawing.Color.Black;
-            this.iconMenu.IconChar = FontAwesome.Sharp.IconChar.Bars;
-            this.iconMenu.IconColor = System.Drawing.Color.Black;
-            this.iconMenu.IconSize = 35;
-            this.iconMenu.Location = new System.Drawing.Point(284, 6);
-            this.iconMenu.Name = "iconMenu";
-            this.iconMenu.Size = new System.Drawing.Size(44, 35);
-            this.iconMenu.TabIndex = 1;
-            this.iconMenu.TabStop = false;
-            this.iconMenu.Click += new System.EventHandler(this.iconMenu_Click);
+            this.panelFooter.Controls.Add(this.iconCopyright);
+            this.panelFooter.Controls.Add(this.lblFooter);
+            this.panelFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelFooter.Location = new System.Drawing.Point(5, 901);
+            this.panelFooter.Name = "panelFooter";
+            this.panelFooter.Size = new System.Drawing.Size(733, 44);
+            this.panelFooter.TabIndex = 0;
             // 
             // iconCopyright
             // 
@@ -568,6 +547,27 @@ namespace AttendanceUI.Forms
             this.iconCopyright.Size = new System.Drawing.Size(44, 35);
             this.iconCopyright.TabIndex = 6;
             this.iconCopyright.TabStop = false;
+            // 
+            // lblFooter
+            // 
+            this.lblFooter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblFooter.AutoSize = true;
+            this.lblFooter.Font = new System.Drawing.Font("Bookman Old Style", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFooter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(201)))), ((int)(((byte)(60)))));
+            this.lblFooter.Location = new System.Drawing.Point(571, 12);
+            this.lblFooter.Name = "lblFooter";
+            this.lblFooter.Size = new System.Drawing.Size(157, 20);
+            this.lblFooter.TabIndex = 0;
+            this.lblFooter.Text = "Copyrights 2020";
+            // 
+            // xuiFormHandle1
+            // 
+            this.xuiFormHandle1.DockAtTop = true;
+            this.xuiFormHandle1.HandleControl = this;
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // FrmContainer
             // 
@@ -585,21 +585,21 @@ namespace AttendanceUI.Forms
             this.Load += new System.EventHandler(this.Dashboard_Load);
             this.panelMenu.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.iconUserImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconMenu)).EndInit();
             this.panelRight.ResumeLayout(false);
             this.panelWelcome.ResumeLayout(false);
             this.panelWelcome.PerformLayout();
-            this.panelHeader.ResumeLayout(false);
-            this.panelHeader.PerformLayout();
-            this.panelFooter.ResumeLayout(false);
-            this.panelFooter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconAlert)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconSettings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconLogout)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconUser)).EndInit();
+            this.panelHeader.ResumeLayout(false);
+            this.panelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconMinimize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconExit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconUserImage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconMenu)).EndInit();
+            this.panelFooter.ResumeLayout(false);
+            this.panelFooter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconCopyright)).EndInit();
             this.ResumeLayout(false);
 

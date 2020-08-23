@@ -46,6 +46,7 @@
             this.iconExit = new FontAwesome.Sharp.IconPictureBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.label4 = new System.Windows.Forms.Label();
             this.panelForm.SuspendLayout();
             this.panelBody.SuspendLayout();
             this.panelTop.SuspendLayout();
@@ -68,6 +69,7 @@
             // 
             // panelBody
             // 
+            this.panelBody.Controls.Add(this.label4);
             this.panelBody.Controls.Add(this.checkCourses);
             this.panelBody.Controls.Add(this.comboStaff);
             this.panelBody.Controls.Add(this.comboLevel);
@@ -80,7 +82,7 @@
             this.panelBody.Location = new System.Drawing.Point(11, 119);
             this.panelBody.Name = "panelBody";
             this.panelBody.Size = new System.Drawing.Size(759, 492);
-            this.panelBody.TabIndex = 5;
+            this.panelBody.TabIndex = 1;
             // 
             // checkCourses
             // 
@@ -88,7 +90,7 @@
             this.checkCourses.Location = new System.Drawing.Point(149, 144);
             this.checkCourses.Name = "checkCourses";
             this.checkCourses.Size = new System.Drawing.Size(574, 211);
-            this.checkCourses.TabIndex = 13;
+            this.checkCourses.TabIndex = 4;
             // 
             // comboStaff
             // 
@@ -97,7 +99,7 @@
             this.comboStaff.Location = new System.Drawing.Point(149, 89);
             this.comboStaff.Name = "comboStaff";
             this.comboStaff.Size = new System.Drawing.Size(574, 31);
-            this.comboStaff.TabIndex = 9;
+            this.comboStaff.TabIndex = 3;
             // 
             // comboLevel
             // 
@@ -106,7 +108,8 @@
             this.comboLevel.Location = new System.Drawing.Point(487, 38);
             this.comboLevel.Name = "comboLevel";
             this.comboLevel.Size = new System.Drawing.Size(236, 31);
-            this.comboLevel.TabIndex = 8;
+            this.comboLevel.TabIndex = 2;
+            this.comboLevel.SelectedIndexChanged += new System.EventHandler(this.comboLevel_SelectedIndexChanged);
             // 
             // btnSave
             // 
@@ -117,7 +120,7 @@
             this.btnSave.Location = new System.Drawing.Point(307, 374);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(236, 33);
-            this.btnSave.TabIndex = 6;
+            this.btnSave.TabIndex = 5;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -130,7 +133,7 @@
             this.label3.Location = new System.Drawing.Point(404, 42);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(60, 22);
-            this.label3.TabIndex = 3;
+            this.label3.TabIndex = 0;
             this.label3.Text = "Level";
             // 
             // label2
@@ -141,7 +144,7 @@
             this.label2.Location = new System.Drawing.Point(17, 98);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 22);
-            this.label2.TabIndex = 2;
+            this.label2.TabIndex = 0;
             this.label2.Text = "Staff";
             // 
             // label1
@@ -152,7 +155,7 @@
             this.label1.Location = new System.Drawing.Point(17, 47);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(119, 22);
-            this.label1.TabIndex = 1;
+            this.label1.TabIndex = 0;
             this.label1.Text = "Department";
             // 
             // comboDept
@@ -162,7 +165,8 @@
             this.comboDept.Location = new System.Drawing.Point(149, 39);
             this.comboDept.Name = "comboDept";
             this.comboDept.Size = new System.Drawing.Size(236, 31);
-            this.comboDept.TabIndex = 0;
+            this.comboDept.TabIndex = 1;
+            this.comboDept.SelectedIndexChanged += new System.EventHandler(this.comboDept_SelectedIndexChanged);
             // 
             // panel3
             // 
@@ -243,15 +247,27 @@
             this.lblTitle.Margin = new System.Windows.Forms.Padding(10);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(189, 22);
-            this.lblTitle.TabIndex = 4;
+            this.lblTitle.TabIndex = 1;
             this.lblTitle.Text = "Assign Staff Course";
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Bold);
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
+            this.label4.Location = new System.Drawing.Point(17, 157);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(84, 22);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Courses";
+            // 
             // FrmAssignStaffCourse
             // 
+            this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
@@ -263,6 +279,7 @@
             this.Name = "FrmAssignStaffCourse";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FrmCourse";
+            this.Load += new System.EventHandler(this.FrmAssignStaffCourse_Load);
             this.panelForm.ResumeLayout(false);
             this.panelBody.ResumeLayout(false);
             this.panelBody.PerformLayout();
@@ -293,5 +310,6 @@
         private System.Windows.Forms.ComboBox comboLevel;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.CheckedListBox checkCourses;
+        private System.Windows.Forms.Label label4;
     }
 }

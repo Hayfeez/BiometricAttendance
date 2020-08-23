@@ -102,13 +102,47 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public List<StudentDetail> GetAllDepartmentStudents(string departmentId, bool isGraduate = false)
+        public List<StudentDetail> GetDepartmentStudentsSlim(string departmentId, string levelId, bool isGraduate = false)
         {
             try
             {
+                //TODO: get student level id from current session and courseregistration
                 using (var context = new BASContext())
                 {
                     return context.Students.Where(a => !a.IsDeleted && a.DepartmentId == departmentId && a.IsGraduated == isGraduate).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<StudentList> GetDepartmentStudents(string departmentId, string levelId, bool isGraduate = false)
+        {
+            try
+            {
+                //TODO: get student level id from current session and courseregistration
+                using (var context = new BASContext())
+                {
+                    var dt = (context.Students
+                        .Join(context.Departments, st => st.DepartmentId, dep => dep.Id, (st, dep) => new
+                        {
+                            st,
+                            dep
+                        })
+                        .Where(x => (departmentId == "" || x.st.DepartmentId == departmentId) && x.st.IsGraduated == isGraduate && !x.st.IsDeleted)
+                        .Select(x => new StudentList
+                        {
+                            Id = x.st.Id,
+                            Department = x.dep.DepartmentName,
+                            Email = x.st.Email,
+                            PhoneNo = x.st.PhoneNo,
+                            MatricNo = x.st.MatricNo,
+                            Fullname = x.st.Lastname + ", " + x.st.Firstname + " " + x.st.Othername
+                        })).ToList();
+
+                    return dt;
                 }
             }
             catch (Exception ex)
@@ -124,6 +158,21 @@ namespace AttendanceLibrary.Repository
                 using (var context = new BASContext())
                 {
                     return context.Students.SingleOrDefault(a => a.Id == studentId && !a.IsDeleted);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public StudentDetail GetStudentByMatricNo(string matricNo)
+        {
+            try
+            {
+                using (var context = new BASContext())
+                {
+                    return context.Students.SingleOrDefault(a => a.MatricNo == matricNo && !a.IsDeleted);
                 }
             }
             catch (Exception ex)

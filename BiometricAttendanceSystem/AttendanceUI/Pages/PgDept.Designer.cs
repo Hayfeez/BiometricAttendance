@@ -97,6 +97,7 @@
             this.btnSearch.TabIndex = 3;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // txtSearch
             // 
@@ -170,6 +171,7 @@
             this.dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGrid.Size = new System.Drawing.Size(922, 441);
             this.dataGrid.TabIndex = 0;
+            this.dataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGrid_CellContentClick);
             // 
             // PgDept
             // 
@@ -184,6 +186,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "PgDept";
             this.Size = new System.Drawing.Size(958, 602);
+            this.Load += new System.EventHandler(this.PgDept_Load);
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();
             this.panelBody.ResumeLayout(false);

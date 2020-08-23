@@ -18,10 +18,6 @@ namespace AttendanceLibrary.BaseClass
         public static bool IsSuperAdmin { get; set; }
 
         public static SessionSemester ActiveSession { get; set; }
-       
-        public static string ActiveSessionSemester()
-        {
-            return ActiveSession.Fullname;
-        }
+        
     }
 }

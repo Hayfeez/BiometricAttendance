@@ -25,10 +25,10 @@ namespace AttendanceUI.Forms
         private string ValidateForm()
         {
             if (txtDeptTitle.Text == "")
-                return "Course Title is required";
+                return "Department Name is required";
 
             if (txtDeptCode.Text == "")
-                return "Course Code is required";
+                return "Department Code is required";
 
             return "";
         }

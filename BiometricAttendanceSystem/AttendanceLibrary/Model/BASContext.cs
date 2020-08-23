@@ -27,6 +27,8 @@ namespace AttendanceLibrary.Model
         public DbSet<StudentLevel> Levels { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<SystemSetting> SystemSettings { get; set; }
+        public DbSet<AppSync> AppSyncs { get; set; }
+        public DbSet<StaffCourse> StaffCourses { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -44,6 +46,8 @@ namespace AttendanceLibrary.Model
             modelBuilder.Entity<StudentFinger>().ToTable("StudentFinger");
             modelBuilder.Entity<StudentLevel>().ToTable("StudentLevel");
             modelBuilder.Entity<SystemSetting>().ToTable("SystemSetting");
+            modelBuilder.Entity<AppSync>().ToTable("AppSync");
+            modelBuilder.Entity<StaffCourse>().ToTable("StaffCourse");
         }
     }
 }

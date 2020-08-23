@@ -69,7 +69,7 @@
             this.panelBody.Location = new System.Drawing.Point(11, 119);
             this.panelBody.Name = "panelBody";
             this.panelBody.Size = new System.Drawing.Size(404, 184);
-            this.panelBody.TabIndex = 5;
+            this.panelBody.TabIndex = 1;
             // 
             // btnSave
             // 
@@ -80,7 +80,7 @@
             this.btnSave.Location = new System.Drawing.Point(129, 97);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(236, 48);
-            this.btnSave.TabIndex = 6;
+            this.btnSave.TabIndex = 2;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -91,7 +91,7 @@
             this.txtTitle.Location = new System.Drawing.Point(129, 37);
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(236, 31);
-            this.txtTitle.TabIndex = 4;
+            this.txtTitle.TabIndex = 1;
             // 
             // label3
             // 
@@ -101,7 +101,7 @@
             this.label3.Location = new System.Drawing.Point(35, 46);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(52, 22);
-            this.label3.TabIndex = 3;
+            this.label3.TabIndex = 0;
             this.label3.Text = "Title";
             // 
             // panel3
@@ -188,6 +188,7 @@
             // 
             // FrmTitle
             // 
+            this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(426, 314);

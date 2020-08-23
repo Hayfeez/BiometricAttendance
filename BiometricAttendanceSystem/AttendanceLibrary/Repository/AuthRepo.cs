@@ -79,7 +79,7 @@ namespace AttendanceLibrary.Repository
                         if (superAdmin == null)
                             return false;
 
-                        LoggedInUser.UserId = Constants.SuperAdminId;
+                        LoggedInUser.UserId = superAdmin.Id;
                         LoggedInUser.Email = superAdmin.SuperAdminEmail;
                         LoggedInUser.Fullname = $"{superAdmin.SuperAdminLastname}, {superAdmin.SuperAdminFirstname}";
                         LoggedInUser.IsAdmin = true;

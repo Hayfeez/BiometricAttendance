@@ -16,9 +16,10 @@ namespace AttendanceLibrary.Repository
 			try
 			{
 				using (var context = new BASContext())
-				{
+                {
+                    var fingerCount = context.SystemSettings.First().NoOfFinger;
 					var studentFingers = context.StudentFingers.Where(a => a.StudentId == data.StudentId);
-					if (studentFingers.Count() < Constants.NoOfFinger)
+					if (studentFingers.Count() < fingerCount)
                     {
                         data.Id = Guid.NewGuid().ToString();
 						context.StudentFingers.Add(data);
@@ -38,12 +39,14 @@ namespace AttendanceLibrary.Repository
 		{
 			try
 			{
-				if (data.Count() != Constants.NoOfFinger)
-					return "Fingers not equal to the required number of fingers";
-				
+               
 				using (var context = new BASContext())
 				{
-					var studentFingers = context.StudentFingers.Where(a => a.StudentId == data[0].StudentId);
+                    var fingerCount = context.SystemSettings.First().NoOfFinger;
+                    if (data.Count() != fingerCount)
+                        return "Fingers not equal to the required number of fingers";
+
+                    var studentFingers = context.StudentFingers.Where(a => a.StudentId == data[0].StudentId);
 					foreach (var item in studentFingers)
 					{
 						context.StudentFingers.Remove(item);

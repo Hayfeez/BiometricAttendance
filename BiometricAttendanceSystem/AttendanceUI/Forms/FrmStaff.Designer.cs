@@ -103,7 +103,7 @@
             this.panelBody.Location = new System.Drawing.Point(11, 119);
             this.panelBody.Name = "panelBody";
             this.panelBody.Size = new System.Drawing.Size(1011, 429);
-            this.panelBody.TabIndex = 5;
+            this.panelBody.TabIndex = 1;
             // 
             // comboTitle
             // 
@@ -112,7 +112,7 @@
             this.comboTitle.Location = new System.Drawing.Point(637, 106);
             this.comboTitle.Name = "comboTitle";
             this.comboTitle.Size = new System.Drawing.Size(236, 31);
-            this.comboTitle.TabIndex = 19;
+            this.comboTitle.TabIndex = 3;
             // 
             // label8
             // 
@@ -122,7 +122,7 @@
             this.label8.Location = new System.Drawing.Point(505, 115);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(52, 22);
-            this.label8.TabIndex = 18;
+            this.label8.TabIndex = 0;
             this.label8.Text = "Title";
             // 
             // checkIsSystemAdmin
@@ -137,7 +137,7 @@
             this.checkIsSystemAdmin.Location = new System.Drawing.Point(405, 315);
             this.checkIsSystemAdmin.Name = "checkIsSystemAdmin";
             this.checkIsSystemAdmin.Size = new System.Drawing.Size(202, 24);
-            this.checkIsSystemAdmin.TabIndex = 17;
+            this.checkIsSystemAdmin.TabIndex = 10;
             this.checkIsSystemAdmin.Text = "Is System Admin";
             this.checkIsSystemAdmin.TickThickness = 2;
             // 
@@ -153,7 +153,7 @@
             this.checkIsAdmin.Location = new System.Drawing.Point(258, 315);
             this.checkIsAdmin.Name = "checkIsAdmin";
             this.checkIsAdmin.Size = new System.Drawing.Size(122, 24);
-            this.checkIsAdmin.TabIndex = 16;
+            this.checkIsAdmin.TabIndex = 9;
             this.checkIsAdmin.Text = "Is Admin";
             this.checkIsAdmin.TickThickness = 2;
             // 
@@ -166,7 +166,7 @@
             this.btnClear.Location = new System.Drawing.Point(604, 362);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(269, 48);
-            this.btnClear.TabIndex = 15;
+            this.btnClear.TabIndex = 12;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = false;
             // 
@@ -177,7 +177,7 @@
             this.txtPhoneNo.MaxLength = 11;
             this.txtPhoneNo.Name = "txtPhoneNo";
             this.txtPhoneNo.Size = new System.Drawing.Size(236, 31);
-            this.txtPhoneNo.TabIndex = 14;
+            this.txtPhoneNo.TabIndex = 7;
             // 
             // label5
             // 
@@ -187,7 +187,7 @@
             this.label5.Location = new System.Drawing.Point(505, 213);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(102, 22);
-            this.label5.TabIndex = 13;
+            this.label5.TabIndex = 0;
             this.label5.Text = "Phone No";
             // 
             // txtStaffNo
@@ -196,7 +196,7 @@
             this.txtStaffNo.Location = new System.Drawing.Point(258, 206);
             this.txtStaffNo.Name = "txtStaffNo";
             this.txtStaffNo.Size = new System.Drawing.Size(236, 31);
-            this.txtStaffNo.TabIndex = 12;
+            this.txtStaffNo.TabIndex = 6;
             // 
             // txtEmail
             // 
@@ -204,7 +204,7 @@
             this.txtEmail.Location = new System.Drawing.Point(258, 261);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(615, 31);
-            this.txtEmail.TabIndex = 11;
+            this.txtEmail.TabIndex = 8;
             // 
             // label6
             // 
@@ -214,7 +214,7 @@
             this.label6.Location = new System.Drawing.Point(126, 269);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(66, 22);
-            this.label6.TabIndex = 10;
+            this.label6.TabIndex = 0;
             this.label6.Text = "Email";
             // 
             // label7
@@ -225,7 +225,7 @@
             this.label7.Location = new System.Drawing.Point(126, 214);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(85, 22);
-            this.label7.TabIndex = 9;
+            this.label7.TabIndex = 0;
             this.label7.Text = "Staff No";
             // 
             // txtOthername
@@ -234,7 +234,7 @@
             this.txtOthername.Location = new System.Drawing.Point(637, 154);
             this.txtOthername.Name = "txtOthername";
             this.txtOthername.Size = new System.Drawing.Size(236, 31);
-            this.txtOthername.TabIndex = 8;
+            this.txtOthername.TabIndex = 5;
             // 
             // label4
             // 
@@ -244,7 +244,7 @@
             this.label4.Location = new System.Drawing.Point(505, 162);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(115, 22);
-            this.label4.TabIndex = 7;
+            this.label4.TabIndex = 0;
             this.label4.Text = "Othername";
             // 
             // btnSave
@@ -256,7 +256,7 @@
             this.btnSave.Location = new System.Drawing.Point(258, 362);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(269, 48);
-            this.btnSave.TabIndex = 6;
+            this.btnSave.TabIndex = 11;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -267,7 +267,7 @@
             this.txtFirstname.Location = new System.Drawing.Point(258, 155);
             this.txtFirstname.Name = "txtFirstname";
             this.txtFirstname.Size = new System.Drawing.Size(236, 31);
-            this.txtFirstname.TabIndex = 5;
+            this.txtFirstname.TabIndex = 4;
             // 
             // txtSurname
             // 
@@ -275,7 +275,7 @@
             this.txtSurname.Location = new System.Drawing.Point(258, 107);
             this.txtSurname.Name = "txtSurname";
             this.txtSurname.Size = new System.Drawing.Size(236, 31);
-            this.txtSurname.TabIndex = 4;
+            this.txtSurname.TabIndex = 2;
             // 
             // label3
             // 
@@ -285,7 +285,7 @@
             this.label3.Location = new System.Drawing.Point(126, 116);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(93, 22);
-            this.label3.TabIndex = 3;
+            this.label3.TabIndex = 0;
             this.label3.Text = "Surname";
             // 
             // label2
@@ -296,7 +296,7 @@
             this.label2.Location = new System.Drawing.Point(126, 163);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(103, 22);
-            this.label2.TabIndex = 2;
+            this.label2.TabIndex = 0;
             this.label2.Text = "Firstname";
             // 
             // label1
@@ -307,7 +307,7 @@
             this.label1.Location = new System.Drawing.Point(126, 62);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(119, 22);
-            this.label1.TabIndex = 1;
+            this.label1.TabIndex = 0;
             this.label1.Text = "Department";
             // 
             // comboDept
@@ -317,7 +317,7 @@
             this.comboDept.Location = new System.Drawing.Point(258, 54);
             this.comboDept.Name = "comboDept";
             this.comboDept.Size = new System.Drawing.Size(615, 31);
-            this.comboDept.TabIndex = 0;
+            this.comboDept.TabIndex = 1;
             // 
             // panel3
             // 
@@ -403,6 +403,7 @@
             // 
             // FrmStaff
             // 
+            this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1033, 559);

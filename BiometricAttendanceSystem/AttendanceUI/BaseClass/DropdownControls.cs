@@ -37,7 +37,8 @@ namespace AttendanceUI.BaseClass
 
             dropDown.DataSource = allItems;
             dropDown.DisplayMember = "DepartmentName";
-            dropDown.ValueMember = "Id"; 
+            dropDown.ValueMember = "Id";
+            dropDown.SelectedIndex = 0;
         }
 
         public static void LoadSessions(ref ComboBox dropDown, bool includeAll = false)
@@ -65,6 +66,7 @@ namespace AttendanceUI.BaseClass
             dropDown.DataSource = allItems;
             dropDown.DisplayMember = "Fullname";
             dropDown.ValueMember = "Id";
+            dropDown.SelectedIndex = 0;
         }
 
         public static void LoadTitles(ref ComboBox dropDown, bool includeAll = false)
@@ -92,6 +94,7 @@ namespace AttendanceUI.BaseClass
             dropDown.DataSource = allItems;
             dropDown.DisplayMember = "Title";
             dropDown.ValueMember = "Id";
+            dropDown.SelectedIndex = 0;
         }
 
         public static void LoadLevels(ref ComboBox dropDown, bool includeAll = false)
@@ -119,6 +122,7 @@ namespace AttendanceUI.BaseClass
             dropDown.DataSource = allItems;
             dropDown.DisplayMember = "Level";
             dropDown.ValueMember = "Id";
+            dropDown.SelectedIndex = 0;
         }
 
         public static void LoadCourses(ref ComboBox dropDown, string deptId, string levelId, bool includeAll = false)
@@ -146,12 +150,13 @@ namespace AttendanceUI.BaseClass
             dropDown.DataSource = allItems;
             dropDown.DisplayMember = "CourseTitle";
             dropDown.ValueMember = "Id";
+            dropDown.SelectedIndex = 0;
         }
 
         public static void LoadStaff(ref ComboBox dropDown, string deptId, bool includeAll = false)
         {
             var repo = new StaffRepo();
-            var allItems = repo.GetAllDepartmentStaff(deptId);
+            var allItems = repo.GetDepartmentStaffSlim(deptId);
 
             if (includeAll)
             {
@@ -173,12 +178,13 @@ namespace AttendanceUI.BaseClass
             dropDown.DataSource = allItems;
             dropDown.DisplayMember = "Fullname";
             dropDown.ValueMember = "Id";
+            dropDown.SelectedIndex = 0;
         }
 
         public static void LoadStudents(ref ComboBox dropDown, string deptId, string levelId = "", bool includeGrad = false, bool includeAll = false)
         {
             var repo = new StudentRepo();
-            var allItems = repo.GetAllDepartmentStudents(deptId, includeGrad);
+            var allItems = repo.GetDepartmentStudentsSlim(deptId, levelId, includeGrad);
 
             if (includeAll)
             {
@@ -200,6 +206,7 @@ namespace AttendanceUI.BaseClass
             dropDown.DataSource = allItems;
             dropDown.DisplayMember = "Fullname";
             dropDown.ValueMember = "Id";
+            dropDown.SelectedIndex = 0;
         }
 
 

@@ -41,9 +41,9 @@
             this.panelBody = new System.Windows.Forms.Panel();
             this.dataGrid = new System.Windows.Forms.DataGridView();
             this.panelFilter = new System.Windows.Forms.Panel();
+            this.comboLevel = new System.Windows.Forms.ComboBox();
             this.btnLoad = new System.Windows.Forms.Button();
             this.comboDept = new System.Windows.Forms.ComboBox();
-            this.comboLevel = new System.Windows.Forms.ComboBox();
             this.panelHeader.SuspendLayout();
             this.panelBody.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
@@ -112,7 +112,7 @@
             this.btnStaffCourse.Location = new System.Drawing.Point(191, 87);
             this.btnStaffCourse.Name = "btnStaffCourse";
             this.btnStaffCourse.Size = new System.Drawing.Size(199, 50);
-            this.btnStaffCourse.TabIndex = 4;
+            this.btnStaffCourse.TabIndex = 2;
             this.btnStaffCourse.TextColor = System.Drawing.Color.White;
             this.btnStaffCourse.Vertical_Alignment = System.Drawing.StringAlignment.Center;
             this.btnStaffCourse.Click += new System.EventHandler(this.btnStaffCourse_Click);
@@ -123,7 +123,7 @@
             this.btnSearch.Location = new System.Drawing.Point(839, 107);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(76, 31);
-            this.btnSearch.TabIndex = 3;
+            this.btnSearch.TabIndex = 4;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
@@ -135,7 +135,7 @@
             this.txtSearch.Location = new System.Drawing.Point(548, 106);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(285, 31);
-            this.txtSearch.TabIndex = 2;
+            this.txtSearch.TabIndex = 3;
             // 
             // btnAdd
             // 
@@ -216,13 +216,21 @@
             this.panelFilter.Size = new System.Drawing.Size(922, 79);
             this.panelFilter.TabIndex = 1;
             // 
+            // comboLevel
+            // 
+            this.comboLevel.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboLevel.FormattingEnabled = true;
+            this.comboLevel.Location = new System.Drawing.Point(274, 26);
+            this.comboLevel.Name = "comboLevel";
+            this.comboLevel.Size = new System.Drawing.Size(251, 31);
+            this.comboLevel.TabIndex = 1;
+            // 
             // btnLoad
             // 
-            this.btnLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLoad.Location = new System.Drawing.Point(547, 25);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(76, 31);
-            this.btnLoad.TabIndex = 4;
+            this.btnLoad.TabIndex = 2;
             this.btnLoad.Text = "Load";
             this.btnLoad.UseVisualStyleBackColor = true;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
@@ -235,15 +243,6 @@
             this.comboDept.Name = "comboDept";
             this.comboDept.Size = new System.Drawing.Size(251, 31);
             this.comboDept.TabIndex = 0;
-            // 
-            // comboLevel
-            // 
-            this.comboLevel.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboLevel.FormattingEnabled = true;
-            this.comboLevel.Location = new System.Drawing.Point(274, 26);
-            this.comboLevel.Name = "comboLevel";
-            this.comboLevel.Size = new System.Drawing.Size(251, 31);
-            this.comboLevel.TabIndex = 5;
             // 
             // PgCourse
             // 

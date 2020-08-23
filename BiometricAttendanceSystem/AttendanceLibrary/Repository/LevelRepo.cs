@@ -83,6 +83,21 @@ namespace AttendanceLibrary.Repository
             }
         }
 
+        public StudentLevel GetLevelByName(string name)
+        {
+            try
+            {
+                using (var context = new BASContext())
+                {
+                    return context.Levels.SingleOrDefault(a => a.Level == name && !a.IsDeleted);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public string UpdateLevel(StudentLevel level)
         {
             using (var context = new BASContext())

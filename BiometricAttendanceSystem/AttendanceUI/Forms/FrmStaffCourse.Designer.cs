@@ -41,8 +41,10 @@
             this.panelBody = new System.Windows.Forms.Panel();
             this.dataGrid = new System.Windows.Forms.DataGridView();
             this.panelFilter = new System.Windows.Forms.Panel();
-            this.btnLoad = new System.Windows.Forms.Button();
+            this.comboCourse = new System.Windows.Forms.ComboBox();
             this.comboLevel = new System.Windows.Forms.ComboBox();
+            this.btnLoad = new System.Windows.Forms.Button();
+            this.comboDept = new System.Windows.Forms.ComboBox();
             this.panelHeader.SuspendLayout();
             this.panelBody.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
@@ -111,7 +113,7 @@
             this.btnCourse.Location = new System.Drawing.Point(7, 88);
             this.btnCourse.Name = "btnCourse";
             this.btnCourse.Size = new System.Drawing.Size(225, 50);
-            this.btnCourse.TabIndex = 5;
+            this.btnCourse.TabIndex = 1;
             this.btnCourse.TextColor = System.Drawing.Color.White;
             this.btnCourse.Vertical_Alignment = System.Drawing.StringAlignment.Center;
             this.btnCourse.Click += new System.EventHandler(this.btnCourse_Click);
@@ -133,7 +135,7 @@
             this.btnAddNew.Location = new System.Drawing.Point(238, 87);
             this.btnAddNew.Name = "btnAddNew";
             this.btnAddNew.Size = new System.Drawing.Size(186, 50);
-            this.btnAddNew.TabIndex = 4;
+            this.btnAddNew.TabIndex = 2;
             this.btnAddNew.TextColor = System.Drawing.Color.White;
             this.btnAddNew.Vertical_Alignment = System.Drawing.StringAlignment.Center;
             this.btnAddNew.Click += new System.EventHandler(this.btnAddNew_Click);
@@ -144,9 +146,10 @@
             this.btnSearch.Location = new System.Drawing.Point(821, 107);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(76, 31);
-            this.btnSearch.TabIndex = 3;
+            this.btnSearch.TabIndex = 4;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // txtSearch
             // 
@@ -155,7 +158,7 @@
             this.txtSearch.Location = new System.Drawing.Point(530, 106);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(285, 31);
-            this.txtSearch.TabIndex = 2;
+            this.txtSearch.TabIndex = 3;
             // 
             // lblTitle
             // 
@@ -199,37 +202,60 @@
             this.dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGrid.Size = new System.Drawing.Size(904, 315);
             this.dataGrid.TabIndex = 2;
+            this.dataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGrid_CellContentClick);
             // 
             // panelFilter
             // 
             this.panelFilter.BackColor = System.Drawing.Color.White;
             this.panelFilter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelFilter.Controls.Add(this.btnLoad);
+            this.panelFilter.Controls.Add(this.comboCourse);
             this.panelFilter.Controls.Add(this.comboLevel);
+            this.panelFilter.Controls.Add(this.btnLoad);
+            this.panelFilter.Controls.Add(this.comboDept);
             this.panelFilter.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelFilter.Location = new System.Drawing.Point(0, 0);
             this.panelFilter.Name = "panelFilter";
             this.panelFilter.Size = new System.Drawing.Size(904, 79);
             this.panelFilter.TabIndex = 1;
             // 
-            // btnLoad
+            // comboCourse
             // 
-            this.btnLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLoad.Location = new System.Drawing.Point(259, 26);
-            this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(76, 31);
-            this.btnLoad.TabIndex = 4;
-            this.btnLoad.Text = "Load";
-            this.btnLoad.UseVisualStyleBackColor = true;
+            this.comboCourse.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboCourse.FormattingEnabled = true;
+            this.comboCourse.Location = new System.Drawing.Point(431, 26);
+            this.comboCourse.Name = "comboCourse";
+            this.comboCourse.Size = new System.Drawing.Size(270, 31);
+            this.comboCourse.TabIndex = 3;
             // 
             // comboLevel
             // 
             this.comboLevel.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboLevel.FormattingEnabled = true;
-            this.comboLevel.Location = new System.Drawing.Point(17, 26);
+            this.comboLevel.Location = new System.Drawing.Point(283, 26);
             this.comboLevel.Name = "comboLevel";
-            this.comboLevel.Size = new System.Drawing.Size(251, 31);
-            this.comboLevel.TabIndex = 0;
+            this.comboLevel.Size = new System.Drawing.Size(140, 31);
+            this.comboLevel.TabIndex = 2;
+            this.comboLevel.SelectedIndexChanged += new System.EventHandler(this.comboLevel_SelectedIndexChanged);
+            // 
+            // btnLoad
+            // 
+            this.btnLoad.Location = new System.Drawing.Point(738, 26);
+            this.btnLoad.Name = "btnLoad";
+            this.btnLoad.Size = new System.Drawing.Size(76, 31);
+            this.btnLoad.TabIndex = 1;
+            this.btnLoad.Text = "Load";
+            this.btnLoad.UseVisualStyleBackColor = true;
+            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
+            // 
+            // comboDept
+            // 
+            this.comboDept.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboDept.FormattingEnabled = true;
+            this.comboDept.Location = new System.Drawing.Point(17, 26);
+            this.comboDept.Name = "comboDept";
+            this.comboDept.Size = new System.Drawing.Size(251, 31);
+            this.comboDept.TabIndex = 0;
+            this.comboDept.SelectedIndexChanged += new System.EventHandler(this.comboDept_SelectedIndexChanged);
             // 
             // FrmStaffCourse
             // 
@@ -246,6 +272,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmStaffCourse";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.FrmStaffCourse_Load);
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();
             this.panelBody.ResumeLayout(false);
@@ -267,9 +294,11 @@
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel panelFilter;
         private System.Windows.Forms.DataGridView dataGrid;
-        private System.Windows.Forms.ComboBox comboLevel;
+        private System.Windows.Forms.ComboBox comboDept;
         private System.Windows.Forms.Button btnLoad;
         private XanderUI.XUIButton btnAddNew;
         private XanderUI.XUIButton btnCourse;
+        private System.Windows.Forms.ComboBox comboCourse;
+        private System.Windows.Forms.ComboBox comboLevel;
     }
 }

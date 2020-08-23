@@ -49,7 +49,7 @@
             this.btnLogin.Margin = new System.Windows.Forms.Padding(4);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(394, 50);
-            this.btnLogin.TabIndex = 13;
+            this.btnLogin.TabIndex = 4;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -63,7 +63,7 @@
             this.linkForgotPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.linkForgotPassword.Name = "linkForgotPassword";
             this.linkForgotPassword.Size = new System.Drawing.Size(170, 23);
-            this.linkForgotPassword.TabIndex = 12;
+            this.linkForgotPassword.TabIndex = 3;
             this.linkForgotPassword.TabStop = true;
             this.linkForgotPassword.Text = "Forgot Password?";
             // 
@@ -74,7 +74,7 @@
             this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(392, 32);
-            this.txtPassword.TabIndex = 11;
+            this.txtPassword.TabIndex = 2;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
             // label3
@@ -86,7 +86,7 @@
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(100, 23);
-            this.label3.TabIndex = 10;
+            this.label3.TabIndex = 0;
             this.label3.Text = "Password";
             // 
             // txtUsername
@@ -96,7 +96,7 @@
             this.txtUsername.Margin = new System.Windows.Forms.Padding(4);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(392, 32);
-            this.txtUsername.TabIndex = 9;
+            this.txtUsername.TabIndex = 1;
             // 
             // label2
             // 
@@ -107,7 +107,7 @@
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(108, 23);
-            this.label2.TabIndex = 8;
+            this.label2.TabIndex = 0;
             this.label2.Text = "Username";
             // 
             // label1
@@ -119,7 +119,7 @@
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(62, 23);
-            this.label1.TabIndex = 7;
+            this.label1.TabIndex = 0;
             this.label1.Text = "Login";
             // 
             // iconExit
@@ -139,7 +139,7 @@
             this.iconExit.TabStop = false;
             this.iconExit.Click += new System.EventHandler(this.iconExit_Click);
             // 
-            // Login
+            // FrmLogin
             // 
             this.AcceptButton = this.btnLogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 23F);
@@ -158,7 +158,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Login";
+            this.Name = "FrmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             ((System.ComponentModel.ISupportInitialize)(this.iconExit)).EndInit();
             this.ResumeLayout(false);

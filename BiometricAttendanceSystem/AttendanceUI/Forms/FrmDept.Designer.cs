@@ -73,7 +73,7 @@
             this.panelBody.Location = new System.Drawing.Point(11, 119);
             this.panelBody.Name = "panelBody";
             this.panelBody.Size = new System.Drawing.Size(688, 245);
-            this.panelBody.TabIndex = 5;
+            this.panelBody.TabIndex = 1;
             // 
             // btnSave
             // 
@@ -84,7 +84,7 @@
             this.btnSave.Location = new System.Drawing.Point(307, 153);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(236, 48);
-            this.btnSave.TabIndex = 6;
+            this.btnSave.TabIndex = 3;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -95,7 +95,7 @@
             this.txtDeptCode.Location = new System.Drawing.Point(307, 91);
             this.txtDeptCode.Name = "txtDeptCode";
             this.txtDeptCode.Size = new System.Drawing.Size(236, 31);
-            this.txtDeptCode.TabIndex = 5;
+            this.txtDeptCode.TabIndex = 2;
             // 
             // txtDeptTitle
             // 
@@ -103,7 +103,7 @@
             this.txtDeptTitle.Location = new System.Drawing.Point(307, 44);
             this.txtDeptTitle.Name = "txtDeptTitle";
             this.txtDeptTitle.Size = new System.Drawing.Size(236, 31);
-            this.txtDeptTitle.TabIndex = 4;
+            this.txtDeptTitle.TabIndex = 1;
             // 
             // label3
             // 
@@ -112,9 +112,9 @@
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
             this.label3.Location = new System.Drawing.Point(126, 53);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(166, 22);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Department Title";
+            this.label3.Size = new System.Drawing.Size(179, 22);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Department Name";
             // 
             // label2
             // 
@@ -124,7 +124,7 @@
             this.label2.Location = new System.Drawing.Point(125, 100);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(171, 22);
-            this.label2.TabIndex = 2;
+            this.label2.TabIndex = 0;
             this.label2.Text = "Department Code";
             // 
             // panel3
@@ -211,6 +211,7 @@
             // 
             // FrmDept
             // 
+            this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(710, 375);

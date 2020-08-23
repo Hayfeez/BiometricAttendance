@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using AttendanceLibrary.BaseClass;
+
 namespace AttendanceLibrary.Repository
 {
    public class SessionSemesterRepo
@@ -20,7 +22,7 @@ namespace AttendanceLibrary.Repository
 
                     if (newSem.IsActive)
                     {
-                        var allsems = context.SessionSemesters.Where(a => !a.IsDeleted);
+                        var allsems = context.SessionSemesters.Where(a => !a.IsDeleted).ToList();
                         foreach (var item in allsems)
                         {
                             item.IsActive = false;
@@ -29,6 +31,10 @@ namespace AttendanceLibrary.Repository
 
                     newSem.Id = Guid.NewGuid().ToString();
                     context.SessionSemesters.Add(newSem);
+
+                    if(newSem.IsActive)
+                        LoggedInUser.ActiveSession = newSem;
+
                     return context.SaveChanges() > 0 ? "" : "Session/Semester could not be added";
                 }
 
@@ -49,6 +55,9 @@ namespace AttendanceLibrary.Repository
                 var SessionSemester = context.SessionSemesters.SingleOrDefault(a => a.Id == semId);
                 if (SessionSemester != null)
                 {
+                    if (SessionSemester.IsActive)
+                        return "You cannot delete the active semester";
+
                     SessionSemester.IsDeleted = true;
                     return context.SaveChanges() > 0 ? "" : "Session/Semester could not be deleted";
                 }
@@ -120,7 +129,8 @@ namespace AttendanceLibrary.Repository
 
                 if(sem.IsActive)
                 {
-                    var allsems = context.SessionSemesters.Where(a => !a.IsDeleted);
+                    LoggedInUser.ActiveSession = sem;
+                    var allsems = context.SessionSemesters.Where(a => !a.IsDeleted && a.Id != oldSem.Id ).ToList();
                     foreach (var item in allsems)
                     {
                         item.IsActive = false;

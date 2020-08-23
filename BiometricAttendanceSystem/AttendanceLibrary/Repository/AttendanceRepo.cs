@@ -41,7 +41,7 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public List<AttendanceViewModel> GetAttendanceByCourse(string courseId)
+        public List<AttendanceList> GetAttendanceByCourse(string courseId)
         {
             try
             {
@@ -56,7 +56,7 @@ namespace AttendanceLibrary.Repository
                               join dep in context.Departments on st.DepartmentId equals dep.Id
                               join l in context.Staff on att.MarkedBy equals l.Id
                               where reg.CourseId == courseId
-                              select new AttendanceViewModel
+                              select new AttendanceList
                               {
                                   Id = att.Id,
                                   StudentMatricNo = st.MatricNo,
@@ -79,7 +79,7 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public List<AttendanceViewModel> GetTodayAttendanceByCourse(string courseId)
+        public List<AttendanceList> GetTodayAttendanceByCourse(string courseId)
         {
             try
             {
@@ -94,7 +94,7 @@ namespace AttendanceLibrary.Repository
                             //  join dep in context.Departments on st.DepartmentId equals dep.Id
                              // join l in context.Staff on att.MarkedBy equals l.Id
                               where reg.CourseId == courseId  && att.DateMarked.Date == DateTime.Now.Date
-                              select new AttendanceViewModel
+                              select new AttendanceList
                               {
                                   Id = att.Id,
                                   StudentMatricNo = st.MatricNo,
@@ -111,7 +111,7 @@ namespace AttendanceLibrary.Repository
                 throw ex;
             }
         }
-        public List<AttendanceViewModel> GetAttendanceByStudent(string studentId)
+        public List<AttendanceList> GetAttendanceByStudent(string studentId)
         {
             try
             {
@@ -126,7 +126,7 @@ namespace AttendanceLibrary.Repository
                               join dep in context.Departments on st.DepartmentId equals dep.Id
                               join l in context.Staff on att.MarkedBy equals l.Id
                               where reg.StudentId == studentId
-                              select new AttendanceViewModel
+                              select new AttendanceList
                               {
                                   Id = att.Id,
                                   StudentMatricNo = st.MatricNo,
@@ -149,7 +149,7 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public List<AttendanceViewModel> GetAttendanceByStudentForCourse(string studentId, string courseId)
+        public List<AttendanceList> GetAttendanceByStudentForCourse(string studentId, string courseId)
         {
             try
             {
@@ -164,7 +164,7 @@ namespace AttendanceLibrary.Repository
                               join dep in context.Departments on st.DepartmentId equals dep.Id
                               join l in context.Staff on att.MarkedBy equals l.Id
                               where reg.StudentId == studentId && reg.CourseId == courseId
-                              select new AttendanceViewModel
+                              select new AttendanceList
                               {
                                   Id = att.Id,
                                   StudentMatricNo = st.MatricNo,

@@ -22,7 +22,10 @@ namespace AttendanceLibrary.Repository
                     if (context.Staff.Any(a => a.StaffNo == newStaff.StaffNo || a.Email == newStaff.Email && !a.IsDeleted))
                         return "Staff with this Staff number or Email address exists";
 
+                    var defaultPwd = context.SystemSettings.First().UserDefaultPassword;
+
                     newStaff.Id = Guid.NewGuid().ToString();
+                    newStaff.Password = PasswordHash.sha256(defaultPwd);
                     context.Staff.Add(newStaff);
                     return context.SaveChanges() > 0 ? "" : "Staff could not be added";
                 }                    
@@ -34,7 +37,7 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public string AddBulkStaff(List<BulkStaff> data, string defaultpassword)
+        public string AddBulkStaff(List<BulkStaff> data)
         {
             try
             {
@@ -85,13 +88,46 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public List<StaffDetail> GetAllDepartmentStaff(string departmentId)
+        public List<StaffDetail> GetDepartmentStaffSlim(string departmentId)
         {
             try
             {
                 using (var context = new BASContext())
                 {
                     return context.Staff.Where(a => !a.IsDeleted && a.DepartmentId == departmentId).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<StaffList> GetDepartmentStaff(string departmentId)
+        {
+            try
+            {
+                using (var context = new BASContext())
+                {
+                    var dt = (
+                        from st in context.Staff
+                        join dep in context.Departments on st.DepartmentId equals dep.Id 
+                        join ti in context.Titles on st.TitleId equals ti.Id
+                        where (departmentId == "" || st.DepartmentId == departmentId) && !st.IsDeleted
+                        select new StaffList
+                        {
+                            Id = st.Id,
+                            Department = dep.DepartmentName,
+                            Email = st.Email,
+                            PhoneNo = st.PhoneNo, 
+                            Fullname = st.Lastname + ", " + st.Firstname + " " + st.Othername,
+                            StaffNo = st.StaffNo,
+                            Title = ti.Title,
+                            IsSuperAdmin = st.IsSuperAdmin,
+                            IsAdmin = st.IsAdmin
+                        }).ToList();
+
+                    return dt;
                 }
             }
             catch (Exception ex)

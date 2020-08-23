@@ -30,6 +30,8 @@
         {
             this.panelForm = new System.Windows.Forms.Panel();
             this.panelBody = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comboLevel = new System.Windows.Forms.ComboBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.txtCourseCode = new System.Windows.Forms.TextBox();
             this.txtCourseTitle = new System.Windows.Forms.TextBox();
@@ -44,8 +46,6 @@
             this.lblPageTitle = new System.Windows.Forms.Label();
             this.iconExit = new FontAwesome.Sharp.IconPictureBox();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.comboLevel = new System.Windows.Forms.ComboBox();
             this.panelForm.SuspendLayout();
             this.panelBody.SuspendLayout();
             this.panelTop.SuspendLayout();
@@ -81,7 +81,27 @@
             this.panelBody.Location = new System.Drawing.Point(11, 119);
             this.panelBody.Name = "panelBody";
             this.panelBody.Size = new System.Drawing.Size(716, 363);
-            this.panelBody.TabIndex = 5;
+            this.panelBody.TabIndex = 1;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Bold);
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
+            this.label4.Location = new System.Drawing.Point(126, 107);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(60, 22);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Level";
+            // 
+            // comboLevel
+            // 
+            this.comboLevel.Font = new System.Drawing.Font("Calisto MT", 12F);
+            this.comboLevel.FormattingEnabled = true;
+            this.comboLevel.Location = new System.Drawing.Point(258, 99);
+            this.comboLevel.Name = "comboLevel";
+            this.comboLevel.Size = new System.Drawing.Size(236, 31);
+            this.comboLevel.TabIndex = 2;
             // 
             // btnSave
             // 
@@ -92,7 +112,7 @@
             this.btnSave.Location = new System.Drawing.Point(258, 243);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(236, 48);
-            this.btnSave.TabIndex = 6;
+            this.btnSave.TabIndex = 5;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -103,7 +123,7 @@
             this.txtCourseCode.Location = new System.Drawing.Point(258, 191);
             this.txtCourseCode.Name = "txtCourseCode";
             this.txtCourseCode.Size = new System.Drawing.Size(236, 31);
-            this.txtCourseCode.TabIndex = 5;
+            this.txtCourseCode.TabIndex = 4;
             // 
             // txtCourseTitle
             // 
@@ -111,7 +131,7 @@
             this.txtCourseTitle.Location = new System.Drawing.Point(258, 144);
             this.txtCourseTitle.Name = "txtCourseTitle";
             this.txtCourseTitle.Size = new System.Drawing.Size(236, 31);
-            this.txtCourseTitle.TabIndex = 4;
+            this.txtCourseTitle.TabIndex = 3;
             // 
             // label3
             // 
@@ -121,7 +141,7 @@
             this.label3.Location = new System.Drawing.Point(126, 152);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(123, 22);
-            this.label3.TabIndex = 3;
+            this.label3.TabIndex = 0;
             this.label3.Text = "Course Title";
             // 
             // label2
@@ -132,7 +152,7 @@
             this.label2.Location = new System.Drawing.Point(126, 199);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(128, 22);
-            this.label2.TabIndex = 2;
+            this.label2.TabIndex = 0;
             this.label2.Text = "Course Code";
             // 
             // label1
@@ -143,7 +163,7 @@
             this.label1.Location = new System.Drawing.Point(126, 62);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(119, 22);
-            this.label1.TabIndex = 1;
+            this.label1.TabIndex = 0;
             this.label1.Text = "Department";
             // 
             // comboDept
@@ -153,7 +173,7 @@
             this.comboDept.Location = new System.Drawing.Point(258, 54);
             this.comboDept.Name = "comboDept";
             this.comboDept.Size = new System.Drawing.Size(236, 31);
-            this.comboDept.TabIndex = 0;
+            this.comboDept.TabIndex = 1;
             // 
             // panel3
             // 
@@ -236,26 +256,6 @@
             this.lblTitle.Size = new System.Drawing.Size(117, 22);
             this.lblTitle.TabIndex = 4;
             this.lblTitle.Text = "Add Course";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Bold);
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
-            this.label4.Location = new System.Drawing.Point(126, 107);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 22);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Level";
-            // 
-            // comboLevel
-            // 
-            this.comboLevel.Font = new System.Drawing.Font("Calisto MT", 12F);
-            this.comboLevel.FormattingEnabled = true;
-            this.comboLevel.Location = new System.Drawing.Point(258, 99);
-            this.comboLevel.Name = "comboLevel";
-            this.comboLevel.Size = new System.Drawing.Size(236, 31);
-            this.comboLevel.TabIndex = 7;
             // 
             // FrmCourse
             // 

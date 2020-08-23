@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using AttendanceLibrary.BaseClass;
+
 namespace AttendanceLibrary.Repository
 {
    public class CourseRegRepo
@@ -32,15 +34,108 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public List<CourseRegistration> GetCoursesByStudent(string studentId, string semesterId)
+        public string RegisterCourseStudents(List<BulkStudentCourseReg> model, string courseId)
+        {
+            try
+            {
+                var studentRepo = new StudentRepo();
+                var levelRepo = new LevelRepo();
+               // var sessionRepo = new SessionSemesterRepo();
+                
+                using (var context = new BASContext())
+                {
+                    var activeSession = LoggedInUser.ActiveSession; //sessionRepo.GetActiveSessionSemester();
+                    if (activeSession == null)
+                    {
+                        return "You can't register students for course. There is no active semester";
+                    }
+
+                    var toAdd = new List<CourseRegistration>();
+                    foreach (var item in model)
+                    {
+                        var student = studentRepo.GetStudentByMatricNo(item.MatricNo);
+                        var level = levelRepo.GetLevelByName(item.Level);
+                        if (student == null || level == null)
+                        {
+                            return "No record saved. At east one student or level does not exist";
+                        }
+
+                        if (!context.CourseRegistrations.Any(a => a.StudentId == student.Id && a.CourseId == courseId && a.SessionSemesterId == activeSession.Id))
+                        {
+                            toAdd.Add(new CourseRegistration
+                            {
+                                CourseId = courseId,
+                                DateRegistered = DateTime.Now,
+                                Id = Guid.NewGuid().ToString(),
+                                StudentId = student.Id,
+                                LevelId = level.Id,
+                                SessionSemesterId = activeSession.Id,
+                                RegisteredBy = LoggedInUser.UserId,
+                                
+                            });
+                        }
+                    }
+                    context.CourseRegistrations.AddRange(toAdd);
+                    return context.SaveChanges() > 0 ? "" : "Course could not be assigned to staff";
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public string DeleteCourseReg(string id)
+        {
+            try
+            {
+                using (var context = new BASContext())
+                {
+                    if (context.Attendances.Any(a => a.CourseRegistrationId == id))
+                        return "Registered Course cannot be deleted";
+
+                    var item = context.CourseRegistrations.SingleOrDefault(x => x.Id == id);
+                    if (item == null)
+                        return "Registered course not found";
+
+                    context.CourseRegistrations.Remove(item);
+                    return context.SaveChanges() > 0 ? "" : "Registered Course could not be deleted";
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<CourseRegistrationList> GetCoursesByStudent(string studentId, string semesterId)
         {
             try
             {
                 using (var context = new BASContext())
                 {
                     var dt = (from att in context.CourseRegistrations
+                              join sem in context.SessionSemesters on att.SessionSemesterId equals sem.Id
+                              join cou in context.Courses on att.CourseId equals cou.Id
+                              join st in context.Students on att.StudentId equals st.Id
+                              join stLev in context.Levels on att.LevelId equals stLev.Id
+                              join sta in context.Staff on att.RegisteredBy equals sta.Id
+                              join ti in context.Titles on sta.TitleId equals ti.Id
                               where att.StudentId == studentId && att.SessionSemesterId == semesterId
-                              select att).ToList();
+                              select new CourseRegistrationList
+                              {
+                                  Id = att.Id,
+                                  CourseTitle = cou.CourseTitle,
+                                  DateRegistered = att.DateRegistered,
+                                  Semester = sem.Session + " - " + sem.Semester,
+                                  RegisteredBy = ti.Title + " " + sta.Lastname + ", " + sta.Firstname + " " + sta.Othername,
+                                  StudentLevel = stLev.Level,
+                                  StudentMatricNo = st.MatricNo,
+                                  StudentName = st.Lastname + ", " + st.Firstname + " " +st.Othername
+                              }).ToList();
+
                     return dt;
                 }
             }
@@ -50,15 +145,32 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public List<CourseRegistration> GetStudentsByCourses(string courseId, string semesterId)
+        public List<CourseRegistrationList> GetStudentsByCourses(string courseId, string semesterId)
         {
             try
             {
                 using (var context = new BASContext())
                 {
                     var dt = (from att in context.CourseRegistrations
+                              join sem in context.SessionSemesters on att.SessionSemesterId equals sem.Id
+                              join cou in context.Courses on att.CourseId equals cou.Id
+                              join st in context.Students on att.StudentId equals st.Id
+                              join stLev in context.Levels on att.LevelId equals stLev.Id
+                              join sta in context.Staff on att.RegisteredBy equals sta.Id
+                              join ti in context.Titles on sta.TitleId equals ti.Id
                               where att.CourseId == courseId && att.SessionSemesterId == semesterId
-                              select att).ToList();
+                              select new CourseRegistrationList
+                              {
+                                  Id = att.Id,
+                                  CourseTitle = cou.CourseTitle,
+                                  DateRegistered = att.DateRegistered,
+                                  Semester = sem.Session + " - " + sem.Semester,
+                                  RegisteredBy = ti.Title + " " + sta.Lastname + ", " + sta.Firstname + " " + sta.Othername,
+                                  StudentLevel = stLev.Level,
+                                  StudentMatricNo = st.MatricNo,
+                                  StudentName = st.Lastname + ", " + st.Firstname + " " + st.Othername
+                              }).ToList();
+
                     return dt;
                 }
             }

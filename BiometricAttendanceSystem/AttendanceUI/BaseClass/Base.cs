@@ -76,25 +76,53 @@ namespace AttendanceUI.BaseClass
             if (noItems)
                 return;
 
-            //DataGridViewImageColumn delbut = new DataGridViewImageColumn();
             //Edit link
-            var Editlink = new DataGridViewLinkColumn();
-            Editlink.UseColumnTextForLinkValue = true;
-            Editlink.HeaderText = "Edit";
-            Editlink.DataPropertyName = "lnkColumn";
-            Editlink.LinkBehavior = LinkBehavior.SystemDefault;
-            Editlink.Text = "Edit";
-            dataGrid.Columns.Add(Editlink);
+            var editlink = new DataGridViewLinkColumn
+            {
+                UseColumnTextForLinkValue = true,
+                HeaderText = "Edit",
+                DataPropertyName = "lnkColumn",
+                LinkBehavior = LinkBehavior.SystemDefault,
+                Text = "Edit"
+            };
 
             //Delete link
+            var deletelink = new DataGridViewLinkColumn
+            {
+                UseColumnTextForLinkValue = true,
+                HeaderText = "Delete",
+                DataPropertyName = "lnkColumn",
+                LinkBehavior = LinkBehavior.SystemDefault,
+                Text = "Delete"
+            };
 
-            var Deletelink = new DataGridViewLinkColumn();
-            Deletelink.UseColumnTextForLinkValue = true;
-            Deletelink.HeaderText = "Delete";
-            Deletelink.DataPropertyName = "lnkColumn";
-            Deletelink.LinkBehavior = LinkBehavior.SystemDefault;
-            Deletelink.Text = "Delete";
-            dataGrid.Columns.Add(Deletelink);
+            if (!dataGrid.Columns.Contains(editlink.Text))
+                dataGrid.Columns.Add(editlink);
+
+            if (!dataGrid.Columns.Contains(deletelink.Text))
+                dataGrid.Columns.Add(deletelink);
+
+        }
+
+        public static void AddDeleteToGrid(ref DataGridView dataGrid, bool noItems)
+        {
+            //TODO: check if the columns exist, don't add otherwise add
+
+            if (noItems)
+                return;
+
+            //Delete link
+            var deletelink = new DataGridViewLinkColumn
+            {
+                UseColumnTextForLinkValue = true,
+                HeaderText = "Delete",
+                DataPropertyName = "lnkColumn",
+                LinkBehavior = LinkBehavior.SystemDefault,
+                Text = "Delete"
+            };
+
+            if (!dataGrid.Columns.Contains(deletelink.Text))
+                dataGrid.Columns.Add(deletelink);
 
         }
 

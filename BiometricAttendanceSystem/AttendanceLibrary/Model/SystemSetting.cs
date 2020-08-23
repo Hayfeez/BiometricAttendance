@@ -17,5 +17,7 @@ namespace AttendanceLibrary.Model
         public string SuperAdminEmail { get; set; }
         public string SuperAdminPassword { get; set; }
         public string SuperAdminNo { get; set; }
+        public string UserDefaultPassword { get; set; }
+        
     }
 }

@@ -75,7 +75,7 @@
             this.panelBody.Location = new System.Drawing.Point(11, 119);
             this.panelBody.Name = "panelBody";
             this.panelBody.Size = new System.Drawing.Size(716, 295);
-            this.panelBody.TabIndex = 5;
+            this.panelBody.TabIndex = 1;
             // 
             // checkActive
             // 
@@ -89,7 +89,7 @@
             this.checkActive.Location = new System.Drawing.Point(258, 167);
             this.checkActive.Name = "checkActive";
             this.checkActive.Size = new System.Drawing.Size(100, 20);
-            this.checkActive.TabIndex = 8;
+            this.checkActive.TabIndex = 3;
             this.checkActive.Text = "Active";
             this.checkActive.TickThickness = 2;
             // 
@@ -102,7 +102,7 @@
             this.btnSave.Location = new System.Drawing.Point(257, 207);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(236, 48);
-            this.btnSave.TabIndex = 6;
+            this.btnSave.TabIndex = 4;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -113,7 +113,7 @@
             this.txtSemester.Location = new System.Drawing.Point(257, 114);
             this.txtSemester.Name = "txtSemester";
             this.txtSemester.Size = new System.Drawing.Size(236, 31);
-            this.txtSemester.TabIndex = 5;
+            this.txtSemester.TabIndex = 2;
             // 
             // txtSession
             // 
@@ -121,7 +121,7 @@
             this.txtSession.Location = new System.Drawing.Point(257, 62);
             this.txtSession.Name = "txtSession";
             this.txtSession.Size = new System.Drawing.Size(236, 31);
-            this.txtSession.TabIndex = 4;
+            this.txtSession.TabIndex = 1;
             // 
             // label3
             // 
@@ -131,7 +131,7 @@
             this.label3.Location = new System.Drawing.Point(125, 70);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(78, 22);
-            this.label3.TabIndex = 3;
+            this.label3.TabIndex = 0;
             this.label3.Text = "Session";
             // 
             // label2
@@ -142,7 +142,7 @@
             this.label2.Location = new System.Drawing.Point(125, 117);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(92, 22);
-            this.label2.TabIndex = 2;
+            this.label2.TabIndex = 0;
             this.label2.Text = "Semester";
             // 
             // panel3
@@ -229,6 +229,7 @@
             // 
             // FrmSession
             // 
+            this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(738, 425);

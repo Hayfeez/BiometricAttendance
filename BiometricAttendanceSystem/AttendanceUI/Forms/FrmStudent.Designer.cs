@@ -95,7 +95,7 @@
             this.panelBody.Location = new System.Drawing.Point(11, 119);
             this.panelBody.Name = "panelBody";
             this.panelBody.Size = new System.Drawing.Size(1011, 429);
-            this.panelBody.TabIndex = 5;
+            this.panelBody.TabIndex = 1;
             // 
             // btnClear
             // 
@@ -106,7 +106,7 @@
             this.btnClear.Location = new System.Drawing.Point(604, 307);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(269, 48);
-            this.btnClear.TabIndex = 15;
+            this.btnClear.TabIndex = 9;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = false;
             // 
@@ -117,7 +117,7 @@
             this.txtPhoneNo.MaxLength = 11;
             this.txtPhoneNo.Name = "txtPhoneNo";
             this.txtPhoneNo.Size = new System.Drawing.Size(236, 31);
-            this.txtPhoneNo.TabIndex = 14;
+            this.txtPhoneNo.TabIndex = 6;
             // 
             // label5
             // 
@@ -127,7 +127,7 @@
             this.label5.Location = new System.Drawing.Point(505, 213);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(102, 22);
-            this.label5.TabIndex = 13;
+            this.label5.TabIndex = 0;
             this.label5.Text = "Phone No";
             // 
             // txtMatricNo
@@ -136,7 +136,7 @@
             this.txtMatricNo.Location = new System.Drawing.Point(258, 206);
             this.txtMatricNo.Name = "txtMatricNo";
             this.txtMatricNo.Size = new System.Drawing.Size(236, 31);
-            this.txtMatricNo.TabIndex = 12;
+            this.txtMatricNo.TabIndex = 5;
             // 
             // txtEmail
             // 
@@ -144,7 +144,7 @@
             this.txtEmail.Location = new System.Drawing.Point(258, 261);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(615, 31);
-            this.txtEmail.TabIndex = 11;
+            this.txtEmail.TabIndex = 7;
             // 
             // label6
             // 
@@ -154,7 +154,7 @@
             this.label6.Location = new System.Drawing.Point(126, 269);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(66, 22);
-            this.label6.TabIndex = 10;
+            this.label6.TabIndex = 0;
             this.label6.Text = "Email";
             // 
             // label7
@@ -165,7 +165,7 @@
             this.label7.Location = new System.Drawing.Point(126, 214);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(104, 22);
-            this.label7.TabIndex = 9;
+            this.label7.TabIndex = 0;
             this.label7.Text = "Matric No";
             // 
             // txtOthername
@@ -174,7 +174,7 @@
             this.txtOthername.Location = new System.Drawing.Point(637, 154);
             this.txtOthername.Name = "txtOthername";
             this.txtOthername.Size = new System.Drawing.Size(236, 31);
-            this.txtOthername.TabIndex = 8;
+            this.txtOthername.TabIndex = 4;
             // 
             // label4
             // 
@@ -184,7 +184,7 @@
             this.label4.Location = new System.Drawing.Point(505, 162);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(115, 22);
-            this.label4.TabIndex = 7;
+            this.label4.TabIndex = 0;
             this.label4.Text = "Othername";
             // 
             // btnSave
@@ -196,7 +196,7 @@
             this.btnSave.Location = new System.Drawing.Point(258, 307);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(269, 48);
-            this.btnSave.TabIndex = 6;
+            this.btnSave.TabIndex = 8;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -207,7 +207,7 @@
             this.txtFirstname.Location = new System.Drawing.Point(258, 155);
             this.txtFirstname.Name = "txtFirstname";
             this.txtFirstname.Size = new System.Drawing.Size(236, 31);
-            this.txtFirstname.TabIndex = 5;
+            this.txtFirstname.TabIndex = 3;
             // 
             // txtSurname
             // 
@@ -215,7 +215,7 @@
             this.txtSurname.Location = new System.Drawing.Point(258, 108);
             this.txtSurname.Name = "txtSurname";
             this.txtSurname.Size = new System.Drawing.Size(615, 31);
-            this.txtSurname.TabIndex = 4;
+            this.txtSurname.TabIndex = 2;
             // 
             // label3
             // 
@@ -225,7 +225,7 @@
             this.label3.Location = new System.Drawing.Point(126, 116);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(93, 22);
-            this.label3.TabIndex = 3;
+            this.label3.TabIndex = 0;
             this.label3.Text = "Surname";
             // 
             // label2
@@ -236,7 +236,7 @@
             this.label2.Location = new System.Drawing.Point(126, 163);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(103, 22);
-            this.label2.TabIndex = 2;
+            this.label2.TabIndex = 0;
             this.label2.Text = "Firstname";
             // 
             // label1
@@ -247,7 +247,7 @@
             this.label1.Location = new System.Drawing.Point(126, 62);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(119, 22);
-            this.label1.TabIndex = 1;
+            this.label1.TabIndex = 0;
             this.label1.Text = "Department";
             // 
             // comboDept
@@ -257,7 +257,7 @@
             this.comboDept.Location = new System.Drawing.Point(258, 54);
             this.comboDept.Name = "comboDept";
             this.comboDept.Size = new System.Drawing.Size(615, 31);
-            this.comboDept.TabIndex = 0;
+            this.comboDept.TabIndex = 1;
             // 
             // panel3
             // 
@@ -343,6 +343,7 @@
             // 
             // FrmStudent
             // 
+            this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1033, 559);

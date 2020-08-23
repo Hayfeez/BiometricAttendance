@@ -14,9 +14,18 @@ namespace AttendanceLibrary.BaseClass
     public class SQLiteHandler
     {
         public static SQLiteConnection conn;
-        static readonly string DataFolder = @"C:\BAS4196D-621C-478A-81F7-49J16EF2B"; // AppDomain.CurrentDomain.BaseDirectory; //;
+        static readonly string DataFolder = @"C:\BAS5496D-621C-478A-81F7-49J16EF2B"; // AppDomain.CurrentDomain.BaseDirectory; //;
         public static string SQLiteDB = DataFolder + @"\BAS.sqlite";
-       
+
+        private const string SuperAdminId = "45da7b79-a641-4f9d-971a-8c85c7c516ab";
+        private const int NoOfFinger = 2;
+        private const string DefaultPassword = "12345678";
+        private const string SuperAdminNo = "000001";
+        private const string SuperAdminPassword = "password123";
+        private const string SuperAdminEmail = "admin@abc.com";
+        private const string SuperAdminFirstname = "Admin";
+        private const string SuperAdminLastname = "Admin";
+
         public static string ConnectionString()
         {
             conn = new SQLiteConnection("Data Source=" + SQLiteDB + "; Version = 3; New = True; Compress = True; Default TimeOut=30; Max Pool Size=100");
@@ -64,7 +73,9 @@ namespace AttendanceLibrary.BaseClass
                     "Create Table if not exists StudentFinger(Id varchar(50) Primary Key, StudentId varchar(50) not null, FingerTemplate BLOB);" +
                     "Create Table if not exists CourseRegistration(Id varchar(50) Primary Key, SessionSemesterId varchar(50) not null, StudentId varchar(50) not null, CourseId varchar(50) not null, LevelId varchar(50) not null, RegisteredBy varchar(50) not null, DateRegistered datetime); " +
                     "Create Table if not exists Attendance(Id varchar(50) Primary Key, CourseRegistrationId varchar(50) not null, MarkedBy varchar(50) not null, DateMarked datetime); " +
-                    "Create Table if not exists SystemSetting(Id varchar(50) Primary Key, NoOfFinger int not null, SuperAdminLastname varchar(50) not null,  SuperAdminFirstname varchar(50) not null,  SuperAdminEmail varchar(150) not null,  SuperAdminPassword varchar(500) not null, SuperAdminNo varchar(50) not null); ";
+                    "Create Table if not exists SystemSetting(Id varchar(50) Primary Key, NoOfFinger int not null, SuperAdminLastname varchar(50) not null,  SuperAdminFirstname varchar(50) not null,  SuperAdminEmail varchar(150) not null,  SuperAdminPassword varchar(50) not null, SuperAdminNo varchar(50) not null, UserDefaultPassword varchar(50) not null); " +
+                    "Create Table If not exists AppSync(Id varchar(50) Primary Key, SystemId varchar(50), StaffId varchar(50), SyncDate datetime);" +
+                    "Create Table If not exists StaffCourse(Id varchar(50) Primary Key, StaffId varchar(50), CourseId varchar(50), DateAssigned datetime)";
 
                 var cmd = new SQLiteCommand(tablesSql, con)
                 {
@@ -101,9 +112,11 @@ namespace AttendanceLibrary.BaseClass
                 var ret = int.Parse(cmd.ExecuteScalar().ToString());
                 if(ret < 1)
                 {                    
-                    var encryptPwd = PasswordHash.sha256(Constants.SuperAdminPassword);
-                    var seedQuery = $"insert into SystemSetting(Id, NoOfFinger, SuperAdminLastname, SuperAdminFirstname, SuperAdminEmail, SuperAdminPassword, SuperAdminNo) values " +
-                     $"('{Guid.NewGuid().ToString()}', '{Constants.NoOfFinger}','{Constants.SuperAdminLastname}', '{Constants.SuperAdminFirstname}', '{Constants.SuperAdminEmail}', '{encryptPwd}', {Constants.SuperAdminNo});";
+                    var encryptPwd = PasswordHash.sha256(SuperAdminPassword);
+                    var encryptDefaultPwd = PasswordHash.sha256(DefaultPassword);
+
+                    var seedQuery = $"insert into SystemSetting(Id, NoOfFinger, SuperAdminLastname, SuperAdminFirstname, SuperAdminEmail, SuperAdminPassword, SuperAdminNo, UserDefaultPassword) values " +
+                     $"('{SuperAdminId}', '{NoOfFinger}','{SuperAdminLastname}', '{SuperAdminFirstname}', '{SuperAdminEmail}', '{encryptPwd}', '{SuperAdminNo}', '{encryptDefaultPwd}');";
                    
                     foreach (var item in Titles())
                     {

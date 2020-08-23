@@ -18,17 +18,11 @@ namespace AttendanceUI.Pages
 {
     public partial class PgCourse : UserControl
     {
-        private bool _noItems = true;
+        private bool _noItems = false;
         private DataTable _gridData;
         private readonly CourseRepo _repo;
         private string _deptId = "";
         private string _levelId = "";
-
-        public PgCourse()
-        {
-            InitializeComponent();
-            _repo = new CourseRepo();
-        }
 
         private void LoadFilter()
         {
@@ -36,19 +30,24 @@ namespace AttendanceUI.Pages
             DropdownControls.LoadLevels(ref comboLevel, true);
         }
 
-        private void LoadData(string deptId, string levelId)
+        private void LoadData()
         {
             try
             {
-                var data = _repo.GetAllCourses(deptId, levelId);
+                _levelId = comboLevel.SelectedValue.ToString() == Base.IdForSelectAll ? "" : comboLevel.SelectedValue.ToString();
+                _deptId = comboDept.SelectedValue.ToString() == Base.IdForSelectAll ? "" : comboDept.SelectedValue.ToString();
+
+                var data = _repo.GetAllCourses(_deptId, _levelId);
                 if (data != null && data.Count > 0)
                 {
-                    _noItems = false;
                     dataGrid.DataSource = data;
                     dataGrid.Columns["Id"].Visible = false;
+                    dataGrid.Columns["CourseTitle"].HeaderText = "Course Title";
+                    dataGrid.Columns["CourseCode"].HeaderText = "Course Code";
                 }
                 else
                 {
+                    _noItems = true;
                     var dt = new DataTable();
                     dataGrid.Columns.Clear();
                     dt.Columns.Add("Message", typeof(string));
@@ -66,11 +65,17 @@ namespace AttendanceUI.Pages
             }
         }
 
+        public PgCourse()
+        {
+            InitializeComponent();
+            _repo = new CourseRepo();
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             var courseForm = new FrmCourse();
             courseForm.ShowDialog();
-            LoadData(_deptId, _levelId);
+            LoadData();
         }
 
         private void btnStaffCourse_Click(object sender, EventArgs e)
@@ -87,23 +92,22 @@ namespace AttendanceUI.Pages
                 dataGrid.DataSource = i;
                 dataGrid.Refresh();
             }
+            else
+            {
+                Base.ShowInfo("Not Found", "No record found");
+            }
         }
 
         private void PgCourse_Load(object sender, EventArgs e)
         {
             LoadFilter();
-            LoadData(_deptId, _levelId);
+            LoadData();
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            _levelId = comboLevel.SelectedValue.ToString() == Base.IdForSelectAll ? "" : comboLevel.SelectedValue.ToString();
-            _deptId = comboDept.SelectedValue.ToString() == Base.IdForSelectAll ? "" : comboDept.SelectedValue.ToString();
-
-            if (_deptId != Base.IdForSelect && _levelId != Base.IdForSelect)
-            {
-               LoadData(_deptId, _levelId);
-            }
+           
+            LoadData();
         }
 
         private void dataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -123,7 +127,7 @@ namespace AttendanceUI.Pages
                     {
                         var updateForm = new FrmCourse(item.Id);
                         updateForm.ShowDialog();
-                        LoadData(_deptId, _levelId);
+                        LoadData();
                     }
 
                 }
@@ -143,7 +147,7 @@ namespace AttendanceUI.Pages
                         else
                             Base.ShowError("Failed", response);
                            
-                        LoadData(_deptId, _levelId);
+                        LoadData();
                     }
                 }
 

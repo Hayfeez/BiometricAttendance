@@ -37,9 +37,9 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panelTop = new System.Windows.Forms.Panel();
+            this.iconExit = new FontAwesome.Sharp.IconPictureBox();
             this.lblPageTitle = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.iconExit = new FontAwesome.Sharp.IconPictureBox();
             this.panelForm.SuspendLayout();
             this.panelBody.SuspendLayout();
             this.panelTop.SuspendLayout();
@@ -69,7 +69,7 @@
             this.panelBody.Location = new System.Drawing.Point(11, 119);
             this.panelBody.Name = "panelBody";
             this.panelBody.Size = new System.Drawing.Size(404, 184);
-            this.panelBody.TabIndex = 5;
+            this.panelBody.TabIndex = 1;
             // 
             // btnSave
             // 
@@ -80,7 +80,7 @@
             this.btnSave.Location = new System.Drawing.Point(129, 97);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(236, 48);
-            this.btnSave.TabIndex = 6;
+            this.btnSave.TabIndex = 2;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -91,7 +91,7 @@
             this.txtLevel.Location = new System.Drawing.Point(129, 37);
             this.txtLevel.Name = "txtLevel";
             this.txtLevel.Size = new System.Drawing.Size(236, 31);
-            this.txtLevel.TabIndex = 4;
+            this.txtLevel.TabIndex = 1;
             // 
             // label3
             // 
@@ -101,7 +101,7 @@
             this.label3.Location = new System.Drawing.Point(35, 46);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(60, 22);
-            this.label3.TabIndex = 3;
+            this.label3.TabIndex = 0;
             this.label3.Text = "Level";
             // 
             // panel3
@@ -143,6 +143,22 @@
             this.panelTop.Size = new System.Drawing.Size(426, 119);
             this.panelTop.TabIndex = 0;
             // 
+            // iconExit
+            // 
+            this.iconExit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.iconExit.BackColor = System.Drawing.Color.Transparent;
+            this.iconExit.ForeColor = System.Drawing.Color.Red;
+            this.iconExit.IconChar = FontAwesome.Sharp.IconChar.TimesCircle;
+            this.iconExit.IconColor = System.Drawing.Color.Red;
+            this.iconExit.IconSize = 47;
+            this.iconExit.Location = new System.Drawing.Point(356, 3);
+            this.iconExit.Name = "iconExit";
+            this.iconExit.Size = new System.Drawing.Size(59, 47);
+            this.iconExit.TabIndex = 5;
+            this.iconExit.TabStop = false;
+            this.iconExit.Click += new System.EventHandler(this.iconExit_Click);
+            // 
             // lblPageTitle
             // 
             this.lblPageTitle.AutoSize = true;
@@ -170,24 +186,9 @@
             this.lblTitle.TabIndex = 4;
             this.lblTitle.Text = "Add Level";
             // 
-            // iconExit
-            // 
-            this.iconExit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.iconExit.BackColor = System.Drawing.Color.Transparent;
-            this.iconExit.ForeColor = System.Drawing.Color.Red;
-            this.iconExit.IconChar = FontAwesome.Sharp.IconChar.TimesCircle;
-            this.iconExit.IconColor = System.Drawing.Color.Red;
-            this.iconExit.IconSize = 47;
-            this.iconExit.Location = new System.Drawing.Point(356, 3);
-            this.iconExit.Name = "iconExit";
-            this.iconExit.Size = new System.Drawing.Size(59, 47);
-            this.iconExit.TabIndex = 5;
-            this.iconExit.TabStop = false;
-            this.iconExit.Click += new System.EventHandler(this.iconExit_Click);
-            // 
             // FrmLevel
             // 
+            this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(426, 314);

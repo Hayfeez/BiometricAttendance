@@ -96,7 +96,7 @@ namespace AttendanceLibrary.Repository
         //    }
         //}
 
-        public List<CourseList> GetAllCourses(string departmentId = "", string levelId = "")
+        public List<CourseList> GetAllCourses(string departmentId, string levelId)
         {
             try
             {
@@ -123,14 +123,14 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public List<Course> GetAllCoursesSlim(string departmentId = "", string levelId = "")
+        public List<Course> GetAllCoursesSlim(string departmentId, string levelId)
         {
             try
             {
                 using (var context = new BASContext())
                 {
                     return context.Courses
-                        .Where(c => !c.IsDeleted && (departmentId != "" && c.DepartmentId == departmentId) && (levelId != "" && c.LevelId == levelId))
+                        .Where(c => !c.IsDeleted && (departmentId == "" || c.DepartmentId == departmentId) && (levelId == "" || c.LevelId == levelId))
                         .ToList();
                 }
             }

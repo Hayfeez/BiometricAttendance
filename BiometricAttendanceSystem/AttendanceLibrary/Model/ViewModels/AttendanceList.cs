@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AttendanceLibrary.Model.ViewModels
 {
-    public class AttendanceViewModel
+    public class AttendanceList
     {
         public string Id { get; set; }
         public string SessionSemester { get; set; }
