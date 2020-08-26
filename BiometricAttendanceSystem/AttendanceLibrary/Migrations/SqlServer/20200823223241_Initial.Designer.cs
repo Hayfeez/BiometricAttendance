@@ -260,7 +260,7 @@ namespace AttendanceLibrary.Migrations.SqlServer
                     b.Property<string>("Lastname")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("MatricNo")
+                    b.Property<string>("MatricNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Othername")

@@ -5,18 +5,18 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Runtime.InteropServices;
+//using System.Reflection;
+//using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using AttendanceLibrary.BaseClass;
+using AttendanceLibrary.Model.ViewModels;
 using AttendanceLibrary.Repository;
 
 using AttendanceUI.BaseClass;
 
-using Microsoft.Office.Interop.Excel;
 
 namespace AttendanceUI.Forms
 {
@@ -25,7 +25,10 @@ namespace AttendanceUI.Forms
         private string _deptId = "";
         private string _levelId = "";
         private string _courseId = "";
-        private string selectedFile = "";
+        private string _selectedFile = "";
+        private DataTable _data;
+        private List<BulkStudentCourseReg> _dataToUpload;
+        private readonly CourseRegRepo _repo;
 
         private void LoadFilter()
         {
@@ -53,6 +56,7 @@ namespace AttendanceUI.Forms
         public FrmUploadCourseReg()
         {
             InitializeComponent();
+            _repo = new CourseRegRepo();
         }
 
         private void iconExit_Click(object sender, EventArgs e)
@@ -83,21 +87,23 @@ namespace AttendanceUI.Forms
             lblCurrentSemester.Text = "Active Semester " + LoggedInUser.ActiveSession.Fullname;
         }
 
-        private void btnUpload_Click(object sender, EventArgs e)
+        private void btnDownload_Click(object sender, EventArgs e)
         {
-            _courseId = comboCourse.SelectedValue.ToString() == Base.IdForSelect ? "" : comboCourse.SelectedValue.ToString();
-
-            if (_courseId == "")
+            try
             {
-                Base.ShowError("Required", "Please select a course");
-                return;
-            }
-        }
+                var template = new List<BulkStudentCourseReg>();
+                var dt = template.ConvertToDataTable();
+                if (Base.SaveAsExcel(dt, "Student Course Register"))
+                {
+                    Base.ShowSuccess("", "File downloaded successfully");
+                }
 
-        private void btnPreview_Click(object sender, EventArgs e)
-        {
-            if (lblFile.Text == "" || selectedFile == "")
-                return;
+            }
+            catch (Exception ex)
+            {
+                Base.ShowError("Error", ex.Message);
+            }
+
         }
 
         private void btnChooseFile_Click(object sender, EventArgs e)
@@ -105,48 +111,131 @@ namespace AttendanceUI.Forms
             var result = openFileDialog.ShowDialog();
             if (result == DialogResult.OK)
             {
-                selectedFile = openFileDialog.FileName;
-                if (string.IsNullOrEmpty(selectedFile) || selectedFile.Contains(".lnk"))
+                _selectedFile = openFileDialog.FileName;
+                if (string.IsNullOrEmpty(_selectedFile) || _selectedFile.Contains(".lnk"))
                 {
-                    Base.ShowInfo("","Please select a valid Excel File");
+                    Base.ShowInfo("", "Please select a valid Excel File");
                 }
-                try
-                {
-                    lblFile.Text = selectedFile;
-                    // string text = File.ReadAllText(file);
-                    // var size = text.Length;
-                }
-                catch (IOException)
-                {
-                }
+
+                lblFile.Text = _selectedFile;
+                btnPreview.Enabled = true;
             }
             else
             {
-                selectedFile = "";
+                _selectedFile = "";
                 lblFile.Text = "";
             }
         }
 
-        private void btnDownload_Click(object sender, EventArgs e)
+        private void btnPreview_Click(object sender, EventArgs e)
         {
-            // You have an executable bin folder and in it you have files folder.
-            // string filePath = Path.Combine(Application.ExecutablePath, "files", myFilename)
-
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            try
             {
-                var execPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase);
-                var filePath = Path.Combine(execPath, "Templates/StudentCourseRegister.xlsx");
+                if (lblFile.Text == "" || _selectedFile == "")
+                    return;
 
-                var excelApp = new Microsoft.Office.Interop.Excel.Application();
-                var workBook = excelApp.Workbooks.Open(filePath);
-                var workSheet = (Worksheet) workBook.Worksheets[1];
+                _data = Base.ReadExcelFile(_selectedFile);
+                if (_data == null || _data.Rows.Count < 1)
+                {
+                    Base.ShowError("", "You cannot upload an empty file");
+                    lblFile.Text = "";
+                    _selectedFile = "";
+                    return;
+                }
 
-                workBook.SaveAs(saveFileDialog.FileName);
-                workBook.Close();
-                Marshal.ReleaseComObject(workBook);
+                if (_data.Columns.Count == 0 || _data.Columns[0].ColumnName != nameof(BulkStudentCourseReg.MatricNumber))
+                {
+                    Base.ShowError("", "Header column could not be read. Please use the template");
+                    lblFile.Text = "";
+                    _selectedFile = "";
+                    return;
+                }
 
-                Base.ShowSuccess("", "File saved successfully");
+                //_dataToUpload = (from DataRow row in _data.Rows
+                //            select new BulkStudentCourseReg
+                //            {
+                //                MatricNumber = row["MatricNumber"].ToString(),
+                //                Firstname = row["Firstname"].ToString(),
+                //                Lastname = row["Lastname"].ToString(),
+                //                Othername = row["Othername"].ToString(),
+                //                Level = row["Level"].ToString(),
+                //            }).ToList();
+
+               _dataToUpload = (List<BulkStudentCourseReg>)_data.ConvertToList<BulkStudentCourseReg>();
+               var validation = ValidateData(_dataToUpload);
+               if (validation == string.Empty)
+               {
+                   dataGrid.DataSource = _data;
+                   dataGrid.Columns["MatricNumber"].HeaderText = "Matric Number";
+                   btnUpload.Visible = true;
+                   btnPreview.Enabled = false;
+                }
+               else
+               {
+                   Base.ShowError("", validation);
+               }
             }
+
+            catch (Exception ex)
+            {
+                Base.ShowError("Error", ex.Message);
+            }
+        }
+
+        private string ValidateData(List<BulkStudentCourseReg> data)
+        {
+            if (data.Any(x => string.IsNullOrWhiteSpace(x.MatricNumber)))
+                return "Matric Number cannot be empty";
+
+            if (data.Any(x => string.IsNullOrWhiteSpace(x.Lastname)))
+                return "Lastname cannot be empty";
+
+            if (data.Any(x => string.IsNullOrWhiteSpace(x.Firstname)))
+                return "Firstname cannot be empty";
+
+            if (data.Any(x => string.IsNullOrWhiteSpace(x.Level)))
+                return "Level cannot be empty";
+
+            return string.Empty;
+        }
+
+        private void btnUpload_Click(object sender, EventArgs e)
+        {
+            if (_deptId == "")
+            {
+                Base.ShowError("Required", "Please select a department");
+                return;
+            }
+            if (_levelId == "")
+            {
+                Base.ShowError("Required", "Please select a level for the course");
+                return;
+            }
+
+            _courseId = comboCourse.SelectedValue.ToString() == Base.IdForSelect ? "" : comboCourse.SelectedValue.ToString();
+
+            if (_courseId == "")
+            {
+                Base.ShowError("Required", "Please select a course");
+                return;
+            }
+
+            if (_dataToUpload == null || _dataToUpload.Count < 1)
+            {
+                return;
+            }
+
+            var upload = _repo.RegisterCourseStudents(_dataToUpload, _courseId);
+            if (upload == string.Empty)
+            {
+                Base.ShowSuccess("Success", "Record uploaded successfully");
+                this.Close();
+            }
+            else
+            {
+                Base.ShowError("Failed", upload);
+            }
+
         }
     }
 }

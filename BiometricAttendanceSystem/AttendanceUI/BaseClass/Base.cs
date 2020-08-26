@@ -4,16 +4,150 @@ using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
+using ClosedXML.Excel;
 
 namespace AttendanceUI.BaseClass
 {
    public static class Base
    {
-       public const string IdForSelectAll = "c94cb05a-a323-4761-9c89-ad8911239a05"; //-200;
-       public const string IdForSelect = "dc3454c8-7447-49d9-8b21-dbc50395535a"; //-300;
+       public const string IdForSelectAll = "c94cb05a-a323-4761-9c89-ad8911239a05";
+       public const string IdForSelect = "dc3454c8-7447-49d9-8b21-dbc50395535a";
+
+
+        #region Datatable Conversions
+        
+        private static DataTable CreateTable<T>()
+        {
+            Type entityType = typeof(T);
+            DataTable table = new DataTable(entityType.Name);
+            PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(entityType);
+
+            foreach (PropertyDescriptor prop in properties)
+            {
+                table.Columns.Add(prop.Name, prop.PropertyType);
+            }
+
+            return table;
+        }
+
+        private static T CreateItem<T>(this DataRow row)
+        {
+            T obj = default(T);
+            if (row != null)
+            {
+                obj = Activator.CreateInstance<T>();
+
+                foreach (DataColumn column in row.Table.Columns)
+                {
+                    PropertyInfo prop = obj.GetType().GetProperty(column.ColumnName);
+                    try
+                    {
+                        object value = row[column.ColumnName];
+                        prop.SetValue(obj, value, null);
+                    }
+                    catch
+                    {
+                        // You can log something here
+                        throw;
+                    }
+                }
+            }
+
+            return obj;
+        }
+
+        private static IList<T> ConvertTo<T>(this IList<DataRow> rows)
+        {
+            IList<T> list = null;
+
+            if (rows != null)
+            {
+                list = new List<T>();
+
+                foreach (DataRow row in rows)
+                {
+                    T item = CreateItem<T>(row);
+                    list.Add(item);
+                }
+            }
+
+            return list;
+        }
+       
+        public static IList<T> ConvertToList<T>(this DataTable table)
+        {
+            if (table == null)
+            {
+                return null;
+            }
+
+            List<DataRow> rows = new List<DataRow>();
+
+            foreach (DataRow row in table.Rows)
+            {
+                rows.Add(row);
+            }
+
+            return ConvertTo<T>(rows);
+        }
+
+        public static DataTable ConvertToDataTable<T>(this IList<T> list)
+        {
+            DataTable table = CreateTable<T>();
+            Type entityType = typeof(T);
+            PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(entityType);
+
+            foreach (T item in list)
+            {
+                DataRow row = table.NewRow();
+
+                foreach (PropertyDescriptor prop in properties)
+                {
+                    row[prop.Name] = prop.GetValue(item);
+                }
+
+                table.Rows.Add(row);
+            }
+
+            return table;
+        }
+
+        //public static DataTable ConvertToDataTable<T>(this List<T> iList)
+        //{
+        //    var dT = new DataTable();
+        //    PropertyDescriptorCollection propertyDescriptorCollection = TypeDescriptor.GetProperties(typeof(T));
+        //    for (int i = 0; i < propertyDescriptorCollection.Count; i++)
+        //    {
+        //        PropertyDescriptor propertyDescriptor = propertyDescriptorCollection[i];
+        //        Type type = propertyDescriptor.PropertyType;
+
+        //        if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
+        //            type = Nullable.GetUnderlyingType(type);
+
+        //        dT.Columns.Add(propertyDescriptor.Name, type);
+
+        //    }
+        //    object[] values = new object[propertyDescriptorCollection.Count];
+        //    foreach (var iListItem in iList)
+        //    {
+        //        for (int i = 0; i < values.Length; i++)
+        //        {
+        //            values[i] = propertyDescriptorCollection[i].GetValue(iListItem);
+        //        }
+
+        //        dT.Rows.Add(values);
+        //    }
+
+        //    return dT;
+        //}
+
+        
+        #endregion
 
         #region Alerts
 
@@ -41,35 +175,7 @@ namespace AttendanceUI.BaseClass
 
         #region GridView
 
-        public static DataTable ConvertToDataTable<T>(this List<T> iList)
-        {
-            var dT = new DataTable();
-            PropertyDescriptorCollection propertyDescriptorCollection = TypeDescriptor.GetProperties(typeof(T));
-            for (int i = 0; i < propertyDescriptorCollection.Count; i++)
-            {
-                PropertyDescriptor propertyDescriptor = propertyDescriptorCollection[i];
-                Type type = propertyDescriptor.PropertyType;
-
-                if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
-                    type = Nullable.GetUnderlyingType(type);
-
-                dT.Columns.Add(propertyDescriptor.Name, type);
-
-            }
-            object[] values = new object[propertyDescriptorCollection.Count];
-            foreach (var iListItem in iList)
-            {
-                for (int i = 0; i < values.Length; i++)
-                {
-                    values[i] = propertyDescriptorCollection[i].GetValue(iListItem);
-                }
-
-                dT.Rows.Add(values);
-            }
-
-            return dT;
-        }
-
+        
         public static void AddEditDeleteToGrid(ref DataGridView dataGrid, bool noItems)
         {
             //TODO: check if the columns exist, don't add otherwise add
@@ -266,6 +372,89 @@ namespace AttendanceUI.BaseClass
                 return null;
             }
 
+        }
+
+        #endregion
+
+        #region Excel 
+
+        public static bool SaveAsExcel(DataTable data, string reportName)
+        {
+            try
+            {
+                var file = new SaveFileDialog()
+                {
+                    Filter = "Excel Files|*.xlsx;",
+                    FileName = $"{reportName}.xlsx"
+                };
+
+                if (file.ShowDialog() == DialogResult.OK)
+                {
+                    XLWorkbook wb = new XLWorkbook();
+                    wb.Worksheets.Add(data, reportName);
+                    wb.SaveAs(file.FileName);
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static DataTable ReadExcelFile(string filePath)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+
+                //Started reading the Excel file.  
+                using (XLWorkbook workbook = new XLWorkbook(filePath))
+                {
+                    IXLWorksheet worksheet = workbook.Worksheet(1);
+                    bool FirstRow = true;
+
+                    //Range for reading the cells based on the last cell used.  
+                    string readRange = "1:1";
+                    foreach (IXLRow row in worksheet.RowsUsed())
+                    {
+                        //If Reading the First Row (used) then add them as column name  
+                        if (FirstRow)
+                        {
+                            //Checking the Last cellused for column generation in datatable  
+                            readRange = string.Format("{0}:{1}", 1, row.LastCellUsed().Address.ColumnNumber);
+                            foreach (IXLCell cell in row.Cells(readRange))
+                            {
+                                dt.Columns.Add(cell.Value.ToString());
+                            }
+
+                            FirstRow = false;
+                        }
+                        else
+                        {
+                            //Adding a Row in datatable  
+                            dt.Rows.Add();
+                            int cellIndex = 0;
+
+                            //Updating the values of datatable  
+                            foreach (IXLCell cell in row.Cells(readRange))
+                            {
+                                dt.Rows[dt.Rows.Count - 1][cellIndex] = cell.Value.ToString();
+                                cellIndex++;
+                            }
+                        }
+                    }
+                }
+
+                return dt;
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         #endregion

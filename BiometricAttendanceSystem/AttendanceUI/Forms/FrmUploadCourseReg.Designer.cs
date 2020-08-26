@@ -181,9 +181,8 @@
             this.lblFile.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblFile.Location = new System.Drawing.Point(187, 169);
             this.lblFile.Name = "lblFile";
-            this.lblFile.Size = new System.Drawing.Size(36, 20);
+            this.lblFile.Size = new System.Drawing.Size(0, 20);
             this.lblFile.TabIndex = 0;
-            this.lblFile.Text = "File";
             // 
             // btnChooseFile
             // 

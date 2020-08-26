@@ -255,7 +255,7 @@ namespace AttendanceLibrary.Migrations.Sqlite
                     b.Property<string>("Lastname")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("MatricNo")
+                    b.Property<string>("MatricNumber")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Othername")

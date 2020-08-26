@@ -54,11 +54,11 @@ namespace AttendanceLibrary.Repository
                     var toAdd = new List<CourseRegistration>();
                     foreach (var item in model)
                     {
-                        var student = studentRepo.GetStudentByMatricNo(item.MatricNo);
+                        var student = studentRepo.GetStudentByMatricNo(item.MatricNumber);
                         var level = levelRepo.GetLevelByName(item.Level);
                         if (student == null || level == null)
                         {
-                            return "No record saved. At east one student or level does not exist";
+                            return "No record saved. At least one student or level does not exist";
                         }
 
                         if (!context.CourseRegistrations.Any(a => a.StudentId == student.Id && a.CourseId == courseId && a.SessionSemesterId == activeSession.Id))
@@ -72,7 +72,6 @@ namespace AttendanceLibrary.Repository
                                 LevelId = level.Id,
                                 SessionSemesterId = activeSession.Id,
                                 RegisteredBy = LoggedInUser.UserId,
-                                
                             });
                         }
                     }

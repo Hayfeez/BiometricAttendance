@@ -42,7 +42,7 @@ namespace AttendanceUI.Pages
                 {
                     dataGrid.DataSource = data;
                     dataGrid.Columns["Id"].Visible = false;
-                    dataGrid.Columns["MatricNo"].HeaderText = "Matric Number";
+                    dataGrid.Columns["MatricNumber"].HeaderText = "Matric Number";
                     dataGrid.Columns["PhoneNo"].HeaderText = "Phone Number";
                 }
                 else

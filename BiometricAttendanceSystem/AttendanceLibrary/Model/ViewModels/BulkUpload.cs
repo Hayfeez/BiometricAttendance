@@ -8,13 +8,13 @@ namespace AttendanceLibrary.Model.ViewModels
 {
     public class BulkStudent
     {
-        public string MatricNo { get; set; }
+        public string MatricNumber { get; set; }
         public string Lastname { get; set; }
         public string Firstname { get; set; }
         public string Othername { get; set; }
         public string Email { get; set; }
         public string PhoneNo { get; set; }
-        public string Department { get; set; }
+      //  public string Department { get; set; }
     }
 
     public class BulkStaff
@@ -29,7 +29,7 @@ namespace AttendanceLibrary.Model.ViewModels
 
     public class BulkStudentCourseReg
     {
-        public string MatricNo { get; set; }
+        public string MatricNumber { get; set; }
         public string Lastname { get; set; }
         public string Firstname { get; set; }
         public string Othername { get; set; }
