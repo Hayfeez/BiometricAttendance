@@ -38,8 +38,32 @@
     <Reference Include="ClosedXML, Version=0.95.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ClosedXML.0.95.3\lib\net46\ClosedXML.dll</HintPath>
     </Reference>
+    <Reference Include="DigitalPersona.Standards">
+      <HintPath>..\refs\DigitalPersona.Standards.dll</HintPath>
+    </Reference>
     <Reference Include="DocumentFormat.OpenXml, Version=2.11.3.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
       <HintPath>..\packages\DocumentFormat.OpenXml.2.11.3\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="DPFPCtlXWrapperNET">
+      <HintPath>..\refs\DPFPCtlXWrapperNET.dll</HintPath>
+    </Reference>
+    <Reference Include="DPFPDevNET">
+      <HintPath>..\refs\DPFPDevNET.dll</HintPath>
+    </Reference>
+    <Reference Include="DPFPEngNET">
+      <HintPath>..\refs\DPFPEngNET.dll</HintPath>
+    </Reference>
+    <Reference Include="DPFPGuiNET">
+      <HintPath>..\refs\DPFPGuiNET.dll</HintPath>
+    </Reference>
+    <Reference Include="DPFPO2MNET">
+      <HintPath>..\refs\DPFPO2MNET.dll</HintPath>
+    </Reference>
+    <Reference Include="DPFPShrNET">
+      <HintPath>..\refs\DPFPShrNET.dll</HintPath>
+    </Reference>
+    <Reference Include="DPFPVerNET">
+      <HintPath>..\refs\DPFPVerNET.dll</HintPath>
     </Reference>
     <Reference Include="ExcelNumberFormat, Version=1.0.10.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
       <HintPath>..\packages\ExcelNumberFormat.1.0.10\lib\net20\ExcelNumberFormat.dll</HintPath>
@@ -75,6 +99,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseClass\Base.cs" />
+    <Compile Include="BaseClass\DataHolder.cs" />
+    <Compile Include="BaseClass\DigitalPersonaClass.cs" />
     <Compile Include="BaseClass\DropdownControls.cs" />
     <Compile Include="BaseClass\ErrorLogger.cs" />
     <Compile Include="Forms\FrmContainer.cs">
@@ -323,6 +349,10 @@
     <ProjectReference Include="..\AttendanceLibrary\AttendanceLibrary.csproj">
       <Project>{36170858-AC69-4B53-BDD7-5195515A1B13}</Project>
       <Name>AttendanceLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DigitalPersonaLibrary\DigitalPersonaLibrary.vbproj">
+      <Project>{51a29c3e-6e64-41ad-837e-59060fa0c562}</Project>
+      <Name>DigitalPersonaLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -8,17 +8,17 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("TimeSheetDpSidLib")>
+<Assembly: AssemblyTitle("DigitalPersonaLibrary")>
 <Assembly: AssemblyDescription("")>
 <Assembly: AssemblyCompany("")>
-<Assembly: AssemblyProduct("TimeSheetDpSidLib")>
-<Assembly: AssemblyCopyright("Copyright ©  2019")>
+<Assembly: AssemblyProduct("DigitalPersonaLibrary")>
+<Assembly: AssemblyCopyright("Copyright ©  2020")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("b300377a-f865-49d2-89c1-aabecf98a112")>
+<Assembly: Guid("ac3e64f1-2135-4683-a9c8-e0a6790b48fb")>
 
 ' Version information for an assembly consists of the following four values:
 '

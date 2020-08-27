@@ -133,17 +133,17 @@ Public Class DPLibrary
         End Get
     End Property
 
-    Public Sub New(ByVal SecKey As String, ByVal _frm As Form, _
-                      ByRef _Capturer As DPFP.Capture.Capture, _
-                      ByVal _StatusLine As Label, _
-                      ByVal _Prompt As TextBox, _
-                      ByVal _StatusText As TextBox, _
-                      ByVal _Picture As PictureBox, _
-                      ByVal _ConnectionString As String, _
-                      ByVal _FingerTable As String, _
-                        Optional ByVal _EnrollmentMode As Boolean = True, _
-                      Optional ByVal _UseIdentityProcessing As Boolean = False, _
-                      Optional ByVal _AutoLoadData As Boolean = True, _
+    Public Sub New(ByVal SecKey As String, ByVal _frm As Form,
+                      ByRef _Capturer As DPFP.Capture.Capture,
+                      ByVal _StatusLine As Label,
+                      ByVal _Prompt As TextBox,
+                      ByVal _StatusText As TextBox,
+                      ByVal _Picture As PictureBox,
+                      ByVal _ConnectionString As String,
+                      ByVal _FingerTable As String,
+                        Optional ByVal _EnrollmentMode As Boolean = True,
+                      Optional ByVal _UseIdentityProcessing As Boolean = False,
+                      Optional ByVal _AutoLoadData As Boolean = True,
                       Optional ByVal _LoadSQL As String = "")
         Try
             If SecKey <> "Sid89456_LicReg_Main" Then
@@ -184,7 +184,7 @@ Public Class DPLibrary
 
             DPData.Database = New Database(_ConnectionString, FingerTable, _UseIdentityProcessing, _AutoLoadData, _LoadSQL)
 
-        Catch ex As Exception:Try:logger.WriteLog(ex) : Catch exx As Exception : End Try
+        Catch ex As Exception : Try : logger.WriteLog(ex) : Catch exx As Exception : End Try
             TMsgBox(ex.Message)
         End Try
     End Sub
@@ -460,8 +460,8 @@ Public Class DPLibrary
                                     End If
                                 End If
                                 Template = Enroller.Template
-                                DPData.Database.Records.Add(_FingerID, Template, _
-                                                              ConvertToByteArray(TrueBitmap), _
+                                DPData.Database.Records.Add(_FingerID, Template,
+                                                              ConvertToByteArray(TrueBitmap),
                                                               FingerTable, Dpi)
                                 SetPrompt("Click Close, and then click Fingerprint Verification.")
                                 StopCapture()
@@ -654,7 +654,7 @@ Public Class DPLibrary
 
 #Region "Verification"
 
-    Sub ProcessVerification(ByVal Sample As DPFP.Sample, _
+    Sub ProcessVerification(ByVal Sample As DPFP.Sample,
                             Optional ByVal ShowReport As Boolean = True)
         Try
             Process(Sample)
@@ -712,7 +712,7 @@ Public Class DPLibrary
         End Try
 
     End Sub
-    Sub ProcessIdentification(ByVal Sample As DPFP.Sample, _
+    Sub ProcessIdentification(ByVal Sample As DPFP.Sample,
                             Optional ByVal ShowReport As Boolean = True)
         Try
             Process(Sample)
@@ -866,9 +866,9 @@ Public Class DPLibrary
     Dim DPTemplate As DPFP.Template
     Dim ISOFMD As Byte()
     Dim inputData As [Byte]() = Nothing
-    Dim inpRaw As DigitalPersona.Standards.InputParameterForRaw = Nothing 
-    Public Shared Function EncodeBitmap(ByVal Bmp As Bitmap, _
-                                       Optional ByVal HorResolution As Int16 = 500, _
+    Dim inpRaw As DigitalPersona.Standards.InputParameterForRaw = Nothing
+    Public Shared Function EncodeBitmap(ByVal Bmp As Bitmap,
+                                       Optional ByVal HorResolution As Int16 = 500,
                                        Optional ByVal VertResolution As Int16 = 500) As Bitmap
         Try
             Dim OutputBmp As Bitmap
@@ -895,7 +895,7 @@ Public Class DPLibrary
     ''' <param name="HorDpi">Horizontal Resolution</param>
     ''' <returns>DPFP.Template</returns>
     ''' <remarks></remarks>
-    Public Function ConvertRawBmpAsTemplate(ByVal RawBmp As Bitmap, Optional ByVal VertDpi As Long = 700, _
+    Public Function ConvertRawBmpAsTemplate(ByVal RawBmp As Bitmap, Optional ByVal VertDpi As Long = 700,
                                     Optional ByVal HorDpi As Long = 700) As DPFP.Template
         Dim VConverter As VariantConverter
         Enroller = New DPFP.Processing.Enrollment
@@ -912,8 +912,8 @@ Public Class DPLibrary
             BmpLoader.Dispose()
 
             'start the conversion process
-            VConverter = New VariantConverter(VariantConverter.OutputType.dp_sample, _
-                                                         DataType.RawSample, _
+            VConverter = New VariantConverter(VariantConverter.OutputType.dp_sample,
+                                                         DataType.RawSample,
                                                          inpRaw, inputData, False)
             Dim DStream As New MemoryStream(VConverter.Convert())
             DPsample = New DPFP.Sample(DStream)
@@ -925,11 +925,11 @@ Public Class DPLibrary
             'convert DPfeatures to ISO FMD using the DFC 2.0'''''''''''''''''''''''''''''''''''''''  
             Dim SerializedFeatures As Byte() = Nothing
             DPFeatures.Serialize(SerializedFeatures) 'serialized features into the array of bytes
-            ISOFMD = DigitalPersona.Standards.Converter.Convert(SerializedFeatures, DigitalPersona.Standards.DataType.DPFeatureSet, _
+            ISOFMD = DigitalPersona.Standards.Converter.Convert(SerializedFeatures, DigitalPersona.Standards.DataType.DPFeatureSet,
                                                                       DataType.ISOFeatureSet)
 
             'convert ISO FMD to DPTemplate using DFC 2.0'''''''''''''''''''''''''''''''''''''''
-            Dim DPTemplateData As Byte() = DigitalPersona.Standards.Converter.Convert(ISOFMD, DigitalPersona.Standards.DataType.ISOTemplate, _
+            Dim DPTemplateData As Byte() = DigitalPersona.Standards.Converter.Convert(ISOFMD, DigitalPersona.Standards.DataType.ISOTemplate,
                                                                      DataType.DPTemplate)
             'deserialize data to Template
             DPTemplate = New DPFP.Template
@@ -942,7 +942,7 @@ Public Class DPLibrary
         End Try
     End Function
 
-    Private Function ConvertRawBmpAsTemplateData(ByVal RawBmp As Bitmap, Optional ByVal VertDpi As Long = 700, _
+    Private Function ConvertRawBmpAsTemplateData(ByVal RawBmp As Bitmap, Optional ByVal VertDpi As Long = 700,
                                     Optional ByVal HorDpi As Long = 700) As Byte()
         Dim VConverter As VariantConverter
         Enroller = New DPFP.Processing.Enrollment
@@ -959,8 +959,8 @@ Public Class DPLibrary
             BmpLoader.Dispose()
 
             'start the conversion process
-            VConverter = New VariantConverter(VariantConverter.OutputType.dp_sample, _
-                                                         DataType.RawSample, _
+            VConverter = New VariantConverter(VariantConverter.OutputType.dp_sample,
+                                                         DataType.RawSample,
                                                          inpRaw, inputData, False)
             Dim DStream As New MemoryStream(VConverter.Convert())
             DPsample = New DPFP.Sample(DStream)
@@ -972,11 +972,11 @@ Public Class DPLibrary
             'convert DPfeatures to ISO FMD using the DFC 2.0'''''''''''''''''''''''''''''''''''''''  
             Dim SerializedFeatures As Byte() = Nothing
             DPFeatures.Serialize(SerializedFeatures) 'serialized features into the array of bytes
-            ISOFMD = DigitalPersona.Standards.Converter.Convert(SerializedFeatures, DigitalPersona.Standards.DataType.DPFeatureSet, _
+            ISOFMD = DigitalPersona.Standards.Converter.Convert(SerializedFeatures, DigitalPersona.Standards.DataType.DPFeatureSet,
                                                                       DataType.ISOFeatureSet)
 
             'convert ISO FMD to DPTemplate using DFC 2.0'''''''''''''''''''''''''''''''''''''''
-            Dim DPTemplateData As Byte() = DigitalPersona.Standards.Converter.Convert(ISOFMD, DigitalPersona.Standards.DataType.ISOTemplate, _
+            Dim DPTemplateData As Byte() = DigitalPersona.Standards.Converter.Convert(ISOFMD, DigitalPersona.Standards.DataType.ISOTemplate,
                                                                      DataType.DPTemplate)
 
             Return DPTemplateData
@@ -985,7 +985,7 @@ Public Class DPLibrary
         End Try
     End Function
 
-    Private Function ConvertRawBmpAsSample(ByVal RawBmp As Bitmap, Optional ByVal VertDpi As Long = 700, _
+    Private Function ConvertRawBmpAsSample(ByVal RawBmp As Bitmap, Optional ByVal VertDpi As Long = 700,
                                     Optional ByVal HorDpi As Long = 700) As Sample
         Dim VConverter As VariantConverter
         Enroller = New DPFP.Processing.Enrollment
@@ -1002,8 +1002,8 @@ Public Class DPLibrary
             BmpLoader.Dispose()
 
             'start the conversion process
-            VConverter = New VariantConverter(VariantConverter.OutputType.dp_sample, _
-                                                         DataType.RawSample, _
+            VConverter = New VariantConverter(VariantConverter.OutputType.dp_sample,
+                                                         DataType.RawSample,
                                                          inpRaw, inputData, False)
             Dim DStream As New MemoryStream(VConverter.Convert())
             DPsample = New DPFP.Sample(DStream)
@@ -1028,11 +1028,11 @@ Public Class DPLibrary
             'convert DPfeatures to ISO FMD using the DFC 2.0'''''''''''''''''''''''''''''''''''''''  
             Dim SerializedFeatures As Byte() = Nothing
             DPFeatures.Serialize(SerializedFeatures) 'serialized features into the array of bytes
-            ISOFMD = DigitalPersona.Standards.Converter.Convert(SerializedFeatures, DigitalPersona.Standards.DataType.DPFeatureSet, _
+            ISOFMD = DigitalPersona.Standards.Converter.Convert(SerializedFeatures, DigitalPersona.Standards.DataType.DPFeatureSet,
                                                                       DataType.ISOFeatureSet)
 
             'convert ISO FMD to DPTemplate using DFC 2.0'''''''''''''''''''''''''''''''''''''''
-            Dim DPTemplateData As Byte() = DigitalPersona.Standards.Converter.Convert(ISOFMD, DigitalPersona.Standards.DataType.ISOTemplate, _
+            Dim DPTemplateData As Byte() = DigitalPersona.Standards.Converter.Convert(ISOFMD, DigitalPersona.Standards.DataType.ISOTemplate,
                                                                      DataType.DPTemplate)
             'deserialize data to Template
             DPTemplate = New DPFP.Template
@@ -1052,10 +1052,10 @@ Public Class DPLibrary
     ''' <returns>DP Template</returns>
     ''' <remarks></remarks>
     Public Function ConvertISOTemplateAsDPTemplate(ISOTemplate As Byte()) As Template
-        Try 
+        Try
             ' Dim OutputParamANSIandISO As New OutputParameterForConvertSample  With {.rotation = 128}
 
-            Dim DPTemplateData As Byte() = DigitalPersona.Standards.Converter.Convert(ISOTemplate, DigitalPersona.Standards.DataType.ISOTemplate, _
+            Dim DPTemplateData As Byte() = DigitalPersona.Standards.Converter.Convert(ISOTemplate, DigitalPersona.Standards.DataType.ISOTemplate,
                                                                      DataType.DPTemplate)
             'deserialize data to Template
             DPTemplate = New DPFP.Template
@@ -1076,7 +1076,7 @@ Public Class DPLibrary
         Try
             ' Dim OutputParamANSIandISO As New OutputParameterForConvertSample  With {.rotation = 128}
 
-            Dim DPTemplateData As Byte() = DigitalPersona.Standards.Converter.Convert(ANSITemplate, DigitalPersona.Standards.DataType.ANSITemplate, _
+            Dim DPTemplateData As Byte() = DigitalPersona.Standards.Converter.Convert(ANSITemplate, DigitalPersona.Standards.DataType.ANSITemplate,
                                                                      DataType.DPTemplate)
             'deserialize data to Template
             DPTemplate = New DPFP.Template
@@ -1095,13 +1095,13 @@ Public Class DPLibrary
     ''' <param name="HorDpi">Horizontal Resolution</param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Function ConvertRawBmpAsISOTemplate(ByVal RawBmp As Bitmap, Optional ByVal VertDpi As Long = 700, _
+    Public Function ConvertRawBmpAsISOTemplate(ByVal RawBmp As Bitmap, Optional ByVal VertDpi As Long = 700,
                                     Optional ByVal HorDpi As Long = 700) As Byte()
         Try
             Dim DPTemplate As Template = ConvertRawBmpAsTemplate(RawBmp, VertDpi, HorDpi)
             Dim OutputParamANSIandISO As New OutputParameterForIsoAndAnsi With {.rotation = 128}
 
-            Dim ISOTemplate As Byte() = DigitalPersona.Standards.Converter.Convert(DPTemplate.Bytes, DigitalPersona.Standards.DataType.DPTemplate, _
+            Dim ISOTemplate As Byte() = DigitalPersona.Standards.Converter.Convert(DPTemplate.Bytes, DigitalPersona.Standards.DataType.DPTemplate,
                                                                      DataType.ISOTemplate, OutputParamANSIandISO)
             Return ISOTemplate
         Catch ex As Exception : Try : logger.WriteLog(ex) : Catch exx As Exception : End Try
@@ -1117,13 +1117,13 @@ Public Class DPLibrary
     ''' <param name="HorDpi">Horizontal Resolution</param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Function ConvertRawBmpAsANSITemplate(ByVal RawBmp As Bitmap, Optional ByVal VertDpi As Long = 700, _
+    Public Function ConvertRawBmpAsANSITemplate(ByVal RawBmp As Bitmap, Optional ByVal VertDpi As Long = 700,
                                     Optional ByVal HorDpi As Long = 700) As Byte()
         Try
             Dim DPTemplate As Template = ConvertRawBmpAsTemplate(RawBmp, VertDpi, HorDpi)
             Dim OutputParamANSIandISO As New OutputParameterForIsoAndAnsi With {.rotation = 128}
 
-            Dim ANSITemplate As Byte() = DigitalPersona.Standards.Converter.Convert(DPTemplate.Bytes, DigitalPersona.Standards.DataType.DPTemplate, _
+            Dim ANSITemplate As Byte() = DigitalPersona.Standards.Converter.Convert(DPTemplate.Bytes, DigitalPersona.Standards.DataType.DPTemplate,
                                                                      DataType.ANSITemplate, OutputParamANSIandISO)
             Return ANSITemplate
         Catch ex As Exception : Try : logger.WriteLog(ex) : Catch exx As Exception : End Try
@@ -1161,10 +1161,10 @@ Public Class VariantConverter
         iso_tmplX
     End Enum
 
-    Sub New(ByVal Output As OutputType, _
-            ByVal _dataType As DigitalPersona.Standards.DataType, _
-            ByVal _inpRaw As DigitalPersona.Standards.InputParameterForRaw, _
-            ByVal _inputData As Byte(), _
+    Sub New(ByVal Output As OutputType,
+            ByVal _dataType As DigitalPersona.Standards.DataType,
+            ByVal _inpRaw As DigitalPersona.Standards.InputParameterForRaw,
+            ByVal _inputData As Byte(),
             Optional ByVal _WriteOutputToFile As Boolean = False)
         Try
             cbOutputType = Output

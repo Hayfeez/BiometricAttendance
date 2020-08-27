@@ -22,7 +22,7 @@ namespace AttendanceUI.BaseClass
             {
                 allItems.Insert(0, new Department
                 {
-                    DepartmentName = "Select All",
+                    DepartmentName = "All Departments",
                     Id = Base.IdForSelectAll
                 });
             }
@@ -78,7 +78,7 @@ namespace AttendanceUI.BaseClass
             {
                 allItems.Insert(0, new PersonTitle
                 {
-                    Title = "Select All",
+                    Title = "All Titles",
                     Id = Base.IdForSelectAll
                 });
             }
@@ -106,7 +106,7 @@ namespace AttendanceUI.BaseClass
             {
                 allItems.Insert(0, new StudentLevel()
                 {
-                    Level = "Select All",
+                    Level = "All Levels",
                     Id = Base.IdForSelectAll
                 });
             }
@@ -134,7 +134,7 @@ namespace AttendanceUI.BaseClass
             {
                 allItems.Insert(0, new Course
                 {
-                    CourseTitle = "Select All",
+                    CourseTitle = "All Courses",
                     Id = Base.IdForSelectAll
                 });
             }
@@ -162,7 +162,7 @@ namespace AttendanceUI.BaseClass
             {
                 allItems.Insert(0, new StaffDetail()
                 {
-                    Lastname = "Select All",
+                    Lastname = "All Staff",
                     Id = Base.IdForSelectAll
                 });
             }
@@ -190,7 +190,7 @@ namespace AttendanceUI.BaseClass
             {
                 allItems.Insert(0, new StudentDetail()
                 {
-                    Lastname = "Select All",
+                    Lastname = "All Students",
                     Id = Base.IdForSelectAll
                 });
             }
@@ -208,7 +208,6 @@ namespace AttendanceUI.BaseClass
             dropDown.ValueMember = "Id";
             dropDown.SelectedIndex = 0;
         }
-
 
     }
 }

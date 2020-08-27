@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0B8FC87B-9AEB-4143-B819-F7A7B972D277}</ProjectGuid>
+    <ProjectGuid>{51A29C3E-6E64-41AD-837E-59060FA0C562}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>TimeSheetDpSidLib</RootNamespace>
-    <AssemblyName>TimeSheetDpSidLib</AssemblyName>
+    <RootNamespace>DigitalPersonaLibrary</RootNamespace>
+    <AssemblyName>DigitalPersonaLibrary</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -18,7 +19,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>TimeSheetDpSidLib.xml</DocumentationFile>
+    <DocumentationFile>DigitalPersonaLibrary.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -27,7 +28,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>TimeSheetDpSidLib.xml</DocumentationFile>
+    <DocumentationFile>DigitalPersonaLibrary.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -43,47 +44,29 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DigitalPersona.Standards, Version=2.0.0.1379, Culture=neutral, PublicKeyToken=696774c42ee28c57, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Program Files\DigitalPersona\Data Format Conversion\.NET\Bin\DigitalPersona.Standards.dll</HintPath>
+    <Reference Include="DigitalPersona.Standards">
+      <HintPath>..\refs\DigitalPersona.Standards.dll</HintPath>
     </Reference>
-    <Reference Include="DPFPCtlXTypeLibNET, Version=1.6.1.0, Culture=neutral, PublicKeyToken=c0c98f712d5392a7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>..\..\..\Program Files\DigitalPersona\One Touch I.D. SDK\.NET\Bin\DPFPCtlXTypeLibNET.dll</HintPath>
+    <Reference Include="DPFPCtlXWrapperNET">
+      <HintPath>..\refs\DPFPCtlXWrapperNET.dll</HintPath>
     </Reference>
-    <Reference Include="DPFPCtlXWrapperNET, Version=1.6.1.0, Culture=neutral, PublicKeyToken=c0c98f712d5392a7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Program Files\DigitalPersona\One Touch I.D. SDK\.NET\Bin\DPFPCtlXWrapperNET.dll</HintPath>
+    <Reference Include="DPFPDevNET">
+      <HintPath>..\refs\DPFPDevNET.dll</HintPath>
     </Reference>
-    <Reference Include="DPFPDevNET, Version=1.6.1.0, Culture=neutral, PublicKeyToken=696774c42ee28c57, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Program Files\DigitalPersona\One Touch I.D. SDK\.NET\Bin\DPFPDevNET.dll</HintPath>
+    <Reference Include="DPFPEngNET">
+      <HintPath>..\refs\DPFPEngNET.dll</HintPath>
     </Reference>
-    <Reference Include="DPFPEngNET, Version=1.6.1.0, Culture=neutral, PublicKeyToken=7fe76e7adf19964b, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Program Files\DigitalPersona\One Touch I.D. SDK\.NET\Bin\DPFPEngNET.dll</HintPath>
+    <Reference Include="DPFPGuiNET">
+      <HintPath>..\refs\DPFPGuiNET.dll</HintPath>
     </Reference>
-    <Reference Include="DPFPGuiNET, Version=1.6.1.0, Culture=neutral, PublicKeyToken=d4f4a0bd9c559145, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Program Files\DigitalPersona\One Touch I.D. SDK\.NET\Bin\DPFPGuiNET.dll</HintPath>
+    <Reference Include="DPFPO2MNET">
+      <HintPath>..\refs\DPFPO2MNET.dll</HintPath>
     </Reference>
-    <Reference Include="DPFPO2MNET, Version=2.2.1.0, Culture=neutral, PublicKeyToken=6494fe269d4110bd, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Program Files\DigitalPersona\One Touch I.D. SDK\.NET\Bin\DPFPO2MNET.dll</HintPath>
+    <Reference Include="DPFPShrNET">
+      <HintPath>..\refs\DPFPShrNET.dll</HintPath>
     </Reference>
-    <Reference Include="DPFPShrNET, Version=1.6.1.0, Culture=neutral, PublicKeyToken=d902fe275a8d6cf2, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Program Files\DigitalPersona\One Touch I.D. SDK\.NET\Bin\DPFPShrNET.dll</HintPath>
-    </Reference>
-    <Reference Include="DPFPShrXTypeLibNET, Version=1.6.1.0, Culture=neutral, PublicKeyToken=c0c98f712d5392a7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>..\..\..\Program Files\DigitalPersona\One Touch I.D. SDK\.NET\Bin\DPFPShrXTypeLibNET.dll</HintPath>
-    </Reference>
-    <Reference Include="DPFPVerNET, Version=1.6.1.0, Culture=neutral, PublicKeyToken=4de0a9c4dcc83984, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Program Files\DigitalPersona\One Touch I.D. SDK\.NET\Bin\DPFPVerNET.dll</HintPath>
+    <Reference Include="DPFPVerNET">
+      <HintPath>..\refs\DPFPVerNET.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -108,7 +91,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base.vb" />
-    <Compile Include="Class1.vb" />
     <Compile Include="DPData.vb" />
     <Compile Include="DPLibrary.vb" />
     <Compile Include="ErrorLogger.vb" />

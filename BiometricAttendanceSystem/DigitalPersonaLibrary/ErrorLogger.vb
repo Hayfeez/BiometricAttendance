@@ -1,7 +1,7 @@
 ﻿Imports Microsoft.VisualBasic
 Imports System.IO
 
-Public Class ErrorLogger 
+Public Class ErrorLogger
     Dim _DestFolder As String
     Sub New(ByVal DestFolder As String)
         _DestFolder = DestFolder

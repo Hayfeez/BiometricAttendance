@@ -104,8 +104,8 @@ Public Class Database
             Return _ConnectionString
         End Get
     End Property
-    Friend Sub New(ByVal ConnectionString As String, _
-            ByVal FingerTable As String, Optional ByVal UseIdentityProcess As Boolean = False, _
+    Friend Sub New(ByVal ConnectionString As String,
+            ByVal FingerTable As String, Optional ByVal UseIdentityProcess As Boolean = False,
             Optional ByVal AutoLoadData As Boolean = True, Optional ByVal LoadSQL As String = "")
         Try
             _ConnectionString = ConnectionString
@@ -209,8 +209,8 @@ Public Class Database
         End Sub
 
 
-        Sub New(ByVal Owner As Database, ByVal FingerTable As String, _
-                Optional ByVal _UseIdentityProcess As Boolean = False, _
+        Sub New(ByVal Owner As Database, ByVal FingerTable As String,
+                Optional ByVal _UseIdentityProcess As Boolean = False,
                 Optional ByVal AutoLoadData As Boolean = True, Optional ByVal LoadSql As String = "")
             MyBase.New(New List(Of Record)())
             Dim cmd As SqlCommand
@@ -224,7 +224,7 @@ Public Class Database
                         itmG = New List(Of Record)(255)
                         Me.owner = Owner
                         If LoadSql = "" Then
-                            LoadSql = "select  Features, FingerID  from " & FingerTable & _
+                            LoadSql = "select  Features, FingerID  from " & FingerTable &
                                     "  order by fingerID"
                         End If
                         cmd = New SqlCommand(LoadSql, Owner.Connection)
@@ -245,7 +245,7 @@ Public Class Database
                     Else
                         '-----------------------------------------------'----------------------------------------------- 
                         If LoadSql = "" Then
-                            LoadSql = "select  Features, FingerID  from " & FingerTable & _
+                            LoadSql = "select  Features, FingerID  from " & FingerTable &
                         "  order by fingerID"
                         End If
 
@@ -302,7 +302,7 @@ Public Class Database
             sqlcon.Open()
             Try
                 If Not UseIdentityProcess Then
-                    cmd = New SqlCommand("Select Features, FingerID from " & _
+                    cmd = New SqlCommand("Select Features, FingerID from " &
                                         FingerTable & " " & " ", sqlcon)
 
                     cmd.CommandTimeout = 0
@@ -319,7 +319,7 @@ Public Class Database
                     End While
                 Else
                     '-----------------------------------------------'----------------------------------------------- 
-                    cmd = New SqlCommand("select  Features, FingerID  from fingerprints " & _
+                    cmd = New SqlCommand("select  Features, FingerID  from fingerprints " &
                     "  order by fingerID", sqlcon)
 
                     cmd.CommandTimeout = 0
@@ -358,12 +358,12 @@ Public Class Database
             End Try
         End Sub
 
-        Public Function Add(ByVal ID As String, ByVal template As DPFP.Template, ByVal picture As Byte(), _
+        Public Function Add(ByVal ID As String, ByVal template As DPFP.Template, ByVal picture As Byte(),
                              ByVal FIngerTable As String, Optional ByVal Dpi As Int16 = 700)
             Dim sqlcon As New SqlConnection(DPData.Database.ConnectionString)
             Try
 
-                Dim InsertStatement As String = "Insert into " & FIngerTable & _
+                Dim InsertStatement As String = "Insert into " & FIngerTable &
                 " (Features, FingerID,Picture ) Values (@Features, @FingerID, @Pictures)"
                 'Connection = New SqlConnection(ConnectionString)
                 'Connection.Open()
@@ -375,7 +375,7 @@ Public Class Database
                 Dim InsertCommand As New SqlCommand(InsertStatement, sqlcon)
                 InsertCommand.Parameters.Add("@Features", SqlDbType.VarBinary).Value = template.Bytes
                 InsertCommand.Parameters.Add("@FingerID", SqlDbType.VarChar).Value = ID
-                InsertCommand.Parameters.Add("@Pictures", SqlDbType.VarBinary).Value = picture 
+                InsertCommand.Parameters.Add("@Pictures", SqlDbType.VarBinary).Value = picture
 
                 Dim cnt As Integer = InsertCommand.ExecuteNonQuery
                 InsertCommand.Dispose()
