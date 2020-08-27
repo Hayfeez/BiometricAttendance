@@ -45,8 +45,13 @@ namespace AttendanceUI.Forms
             if (txtStaffNo.Text == "")
                 return "Staff No is required";
 
-            if (txtEmail.Text == "")
-                return "Email is required";
+            if (!Validations.IsValidEmail(txtEmail.Text))
+                return "Valid Email is required";
+
+            if (txtPhoneNo.Text != "" && !Validations.IsDigitsOnly(txtPhoneNo.Text))
+            {
+                return "Valid phone number is required";
+            }
 
             return "";
         }

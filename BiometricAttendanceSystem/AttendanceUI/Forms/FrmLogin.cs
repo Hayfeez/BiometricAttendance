@@ -44,7 +44,7 @@ namespace AttendanceUI.Forms
                     return;
                 }
 
-                if (!ValidateEmail.IsValidEmail(model.Email))
+                if (!Validations.IsValidEmail(model.Email))
                 {
                     Base.ShowError("Invalid Email", "Email is invalid");
                     return;

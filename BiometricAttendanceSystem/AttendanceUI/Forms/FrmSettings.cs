@@ -101,7 +101,13 @@ namespace AttendanceUI.Forms
 
             if (txtUserDefaultPassword.Text == "")
                 return "User default password is required";
-            
+
+            if (txtNoOfFinger.Text == "" || int.TryParse(txtNoOfFinger.Text, out var fingr) && fingr < 1)
+                return "No of fingers for biometrics is required";
+
+            if (int.TryParse(txtNoOfFinger.Text, out var finger) && finger > 5)
+                return "No of fingers for biometrics cannot be more than 5";
+
             return "";
         }
 

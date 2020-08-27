@@ -71,13 +71,13 @@ namespace AttendanceLibrary.Repository
 			}
 		}
 
-		public List<StudentFinger> GetFingers()
+		public List<StudentFinger> GetStudentFingers(string id)
 		{
 			try
 			{
                 using (var context = new SqliteContext())
 				{
-					return context.StudentFingers.ToList();				
+					return context.StudentFingers.Where(x=>x.StudentId == id).ToList();				
 
 				}
 			}
@@ -86,6 +86,22 @@ namespace AttendanceLibrary.Repository
 				throw ex;
 			}
 		}
+
+        public List<StudentFinger> GetStaffFingers(string id)
+        {
+            try
+            {
+                using (var context = new SqliteContext())
+                {
+                    return context.StudentFingers.Where(x => x.StudentId == id).ToList();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
 	}
 }

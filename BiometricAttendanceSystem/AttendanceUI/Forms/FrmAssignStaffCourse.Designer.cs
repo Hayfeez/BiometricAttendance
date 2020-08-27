@@ -98,6 +98,7 @@
             // checkCourses
             // 
             this.checkCourses.FormattingEnabled = true;
+            this.checkCourses.HorizontalScrollbar = true;
             this.checkCourses.Location = new System.Drawing.Point(149, 144);
             this.checkCourses.Name = "checkCourses";
             this.checkCourses.Size = new System.Drawing.Size(574, 211);

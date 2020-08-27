@@ -35,6 +35,9 @@ namespace AttendanceLibrary.Repository
                 if (oldSetting == null)
                     return "Setting not found";
 
+                if (setting.NoOfFinger > 5)
+                    return "Number of fingers cannot be more than 5";
+
                 oldSetting.SuperAdminFirstname = setting.SuperAdminFirstname;
                 oldSetting.SuperAdminLastname = setting.SuperAdminLastname;
                 oldSetting.SuperAdminEmail = setting.SuperAdminEmail;

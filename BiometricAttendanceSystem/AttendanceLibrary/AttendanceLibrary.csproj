@@ -201,7 +201,7 @@
     <Compile Include="BaseClass\LoggedInUser.cs" />
     <Compile Include="BaseClass\PasswordHash.cs" />
     <Compile Include="BaseClass\StringExtension.cs" />
-    <Compile Include="BaseClass\ValidateEmail.cs" />
+    <Compile Include="BaseClass\Validations.cs" />
     <Compile Include="DataContext\AttendanceContext.cs" />
     <Compile Include="DataContext\SqlServerContext.cs" />
     <Compile Include="Migrations\Sqlite\20200823223203_Initial.cs" />

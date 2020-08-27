@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AttendanceLibrary.BaseClass
 {
-    public class ValidateEmail
+    public class Validations
     {
         public static bool IsValidEmail(string email)
         {
@@ -54,6 +54,17 @@ namespace AttendanceLibrary.BaseClass
             {
                 return false;
             }
+        }
+
+        public static bool IsDigitsOnly(string str)
+        {
+            foreach (char c in str)
+            {
+                if (c < '0' || c > '9')
+                    return false;
+            }
+
+            return true;
         }
     }
 }
