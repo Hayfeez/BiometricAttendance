@@ -41,12 +41,16 @@ namespace AttendanceUI.Pages
                     var dt = new DataTable();
                     dataGrid.Columns.Clear();
                     dt.Columns.Add("Message", typeof(string));
-                    dt.Rows.Add("No items found");
+                    dt.Rows.Add("No record found");
                     dataGrid.DataSource = dt;
                 }
 
                 _gridData = data.ConvertToDataTable(); //save records in datatable for searching, export etc
-                Base.AddEditDeleteToGrid(ref dataGrid, _noItems); //add edit,delete icon
+                Base.AddLinksToGrid(ref dataGrid, new List<string>
+                {
+                    "Edit",
+                    "Delete"
+                }, _noItems); //add edit,delete icon
 
             }
             catch (Exception e)

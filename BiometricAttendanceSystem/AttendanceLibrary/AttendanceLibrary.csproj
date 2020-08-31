@@ -208,6 +208,10 @@
     <Compile Include="Migrations\Sqlite\20200823223203_Initial.designer.cs">
       <DependentUpon>20200823223203_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Sqlite\20200828221955_StaffFinger.cs" />
+    <Compile Include="Migrations\Sqlite\20200828221955_StaffFinger.designer.cs">
+      <DependentUpon>20200828221955_StaffFinger.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Sqlite\SqliteContextModelSnapshot.cs" />
     <Compile Include="Migrations\SqlServer\20200823223241_Initial.cs" />
     <Compile Include="Migrations\SqlServer\20200823223241_Initial.designer.cs">
@@ -224,6 +228,7 @@
     <Compile Include="Model\PersonTitle.cs" />
     <Compile Include="Model\SessionSemester.cs" />
     <Compile Include="Model\StudentDetail.cs" />
+    <Compile Include="Model\StaffFinger.cs" />
     <Compile Include="Model\StudentFinger.cs" />
     <Compile Include="Model\StudentLevel.cs" />
     <Compile Include="Model\AppSync.cs" />

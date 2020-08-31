@@ -9,33 +9,33 @@ using System.Threading.Tasks;
 using AttendanceLibrary.DataContext;
 
 namespace AttendanceLibrary.Repository
-{
+{   
    public class AttendanceRepo
     {
-        public int SaveAttendance(string CourseId, string StudentId, string SemesterId, string markedBy)
+        public string SaveAttendance(string courseId, string studentId, string semesterId, string markedBy)
         {
             try
             {
-                using (var context = new SqliteContext())
+                using var context = new SqliteContext();
+                var dateMarked = DateTime.Now;
+
+                var courseRegId = context.CourseRegistrations.SingleOrDefault(a => a.CourseId == courseId && a.SessionSemesterId == semesterId && a.StudentId == studentId)?.Id;
+
+                if (courseRegId == null)
+                    return "You are not registered for this course this semester";
+
+                if (context.Attendances.Any(a => a.CourseRegistrationId == courseRegId && a.DateMarked.Date == dateMarked.Date))
+                    return "You have marked attendance for this course today";
+
+                context.Attendances.Add(new Attendance
                 {
-                    var dateMarked = DateTime.Now;
-                    //get courseregId
-                    var coursseRegId = context.CourseRegistrations.Single(a => a.CourseId == CourseId && a.SessionSemesterId == SemesterId && a.StudentId == StudentId).Id;
-                    
-                    if (context.Attendances.Any(a => a.CourseRegistrationId == coursseRegId && a.DateMarked.Date == dateMarked.Date))
-                        return 0;
+                    Id = Guid.NewGuid().ToString(),
+                    CourseRegistrationId = courseRegId,
+                    DateMarked = dateMarked,
+                    MarkedBy = markedBy
+                });
 
-                    context.Attendances.Add(new Attendance { 
-                        Id = Guid.NewGuid().ToString(),
-                        CourseRegistrationId = coursseRegId,
-                        DateMarked = dateMarked,
-                        MarkedBy = markedBy                        
-                    });
-                    if (context.SaveChanges() > 0) return 1;
-
-                    return -1;
-
-                }
+                return context.SaveChanges() > 0 ? "" : "Attendance could not be saved";
             }
             catch (Exception ex)
             {
@@ -47,33 +47,31 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new SqliteContext())
-                {
-                    var dt = (from att in context.Attendances
-                              join reg in context.CourseRegistrations on att.CourseRegistrationId equals reg.Id
-                              join st in context.Students on reg.StudentId equals st.Id
-                              join c in context.Courses on reg.CourseId equals c.Id
-                              join s in context.SessionSemesters on reg.SessionSemesterId equals s.Id
-                              join le in context.Levels on reg.LevelId equals le.Id
-                              join dep in context.Departments on st.DepartmentId equals dep.Id
-                              join l in context.Staff on att.MarkedBy equals l.Id
-                              where reg.CourseId == courseId
-                              select new AttendanceList
-                              {
-                                  Id = att.Id,
-                                  StudentMatricNo = st.MatricNo,
-                                  StudentName = $"{st.Lastname} {st.Firstname} {st.Othername}",
-                                  StudentLevel = le.Level,
-                                  Course = c.CourseCode + " - " + c.CourseTitle ,
-                                  DateMarked = att.DateMarked.Date,
-                                  MarkedBy = $"{l.Lastname} {l.Firstname} {l.Othername}",
-                                  SessionSemester = $"{s.Session} - {s.Semester}",
-                                  DepartmentName = dep.DepartmentName,
-                                  TimeIn = att.DateMarked.ToShortTimeString()
-                              }
-                              ).ToList();
-                    return dt;
-                }
+                using var context = new SqliteContext();
+                var dt = (from att in context.Attendances
+                          join reg in context.CourseRegistrations on att.CourseRegistrationId equals reg.Id
+                          join st in context.Students on reg.StudentId equals st.Id
+                          join c in context.Courses on reg.CourseId equals c.Id
+                          join s in context.SessionSemesters on reg.SessionSemesterId equals s.Id
+                          join le in context.Levels on reg.LevelId equals le.Id
+                          join dep in context.Departments on st.DepartmentId equals dep.Id
+                          join l in context.Staff on att.MarkedBy equals l.Id
+                          where reg.CourseId == courseId
+                          select new AttendanceList
+                          {
+                              Id = att.Id,
+                              StudentMatricNo = st.MatricNo,
+                              StudentName = st.Lastname + ", " + st.Firstname + " " + st.Othername,
+                              StudentLevel = le.Level,
+                              Course = c.CourseCode + " - " + c.CourseTitle ,
+                              DateMarked = att.DateMarked.Date,
+                              MarkedBy = l.Lastname + ", " + l.Firstname + " " + l.Othername,
+                              SessionSemester = s.Session + " - " + s.Semester,
+                              DepartmentName = dep.DepartmentName,
+                              TimeIn = att.DateMarked.ToShortTimeString()
+                          }
+                    ).ToList();
+                return dt;
             }
             catch (Exception ex)
             {
@@ -85,28 +83,23 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new SqliteContext())
-                {
-                    var dt = (from att in context.Attendances
-                              join reg in context.CourseRegistrations on att.CourseRegistrationId equals reg.Id
-                              join st in context.Students on reg.StudentId equals st.Id
-                             // join c in context.Courses on reg.CourseId equals c.Id
-                             // join s in context.SessionSemesters on reg.SessionSemesterId equals s.Id
-                            //  join le in context.Levels on reg.LevelId equals le.Id
-                            //  join dep in context.Departments on st.DepartmentId equals dep.Id
-                             // join l in context.Staff on att.MarkedBy equals l.Id
-                              where reg.CourseId == courseId  && att.DateMarked.Date == DateTime.Now.Date
-                              select new AttendanceList
-                              {
-                                  Id = att.Id,
-                                  StudentMatricNo = st.MatricNo,
-                                  StudentName = $"{st.Lastname} {st.Firstname} {st.Othername}",
-                                  DateMarked = att.DateMarked.Date,
-                                  TimeIn = att.DateMarked.ToShortTimeString()
-                                 }
-                              ).ToList();
-                    return dt;
-                }
+                var dateNow = DateTime.Now.Date;
+                using var context = new SqliteContext();
+                var dt = (from att in context.Attendances
+                          join reg in context.CourseRegistrations on att.CourseRegistrationId equals reg.Id
+                          join st in context.Students on reg.StudentId equals st.Id
+                          where reg.CourseId == courseId  && att.DateMarked.Date == dateNow
+                          select new AttendanceList
+                          {
+                              Id = att.Id,
+                              StudentMatricNo = st.MatricNo,
+                              StudentName = st.Lastname + ", " + st.Firstname + " " + st.Othername,
+                              DateMarked = att.DateMarked.Date,
+                              TimeIn = att.DateMarked.ToShortTimeString()
+                          }
+                    ).ToList();
+
+                return dt;
             }
             catch (Exception ex)
             {
@@ -117,33 +110,31 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new SqliteContext())
-                {
-                    var dt = (from att in context.Attendances
-                              join reg in context.CourseRegistrations on att.CourseRegistrationId equals reg.Id
-                              join st in context.Students on reg.StudentId equals st.Id
-                              join c in context.Courses on reg.CourseId equals c.Id
-                              join s in context.SessionSemesters on reg.SessionSemesterId equals s.Id
-                              join le in context.Levels on reg.LevelId equals le.Id
-                              join dep in context.Departments on st.DepartmentId equals dep.Id
-                              join l in context.Staff on att.MarkedBy equals l.Id
-                              where reg.StudentId == studentId
-                              select new AttendanceList
-                              {
-                                  Id = att.Id,
-                                  StudentMatricNo = st.MatricNo,
-                                  StudentName = $"{st.Lastname} {st.Firstname} {st.Othername}",
-                                  StudentLevel = le.Level,
-                                  Course = c.CourseCode + " - " + c.CourseTitle,
-                                  DateMarked = att.DateMarked.Date,
-                                  MarkedBy = $"{l.Lastname} {l.Firstname} {l.Othername}",
-                                  SessionSemester = $"{s.Session} - {s.Semester}",
-                                  DepartmentName = dep.DepartmentName,
-                                  TimeIn = att.DateMarked.ToShortTimeString()
-                              }
-                              ).ToList();
-                    return dt;
-                }
+                using var context = new SqliteContext();
+                var dt = (from att in context.Attendances
+                          join reg in context.CourseRegistrations on att.CourseRegistrationId equals reg.Id
+                          join st in context.Students on reg.StudentId equals st.Id
+                          join c in context.Courses on reg.CourseId equals c.Id
+                          join s in context.SessionSemesters on reg.SessionSemesterId equals s.Id
+                          join le in context.Levels on reg.LevelId equals le.Id
+                          join dep in context.Departments on st.DepartmentId equals dep.Id
+                          join l in context.Staff on att.MarkedBy equals l.Id
+                          where reg.StudentId == studentId
+                          select new AttendanceList
+                          {
+                              Id = att.Id,
+                              StudentMatricNo = st.MatricNo,
+                              StudentName = st.Lastname + ", " + st.Firstname + " " + st.Othername,
+                              StudentLevel = le.Level,
+                              Course = c.CourseCode + " - " + c.CourseTitle,
+                              DateMarked = att.DateMarked.Date,
+                              MarkedBy = l.Lastname + ", " + l.Firstname + " " + l.Othername,
+                              SessionSemester = s.Session + " - " + s.Semester,
+                              DepartmentName = dep.DepartmentName,
+                              TimeIn = att.DateMarked.ToShortTimeString()
+                          }
+                    ).ToList();
+                return dt;
             }
             catch (Exception ex)
             {
@@ -155,33 +146,58 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new SqliteContext())
-                {
-                    var dt = (from att in context.Attendances
-                              join reg in context.CourseRegistrations on att.CourseRegistrationId equals reg.Id
-                              join st in context.Students on reg.StudentId equals st.Id
-                              join c in context.Courses on reg.CourseId equals c.Id
-                              join s in context.SessionSemesters on reg.SessionSemesterId equals s.Id
-                              join le in context.Levels on reg.LevelId equals le.Id
-                              join dep in context.Departments on st.DepartmentId equals dep.Id
-                              join l in context.Staff on att.MarkedBy equals l.Id
-                              where reg.StudentId == studentId && reg.CourseId == courseId
-                              select new AttendanceList
-                              {
-                                  Id = att.Id,
-                                  StudentMatricNo = st.MatricNo,
-                                  StudentName = $"{st.Lastname} {st.Firstname} {st.Othername}",
-                                  StudentLevel = le.Level,
-                                  Course = c.CourseCode + " - " + c.CourseTitle,
-                                  DateMarked = att.DateMarked.Date,
-                                  MarkedBy = $"{l.Lastname} {l.Firstname} {l.Othername}",
-                                  SessionSemester = $"{s.Session} - {s.Semester}",
-                                  DepartmentName = dep.DepartmentName,
-                                  TimeIn = att.DateMarked.ToShortTimeString()
-                              }
-                              ).ToList();
-                    return dt;
-                }
+                using var context = new SqliteContext();
+                var dt = (from att in context.Attendances
+                          join reg in context.CourseRegistrations on att.CourseRegistrationId equals reg.Id
+                          join st in context.Students on reg.StudentId equals st.Id
+                          join c in context.Courses on reg.CourseId equals c.Id
+                          join s in context.SessionSemesters on reg.SessionSemesterId equals s.Id
+                          join le in context.Levels on reg.LevelId equals le.Id
+                          join dep in context.Departments on st.DepartmentId equals dep.Id
+                          join l in context.Staff on att.MarkedBy equals l.Id
+                          where reg.StudentId == studentId && reg.CourseId == courseId
+                          select new AttendanceList
+                          {
+                              Id = att.Id,
+                              StudentMatricNo = st.MatricNo,
+                              StudentName = st.Lastname + ", " + st.Firstname + " " + st.Othername,
+                              StudentLevel = le.Level,
+                              Course = c.CourseCode + " - " + c.CourseTitle,
+                              DateMarked = att.DateMarked.Date,
+                              MarkedBy = l.Lastname + ", " + l.Firstname + " " + l.Othername,
+                              SessionSemester = s.Session + " - " + s.Semester,
+                              DepartmentName = dep.DepartmentName,
+                              TimeIn = att.DateMarked.ToShortTimeString()
+                          }
+                    ).ToList();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<StaffCourseRegCount> GetCourseAttendanceCount(string staffId, string semesterId)
+        {
+            try
+            {
+                using var context = new SqliteContext();
+                var dt = (from stc in context.StaffCourses
+                          join cr in context.CourseRegistrations on stc.CourseId equals cr.CourseId into staffcourse
+                          from stco in staffcourse
+                          join att in context.Attendances on stco.Id equals att.CourseRegistrationId into courseattendance
+                         // from atco in courseattendance
+                          join cou in context.Courses on stco.CourseId equals cou.Id
+                          where !cou.IsDeleted && stc.StaffId == staffId && stco.SessionSemesterId == semesterId
+
+                          select new StaffCourseRegCount
+                          {
+                              CourseTitle = cou.CourseTitle,
+                              Count = courseattendance.GroupBy(x=>x.DateMarked.Date).Count()
+                          }).ToList();
+
+                return dt;
             }
             catch (Exception ex)
             {

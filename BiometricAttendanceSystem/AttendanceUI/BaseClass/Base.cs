@@ -18,9 +18,10 @@ namespace AttendanceUI.BaseClass
        public const string IdForSelectAll = "c94cb05a-a323-4761-9c89-ad8911239a05";
        public const string IdForSelect = "dc3454c8-7447-49d9-8b21-dbc50395535a";
 
+       public static ErrorLogger logger = new ErrorLogger(Application.StartupPath + "\\BASErrorLogs");
 
         #region Datatable Conversions
-        
+
         private static DataTable CreateTable<T>()
         {
             Type entityType = typeof(T);
@@ -175,14 +176,30 @@ namespace AttendanceUI.BaseClass
 
         #region GridView
 
-        
-        public static void AddEditDeleteToGrid(ref DataGridView dataGrid, bool noItems)
+        public static void AddLinksToGrid(ref DataGridView dataGrid, List<string> links, bool noItems)
         {
-            //TODO: check if the columns exist, don't add otherwise add
-
             if (noItems)
                 return;
 
+            foreach (var link in links)
+            {
+                var lnk = new DataGridViewLinkColumn
+                {
+                    UseColumnTextForLinkValue = true,
+                    HeaderText = "",
+                    DataPropertyName = "lnkColumn",
+                    LinkBehavior = LinkBehavior.SystemDefault,
+                    Text = link,
+                    Name = link
+                };
+
+                if (!dataGrid.Columns.Contains(lnk.Name))
+                    dataGrid.Columns.Add(lnk);
+            }
+        }
+
+        public static void AddEditDeleteToGrid(ref DataGridView dataGrid)
+        {
             //Edit link
             var editlink = new DataGridViewLinkColumn
             {
@@ -203,38 +220,12 @@ namespace AttendanceUI.BaseClass
                 Text = "Delete"
             };
 
-            if (!dataGrid.Columns.Contains(editlink.Text))
-                dataGrid.Columns.Add(editlink);
-
-            if (!dataGrid.Columns.Contains(deletelink.Text))
-                dataGrid.Columns.Add(deletelink);
-
-        }
-
-        public static void AddDeleteToGrid(ref DataGridView dataGrid, bool noItems)
-        {
-            //TODO: check if the columns exist, don't add otherwise add
-
-            if (noItems)
-                return;
-
-            //Delete link
-            var deletelink = new DataGridViewLinkColumn
-            {
-                UseColumnTextForLinkValue = true,
-                HeaderText = "",
-                DataPropertyName = "lnkColumn",
-                LinkBehavior = LinkBehavior.SystemDefault,
-                Text = "Delete"
-            };
-
-            if (!dataGrid.Columns.Contains(deletelink.Text))
-                dataGrid.Columns.Add(deletelink);
-
+            dataGrid.Columns.Add(editlink);
+            dataGrid.Columns.Add(deletelink);
         }
 
         public static void ResizeGrid(ref DataGridView grd,
-         ref DataTable dt)
+                                      ref DataTable dt)
         {
             try
             {

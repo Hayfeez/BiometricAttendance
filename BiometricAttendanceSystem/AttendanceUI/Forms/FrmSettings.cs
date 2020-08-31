@@ -42,11 +42,15 @@ namespace AttendanceUI.Forms
                     var dt = new DataTable();
                     dataGridTitle.Columns.Clear();
                     dt.Columns.Add("Message", typeof(string));
-                    dt.Rows.Add("No items found");
+                    dt.Rows.Add("No record found");
                     dataGridTitle.DataSource = dt;
                 }
 
-                Base.AddEditDeleteToGrid(ref dataGridTitle, _noItems); //add edit,delete icon
+                Base.AddLinksToGrid(ref dataGridTitle, new List<string>
+                {
+                    "Edit",
+                    "Delete"
+                }, _noItems); //add edit,delete icon
 
             }
             catch (Exception e)
@@ -72,11 +76,15 @@ namespace AttendanceUI.Forms
                     var dt = new DataTable();
                     dataGridLevel.Columns.Clear();
                     dt.Columns.Add("Message", typeof(string));
-                    dt.Rows.Add("No items found");
+                    dt.Rows.Add("No record found");
                     dataGridLevel.DataSource = dt;
                 }
 
-                Base.AddEditDeleteToGrid(ref dataGridLevel, _noItems); //add edit,delete icon
+                Base.AddLinksToGrid(ref dataGridLevel, new List<string>
+                {
+                    "Edit",
+                    "Delete"
+                }, _noItems); //add edit,delete icon
 
             }
             catch (Exception e)
@@ -190,6 +198,12 @@ namespace AttendanceUI.Forms
 
         private void btnAddLevel_Click(object sender, EventArgs e)
         {
+            if (!LoggedInUser.IsSuperAdmin)
+            {
+                Base.ShowError("Access Denied", "You do not have the required permission");
+                return;
+            }
+
             var levelForm = new FrmLevel();
             levelForm.ShowDialog();
             LoadLevel();
@@ -197,6 +211,12 @@ namespace AttendanceUI.Forms
 
         private void btnAddTitle_Click(object sender, EventArgs e)
         {
+            if (!LoggedInUser.IsSuperAdmin)
+            {
+                Base.ShowError("Access Denied", "You do not have the required permission");
+                return;
+            }
+
             var titleForm = new FrmTitle();
             titleForm.ShowDialog();
             LoadTitle();
@@ -219,6 +239,12 @@ namespace AttendanceUI.Forms
         {
             try
             {
+                if (!LoggedInUser.IsSuperAdmin)
+                {
+                    Base.ShowError("Access Denied", "You do not have the required permission");
+                    return;
+                }
+
                 //edit column 
                 if (e.ColumnIndex == 0)
                 {
@@ -264,6 +290,12 @@ namespace AttendanceUI.Forms
         {
             try
             {
+                if (!LoggedInUser.IsSuperAdmin)
+                {
+                    Base.ShowError("Access Denied", "You do not have the required permission");
+                    return;
+                }
+
                 //edit column 
                 if (e.ColumnIndex == 0)
                 {

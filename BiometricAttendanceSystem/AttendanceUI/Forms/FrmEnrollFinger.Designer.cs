@@ -28,9 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEnrollFinger));
             this.panelForm = new System.Windows.Forms.Panel();
             this.panelBody = new System.Windows.Forms.Panel();
             this.grpMain = new System.Windows.Forms.GroupBox();
+            this.lblFingerCount = new System.Windows.Forms.Label();
+            this.lblFingersRequired = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.labelRequired = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.txtLog = new System.Windows.Forms.TextBox();
@@ -43,8 +48,7 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.GroupBox1 = new System.Windows.Forms.GroupBox();
             this.pnlFInger = new System.Windows.Forms.Panel();
-            this.lblFingersRequired = new System.Windows.Forms.Label();
-            this.labelRequired = new System.Windows.Forms.Label();
+            this.btnDeleteEnrolled = new System.Windows.Forms.Button();
             this.lblFingersEnrolled = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.lblNo = new System.Windows.Forms.Label();
@@ -61,9 +65,6 @@
             this.iconExit = new FontAwesome.Sharp.IconPictureBox();
             this.lblPageTitle = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblFingerCount = new System.Windows.Forms.Label();
-            this.btnDeleteEnrolled = new System.Windows.Forms.Button();
             this.panelForm.SuspendLayout();
             this.panelBody.SuspendLayout();
             this.grpMain.SuspendLayout();
@@ -126,6 +127,53 @@
             this.grpMain.TabStop = false;
             this.grpMain.Text = "Data Capture";
             // 
+            // lblFingerCount
+            // 
+            this.lblFingerCount.AutoSize = true;
+            this.lblFingerCount.Font = new System.Drawing.Font("Calisto MT", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFingerCount.Location = new System.Drawing.Point(715, 41);
+            this.lblFingerCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblFingerCount.Name = "lblFingerCount";
+            this.lblFingerCount.Size = new System.Drawing.Size(34, 39);
+            this.lblFingerCount.TabIndex = 0;
+            this.lblFingerCount.Text = "0";
+            this.lblFingerCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblFingerCount.TextChanged += new System.EventHandler(this.lblFingerCount_TextChanged);
+            // 
+            // lblFingersRequired
+            // 
+            this.lblFingersRequired.AutoSize = true;
+            this.lblFingersRequired.Font = new System.Drawing.Font("Calisto MT", 20F, System.Drawing.FontStyle.Bold);
+            this.lblFingersRequired.Location = new System.Drawing.Point(715, 77);
+            this.lblFingersRequired.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblFingersRequired.Name = "lblFingersRequired";
+            this.lblFingersRequired.Size = new System.Drawing.Size(34, 39);
+            this.lblFingersRequired.TabIndex = 0;
+            this.lblFingersRequired.Text = "0";
+            this.lblFingersRequired.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(567, 54);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(117, 22);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Finger Count";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // labelRequired
+            // 
+            this.labelRequired.AutoSize = true;
+            this.labelRequired.Location = new System.Drawing.Point(567, 90);
+            this.labelRequired.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelRequired.Name = "labelRequired";
+            this.labelRequired.Size = new System.Drawing.Size(148, 22);
+            this.labelRequired.TabIndex = 0;
+            this.labelRequired.Text = "Fingers Required";
+            this.labelRequired.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // btnSave
             // 
             this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
@@ -137,7 +185,7 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(176, 33);
             this.btnSave.TabIndex = 65;
-            this.btnSave.Text = "Save Fingers";
+            this.btnSave.Text = "Save Fingerprints";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click_1);
             // 
@@ -282,28 +330,20 @@
             this.pnlFInger.Size = new System.Drawing.Size(989, 147);
             this.pnlFInger.TabIndex = 0;
             // 
-            // lblFingersRequired
+            // btnDeleteEnrolled
             // 
-            this.lblFingersRequired.AutoSize = true;
-            this.lblFingersRequired.Font = new System.Drawing.Font("Calisto MT", 20F, System.Drawing.FontStyle.Bold);
-            this.lblFingersRequired.Location = new System.Drawing.Point(715, 77);
-            this.lblFingersRequired.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblFingersRequired.Name = "lblFingersRequired";
-            this.lblFingersRequired.Size = new System.Drawing.Size(34, 39);
-            this.lblFingersRequired.TabIndex = 0;
-            this.lblFingersRequired.Text = "0";
-            this.lblFingersRequired.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // labelRequired
-            // 
-            this.labelRequired.AutoSize = true;
-            this.labelRequired.Location = new System.Drawing.Point(567, 90);
-            this.labelRequired.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelRequired.Name = "labelRequired";
-            this.labelRequired.Size = new System.Drawing.Size(148, 22);
-            this.labelRequired.TabIndex = 0;
-            this.labelRequired.Text = "Fingers Required";
-            this.labelRequired.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDeleteEnrolled.BackColor = System.Drawing.Color.Red;
+            this.btnDeleteEnrolled.Enabled = false;
+            this.btnDeleteEnrolled.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteEnrolled.Font = new System.Drawing.Font("Calisto MT", 10F, System.Drawing.FontStyle.Bold);
+            this.btnDeleteEnrolled.ForeColor = System.Drawing.Color.White;
+            this.btnDeleteEnrolled.Location = new System.Drawing.Point(302, 92);
+            this.btnDeleteEnrolled.Name = "btnDeleteEnrolled";
+            this.btnDeleteEnrolled.Size = new System.Drawing.Size(242, 33);
+            this.btnDeleteEnrolled.TabIndex = 67;
+            this.btnDeleteEnrolled.Text = "Delete Enrolled Fingers";
+            this.btnDeleteEnrolled.UseVisualStyleBackColor = false;
+            this.btnDeleteEnrolled.Click += new System.EventHandler(this.btnDeleteEnrolled_Click);
             // 
             // lblFingersEnrolled
             // 
@@ -386,6 +426,7 @@
             this.StatusStrip1.Size = new System.Drawing.Size(997, 26);
             this.StatusStrip1.TabIndex = 0;
             this.StatusStrip1.Text = "StatusStrip1";
+            this.StatusStrip1.Visible = false;
             // 
             // lblStatus
             // 
@@ -452,6 +493,7 @@
             this.iconExit.Size = new System.Drawing.Size(74, 60);
             this.iconExit.TabIndex = 4;
             this.iconExit.TabStop = false;
+            this.iconExit.Click += new System.EventHandler(this.iconExit_Click_1);
             // 
             // lblPageTitle
             // 
@@ -480,45 +522,6 @@
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Enroll Fingers";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(567, 54);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(117, 22);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Finger Count";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblFingerCount
-            // 
-            this.lblFingerCount.AutoSize = true;
-            this.lblFingerCount.Font = new System.Drawing.Font("Calisto MT", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFingerCount.Location = new System.Drawing.Point(715, 41);
-            this.lblFingerCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblFingerCount.Name = "lblFingerCount";
-            this.lblFingerCount.Size = new System.Drawing.Size(34, 39);
-            this.lblFingerCount.TabIndex = 0;
-            this.lblFingerCount.Text = "0";
-            this.lblFingerCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblFingerCount.TextChanged += new System.EventHandler(this.lblFingerCount_TextChanged);
-            // 
-            // btnDeleteEnrolled
-            // 
-            this.btnDeleteEnrolled.BackColor = System.Drawing.Color.Red;
-            this.btnDeleteEnrolled.Enabled = false;
-            this.btnDeleteEnrolled.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteEnrolled.Font = new System.Drawing.Font("Calisto MT", 10F, System.Drawing.FontStyle.Bold);
-            this.btnDeleteEnrolled.ForeColor = System.Drawing.Color.White;
-            this.btnDeleteEnrolled.Location = new System.Drawing.Point(302, 92);
-            this.btnDeleteEnrolled.Name = "btnDeleteEnrolled";
-            this.btnDeleteEnrolled.Size = new System.Drawing.Size(242, 33);
-            this.btnDeleteEnrolled.TabIndex = 67;
-            this.btnDeleteEnrolled.Text = "Delete Enrolled Fingers";
-            this.btnDeleteEnrolled.UseVisualStyleBackColor = false;
-            this.btnDeleteEnrolled.Click += new System.EventHandler(this.btnDeleteEnrolled_Click);
-            // 
             // FrmEnrollFinger
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
@@ -528,10 +531,12 @@
             this.Controls.Add(this.panelForm);
             this.Font = new System.Drawing.Font("Calisto MT", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmEnrollFinger";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FrmCourse";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmEnrollFinger_FormClosed);
             this.Load += new System.EventHandler(this.FrmEnrollFinger_Load);
             this.panelForm.ResumeLayout(false);
             this.panelBody.ResumeLayout(false);

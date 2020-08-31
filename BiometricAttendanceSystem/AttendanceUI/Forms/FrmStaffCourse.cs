@@ -45,6 +45,9 @@ namespace AttendanceUI.Forms
                 {
                     dataGrid.DataSource = data;
                     dataGrid.Columns["Id"].Visible = false;
+                    dataGrid.Columns["CourseId"].Visible = false;
+                    dataGrid.Columns["CourseTitle"].HeaderText = "Course Title";
+                    dataGrid.Columns["DateAssigned"].HeaderText = "Date Assigned";
                 }
                 else
                 {
@@ -52,12 +55,15 @@ namespace AttendanceUI.Forms
                     var dt = new DataTable();
                     dataGrid.Columns.Clear();
                     dt.Columns.Add("Message", typeof(string));
-                    dt.Rows.Add("No items found");
+                    dt.Rows.Add("No record found");
                     dataGrid.DataSource = dt;
                 }
 
                 _gridData = data.ConvertToDataTable(); //save records in datatable for searching, export etc
-                Base.AddDeleteToGrid(ref dataGrid, _noItems); //add delete icon
+                Base.AddLinksToGrid(ref dataGrid, new List<string>
+                {
+                    "Delete",
+                }, _noItems);
 
             }
             catch (Exception e)
@@ -97,6 +103,12 @@ namespace AttendanceUI.Forms
             if (!LoggedInUser.IsAdmin)
             {
                 Base.ShowError("Access Denied", "You do not have the required permission");
+                return;
+            }
+
+            if (LoggedInUser.UserId == Helper.SuperAdminId)
+            {
+                Base.ShowError("Access Denied", "You cannot assign staff course");
                 return;
             }
 
@@ -141,7 +153,7 @@ namespace AttendanceUI.Forms
                 }
 
                 //delete column
-                if (e.ColumnIndex == 0)
+                if (e.ColumnIndex == 0 || e.ColumnIndex == 5)  //TODO: why is this 5 at times and 0 at other times
                 {
                     var result = Base.ShowDialog(MessageBoxButtons.YesNo, "Confirm Delete", "Are you sure you want to delete this record?");
                     if (result == DialogResult.Yes)

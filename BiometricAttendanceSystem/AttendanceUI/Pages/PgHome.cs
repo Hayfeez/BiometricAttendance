@@ -16,11 +16,14 @@ namespace AttendanceUI.Pages
     public partial class PgHome : UserControl
     {
         private readonly DashboardRepo _repo;
-
+        private readonly CourseRegRepo _courseRegRepo;
+        private readonly AttendanceRepo _attendanceRepo;
         public PgHome()
         {
             InitializeComponent();
             _repo = new DashboardRepo();
+            _courseRegRepo = new CourseRegRepo();
+            _attendanceRepo = new AttendanceRepo();
         }
 
         private void PgHome_Load(object sender, EventArgs e)
@@ -35,6 +38,56 @@ namespace AttendanceUI.Pages
             cardStudent.Text2 = studentCount.ToString();
             cardUsers.Text2 = staffCount.ToString();
 
+            LoadCourseRegData();
+            LoadCourseAttendanceData();
+        }
+
+        private void LoadCourseRegData()
+        {
+            try
+            {
+                var data = _courseRegRepo.GetCourseRegCount(LoggedInUser.UserId, LoggedInUser.ActiveSession.Id);
+                if (data != null && data.Count > 0)
+                {
+                    dataGridCourses.DataSource = data;
+                    dataGridCourses.Columns["CourseTitle"].HeaderText = "Course";
+                }
+                else
+                {
+                    var dt = new DataTable();
+                    dataGridCourses.Columns.Clear();
+                    dt.Columns.Add("Message", typeof(string));
+                    dt.Rows.Add("No record found");
+                    dataGridCourses.DataSource = dt;
+                }
+            }
+            catch (Exception e)
+            {
+            }
+        }
+        
+        private void LoadCourseAttendanceData()
+        {
+            try
+            {
+                var data = _attendanceRepo.GetCourseAttendanceCount(LoggedInUser.UserId, LoggedInUser.ActiveSession.Id);
+                if (data != null && data.Count > 0)
+                {
+                    dataGridAttendance.DataSource = data;
+                    dataGridAttendance.Columns["CourseTitle"].HeaderText = "Course";
+                }
+                else
+                {
+                    var dt = new DataTable();
+                    dataGridAttendance.Columns.Clear();
+                    dt.Columns.Add("Message", typeof(string));
+                    dt.Rows.Add("No record found");
+                    dataGridAttendance.DataSource = dt;
+                }
+            }
+            catch (Exception e)
+            {
+            }
         }
     }
 }

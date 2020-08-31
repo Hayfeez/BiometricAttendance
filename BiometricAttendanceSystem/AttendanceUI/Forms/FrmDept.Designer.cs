@@ -28,20 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDept));
             this.panelForm = new System.Windows.Forms.Panel();
             this.panelBody = new System.Windows.Forms.Panel();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.txtDeptCode = new System.Windows.Forms.TextBox();
+            this.txtDeptTitle = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panelTop = new System.Windows.Forms.Panel();
             this.lblPageTitle = new System.Windows.Forms.Label();
-            this.lblTitle = new System.Windows.Forms.Label();
             this.iconExit = new FontAwesome.Sharp.IconPictureBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtDeptTitle = new System.Windows.Forms.TextBox();
-            this.txtDeptCode = new System.Windows.Forms.TextBox();
-            this.btnSave = new System.Windows.Forms.Button();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.panelForm.SuspendLayout();
             this.panelBody.SuspendLayout();
             this.panelTop.SuspendLayout();
@@ -74,6 +75,58 @@
             this.panelBody.Name = "panelBody";
             this.panelBody.Size = new System.Drawing.Size(688, 245);
             this.panelBody.TabIndex = 1;
+            // 
+            // btnSave
+            // 
+            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Bold);
+            this.btnSave.ForeColor = System.Drawing.Color.White;
+            this.btnSave.Location = new System.Drawing.Point(307, 153);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(236, 48);
+            this.btnSave.TabIndex = 3;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // txtDeptCode
+            // 
+            this.txtDeptCode.Font = new System.Drawing.Font("Calisto MT", 12F);
+            this.txtDeptCode.Location = new System.Drawing.Point(307, 91);
+            this.txtDeptCode.Name = "txtDeptCode";
+            this.txtDeptCode.Size = new System.Drawing.Size(236, 31);
+            this.txtDeptCode.TabIndex = 2;
+            // 
+            // txtDeptTitle
+            // 
+            this.txtDeptTitle.Font = new System.Drawing.Font("Calisto MT", 12F);
+            this.txtDeptTitle.Location = new System.Drawing.Point(307, 44);
+            this.txtDeptTitle.Name = "txtDeptTitle";
+            this.txtDeptTitle.Size = new System.Drawing.Size(236, 31);
+            this.txtDeptTitle.TabIndex = 1;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Bold);
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
+            this.label3.Location = new System.Drawing.Point(126, 53);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(179, 22);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Department Name";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Bold);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
+            this.label2.Location = new System.Drawing.Point(125, 100);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(171, 22);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Department Code";
             // 
             // panel3
             // 
@@ -128,19 +181,6 @@
             this.lblPageTitle.TabIndex = 1;
             this.lblPageTitle.Text = "Department";
             // 
-            // lblTitle
-            // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblTitle.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(10, 78);
-            this.lblTitle.Margin = new System.Windows.Forms.Padding(10);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(160, 22);
-            this.lblTitle.TabIndex = 4;
-            this.lblTitle.Text = "Add Department";
-            // 
             // iconExit
             // 
             this.iconExit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -157,57 +197,18 @@
             this.iconExit.TabStop = false;
             this.iconExit.Click += new System.EventHandler(this.iconExit_Click);
             // 
-            // label2
+            // lblTitle
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Bold);
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
-            this.label2.Location = new System.Drawing.Point(125, 100);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(171, 22);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Department Code";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Bold);
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
-            this.label3.Location = new System.Drawing.Point(126, 53);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(179, 22);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Department Name";
-            // 
-            // txtDeptTitle
-            // 
-            this.txtDeptTitle.Font = new System.Drawing.Font("Calisto MT", 12F);
-            this.txtDeptTitle.Location = new System.Drawing.Point(307, 44);
-            this.txtDeptTitle.Name = "txtDeptTitle";
-            this.txtDeptTitle.Size = new System.Drawing.Size(236, 31);
-            this.txtDeptTitle.TabIndex = 1;
-            // 
-            // txtDeptCode
-            // 
-            this.txtDeptCode.Font = new System.Drawing.Font("Calisto MT", 12F);
-            this.txtDeptCode.Location = new System.Drawing.Point(307, 91);
-            this.txtDeptCode.Name = "txtDeptCode";
-            this.txtDeptCode.Size = new System.Drawing.Size(236, 31);
-            this.txtDeptCode.TabIndex = 2;
-            // 
-            // btnSave
-            // 
-            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Bold);
-            this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(307, 153);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(236, 48);
-            this.btnSave.TabIndex = 3;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblTitle.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.White;
+            this.lblTitle.Location = new System.Drawing.Point(10, 78);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(10);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(160, 22);
+            this.lblTitle.TabIndex = 4;
+            this.lblTitle.Text = "Add Department";
             // 
             // FrmDept
             // 
@@ -218,6 +219,7 @@
             this.Controls.Add(this.panelForm);
             this.Font = new System.Drawing.Font("Calisto MT", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmDept";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

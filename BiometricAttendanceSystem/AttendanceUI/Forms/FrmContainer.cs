@@ -165,7 +165,15 @@ namespace AttendanceUI.Forms
 
         private void btnAttendance_Click(object sender, EventArgs e)
         {
-            ShowPage(new PgAttendance());
+            if (LoggedInUser.UserId == Helper.SuperAdminId)
+            {
+                Base.ShowError("Access Denied", "You cannot take attendance");
+                return;
+            }
+
+            var attendance = new FrmAttendance();
+            attendance.Show();
+            attendance.BringToFront();
             SetActiveMenu(btnAttendance);
         }
 
@@ -191,13 +199,18 @@ namespace AttendanceUI.Forms
 
         private void iconUser_Click(object sender, EventArgs e)
         {
-            var frm = new FrmUserProfile();
+            if (LoggedInUser.UserId == Helper.SuperAdminId)
+            {
+                Base.ShowError("Access Denied", "You cannot change system admin password from here. Go to Settings");
+                return;
+            }
+            var frm = new FrmChangePassword(LoggedInUser.Email);
             frm.ShowDialog();
         }
 
         private void iconSettings_Click(object sender, EventArgs e)
         {
-            if (!LoggedInUser.IsAdmin)
+            if (!LoggedInUser.IsSuperAdmin)
             {
                 Base.ShowError("Access Denied", "You do not have the required permission");
                 return;

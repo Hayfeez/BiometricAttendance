@@ -15,10 +15,8 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new SqliteContext())
-                {
-                    return context.Students.Count(a => !a.IsDeleted && !a.IsGraduated);
-                }
+                using var context = new SqliteContext();
+                return context.Students.Count(a => !a.IsDeleted && !a.IsGraduated);
             }
             catch (Exception ex)
             {
@@ -30,10 +28,8 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new SqliteContext())
-                {
-                    return context.Staff.Count(a => !a.IsDeleted);
-                }
+                using var context = new SqliteContext();
+                return context.Staff.Count(a => !a.IsDeleted);
             }
             catch (Exception ex)
             {

@@ -80,6 +80,12 @@ namespace AttendanceUI.Forms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (!LoggedInUser.IsAdmin)
+            {
+                Base.ShowError("Access Denied", "You do not have the required permission");
+                return;
+            }
+
             var item = new Department
             {
                 Id = _id,

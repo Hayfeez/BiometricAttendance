@@ -51,13 +51,17 @@ namespace AttendanceUI.Pages
                     var dt = new DataTable();
                     dataGrid.Columns.Clear();
                     dt.Columns.Add("Message", typeof(string));
-                    dt.Rows.Add("No items found");
+                    dt.Rows.Add("No record found");
                     dataGrid.DataSource = dt;
                 }
 
                 _gridData = data.ConvertToDataTable(); //save records in datatable for searching, export etc
-                Base.AddEditDeleteToGrid(ref dataGrid, _noItems); //add edit,delete icon
-
+                Base.AddLinksToGrid(ref dataGrid, new List<string>
+                {
+                    "Edit",
+                    "Delete",
+                    "Manage Fingerprints"
+                }, _noItems);
             }
             catch (Exception e)
             {
@@ -72,7 +76,7 @@ namespace AttendanceUI.Pages
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (!LoggedInUser.IsAdmin)
+            if (!LoggedInUser.IsSuperAdmin)
             {
                 Base.ShowError("Access Denied", "You do not have the required permission");
                 return;
@@ -114,16 +118,16 @@ namespace AttendanceUI.Pages
                 //  var d = (DataGridView)sender;
                 //  var df = d.SelectedCells[0].Value.ToString();
                 //  if(df == "Edit") (df == "Delete")
-
-                if (!LoggedInUser.IsAdmin)
-                {
-                    Base.ShowError("Access Denied", "You do not have the required permission");
-                    return;
-                }
-
+                
                 //edit column 
                 if (e.ColumnIndex == 0)
                 {
+                    if (!LoggedInUser.IsSuperAdmin)
+                    {
+                        Base.ShowError("Access Denied", "You do not have the required permission");
+                        return;
+                    }
+
                     var id = dataGrid.Rows[e.RowIndex].Cells["id"].Value.ToString();
                     var item = _repo.GetStaff(id);
                     if (item != null)
@@ -137,6 +141,12 @@ namespace AttendanceUI.Pages
                 //delete column
                 if (e.ColumnIndex == 1)
                 {
+                    if (!LoggedInUser.IsSuperAdmin)
+                    {
+                        Base.ShowError("Access Denied", "You do not have the required permission");
+                        return;
+                    }
+
                     var result = Base.ShowDialog(MessageBoxButtons.YesNo, "Confirm Delete", "Are you sure you want to delete this record?");
                     if (result == DialogResult.Yes)
                     {
@@ -151,6 +161,22 @@ namespace AttendanceUI.Pages
 
                         else
                             Base.ShowError("Failed", response);
+                    }
+                }
+
+                //enroll fingerprint column 
+                if (e.ColumnIndex == 2)
+                {
+                    var id = dataGrid.Rows[e.RowIndex].Cells["id"].Value.ToString();
+                    if (LoggedInUser.IsSuperAdmin || LoggedInUser.UserId == id)
+                    {
+                        var enrollForm = new FrmEnrollFinger(id, false);
+                        enrollForm.ShowDialog();
+                    }
+
+                    else
+                    {
+                        Base.ShowError("Denied", "You cannot manage fingerprints for another staff ");
                     }
                 }
 

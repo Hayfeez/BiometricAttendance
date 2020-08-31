@@ -42,7 +42,7 @@ namespace AttendanceUI.Pages
                 {
                     dataGrid.DataSource = data;
                     dataGrid.Columns["Id"].Visible = false;
-                    dataGrid.Columns["MatricNumber"].HeaderText = "Matric Number";
+                    dataGrid.Columns["MatricNo"].HeaderText = "Matric Number";
                     dataGrid.Columns["PhoneNo"].HeaderText = "Phone Number";
                 }
                 else
@@ -51,12 +51,17 @@ namespace AttendanceUI.Pages
                     var dt = new DataTable();
                     dataGrid.Columns.Clear();
                     dt.Columns.Add("Message", typeof(string));
-                    dt.Rows.Add("No items found");
+                    dt.Rows.Add("No record found");
                     dataGrid.DataSource = dt;
                 }
 
                 _gridData = data.ConvertToDataTable(); //save records in datatable for searching, export etc
-                Base.AddEditDeleteToGrid(ref dataGrid, _noItems); //add edit,delete icon
+                Base.AddLinksToGrid(ref dataGrid, new List<string>
+                {
+                    "Edit",
+                    "Delete",
+                    "Manage Fingerprints"
+                }, _noItems); 
 
             }
             catch (Exception e)
@@ -154,6 +159,14 @@ namespace AttendanceUI.Pages
                         else
                             Base.ShowError("Failed", response);
                     }
+                }
+
+                //enroll fingerprint column 
+                if (e.ColumnIndex == 2)
+                {
+                    var id = dataGrid.Rows[e.RowIndex].Cells["id"].Value.ToString();
+                    var enrollForm = new FrmEnrollFinger(id);
+                    enrollForm.ShowDialog();
                 }
 
             }

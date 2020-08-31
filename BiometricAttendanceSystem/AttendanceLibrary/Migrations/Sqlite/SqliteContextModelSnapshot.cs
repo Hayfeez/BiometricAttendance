@@ -232,6 +232,22 @@ namespace AttendanceLibrary.Migrations.Sqlite
                     b.ToTable("User");
                 });
 
+            modelBuilder.Entity("AttendanceLibrary.Model.StaffFinger", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<byte[]>("Fingerprint")
+                        .HasColumnType("BLOB");
+
+                    b.Property<string>("StaffId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("StaffFinger");
+                });
+
             modelBuilder.Entity("AttendanceLibrary.Model.StudentDetail", b =>
                 {
                     b.Property<string>("Id")
@@ -255,7 +271,7 @@ namespace AttendanceLibrary.Migrations.Sqlite
                     b.Property<string>("Lastname")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("MatricNumber")
+                    b.Property<string>("MatricNo")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Othername")

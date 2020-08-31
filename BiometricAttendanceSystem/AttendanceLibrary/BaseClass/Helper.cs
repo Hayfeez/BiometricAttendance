@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -31,7 +32,7 @@ namespace AttendanceLibrary.BaseClass
 
         #region Database Helper
 
-        private const string SuperAdminId = "45da7b79-a641-4f9d-971a-8c85c7c516ab";
+        public const string SuperAdminId = "45da7b79-a641-4f9d-971a-8c85c7c516ab";
         private const int NoOfFinger = 2;
         private const string DefaultPassword = "12345678";
         private const string SuperAdminNo = "000001";
@@ -111,5 +112,16 @@ namespace AttendanceLibrary.BaseClass
         }
 
         #endregion
+
+        public static byte[] ConvertToByteArray(Bitmap value)
+        {
+            byte[] bitmapBytes;
+            using (System.IO.MemoryStream stream = new System.IO.MemoryStream())
+            {
+                value.Save(stream, System.Drawing.Imaging.ImageFormat.Bmp);
+                bitmapBytes = stream.ToArray();
+            }
+            return bitmapBytes;
+        }
     }
 }

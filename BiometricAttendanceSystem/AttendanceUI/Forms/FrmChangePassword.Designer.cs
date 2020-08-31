@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmChangePassword));
             this.panelForm = new System.Windows.Forms.Panel();
             this.panelBody = new System.Windows.Forms.Panel();
             this.checkPwd = new XanderUI.XUICheckBox();
@@ -101,6 +102,7 @@
             this.txtNew.Name = "txtNew";
             this.txtNew.Size = new System.Drawing.Size(203, 31);
             this.txtNew.TabIndex = 2;
+            this.txtNew.UseSystemPasswordChar = true;
             // 
             // label2
             // 
@@ -123,7 +125,7 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(203, 34);
             this.btnSave.TabIndex = 4;
-            this.btnSave.Text = "Save";
+            this.btnSave.Text = "Change Password";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -134,6 +136,7 @@
             this.txtOld.Name = "txtOld";
             this.txtOld.Size = new System.Drawing.Size(203, 31);
             this.txtOld.TabIndex = 1;
+            this.txtOld.UseSystemPasswordChar = true;
             // 
             // label3
             // 
@@ -236,6 +239,7 @@
             this.Controls.Add(this.panelForm);
             this.Font = new System.Drawing.Font("Calisto MT", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmChangePassword";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

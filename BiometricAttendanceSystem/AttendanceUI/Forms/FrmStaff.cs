@@ -112,6 +112,12 @@ namespace AttendanceUI.Forms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (!LoggedInUser.IsAdmin)
+            {
+                Base.ShowError("Access Denied", "You do not have the required permission");
+                return;
+            }
+
             var item = new StaffDetail()
             {
                 Id = _id,
@@ -141,6 +147,38 @@ namespace AttendanceUI.Forms
         private void iconExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            comboTitle.SelectedIndex = 0;
+            txtSurname.Text = "";
+            txtFirstname.Text = "";
+            txtOthername.Text = "";
+            txtStaffNo.Text ="";
+            txtEmail.Text = "";
+            txtPhoneNo.Text = "";
+            checkIsAdmin.Checked = false;
+            checkIsSystemAdmin.Checked = false;
+        }
+
+        private void checkIsAdmin_CheckedStateChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void checkIsSystemAdmin_CheckedStateChanged(object sender, EventArgs e)
+        {
+            if (checkIsSystemAdmin.Checked)
+            {
+                checkIsAdmin.Checked = true;
+                checkIsAdmin.Enabled = false;
+            }
+            else
+            {
+                checkIsAdmin.Checked = false;
+                checkIsAdmin.Enabled = true;
+            }
         }
     }
 }

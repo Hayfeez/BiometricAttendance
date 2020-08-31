@@ -17,16 +17,13 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new SqliteContext())
-                {
-                    if (context.Students.Any(a => a.MatricNo == newStudent.MatricNo || a.Email == newStudent.Email && !a.IsDeleted))
-                        return "Student with this Matric number or Email address exists";
+                using var context = new SqliteContext();
+                if (context.Students.Any(a => a.MatricNo == newStudent.MatricNo || a.Email == newStudent.Email && !a.IsDeleted))
+                    return "Student with this Matric number or Email address exists";
 
-                    newStudent.Id = Guid.NewGuid().ToString();
-                    context.Students.Add(newStudent);
-                    return context.SaveChanges() > 0 ? "" : "Student could not be added";
-                }
-
+                newStudent.Id = Guid.NewGuid().ToString();
+                context.Students.Add(newStudent);
+                return context.SaveChanges() > 0 ? "" : "Student could not be added";
             }
             catch (Exception ex)
             {
@@ -38,12 +35,8 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new SqliteContext())
-                {
-                    return "";
-
-                }
-
+                using var context = new SqliteContext();
+                return "";
             }
             catch (Exception ex)
             {
@@ -53,49 +46,40 @@ namespace AttendanceLibrary.Repository
 
         public string DeleteStudent(string studentId)
         {
-            using (var context = new SqliteContext())
+            using var context = new SqliteContext();
+            if (context.CourseRegistrations.Any(a => a.StudentId == studentId))
+                return "Student cannot be deleted because (s)he has registered for a course";
+
+            var student = context.Students.SingleOrDefault(a => a.Id == studentId);
+            if (student != null)
             {
-                if (context.CourseRegistrations.Any(a => a.StudentId == studentId))
-                    return "Student cannot be deleted because (s)he has registered for a course";
-
-                var student = context.Students.SingleOrDefault(a => a.Id == studentId);
-                if (student != null)
-                {
-                    student.IsDeleted = true;
-                    return context.SaveChanges() > 0 ? "" : "Student could not be deleted";
-                }
-
-                return "Student not found";
+                student.IsDeleted = true;
+                return context.SaveChanges() > 0 ? "" : "Student could not be deleted";
             }
 
+            return "Student not found";
         }
 
         public string GraduateStudent(string studentId)
         {
-            using (var context = new SqliteContext())
+            using var context = new SqliteContext();
+            var student = context.Students.SingleOrDefault(a => a.Id == studentId);
+            if (student != null)
             {
-                
-                var student = context.Students.SingleOrDefault(a => a.Id == studentId);
-                if (student != null)
-                {
-                    student.IsGraduated = true;
-                    return context.SaveChanges() > 0 ? "" : "Operation failed";
+                student.IsGraduated = true;
+                return context.SaveChanges() > 0 ? "" : "Operation failed";
                  
-                }
-
-                return "Student not found";
             }
 
+            return "Student not found";
         }
 
         public List<StudentDetail> GetAllStudents(bool isGraduate = false)
         {
             try
             {
-                using (var context = new SqliteContext())
-                {
-                    return context.Students.Where(a => !a.IsDeleted && a.IsGraduated == isGraduate).ToList();
-                }
+                using var context = new SqliteContext();
+                return context.Students.Where(a => !a.IsDeleted && a.IsGraduated == isGraduate).ToList();
             }
             catch (Exception ex)
             {
@@ -108,10 +92,8 @@ namespace AttendanceLibrary.Repository
             try
             {
                 //TODO: get student level id from current session and courseregistration
-                using (var context = new SqliteContext())
-                {
-                    return context.Students.Where(a => !a.IsDeleted && a.DepartmentId == departmentId && a.IsGraduated == isGraduate).ToList();
-                }
+                using var context = new SqliteContext();
+                return context.Students.Where(a => !a.IsDeleted && a.DepartmentId == departmentId && a.IsGraduated == isGraduate).ToList();
             }
             catch (Exception ex)
             {
@@ -124,27 +106,25 @@ namespace AttendanceLibrary.Repository
             try
             {
                 //TODO: get student level id from current session and courseregistration
-                using (var context = new SqliteContext())
-                {
-                    var dt = (context.Students
-                        .Join(context.Departments, st => st.DepartmentId, dep => dep.Id, (st, dep) => new
-                        {
-                            st,
-                            dep
-                        })
-                        .Where(x => (departmentId == "" || x.st.DepartmentId == departmentId) && x.st.IsGraduated == isGraduate && !x.st.IsDeleted)
-                        .Select(x => new StudentList
-                        {
-                            Id = x.st.Id,
-                            Department = x.dep.DepartmentName,
-                            Email = x.st.Email,
-                            PhoneNo = x.st.PhoneNo,
-                            MatricNo = x.st.MatricNo,
-                            Fullname = x.st.Lastname + ", " + x.st.Firstname + " " + x.st.Othername
-                        })).ToList();
+                using var context = new SqliteContext();
+                var dt = (context.Students
+                    .Join(context.Departments, st => st.DepartmentId, dep => dep.Id, (st, dep) => new
+                    {
+                        st,
+                        dep
+                    })
+                    .Where(x => (departmentId == "" || x.st.DepartmentId == departmentId) && x.st.IsGraduated == isGraduate && !x.st.IsDeleted)
+                    .Select(x => new StudentList
+                    {
+                        Id = x.st.Id,
+                        Department = x.dep.DepartmentName,
+                        Email = x.st.Email,
+                        PhoneNo = x.st.PhoneNo,
+                        MatricNo = x.st.MatricNo,
+                        Fullname = x.st.Lastname + ", " + x.st.Firstname + " " + x.st.Othername
+                    })).ToList();
 
-                    return dt;
-                }
+                return dt;
             }
             catch (Exception ex)
             {
@@ -156,10 +136,8 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new SqliteContext())
-                {
-                    return context.Students.SingleOrDefault(a => a.Id == studentId && !a.IsDeleted);
-                }
+                using var context = new SqliteContext();
+                return context.Students.SingleOrDefault(a => a.Id == studentId && !a.IsDeleted);
             }
             catch (Exception ex)
             {
@@ -171,10 +149,8 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new SqliteContext())
-                {
-                    return context.Students.SingleOrDefault(a => a.MatricNo == matricNo && !a.IsDeleted);
-                }
+                using var context = new SqliteContext();
+                return context.Students.SingleOrDefault(a => a.MatricNo == matricNo && !a.IsDeleted);
             }
             catch (Exception ex)
             {
@@ -184,25 +160,23 @@ namespace AttendanceLibrary.Repository
 
         public string UpdateStudent(StudentDetail student)
         {
-            using (var context = new SqliteContext())
-            {
-                var oldStudent = context.Students.SingleOrDefault(a => a.Id == student.Id && !a.IsDeleted);
-                if (oldStudent == null)
-                    return "Student not found";
+            using var context = new SqliteContext();
+            var oldStudent = context.Students.SingleOrDefault(a => a.Id == student.Id && !a.IsDeleted);
+            if (oldStudent == null)
+                return "Student not found";
 
-                if (context.Students.Any(a => a.MatricNo == student.MatricNo || a.Email == student.Email && !a.IsDeleted && a.Id != student.Id))
-                    return "Student with this Matric number or Email address exists";
+            if (context.Students.Any(a => a.MatricNo == student.MatricNo || a.Email == student.Email && !a.IsDeleted && a.Id != student.Id))
+                return "Student with this Matric number or Email address exists";
 
-                oldStudent.Email = student.Email.ToLower();
-                oldStudent.Firstname = student.Firstname.ToTitleCase();
-                oldStudent.Lastname = student.Lastname.ToTitleCase();
-                oldStudent.Othername = student.Othername.ToTitleCase();
-                oldStudent.MatricNo = student.MatricNo.ToUpper();
-                oldStudent.PhoneNo = student.PhoneNo;
-                oldStudent.DepartmentId = student.DepartmentId;
+            oldStudent.Email = student.Email.ToLower();
+            oldStudent.Firstname = student.Firstname.ToTitleCase();
+            oldStudent.Lastname = student.Lastname.ToTitleCase();
+            oldStudent.Othername = student.Othername.ToTitleCase();
+            oldStudent.MatricNo = student.MatricNo.ToUpper();
+            oldStudent.PhoneNo = student.PhoneNo;
+            oldStudent.DepartmentId = student.DepartmentId;
 
-                return context.SaveChanges() > 0 ? "" : "Student could not be updated";
-            }
+            return context.SaveChanges() > 0 ? "" : "Student could not be updated";
         }
     }
 }

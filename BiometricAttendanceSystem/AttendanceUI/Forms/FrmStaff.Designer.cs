@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmStaff));
             this.panelForm = new System.Windows.Forms.Panel();
             this.panelBody = new System.Windows.Forms.Panel();
             this.comboTitle = new System.Windows.Forms.ComboBox();
@@ -140,6 +141,7 @@
             this.checkIsSystemAdmin.TabIndex = 10;
             this.checkIsSystemAdmin.Text = "Is System Admin";
             this.checkIsSystemAdmin.TickThickness = 2;
+            this.checkIsSystemAdmin.CheckedStateChanged += new System.EventHandler(this.checkIsSystemAdmin_CheckedStateChanged);
             // 
             // checkIsAdmin
             // 
@@ -156,6 +158,7 @@
             this.checkIsAdmin.TabIndex = 9;
             this.checkIsAdmin.Text = "Is Admin";
             this.checkIsAdmin.TickThickness = 2;
+            this.checkIsAdmin.CheckedStateChanged += new System.EventHandler(this.checkIsAdmin_CheckedStateChanged);
             // 
             // btnClear
             // 
@@ -169,6 +172,7 @@
             this.btnClear.TabIndex = 12;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = false;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // txtPhoneNo
             // 
@@ -410,6 +414,7 @@
             this.Controls.Add(this.panelForm);
             this.Font = new System.Drawing.Font("Calisto MT", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmStaff";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

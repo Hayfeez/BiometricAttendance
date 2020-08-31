@@ -201,6 +201,12 @@ namespace AttendanceUI.Forms
 
         private void btnUpload_Click(object sender, EventArgs e)
         {
+            if (LoggedInUser.UserId == Helper.SuperAdminId)
+            {
+                Base.ShowError("Access Denied", "You cannot upload course registration");
+                return;
+            }
+
             if (_deptId == "")
             {
                 Base.ShowError("Required", "Please select a department");

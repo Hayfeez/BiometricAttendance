@@ -18,17 +18,13 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new SqliteContext())
-                {
-                    if (context.Courses.Any(a => a.CourseCode == newCourse.CourseCode || a.CourseTitle == newCourse.CourseTitle && a.DepartmentId == newCourse.DepartmentId && !a.IsDeleted))
-                        return "Course with this Title or Course Code exists";
+                using var context = new SqliteContext();
+                if (context.Courses.Any(a => a.CourseCode == newCourse.CourseCode || a.CourseTitle == newCourse.CourseTitle && a.DepartmentId == newCourse.DepartmentId && !a.IsDeleted))
+                    return "Course with this Title or Course Code exists";
 
-                    newCourse.Id = Guid.NewGuid().ToString();
-                    context.Courses.Add(newCourse);
-                    return context.SaveChanges() > 0 ? "" : "Course could not be added";
-
-                }                    
-                
+                newCourse.Id = Guid.NewGuid().ToString();
+                context.Courses.Add(newCourse);
+                return context.SaveChanges() > 0 ? "" : "Course could not be added";
             }
             catch (Exception ex)
             {
@@ -38,22 +34,19 @@ namespace AttendanceLibrary.Repository
 
         public string DeleteCourse(string courseId)
         {
-            using (var context = new SqliteContext())
+            using var context = new SqliteContext();
+            if (context.CourseRegistrations.Any(a => a.CourseId == courseId))
+                return "Course cannot be deleted because it has course registration records";
+
+            var course = context.Courses.SingleOrDefault(a => a.Id == courseId);
+            if (course != null)
             {
-                if (context.CourseRegistrations.Any(a => a.CourseId == courseId))
-                    return "Course cannot be deleted because it has course registration records";
+                //context.Staff.Remove(staff);
+                course.IsDeleted = true;
+                return context.SaveChanges() > 0 ? "" : "Course could not be deleted";
+            }
 
-                var course = context.Courses.SingleOrDefault(a => a.Id == courseId);
-                if (course != null)
-                {
-                    //context.Staff.Remove(staff);
-                    course.IsDeleted = true;
-                    return context.SaveChanges() > 0 ? "" : "Course could not be deleted";
-                }
-
-                return "Course not found";
-            }                            
-            
+            return "Course not found";
         }
 
         //public List<CourseList> GetAllCourses()
@@ -101,22 +94,19 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new SqliteContext())
-                {
-                    return (from c in context.Courses
-                            where !c.IsDeleted && (departmentId == "" || c.DepartmentId == departmentId) && (levelId == "" || c.LevelId == levelId)
-                            join d in context.Departments on c.DepartmentId equals d.Id
-                            join l in context.Levels on c.LevelId equals l.Id
-                            select new CourseList
-                            {
-                                CourseCode = c.CourseCode,
-                                CourseTitle = c.CourseTitle,
-                                Id = c.Id,
-                                Department = d.DepartmentName,
-                                Level = l.Level
-                            }).ToList();
-
-                }
+                using var context = new SqliteContext();
+                return (from c in context.Courses
+                        where !c.IsDeleted && (departmentId == "" || c.DepartmentId == departmentId) && (levelId == "" || c.LevelId == levelId)
+                        join d in context.Departments on c.DepartmentId equals d.Id
+                        join l in context.Levels on c.LevelId equals l.Id
+                        select new CourseList
+                        {
+                            CourseCode = c.CourseCode,
+                            CourseTitle = c.CourseTitle,
+                            Id = c.Id,
+                            Department = d.DepartmentName,
+                            Level = l.Level
+                        }).ToList();
             }
             catch (Exception ex)
             {
@@ -128,12 +118,10 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new SqliteContext())
-                {
-                    return context.Courses
-                        .Where(c => !c.IsDeleted && (departmentId == "" || c.DepartmentId == departmentId) && (levelId == "" || c.LevelId == levelId))
-                        .ToList();
-                }
+                using var context = new SqliteContext();
+                return context.Courses
+                    .Where(c => !c.IsDeleted && (departmentId == "" || c.DepartmentId == departmentId) && (levelId == "" || c.LevelId == levelId))
+                    .ToList();
             }
             catch (Exception ex)
             {
@@ -145,10 +133,8 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new SqliteContext())
-                {
-                    return context.Courses.SingleOrDefault(a => a.Id == courseId  && !a.IsDeleted);
-                }
+                using var context = new SqliteContext();
+                return context.Courses.SingleOrDefault(a => a.Id == courseId  && !a.IsDeleted);
             }
             catch (Exception ex)
             {
@@ -158,23 +144,20 @@ namespace AttendanceLibrary.Repository
 
         public string UpdateCourse(Course course)
         {
-            using (var context = new SqliteContext())
-            {
-                var oldCourse = context.Courses.SingleOrDefault(a => a.Id == course.Id && !a.IsDeleted);
-                if (oldCourse == null)
-                    return "Course not found";
+            using var context = new SqliteContext();
+            var oldCourse = context.Courses.SingleOrDefault(a => a.Id == course.Id && !a.IsDeleted);
+            if (oldCourse == null)
+                return "Course not found";
 
-                if (context.Courses.Any(a => !a.IsDeleted && a.Id != course.Id && (a.CourseTitle == course.CourseTitle || a.CourseCode == course.CourseCode)))
-                    return "Course with this Title or Course Code exists";
+            if (context.Courses.Any(a => !a.IsDeleted && a.Id != course.Id && (a.CourseTitle == course.CourseTitle || a.CourseCode == course.CourseCode)))
+                return "Course with this Title or Course Code exists";
 
-                //oldCourse.DepartmentId = course.DepartmentId;
-                //oldCourse.LevelId = course.LevelId;
-                oldCourse.CourseCode = course.CourseCode;
-                oldCourse.CourseTitle = course.CourseTitle.ToTitleCase();
+            //oldCourse.DepartmentId = course.DepartmentId;
+            //oldCourse.LevelId = course.LevelId;
+            oldCourse.CourseCode = course.CourseCode;
+            oldCourse.CourseTitle = course.CourseTitle.ToTitleCase();
 
-                return context.SaveChanges() > 0 ? "" : "Course could not be updated";
-
-            }
+            return context.SaveChanges() > 0 ? "" : "Course could not be updated";
         }
 
     }

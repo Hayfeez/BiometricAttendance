@@ -18,4 +18,11 @@ namespace AttendanceLibrary.Model.ViewModels
         public DateTime DateRegistered { get; set; }
 
     }
+
+    public class StaffCourseRegCount
+    {
+        public string CourseTitle { get; set; }
+        public int Count { get; set; }
+
+    }
 }

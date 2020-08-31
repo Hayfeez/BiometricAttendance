@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing.Text;
 using System.Windows.Forms;
@@ -46,6 +47,13 @@ namespace AttendanceUI.Pages
                 {
                     dataGrid.DataSource = data;
                     dataGrid.Columns["Id"].Visible = false;
+
+                    dataGrid.Columns["StudentName"].HeaderText = "Student Name";
+                    dataGrid.Columns["StudentMatricNo"].HeaderText = "Matric No.";
+                    dataGrid.Columns["CourseTitle"].HeaderText = "Course Title";
+                    dataGrid.Columns["StudentLevel"].HeaderText = "Student Level";
+                    dataGrid.Columns["DateRegistered"].HeaderText = "Date Registered";
+                    dataGrid.Columns["RegisteredBy"].Visible = false;
                 }
                 else
                 {
@@ -53,12 +61,15 @@ namespace AttendanceUI.Pages
                     var dt = new DataTable();
                     dataGrid.Columns.Clear();
                     dt.Columns.Add("Message", typeof(string));
-                    dt.Rows.Add("No items found");
+                    dt.Rows.Add("No record found");
                     dataGrid.DataSource = dt;
                 }
 
                 _gridData = data.ConvertToDataTable(); //save records in datatable for searching, export etc
-                Base.AddDeleteToGrid(ref dataGrid, _noItems); //add delete icon
+                Base.AddLinksToGrid(ref dataGrid, new List<string>
+                {
+                    "Delete",
+                }, _noItems);
 
             }
             catch (Exception e)
@@ -92,6 +103,11 @@ namespace AttendanceUI.Pages
             if (!LoggedInUser.IsAdmin)
             {
                 Base.ShowError("Access Denied", "You do not have the required permission");
+                return;
+            }
+            if (LoggedInUser.UserId == Helper.SuperAdminId)
+            {
+                Base.ShowError("Access Denied", "You cannot import course registration");
                 return;
             }
             var courseRegForm = new FrmUploadCourseReg();

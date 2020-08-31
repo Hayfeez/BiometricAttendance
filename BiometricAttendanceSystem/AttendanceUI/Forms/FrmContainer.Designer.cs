@@ -45,7 +45,6 @@ namespace AttendanceUI.Forms
             this.btnDept = new XanderUI.XUIButton();
             this.btnHome = new XanderUI.XUIButton();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.iconUserImage = new FontAwesome.Sharp.IconPictureBox();
             this.iconMenu = new FontAwesome.Sharp.IconPictureBox();
             this.panelRight = new System.Windows.Forms.Panel();
             this.panelControls = new System.Windows.Forms.Panel();
@@ -67,7 +66,6 @@ namespace AttendanceUI.Forms
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panelMenu.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconUserImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconMenu)).BeginInit();
             this.panelRight.SuspendLayout();
             this.panelWelcome.SuspendLayout();
@@ -184,7 +182,7 @@ namespace AttendanceUI.Forms
             this.btnAttendance.BackgroundColor = System.Drawing.Color.Transparent;
             this.btnAttendance.ButtonImage = ((System.Drawing.Image)(resources.GetObject("btnAttendance.ButtonImage")));
             this.btnAttendance.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
-            this.btnAttendance.ButtonText = "Atttendance";
+            this.btnAttendance.ButtonText = "Take Atttendance";
             this.btnAttendance.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(201)))), ((int)(((byte)(60)))));
             this.btnAttendance.ClickTextColor = System.Drawing.Color.DodgerBlue;
             this.btnAttendance.CornerRadius = 5;
@@ -314,7 +312,6 @@ namespace AttendanceUI.Forms
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.Controls.Add(this.iconUserImage);
             this.panel1.Controls.Add(this.iconMenu);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(5, 5);
@@ -323,19 +320,6 @@ namespace AttendanceUI.Forms
             this.panel1.Size = new System.Drawing.Size(331, 178);
             this.panel1.TabIndex = 0;
             // 
-            // iconUserImage
-            // 
-            this.iconUserImage.BackColor = System.Drawing.Color.Transparent;
-            this.iconUserImage.ForeColor = System.Drawing.Color.Black;
-            this.iconUserImage.IconChar = FontAwesome.Sharp.IconChar.UserCircle;
-            this.iconUserImage.IconColor = System.Drawing.Color.Black;
-            this.iconUserImage.IconSize = 98;
-            this.iconUserImage.Location = new System.Drawing.Point(84, 30);
-            this.iconUserImage.Name = "iconUserImage";
-            this.iconUserImage.Size = new System.Drawing.Size(98, 103);
-            this.iconUserImage.TabIndex = 2;
-            this.iconUserImage.TabStop = false;
-            // 
             // iconMenu
             // 
             this.iconMenu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -343,10 +327,10 @@ namespace AttendanceUI.Forms
             this.iconMenu.ForeColor = System.Drawing.Color.Black;
             this.iconMenu.IconChar = FontAwesome.Sharp.IconChar.Bars;
             this.iconMenu.IconColor = System.Drawing.Color.Black;
-            this.iconMenu.IconSize = 35;
+            this.iconMenu.IconSize = 44;
             this.iconMenu.Location = new System.Drawing.Point(284, 6);
             this.iconMenu.Name = "iconMenu";
-            this.iconMenu.Size = new System.Drawing.Size(44, 35);
+            this.iconMenu.Size = new System.Drawing.Size(44, 51);
             this.iconMenu.TabIndex = 1;
             this.iconMenu.TabStop = false;
             this.iconMenu.Click += new System.EventHandler(this.iconMenu_Click);
@@ -438,7 +422,7 @@ namespace AttendanceUI.Forms
             // 
             this.iconUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.iconUser.BackColor = System.Drawing.Color.Transparent;
-            this.iconUser.IconChar = FontAwesome.Sharp.IconChar.UserAlt;
+            this.iconUser.IconChar = FontAwesome.Sharp.IconChar.Key;
             this.iconUser.IconColor = System.Drawing.Color.White;
             this.iconUser.IconSize = 35;
             this.iconUser.Location = new System.Drawing.Point(634, 25);
@@ -555,7 +539,7 @@ namespace AttendanceUI.Forms
             this.lblFooter.AutoSize = true;
             this.lblFooter.Font = new System.Drawing.Font("Bookman Old Style", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFooter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(201)))), ((int)(((byte)(60)))));
-            this.lblFooter.Location = new System.Drawing.Point(571, 12);
+            this.lblFooter.Location = new System.Drawing.Point(577, 10);
             this.lblFooter.Name = "lblFooter";
             this.lblFooter.Size = new System.Drawing.Size(157, 20);
             this.lblFooter.TabIndex = 0;
@@ -580,13 +564,13 @@ namespace AttendanceUI.Forms
             this.Controls.Add(this.panelMenu);
             this.Font = new System.Drawing.Font("Calisto MT", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmContainer";
             this.Text = "Dashboard";
             this.Load += new System.EventHandler(this.Dashboard_Load);
             this.panelMenu.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.iconUserImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconMenu)).EndInit();
             this.panelRight.ResumeLayout(false);
             this.panelWelcome.ResumeLayout(false);
@@ -620,7 +604,6 @@ namespace AttendanceUI.Forms
         private XanderUI.XUIButton btnHome;
         private System.Windows.Forms.Label lblRole;
         private System.Windows.Forms.Label lblUsername;
-        private FontAwesome.Sharp.IconPictureBox iconUserImage;
         private System.Windows.Forms.Panel panelWelcome;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel panelFooter;

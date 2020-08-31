@@ -4,11 +4,6 @@ using System.Windows.Forms;
 
 namespace AttendanceUI.BaseClass
 {
-
-    public static class ErrorLoggerBase
-    {
-        public static ErrorLogger logger = new ErrorLogger(Application.StartupPath + "\\BASErrorLogs");
-    }
     public class ErrorLogger
     {
         private string _DestFolder;

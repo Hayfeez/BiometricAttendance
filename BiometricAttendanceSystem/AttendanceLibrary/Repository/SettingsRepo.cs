@@ -16,10 +16,8 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using (var context = new SqliteContext())
-                {
-                    return context.SystemSettings.FirstOrDefault();
-                }
+                using var context = new SqliteContext();
+                return context.SystemSettings.FirstOrDefault();
             }
             catch (Exception ex)
             {
@@ -29,24 +27,22 @@ namespace AttendanceLibrary.Repository
 
         public string UpdateSetting(SystemSetting setting)
         {
-            using (var context = new SqliteContext())
-            {
-                var oldSetting = context.SystemSettings.FirstOrDefault();
-                if (oldSetting == null)
-                    return "Setting not found";
+            using var context = new SqliteContext();
+            var oldSetting = context.SystemSettings.FirstOrDefault();
+            if (oldSetting == null)
+                return "Setting not found";
 
-                if (setting.NoOfFinger > 5)
-                    return "Number of fingers cannot be more than 5";
+            if (setting.NoOfFinger > 5)
+                return "Number of fingers cannot be more than 5";
 
-                oldSetting.SuperAdminFirstname = setting.SuperAdminFirstname;
-                oldSetting.SuperAdminLastname = setting.SuperAdminLastname;
-                oldSetting.SuperAdminEmail = setting.SuperAdminEmail;
-                oldSetting.SuperAdminPassword = PasswordHash.sha256(setting.SuperAdminPassword);
-                oldSetting.UserDefaultPassword = PasswordHash.sha256(setting.UserDefaultPassword);
-                oldSetting.NoOfFinger = setting.NoOfFinger;
+            oldSetting.SuperAdminFirstname = setting.SuperAdminFirstname;
+            oldSetting.SuperAdminLastname = setting.SuperAdminLastname;
+            oldSetting.SuperAdminEmail = setting.SuperAdminEmail;
+            oldSetting.SuperAdminPassword = PasswordHash.sha256(setting.SuperAdminPassword);
+            oldSetting.UserDefaultPassword = PasswordHash.sha256(setting.UserDefaultPassword);
+            oldSetting.NoOfFinger = setting.NoOfFinger;
 
-                return context.SaveChanges() > 0 ? "" : "Settings could not be updated";
-            }
+            return context.SaveChanges() > 0 ? "" : "Settings could not be updated";
         }
     }
 }

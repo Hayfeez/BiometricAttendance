@@ -181,6 +181,34 @@ namespace AttendanceUI.BaseClass
             dropDown.SelectedIndex = 0;
         }
 
+        public static void LoadStaffCourses(ref ComboBox dropDown, string staffId, string levelId = "",  bool includeAll = false)
+        {
+            var repo = new StaffCourseRepo();
+            var allItems = repo.GetCoursesByStaff(staffId, levelId);
+
+            if (includeAll)
+            {
+                allItems.Insert(0, new StaffCourseList
+                {
+                    CourseTitle = "All Courses",
+                    Id = Base.IdForSelectAll
+                });
+            }
+            else
+            {
+                allItems.Insert(0, new StaffCourseList()
+                {
+                    CourseTitle = "Select Course",
+                    Id = Base.IdForSelect
+                });
+            }
+
+            dropDown.DataSource = allItems;
+            dropDown.DisplayMember = "CourseTitle";
+            dropDown.ValueMember = "CourseId";
+            dropDown.SelectedIndex = 0;
+        }
+
         public static void LoadStudents(ref ComboBox dropDown, string deptId, string levelId = "", bool includeGrad = false, bool includeAll = false)
         {
             var repo = new StudentRepo();

@@ -25,7 +25,7 @@ namespace AttendanceUI.Forms
         {
             try
             {
-                var data = _repo.GetCoursesByStaff(LoggedInUser.UserId);
+                var data = _repo.GetCoursesByStaff(LoggedInUser.UserId, "");
                 if (data != null && data.Count > 0)
                 {
                     dataGridCourses.DataSource = data;
@@ -37,11 +37,15 @@ namespace AttendanceUI.Forms
                     var dt = new DataTable();
                     dataGridCourses.Columns.Clear();
                     dt.Columns.Add("Message", typeof(string));
-                    dt.Rows.Add("No items found");
+                    dt.Rows.Add("No record found");
                     dataGridCourses.DataSource = dt;
                 }
 
-                Base.AddEditDeleteToGrid(ref dataGridCourses, _noItems);
+                Base.AddLinksToGrid(ref dataGridCourses, new List<string>
+                {
+                    "Edit",
+                    "Delete"
+                }, _noItems); //add edit,delete icon
 
             }
             catch (Exception e)

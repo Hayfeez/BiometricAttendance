@@ -16,6 +16,8 @@ namespace AttendanceLibrary.Model
         public string Id { get; set; }
         public string StudentId { get; set; }
         public byte[] FingerTemplate { get; set; }
+
+        [NotMapped] public string MatricNo { get; set; }
      //   [NotMapped]
      //   public Bitmap FingerTemplateBitmap { get; set; }
     }

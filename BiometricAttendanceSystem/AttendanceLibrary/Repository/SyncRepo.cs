@@ -14,23 +14,19 @@ namespace AttendanceLibrary.Repository
     {
         public void SaveSync(AppSync sync)
         {
-            using (var context = new SqliteContext())
-            {
-                sync.Id = Guid.NewGuid().ToString();
-                context.AppSyncs.Add(sync);
-                context.SaveChanges();
-            }
+            using var context = new SqliteContext();
+            sync.Id = Guid.NewGuid().ToString();
+            context.AppSyncs.Add(sync);
+            context.SaveChanges();
         }
 
         public void DeleteOldSync()
         {
-            using (var context = new SqliteContext())
-            {
-                var cutOffDate = DateTime.Now.AddDays(-7);
-                var oldSyncs = context.AppSyncs.Where(x => x.SyncDate <= cutOffDate).ToList();
-                context.AppSyncs.RemoveRange(oldSyncs);
-                context.SaveChanges();
-            }
+            using var context = new SqliteContext();
+            var cutOffDate = DateTime.Now.AddDays(-7);
+            var oldSyncs = context.AppSyncs.Where(x => x.SyncDate <= cutOffDate).ToList();
+            context.AppSyncs.RemoveRange(oldSyncs);
+            context.SaveChanges();
         }
     }
 }
