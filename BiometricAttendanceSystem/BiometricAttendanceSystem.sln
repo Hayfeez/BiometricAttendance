@@ -3,10 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29102.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AttendanceSystem", "AttendanceSystem\AttendanceSystem.csproj", "{F5D41D3A-85A6-491D-9B75-2A1D0AF0FA38}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentAttendance", "StudentAttendance\StudentAttendance.csproj", "{76D66DFF-4EB8-4934-8F74-ACA3C030E0A3}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AttendanceLibrary", "AttendanceLibrary\AttendanceLibrary.csproj", "{36170858-AC69-4B53-BDD7-5195515A1B13}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AttendanceUI", "AttendanceUI\AttendanceUI.csproj", "{D3707263-23BF-4429-86BB-99D6E5A60ACE}"
@@ -17,14 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F5D41D3A-85A6-491D-9B75-2A1D0AF0FA38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F5D41D3A-85A6-491D-9B75-2A1D0AF0FA38}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F5D41D3A-85A6-491D-9B75-2A1D0AF0FA38}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F5D41D3A-85A6-491D-9B75-2A1D0AF0FA38}.Release|Any CPU.Build.0 = Release|Any CPU
-		{76D66DFF-4EB8-4934-8F74-ACA3C030E0A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{76D66DFF-4EB8-4934-8F74-ACA3C030E0A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{76D66DFF-4EB8-4934-8F74-ACA3C030E0A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{76D66DFF-4EB8-4934-8F74-ACA3C030E0A3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{36170858-AC69-4B53-BDD7-5195515A1B13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{36170858-AC69-4B53-BDD7-5195515A1B13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36170858-AC69-4B53-BDD7-5195515A1B13}.Release|Any CPU.ActiveCfg = Release|Any CPU
