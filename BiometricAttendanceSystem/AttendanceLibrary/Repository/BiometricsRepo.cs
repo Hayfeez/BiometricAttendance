@@ -24,6 +24,12 @@ namespace AttendanceLibrary.Repository
                 if (data.Count() != fingerCount)
                     return "Fingers not equal to the required number of fingers";
 
+                foreach (var d in data)
+                {
+                    if (context.StudentFingers.Any(x => x.FingerTemplate == d.FingerTemplate))
+                        return "This fingerprint has been used for another student";
+                }
+               
                 var studentFingers = context.StudentFingers.Where(a => a.StudentId == data[0].StudentId);
                 foreach (var item in studentFingers)
                 {
@@ -69,12 +75,12 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public List<StudentFinger> GetStudentFingers(string id)
+        public List<StudentFinger> GetStudentFingers(string id = "")
 		{
 			try
             {
                 using var context = new SqliteContext();
-                return context.StudentFingers.Where(x=>x.StudentId == id).ToList();
+                return context.StudentFingers.Where(x=>x.StudentId == id || id == "").ToList();
             }
 			catch (Exception ex)
 			{
@@ -131,6 +137,12 @@ namespace AttendanceLibrary.Repository
             try
             {
                 using var context = new SqliteContext();
+                foreach (var d in data)
+                {
+                    if (context.StaffFingers.Any(x => x.Fingerprint == d.Fingerprint))
+                        return "This fingerprint has been used for another staff";
+                }
+
                 var staffFingers = context.StaffFingers.Where(a => a.StaffId == data[0].StaffId);
                 foreach (var item in staffFingers)
                 {

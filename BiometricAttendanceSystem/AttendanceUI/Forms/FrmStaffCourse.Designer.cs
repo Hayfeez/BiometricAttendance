@@ -112,7 +112,7 @@
             this.btnCourse.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
             this.btnCourse.Location = new System.Drawing.Point(7, 88);
             this.btnCourse.Name = "btnCourse";
-            this.btnCourse.Size = new System.Drawing.Size(225, 50);
+            this.btnCourse.Size = new System.Drawing.Size(192, 50);
             this.btnCourse.TabIndex = 1;
             this.btnCourse.TextColor = System.Drawing.Color.White;
             this.btnCourse.Vertical_Alignment = System.Drawing.StringAlignment.Center;
@@ -132,9 +132,9 @@
             this.btnAddNew.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.btnAddNew.HoverTextColor = System.Drawing.Color.DodgerBlue;
             this.btnAddNew.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnAddNew.Location = new System.Drawing.Point(238, 87);
+            this.btnAddNew.Location = new System.Drawing.Point(205, 87);
             this.btnAddNew.Name = "btnAddNew";
-            this.btnAddNew.Size = new System.Drawing.Size(186, 50);
+            this.btnAddNew.Size = new System.Drawing.Size(183, 50);
             this.btnAddNew.TabIndex = 2;
             this.btnAddNew.TextColor = System.Drawing.Color.White;
             this.btnAddNew.Vertical_Alignment = System.Drawing.StringAlignment.Center;

@@ -20,4 +20,21 @@ namespace AttendanceLibrary.Model.ViewModels
 
         public string TimeIn { get; set; }
     }
+
+    public class AttendanceReport
+    {
+        public string SessionSemester { get; set; }
+        public string Course { get; set; }
+        public string DepartmentName { get; set; }
+        public string StudentName { get; set; }
+        public string StudentMatricNo { get; set; }
+        public string MarkedBy { get; set; }
+        public string StudentLevel { get; set; }
+
+        public int Count { get; set; }
+
+        public string Dates { get; set; }
+        
+    }
+
 }

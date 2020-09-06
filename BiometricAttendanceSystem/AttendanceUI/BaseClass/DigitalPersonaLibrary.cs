@@ -71,7 +71,7 @@
 
             private Label _fingerCount;
 
-            // to enroll
+            // to enroll 
             public DigitalPersonaLibrary(TextBox txtLog, PictureBox derivedPic, Label fingerCount)
             {
                 _isEnrollment = true;
@@ -89,8 +89,9 @@
                 Application.DoEvents();
             }
 
-            // to sign attendance
-            public DigitalPersonaLibrary(TextBox txtLog, PictureBox derivedPic, List<StudentFinger> fingers)
+
+        // to sign attendance
+        public DigitalPersonaLibrary(TextBox txtLog, PictureBox derivedPic, List<StudentFinger> fingers)
             {
                 _isEnrollment = false;
                 FingerBitmap = null;
@@ -107,7 +108,7 @@
                 Application.DoEvents();
             }
 
-            // to login
+            // to login staff
             public DigitalPersonaLibrary(TextBox txtLog, PictureBox derivedPic, List<StaffFinger> fingers)
             {
                 _isEnrollment = false;

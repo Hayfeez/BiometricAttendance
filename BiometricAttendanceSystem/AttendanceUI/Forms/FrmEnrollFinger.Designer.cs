@@ -122,7 +122,7 @@
             this.grpMain.Margin = new System.Windows.Forms.Padding(4);
             this.grpMain.Name = "grpMain";
             this.grpMain.Padding = new System.Windows.Forms.Padding(4);
-            this.grpMain.Size = new System.Drawing.Size(997, 351);
+            this.grpMain.Size = new System.Drawing.Size(997, 377);
             this.grpMain.TabIndex = 1;
             this.grpMain.TabStop = false;
             this.grpMain.Text = "Data Capture";
@@ -217,7 +217,7 @@
             this.txtLog.Name = "txtLog";
             this.txtLog.ReadOnly = true;
             this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtLog.Size = new System.Drawing.Size(690, 159);
+            this.txtLog.Size = new System.Drawing.Size(690, 185);
             this.txtLog.TabIndex = 0;
             // 
             // lbClass
@@ -295,7 +295,7 @@
             // panel4
             // 
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 527);
+            this.panel4.Location = new System.Drawing.Point(0, 553);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(997, 22);
             this.panel4.TabIndex = 0;

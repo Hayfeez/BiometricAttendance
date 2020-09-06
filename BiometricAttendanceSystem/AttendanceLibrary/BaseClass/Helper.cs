@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +12,22 @@ using AttendanceLibrary.Model;
 
 namespace AttendanceLibrary.BaseClass
 {
+    public enum ReportType
+    {
+        [Description("Student Attendance Record")]
+        StudentAttendanceByCourse = 1,
+        [Description("Staff Attendance Record")]
+        StaffAttendanceByCourse = 2
+
+    }
+
+    public class EnumValueModel
+    {
+        public string Name { get; set; }
+
+        public object Value { get; set; }
+    }
+
     public static class Helper
     {
         #region MyRegion
@@ -112,7 +130,7 @@ namespace AttendanceLibrary.BaseClass
         }
 
         #endregion
-
+        
         public static byte[] ConvertToByteArray(Bitmap value)
         {
             byte[] bitmapBytes;
@@ -122,6 +140,30 @@ namespace AttendanceLibrary.BaseClass
                 bitmapBytes = stream.ToArray();
             }
             return bitmapBytes;
+        }
+
+        public static List<EnumValueModel> GetEnumValuesAndDescriptions<T>()
+        {
+            Type enumType = typeof(T);
+
+            if (enumType.BaseType != typeof(Enum))
+                throw new ArgumentException("T is not System.Enum");
+
+            var enumValList = new List<EnumValueModel>();
+
+            foreach (var e in Enum.GetValues(typeof(T)))
+            {
+                var fi = e.GetType().GetField(e.ToString());
+                var attributes = (DescriptionAttribute[])fi.GetCustomAttributes(typeof(DescriptionAttribute), false);
+
+                enumValList.Add(new EnumValueModel
+                {
+                    Value = (int) e,
+                    Name = (attributes.Length > 0) ? attributes[0].Description : e.ToString()
+                });
+            }
+
+            return enumValList;
         }
     }
 }

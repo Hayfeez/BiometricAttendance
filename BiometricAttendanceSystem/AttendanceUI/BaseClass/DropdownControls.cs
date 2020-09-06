@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using AttendanceLibrary.BaseClass;
 using AttendanceLibrary.Model;
 using AttendanceLibrary.Model.ViewModels;
 using AttendanceLibrary.Repository;
@@ -237,5 +238,21 @@ namespace AttendanceUI.BaseClass
             dropDown.SelectedIndex = 0;
         }
 
+        public static void LoadReportType(ref ComboBox dropDown)
+        {
+            var repo = new ReportRepo();
+            var allItems = repo.GetReportType().ToList();
+
+            allItems.Insert(0, new EnumValueModel
+            {
+                Name = "Select Report type",
+                Value = 0
+            });
+
+            dropDown.DataSource = allItems;
+            dropDown.DisplayMember = "Name";
+            dropDown.ValueMember = "Value";
+            dropDown.SelectedIndex = 0;
+        }
     }
 }

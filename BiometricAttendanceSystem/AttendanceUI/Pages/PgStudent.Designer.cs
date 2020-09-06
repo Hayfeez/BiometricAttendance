@@ -40,9 +40,9 @@
             this.panelBody = new System.Windows.Forms.Panel();
             this.dataGrid = new System.Windows.Forms.DataGridView();
             this.panelFilter = new System.Windows.Forms.Panel();
+            this.comboLevel = new System.Windows.Forms.ComboBox();
             this.btnLoad = new System.Windows.Forms.Button();
             this.comboDept = new System.Windows.Forms.ComboBox();
-            this.comboLevel = new System.Windows.Forms.ComboBox();
             this.panelHeader.SuspendLayout();
             this.panelBody.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
@@ -129,7 +129,7 @@
             this.btnAdd.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
             this.btnAdd.Location = new System.Drawing.Point(7, 87);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(163, 50);
+            this.btnAdd.Size = new System.Drawing.Size(138, 50);
             this.btnAdd.TabIndex = 1;
             this.btnAdd.TextColor = System.Drawing.Color.White;
             this.btnAdd.Vertical_Alignment = System.Drawing.StringAlignment.Center;
@@ -192,6 +192,16 @@
             this.panelFilter.Size = new System.Drawing.Size(922, 79);
             this.panelFilter.TabIndex = 1;
             // 
+            // comboLevel
+            // 
+            this.comboLevel.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboLevel.FormattingEnabled = true;
+            this.comboLevel.Location = new System.Drawing.Point(380, 25);
+            this.comboLevel.Name = "comboLevel";
+            this.comboLevel.Size = new System.Drawing.Size(251, 31);
+            this.comboLevel.TabIndex = 2;
+            this.comboLevel.Visible = false;
+            // 
             // btnLoad
             // 
             this.btnLoad.Location = new System.Drawing.Point(289, 25);
@@ -210,16 +220,6 @@
             this.comboDept.Name = "comboDept";
             this.comboDept.Size = new System.Drawing.Size(251, 31);
             this.comboDept.TabIndex = 0;
-            // 
-            // comboLevel
-            // 
-            this.comboLevel.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboLevel.FormattingEnabled = true;
-            this.comboLevel.Location = new System.Drawing.Point(380, 25);
-            this.comboLevel.Name = "comboLevel";
-            this.comboLevel.Size = new System.Drawing.Size(251, 31);
-            this.comboLevel.TabIndex = 2;
-            this.comboLevel.Visible = false;
             // 
             // PgStudent
             // 

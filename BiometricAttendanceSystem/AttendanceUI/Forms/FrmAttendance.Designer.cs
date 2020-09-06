@@ -53,11 +53,11 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.dataGrid = new System.Windows.Forms.DataGridView();
             this.panelFilter = new System.Windows.Forms.Panel();
+            this.btnLoad = new System.Windows.Forms.Button();
             this.btnStopAttendance = new System.Windows.Forms.Button();
             this.comboLevel = new System.Windows.Forms.ComboBox();
             this.btnTakeAttendance = new System.Windows.Forms.Button();
             this.comboCourse = new System.Windows.Forms.ComboBox();
-            this.btnLoad = new System.Windows.Forms.Button();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconExit)).BeginInit();
             this.panelBody.SuspendLayout();
@@ -388,6 +388,16 @@
             this.panelFilter.Size = new System.Drawing.Size(1158, 79);
             this.panelFilter.TabIndex = 1;
             // 
+            // btnLoad
+            // 
+            this.btnLoad.Location = new System.Drawing.Point(979, 41);
+            this.btnLoad.Name = "btnLoad";
+            this.btnLoad.Size = new System.Drawing.Size(171, 31);
+            this.btnLoad.TabIndex = 4;
+            this.btnLoad.Text = "Load Attendance";
+            this.btnLoad.UseVisualStyleBackColor = true;
+            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
+            // 
             // btnStopAttendance
             // 
             this.btnStopAttendance.Location = new System.Drawing.Point(733, 25);
@@ -429,16 +439,6 @@
             this.comboCourse.Size = new System.Drawing.Size(251, 31);
             this.comboCourse.TabIndex = 2;
             this.comboCourse.SelectedIndexChanged += new System.EventHandler(this.comboCourse_SelectedIndexChanged);
-            // 
-            // btnLoad
-            // 
-            this.btnLoad.Location = new System.Drawing.Point(979, 41);
-            this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(171, 31);
-            this.btnLoad.TabIndex = 4;
-            this.btnLoad.Text = "Load Attendance";
-            this.btnLoad.UseVisualStyleBackColor = true;
-            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
             // FrmAttendance
             // 

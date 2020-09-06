@@ -382,7 +382,7 @@ namespace AttendanceUI.BaseClass
                 if (file.ShowDialog() == DialogResult.OK)
                 {
                     XLWorkbook wb = new XLWorkbook();
-                    wb.Worksheets.Add(data, reportName);
+                    wb.Worksheets.Add(data, reportName.Substring(0,20));
                     wb.SaveAs(file.FileName);
                     return true;
                 }

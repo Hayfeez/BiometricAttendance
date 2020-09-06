@@ -16,14 +16,11 @@ namespace AttendanceUI.Pages
     public partial class PgHome : UserControl
     {
         private readonly DashboardRepo _repo;
-        private readonly CourseRegRepo _courseRegRepo;
-        private readonly AttendanceRepo _attendanceRepo;
+
         public PgHome()
         {
             InitializeComponent();
             _repo = new DashboardRepo();
-            _courseRegRepo = new CourseRegRepo();
-            _attendanceRepo = new AttendanceRepo();
         }
 
         private void PgHome_Load(object sender, EventArgs e)
@@ -46,11 +43,13 @@ namespace AttendanceUI.Pages
         {
             try
             {
-                var data = _courseRegRepo.GetCourseRegCount(LoggedInUser.UserId, LoggedInUser.ActiveSession.Id);
+                var data = _repo.GetCourseRegCount(LoggedInUser.UserId, LoggedInUser.ActiveSession.Id);
                 if (data != null && data.Count > 0)
                 {
                     dataGridCourses.DataSource = data;
                     dataGridCourses.Columns["CourseTitle"].HeaderText = "Course";
+                    dataGridCourses.Columns["MarkedBy"].Visible = false;
+                    dataGridCourses.Columns["Count"].HeaderText = "No of Registered Students";
                 }
                 else
                 {
@@ -70,11 +69,13 @@ namespace AttendanceUI.Pages
         {
             try
             {
-                var data = _attendanceRepo.GetCourseAttendanceCount(LoggedInUser.UserId, LoggedInUser.ActiveSession.Id);
+                var data = _repo.GetCourseAttendanceCount(LoggedInUser.UserId, LoggedInUser.ActiveSession.Id);
                 if (data != null && data.Count > 0)
                 {
                     dataGridAttendance.DataSource = data;
                     dataGridAttendance.Columns["CourseTitle"].HeaderText = "Course";
+                    dataGridAttendance.Columns["MarkedBy"].Visible = false;
+                    dataGridAttendance.Columns["Count"].HeaderText = "No of Attendance Taken";
                 }
                 else
                 {

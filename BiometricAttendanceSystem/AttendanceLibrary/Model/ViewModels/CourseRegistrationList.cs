@@ -22,6 +22,7 @@ namespace AttendanceLibrary.Model.ViewModels
     public class StaffCourseRegCount
     {
         public string CourseTitle { get; set; }
+        public string MarkedBy { get; set; }
         public int Count { get; set; }
 
     }

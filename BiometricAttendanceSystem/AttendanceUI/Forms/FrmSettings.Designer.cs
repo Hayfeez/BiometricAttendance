@@ -450,7 +450,7 @@
             this.btnAddTitle.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
             this.btnAddTitle.Location = new System.Drawing.Point(222, 63);
             this.btnAddTitle.Name = "btnAddTitle";
-            this.btnAddTitle.Size = new System.Drawing.Size(184, 50);
+            this.btnAddTitle.Size = new System.Drawing.Size(178, 50);
             this.btnAddTitle.TabIndex = 0;
             this.btnAddTitle.TextColor = System.Drawing.Color.White;
             this.btnAddTitle.Vertical_Alignment = System.Drawing.StringAlignment.Center;
@@ -472,7 +472,7 @@
             this.btnAddLevel.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
             this.btnAddLevel.Location = new System.Drawing.Point(11, 63);
             this.btnAddLevel.Name = "btnAddLevel";
-            this.btnAddLevel.Size = new System.Drawing.Size(197, 50);
+            this.btnAddLevel.Size = new System.Drawing.Size(186, 50);
             this.btnAddLevel.TabIndex = 0;
             this.btnAddLevel.TextColor = System.Drawing.Color.White;
             this.btnAddLevel.Vertical_Alignment = System.Drawing.StringAlignment.Center;

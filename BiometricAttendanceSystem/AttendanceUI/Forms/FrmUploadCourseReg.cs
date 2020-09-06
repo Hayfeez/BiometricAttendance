@@ -93,6 +93,7 @@ namespace AttendanceUI.Forms
             {
                 var template = new List<BulkStudentCourseReg>();
                 var dt = template.ConvertToDataTable();
+               // dt.Columns["MatricNumber"].DataType = typeof(string);
                 if (Base.SaveAsExcel(dt, "Student Course Register"))
                 {
                     Base.ShowSuccess("", "File downloaded successfully");

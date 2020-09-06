@@ -242,6 +242,7 @@
     <Compile Include="Model\ViewModels\StaffList.cs" />
     <Compile Include="Model\ViewModels\StudentList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\ReportRepo.cs" />
     <Compile Include="Repository\AttendanceRepo.cs" />
     <Compile Include="Repository\AuthRepo.cs" />
     <Compile Include="Repository\BiometricsRepo.cs" />

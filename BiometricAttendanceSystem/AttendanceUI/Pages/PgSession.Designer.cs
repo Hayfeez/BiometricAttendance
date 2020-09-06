@@ -124,7 +124,7 @@
             this.btnAdd.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
             this.btnAdd.Location = new System.Drawing.Point(7, 87);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(163, 50);
+            this.btnAdd.Size = new System.Drawing.Size(137, 50);
             this.btnAdd.TabIndex = 1;
             this.btnAdd.TextColor = System.Drawing.Color.White;
             this.btnAdd.Vertical_Alignment = System.Drawing.StringAlignment.Center;

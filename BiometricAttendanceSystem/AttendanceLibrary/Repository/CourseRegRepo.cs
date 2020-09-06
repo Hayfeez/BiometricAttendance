@@ -169,32 +169,5 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public List<StaffCourseRegCount> GetCourseRegCount(string staffId, string semesterId)
-        {
-            try
-            {
-              
-                using var context = new SqliteContext();
-                var dt = (from stc in context.StaffCourses 
-                          join att in context.CourseRegistrations on stc.CourseId equals att.CourseId 
-                          group att by new {stc.StaffId, att.CourseId, att.SessionSemesterId } into staffcourse
-                       //   from stco in staffcourse
-                          join cou in context.Courses on staffcourse.Key.CourseId equals cou.Id
-                          where !cou.IsDeleted && staffcourse.Key.StaffId == staffId && staffcourse.Key.SessionSemesterId == semesterId
-                          select new StaffCourseRegCount
-                          {
-                              CourseTitle = cou.CourseTitle,
-                              Count = staffcourse.Count()
-                          }).ToList();
-
-                return dt;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-
     }
 }

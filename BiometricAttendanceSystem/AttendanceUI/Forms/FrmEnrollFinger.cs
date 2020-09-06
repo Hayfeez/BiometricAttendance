@@ -22,6 +22,8 @@ namespace AttendanceUI.Forms
         private readonly BiometricsRepo _bioRepo;
         private readonly StudentRepo _studentRepo;
         private readonly StaffRepo _staffRepo;
+        private List<StudentFinger> studentFingers = null;
+        private List<StaffFinger> staffFingers = null;
 
         private readonly string _id;
         private readonly bool _isStudent;
@@ -120,7 +122,15 @@ namespace AttendanceUI.Forms
             {
                 try
                 {
-                    _digitalPersona = new DigitalPersonaLibrary(txtLog, PicAnalyzed, lblFingerCount);
+                    if (_isStudent)
+                    {
+                        _digitalPersona = new DigitalPersonaLibrary(txtLog, PicAnalyzed, lblFingerCount);
+                    }
+                    else
+                    {
+                        _digitalPersona = new DigitalPersonaLibrary(txtLog, PicAnalyzed, lblFingerCount);
+                    }
+                    
                     if (_digitalPersona.Capturer == null)
                     {
                         btnStartCapture.Enabled = false;

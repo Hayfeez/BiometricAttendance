@@ -21,6 +21,7 @@ namespace AttendanceUI.Forms
         {
             InitializeComponent();
             _authRepo = new AuthRepo();
+            Helper.GetEnumValuesAndDescriptions<ReportType>();
         }
 
         private void iconExit_Click(object sender, EventArgs e)
