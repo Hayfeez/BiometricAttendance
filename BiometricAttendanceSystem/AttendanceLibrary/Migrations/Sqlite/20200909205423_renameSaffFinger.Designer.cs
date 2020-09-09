@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AttendanceLibrary.Migrations.Sqlite
 {
     [DbContext(typeof(SqliteContext))]
-    [Migration("20200823223203_Initial")]
-    partial class Initial
+    [Migration("20200909205423_renameSaffFinger")]
+    partial class renameSaffFinger
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -234,6 +234,22 @@ namespace AttendanceLibrary.Migrations.Sqlite
                     b.ToTable("User");
                 });
 
+            modelBuilder.Entity("AttendanceLibrary.Model.StaffFingerprint", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<byte[]>("Fingerprint")
+                        .HasColumnType("BLOB");
+
+                    b.Property<string>("StaffId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("StaffFingerprint");
+                });
+
             modelBuilder.Entity("AttendanceLibrary.Model.StudentDetail", b =>
                 {
                     b.Property<string>("Id")
@@ -257,7 +273,7 @@ namespace AttendanceLibrary.Migrations.Sqlite
                     b.Property<string>("Lastname")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("MatricNumber")
+                    b.Property<string>("MatricNo")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Othername")

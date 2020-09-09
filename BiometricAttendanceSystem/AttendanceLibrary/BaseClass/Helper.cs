@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using AttendanceLibrary.DataContext;
 using AttendanceLibrary.Model;
 
+using Microsoft.EntityFrameworkCore;
+
 namespace AttendanceLibrary.BaseClass
 {
     public enum ReportType
@@ -66,7 +68,8 @@ namespace AttendanceLibrary.BaseClass
                 // Initialize the database context (ensure the database is created, if it's a new database)
                 //  using var db = new SqliteContext(SqliteContext.Defaultdbfile);
                 using var db = new SqliteContext();
-                db.Database.EnsureCreated();
+                //   db.Database.EnsureCreated();
+                db.Database.Migrate();
 
                 if (!db.SystemSettings.Any())
                     db.SystemSettings.Add(new SystemSetting

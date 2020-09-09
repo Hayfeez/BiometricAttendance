@@ -23,7 +23,7 @@ namespace AttendanceUI.Forms
         private readonly StudentRepo _studentRepo;
         private readonly StaffRepo _staffRepo;
         private List<StudentFinger> studentFingers = null;
-        private List<StaffFinger> staffFingers = null;
+        private List<StaffFingerprint> staffFingers = null;
 
         private readonly string _id;
         private readonly bool _isStudent;
@@ -241,10 +241,10 @@ namespace AttendanceUI.Forms
 
                 else
                 {
-                    var fingers = new List<StaffFinger>();
+                    var fingers = new List<StaffFingerprint>();
                     foreach (var finger in _digitalPersona.FingerBitmaps)
                     {
-                        fingers.Add(new StaffFinger()
+                        fingers.Add(new StaffFingerprint()
                         {
                             Id = Guid.NewGuid().ToString(),
                             StaffId = _id,

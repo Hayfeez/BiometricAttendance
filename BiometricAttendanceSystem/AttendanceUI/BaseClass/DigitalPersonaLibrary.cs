@@ -40,7 +40,7 @@
             public Bitmap FingerBitmap;  //used for signing in
 
             private readonly List<StudentFinger> _studentFingers;
-            private readonly List<StaffFinger> _staffFingers;
+            private readonly List<StaffFingerprint> _staffFingers;
             
         // '---------------------------
             public DPFP.Capture.Capture Capturer;
@@ -109,7 +109,7 @@
             }
 
             // to login staff
-            public DigitalPersonaLibrary(TextBox txtLog, PictureBox derivedPic, List<StaffFinger> fingers)
+            public DigitalPersonaLibrary(TextBox txtLog, PictureBox derivedPic, List<StaffFingerprint> fingers)
             {
                 _isEnrollment = false;
                 FingerBitmap = null;

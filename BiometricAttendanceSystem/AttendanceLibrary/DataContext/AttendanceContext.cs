@@ -25,11 +25,7 @@ namespace AttendanceLibrary.DataContext
         public DbSet<SystemSetting> SystemSettings { get; set; }
         public DbSet<AppSync> AppSyncs { get; set; }
         public DbSet<StaffCourse> StaffCourses { get; set; }
-        public DbSet<StaffFinger> StaffFingers { get; set; }
+        public DbSet<StaffFingerprint> StaffFingers { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            
-        }
     }
 }

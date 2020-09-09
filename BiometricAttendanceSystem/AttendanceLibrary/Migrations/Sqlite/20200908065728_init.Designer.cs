@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AttendanceLibrary.Migrations.Sqlite
 {
     [DbContext(typeof(SqliteContext))]
-    [Migration("20200828221955_StaffFinger")]
-    partial class StaffFinger
+    [Migration("20200908065728_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

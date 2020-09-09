@@ -3,13 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AttendanceLibrary.Migrations.Sqlite
 {
-    public partial class StaffFinger : Migration
+    public partial class renameSaffFinger : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-
             migrationBuilder.CreateTable(
-                name: "StaffFinger",
+                name: "StaffFingerprint",
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
@@ -18,15 +17,16 @@ namespace AttendanceLibrary.Migrations.Sqlite
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_StaffFinger", x => x.Id);
+                    table.PrimaryKey("PK_StaffFingerprint", x => x.Id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "StaffFinger");
+                name: "StaffFingerprint");
 
+           
         }
     }
 }

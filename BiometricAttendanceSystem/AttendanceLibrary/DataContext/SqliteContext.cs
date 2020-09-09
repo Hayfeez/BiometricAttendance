@@ -1,28 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
-//using System.Data.SQLite;
+using System.IO;
+
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Data.Sqlite;
+using System.Windows.Forms;
 
 namespace AttendanceLibrary.DataContext
 {
     public class SqliteContext : AttendanceContext
     {
-        public const string Defaultdbfile = "SchoolAttendanceDb.sqlite";
+        public readonly string Defaultdbfile = Properties.Settings.Default.DatabaseFile; //"SchoolAttendanceDb.sqlite";
         private readonly string _dbFile;
         private SqliteConnection _connection;
 
         private static SqliteConnection InitializeSQLiteConnection(string databaseFile)
         {
+            var location = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            var index = location.LastIndexOf("\\");
+            var path = location.Substring(0, index);
             var connectionString = new SqliteConnectionStringBuilder
             {
-                DataSource = databaseFile,
+                Mode = SqliteOpenMode.ReadWriteCreate,
+               //  DataSource =  databaseFile,
+              //   DataSource =  $"|DataDirectory|{databaseFile}",
+                 DataSource =  $"{AppDomain.CurrentDomain.BaseDirectory}{databaseFile}",
+                 //   DataSource = Path.Combine(path, "DB", databaseFile),
+           //     DataSource = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "DB", databaseFile),
+               // DataSource = System.IO.Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory) + "\\" + databaseFile,
                 Password = "Password123"// PRAGMA key is being sent from EF Core directly after opening the connection
             };
+
             return new SqliteConnection(connectionString.ToString());
         }
 
@@ -47,8 +59,9 @@ namespace AttendanceLibrary.DataContext
             _connection ??= InitializeSQLiteConnection(_dbFile);
             optionsBuilder.UseSqlite(_connection);
             SQLitePCL.raw.SetProvider(new SQLitePCL.SQLite3Provider_winsqlite3());
-          //  SQLitePCL.raw.SetProvider(new SQLitePCL.SQLite3Provider_e_sqlcipher());
+            //  SQLitePCL.raw.SetProvider(new SQLitePCL.SQLite3Provider_e_sqlcipher());
             //
+            Console.WriteLine($">> CONNECTION STRING: '{_connection.ConnectionString.ToString()}'.");
         }
 
     }

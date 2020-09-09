@@ -37,7 +37,7 @@ namespace AttendanceLibrary.Repository
                 }
 
                 //foreach (var item in data)
-                //{
+                
                 //    item.Id = Guid.NewGuid().ToString();
                 //    context.StudentFingers.Add(item);
                 //}
@@ -119,12 +119,12 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public List<StaffFinger> GetStaffFingers(string id = "")
+        public List<StaffFingerprint> GetStaffFingers(string id = "")
         {
             try
             {
                 using var context = new SqliteContext();
-                return context.StaffFingers.Where( x=>x.StaffId == id || id == "").ToList();
+                return context.StaffFingers.Where(x=>x.StaffId == id || id == "").ToList();
             }
             catch (Exception ex)
             {
@@ -132,7 +132,7 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public string SaveStaffFingers(List<StaffFinger> data)
+        public string SaveStaffFingers(List<StaffFingerprint> data)
         {
             try
             {

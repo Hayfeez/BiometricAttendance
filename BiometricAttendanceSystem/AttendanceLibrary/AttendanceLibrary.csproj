@@ -204,20 +204,15 @@
     <Compile Include="BaseClass\Validations.cs" />
     <Compile Include="DataContext\AttendanceContext.cs" />
     <Compile Include="DataContext\SqlServerContext.cs" />
-    <Compile Include="Migrations\Sqlite\20200823223203_Initial.cs" />
-    <Compile Include="Migrations\Sqlite\20200823223203_Initial.designer.cs">
-      <DependentUpon>20200823223203_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\Sqlite\20200908065728_init.cs" />
+    <Compile Include="Migrations\Sqlite\20200908065728_init.designer.cs">
+      <DependentUpon>20200908065728_init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Sqlite\20200828221955_StaffFinger.cs" />
-    <Compile Include="Migrations\Sqlite\20200828221955_StaffFinger.designer.cs">
-      <DependentUpon>20200828221955_StaffFinger.cs</DependentUpon>
+    <Compile Include="Migrations\Sqlite\20200909205423_renameSaffFinger.cs" />
+    <Compile Include="Migrations\Sqlite\20200909205423_renameSaffFinger.designer.cs">
+      <DependentUpon>20200909205423_renameSaffFinger.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Sqlite\SqliteContextModelSnapshot.cs" />
-    <Compile Include="Migrations\SqlServer\20200823223241_Initial.cs" />
-    <Compile Include="Migrations\SqlServer\20200823223241_Initial.designer.cs">
-      <DependentUpon>20200823223241_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\SqlServer\SqlServerContextModelSnapshot.cs" />
     <Compile Include="Model\Attendance.cs" />
     <Compile Include="DataContext\SqliteContext.cs" />
     <Compile Include="Model\Course.cs" />
@@ -227,8 +222,8 @@
     <Compile Include="Model\StaffDetail.cs" />
     <Compile Include="Model\PersonTitle.cs" />
     <Compile Include="Model\SessionSemester.cs" />
+    <Compile Include="Model\StaffFingerprint.cs" />
     <Compile Include="Model\StudentDetail.cs" />
-    <Compile Include="Model\StaffFinger.cs" />
     <Compile Include="Model\StudentFinger.cs" />
     <Compile Include="Model\StudentLevel.cs" />
     <Compile Include="Model\AppSync.cs" />
@@ -242,6 +237,11 @@
     <Compile Include="Model\ViewModels\StaffList.cs" />
     <Compile Include="Model\ViewModels\StudentList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Repository\ReportRepo.cs" />
     <Compile Include="Repository\AttendanceRepo.cs" />
     <Compile Include="Repository\AuthRepo.cs" />
@@ -262,8 +262,14 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Migrations\SqlServer\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

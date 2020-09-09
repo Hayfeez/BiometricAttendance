@@ -9,14 +9,13 @@ using System.Threading.Tasks;
 
 namespace AttendanceLibrary.Model
 {
-    [Table("StaffFinger")]
-    public class StaffFinger
+    [Table("StaffFingerprint")]
+    public class StaffFingerprint
     {
         [Key]
         public string Id { get; set; }
         public string StaffId { get; set; }
         public byte[] Fingerprint { get; set; }
-     //   [NotMapped]
-     //   public Bitmap FingerTemplateBitmap { get; set; }
+
     }
 }
