@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -35,6 +36,7 @@ namespace AttendanceUI.Forms
                 loginForm.ShowDialog();
             }
 
+            lblFooter.Text = Convert.ToChar(169) + @" Dolapo Oguntuga 2020";
         }
 
         private void ShowPage(Control page)
@@ -118,6 +120,7 @@ namespace AttendanceUI.Forms
 
             ShowPage(new PgHome());
             SetActiveMenu(btnHome);
+            GetInternetConnectionState();
         }
 
 
@@ -179,8 +182,16 @@ namespace AttendanceUI.Forms
 
         private void btnReport_Click(object sender, EventArgs e)
         {
-            ShowPage(new PgReport());
-            SetActiveMenu(btnReport);
+            if (GetInternetConnectionState())
+            {
+                ShowPage(new PgReport());
+                SetActiveMenu(btnReport);
+            }
+            else
+            {
+                Base.ShowError("No Internet", "You must be connected to Internet to view reports");
+            }
+            
         }
 
         private void iconLogout_Click(object sender, EventArgs e)
@@ -223,6 +234,34 @@ namespace AttendanceUI.Forms
         private void iconAlert_Click(object sender, EventArgs e)
         {
 
+        }
+
+        [DllImport("wininet.dll")]
+        private extern static bool InternetGetConnectedState(out int conn, int value);
+
+        private bool GetInternetConnectionState()
+        {
+            int con;
+            var result = InternetGetConnectedState(out con, 0);
+            if (result)
+            {
+                toolStripStatusLabel1.Text = "Connected to Internet";
+                toolStripStatusLabel1.ForeColor = Color.Green;
+                
+            }
+            else
+            {
+                toolStripStatusLabel1.Text = "No Internet Connection";
+                toolStripStatusLabel1.ForeColor = Color.Red;
+            }
+
+            statusStrip1.Refresh();
+            return result;
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            GetInternetConnectionState();
         }
     }
 }
