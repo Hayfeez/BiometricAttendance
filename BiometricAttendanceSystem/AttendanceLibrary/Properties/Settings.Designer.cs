@@ -31,5 +31,18 @@ namespace AttendanceLibrary.Properties {
                 return ((string)(this["DatabaseFile"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.0.137;Initial Catalog=SchoolAttendanceDb;User Id=attendanceLo" +
+            "gin;Password=Password@123")]
+        public string SqlServerConnectionString {
+            get {
+                return ((string)(this["SqlServerConnectionString"]));
+            }
+            set {
+                this["SqlServerConnectionString"] = value;
+            }
+        }
     }
 }

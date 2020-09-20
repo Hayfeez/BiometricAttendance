@@ -82,5 +82,41 @@ namespace AttendanceUI.Forms
            
         }
 
+        private async void FrmLogin_KeyDown(object sender, KeyEventArgs e)
+        {
+            //if (e.KeyCode == Keys.CapsLock)
+            //{
+            //    txtPassword
+            //}
+
+           // if (e.Modifiers == Keys.Control && e.KeyCode == Keys.Alt && e.KeyCode == Keys.D)
+                if (e.Control && e.Alt && e.KeyCode == Keys.D)
+                {
+                var result = Base.ShowDialog(MessageBoxButtons.YesNo, "Data Download", "Do you want to proceed with data download?");
+                if (result == DialogResult.Yes)
+                {
+                    if (Helper.CheckRemoteServerConnection())
+                    {
+                        var syncRepo = new SyncRepo();
+                        var s = await syncRepo.SyncAllData();
+                        if (s == string.Empty)
+                        {
+                            Base.ShowSuccess("Success", "Data synchronization successful");
+                        }
+                        else
+                        {
+                            Base.ShowError("Error", s);
+                        }
+                    }
+                    else
+                    {
+                        Base.ShowError("Connection Failed", "Cannot connect to the remote server. Check your connection settings");
+                        var frm = new FrmConnection();
+                        frm.ShowDialog();
+                    }
+                }
+            }
+            //  
+        }
     }
 }

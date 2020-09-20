@@ -10,14 +10,15 @@ using AttendanceLibrary.DataContext;
 
 namespace AttendanceLibrary.Repository
 {
-    public class SettingsRepo
+    public class SettingsRepo : DisposeContext
     {
+        private readonly AttendanceContext _context = Helper.GetDataContext();
+
         public SystemSetting GetSetting()
         {
             try
             {
-                using var context = new SqliteContext();
-                return context.SystemSettings.FirstOrDefault();
+                return _context.SystemSettings.FirstOrDefault();
             }
             catch (Exception ex)
             {
@@ -27,8 +28,7 @@ namespace AttendanceLibrary.Repository
 
         public string UpdateSetting(SystemSetting setting)
         {
-            using var context = new SqliteContext();
-            var oldSetting = context.SystemSettings.FirstOrDefault();
+            var oldSetting = _context.SystemSettings.FirstOrDefault();
             if (oldSetting == null)
                 return "Setting not found";
 
@@ -42,7 +42,7 @@ namespace AttendanceLibrary.Repository
             oldSetting.UserDefaultPassword = PasswordHash.sha256(setting.UserDefaultPassword);
             oldSetting.NoOfFinger = setting.NoOfFinger;
 
-            return context.SaveChanges() > 0 ? "" : "Settings could not be updated";
+            return _context.SaveChanges() > 0 ? "" : "Settings could not be updated";
         }
     }
 }

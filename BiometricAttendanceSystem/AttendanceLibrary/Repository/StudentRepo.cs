@@ -11,19 +11,21 @@ using AttendanceLibrary.DataContext;
 
 namespace AttendanceLibrary.Repository
 {
-    public class StudentRepo
+    public class StudentRepo : DisposeContext
     {
+        private readonly AttendanceContext _context = Helper.GetDataContext();
+
         public string AddStudent(StudentDetail newStudent)
         {
             try
             {
-                using var context = new SqliteContext();
-                if (context.Students.Any(a => a.MatricNo == newStudent.MatricNo || a.Email == newStudent.Email && !a.IsDeleted))
+               
+                if (_context.Students.Any(a => a.MatricNo == newStudent.MatricNo || a.Email == newStudent.Email && !a.IsDeleted))
                     return "Student with this Matric number or Email address exists";
 
                 newStudent.Id = Guid.NewGuid().ToString();
-                context.Students.Add(newStudent);
-                return context.SaveChanges() > 0 ? "" : "Student could not be added";
+                _context.Students.Add(newStudent);
+                return _context.SaveChanges() > 0 ? "" : "Student could not be added";
             }
             catch (Exception ex)
             {
@@ -35,7 +37,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using var context = new SqliteContext();
+               
                 return "";
             }
             catch (Exception ex)
@@ -46,15 +48,15 @@ namespace AttendanceLibrary.Repository
 
         public string DeleteStudent(string studentId)
         {
-            using var context = new SqliteContext();
-            if (context.CourseRegistrations.Any(a => a.StudentId == studentId))
+           
+            if (_context.CourseRegistrations.Any(a => a.StudentId == studentId))
                 return "Student cannot be deleted because (s)he has registered for a course";
 
-            var student = context.Students.SingleOrDefault(a => a.Id == studentId);
+            var student = _context.Students.SingleOrDefault(a => a.Id == studentId);
             if (student != null)
             {
                 student.IsDeleted = true;
-                return context.SaveChanges() > 0 ? "" : "Student could not be deleted";
+                return _context.SaveChanges() > 0 ? "" : "Student could not be deleted";
             }
 
             return "Student not found";
@@ -62,12 +64,12 @@ namespace AttendanceLibrary.Repository
 
         public string GraduateStudent(string studentId)
         {
-            using var context = new SqliteContext();
-            var student = context.Students.SingleOrDefault(a => a.Id == studentId);
+           
+            var student = _context.Students.SingleOrDefault(a => a.Id == studentId);
             if (student != null)
             {
                 student.IsGraduated = true;
-                return context.SaveChanges() > 0 ? "" : "Operation failed";
+                return _context.SaveChanges() > 0 ? "" : "Operation failed";
                  
             }
 
@@ -78,8 +80,8 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using var context = new SqliteContext();
-                return context.Students.Where(a => !a.IsDeleted && a.IsGraduated == isGraduate).ToList();
+               
+                return _context.Students.Where(a => !a.IsDeleted && a.IsGraduated == isGraduate).ToList();
             }
             catch (Exception ex)
             {
@@ -92,8 +94,8 @@ namespace AttendanceLibrary.Repository
             try
             {
                 //TODO: get student level id from current session and courseregistration
-                using var context = new SqliteContext();
-                return context.Students.Where(a => !a.IsDeleted && a.DepartmentId == departmentId && a.IsGraduated == isGraduate).ToList();
+               
+                return _context.Students.Where(a => !a.IsDeleted && a.DepartmentId == departmentId && a.IsGraduated == isGraduate).ToList();
             }
             catch (Exception ex)
             {
@@ -106,9 +108,9 @@ namespace AttendanceLibrary.Repository
             try
             {
                 //TODO: get student level id from current session and courseregistration
-                using var context = new SqliteContext();
-                var dt = (context.Students
-                    .Join(context.Departments, st => st.DepartmentId, dep => dep.Id, (st, dep) => new
+               
+                var dt = (_context.Students
+                    .Join(_context.Departments, st => st.DepartmentId, dep => dep.Id, (st, dep) => new
                     {
                         st,
                         dep
@@ -136,8 +138,8 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using var context = new SqliteContext();
-                return context.Students.SingleOrDefault(a => a.Id == studentId && !a.IsDeleted);
+               
+                return _context.Students.SingleOrDefault(a => a.Id == studentId && !a.IsDeleted);
             }
             catch (Exception ex)
             {
@@ -149,8 +151,8 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using var context = new SqliteContext();
-                return context.Students.SingleOrDefault(a => a.MatricNo == matricNo && !a.IsDeleted);
+               
+                return _context.Students.SingleOrDefault(a => a.MatricNo == matricNo && !a.IsDeleted);
             }
             catch (Exception ex)
             {
@@ -160,12 +162,12 @@ namespace AttendanceLibrary.Repository
 
         public string UpdateStudent(StudentDetail student)
         {
-            using var context = new SqliteContext();
-            var oldStudent = context.Students.SingleOrDefault(a => a.Id == student.Id && !a.IsDeleted);
+           
+            var oldStudent = _context.Students.SingleOrDefault(a => a.Id == student.Id && !a.IsDeleted);
             if (oldStudent == null)
                 return "Student not found";
 
-            if (context.Students.Any(a => a.MatricNo == student.MatricNo || a.Email == student.Email && !a.IsDeleted && a.Id != student.Id))
+            if (_context.Students.Any(a => a.MatricNo == student.MatricNo || a.Email == student.Email && !a.IsDeleted && a.Id != student.Id))
                 return "Student with this Matric number or Email address exists";
 
             oldStudent.Email = student.Email.ToLower();
@@ -176,7 +178,7 @@ namespace AttendanceLibrary.Repository
             oldStudent.PhoneNo = student.PhoneNo;
             oldStudent.DepartmentId = student.DepartmentId;
 
-            return context.SaveChanges() > 0 ? "" : "Student could not be updated";
+            return _context.SaveChanges() > 0 ? "" : "Student could not be updated";
         }
     }
 }

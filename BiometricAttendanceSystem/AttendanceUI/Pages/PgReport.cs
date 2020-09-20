@@ -34,7 +34,8 @@ namespace AttendanceUI.Pages
             DropdownControls.LoadDepartments(ref comboDept);
             DropdownControls.LoadSessions(ref comboSemester);
 
-            comboSemester.SelectedValue = LoggedInUser.ActiveSession.Id;
+            if (LoggedInUser.ActiveSession != null)
+                comboSemester.SelectedValue = LoggedInUser.ActiveSession.Id;
         }
 
         private void LoadData(bool isExport = false)
@@ -66,11 +67,11 @@ namespace AttendanceUI.Pages
 
                 switch (int.Parse(_reportType))
                 {
-                    case (int) ReportType.StudentAttendanceByCourse:
+                    case (int) ReportType.studentAttendanceByCourse:
                         data = _repo.GetStudentAttendanceRecord(_semesterId, _courseId, "", startDt, endDt);
                         break;
                     
-                    case (int)ReportType.StaffAttendanceByCourse:
+                    case (int)ReportType.staffAttendanceByCourse:
                         data = _repo.GetStaffAttendanceRecord(_semesterId, _courseId, startDt, endDt);
                         break;
                     
@@ -120,11 +121,11 @@ namespace AttendanceUI.Pages
 
                         switch (int.Parse(_reportType))
                         {
-                            case (int)ReportType.StudentAttendanceByCourse:
+                            case (int)ReportType.studentAttendanceByCourse:
                                 dataGrid.Columns["MarkedBy"].Visible = false;
                                 break;
 
-                            case (int)ReportType.StaffAttendanceByCourse:
+                            case (int)ReportType.staffAttendanceByCourse:
                                 dataGrid.Columns["StudentLevel"].Visible = false;
                                 dataGrid.Columns["StudentName"].Visible = false;
                                 dataGrid.Columns["StudentMatricNo"].Visible = false;

@@ -11,8 +11,10 @@ using AttendanceLibrary.DataContext;
 
 namespace AttendanceLibrary.Repository
 {
-    public class ReportRepo
+    public class ReportRepo : DisposeContext
     {
+        private readonly AttendanceContext _context = Helper.GetDataContext();
+
         public IEnumerable<EnumValueModel> GetReportType()
         {
             return Helper.GetEnumValuesAndDescriptions<ReportType>();
@@ -24,91 +26,6 @@ namespace AttendanceLibrary.Repository
                 .FirstOrDefault(x=>x.Value.ToString() == value.ToString())?.Name;
         }
 
-        #region Dashboard
-
-        public List<StaffCourseRegCount> GetStaffCourseAttendanceCount(string semesterId, bool listMarkedBy)
-        {
-            var startDate = DateTime.MinValue.Date;
-            var endDate = DateTime.Now.Date;
-
-            using var context = new SqliteContext();
-            var attendances = (from att in context.Attendances
-                               join reg in context.CourseRegistrations on att.CourseRegistrationId equals reg.Id
-                               join st in context.StaffCourses on reg.CourseId equals st.CourseId
-                               join c in context.Courses on reg.CourseId equals c.Id
-                               join s in context.SessionSemesters on reg.SessionSemesterId equals s.Id
-                               join l in context.Staff on att.MarkedBy equals l.Id
-                               join ti in context.Titles on l.TitleId equals ti.Id
-                               where reg.SessionSemesterId == semesterId
-                                     && att.DateMarked.Date >= startDate
-                                     && att.DateMarked.Date <= endDate
-                                     && !c.IsDeleted
-                               select new AttendanceList
-                               {
-                                   Course = c.CourseCode + " - " + c.CourseTitle,
-                                   DateMarked = att.DateMarked.Date,
-                                   MarkedBy = ti.Title + " " + l.Lastname + ", " + l.Firstname + " " + l.Othername
-                               }
-                ).ToList();
-            List<StaffCourseRegCount> dt;
-            if (listMarkedBy)
-            {
-                dt = attendances.GroupBy(x => new
-                {
-                    x.Course,
-                    x.MarkedBy
-                })
-                    .Select(y => new StaffCourseRegCount
-                    {
-                        CourseTitle = y.Key.Course,
-                        MarkedBy = y.Key.MarkedBy,
-                        Count = y.GroupBy(z => z.DateMarked.Date).Count()
-                    })
-                    .ToList();
-            }
-            else
-            {
-                dt = attendances.GroupBy(x => new
-                {
-                    x.Course,
-                })
-                    .Select(y => new StaffCourseRegCount
-                    {
-                        CourseTitle = y.Key.Course,
-                        Count = y.GroupBy(z => z.DateMarked.Date).Count()
-                    })
-                    .ToList();
-            }
-
-            return dt;
-        }
-
-        public List<StaffCourseRegCount> GetStaffCourseRegCount(string semesterId, string userId)
-        {
-            using var context = new SqliteContext();
-            var regs = (from att in context.StaffCourses
-                        join reg in context.CourseRegistrations on att.CourseId equals reg.CourseId
-                        join c in context.Courses on reg.CourseId equals c.Id
-                        join s in context.SessionSemesters on reg.SessionSemesterId equals s.Id
-                        where reg.SessionSemesterId == semesterId
-                              && (userId == "" || att.StaffId == userId)
-                              && !c.IsDeleted
-                        group att by new
-                        {
-                            c.CourseTitle
-                        });
-
-            return (from dt in regs
-                    select new StaffCourseRegCount
-                    {
-                        CourseTitle = dt.Key.CourseTitle,
-                        Count = dt.Count()
-                    }).ToList();
-        }
-
-        #endregion
-
-
         #region reports
 
         public List<AttendanceReport> GetStudentAttendanceRecord(string semesterId, string courseId, string studentId, DateTime startDate, DateTime endDate)
@@ -116,15 +33,15 @@ namespace AttendanceLibrary.Repository
             //startDate ??= DateTime.MinValue.Date;
             //endDate ??= DateTime.MaxValue.Date;
 
-            using var context = new SqliteContext();
-            var attendances = (from att in context.Attendances
-                               join reg in context.CourseRegistrations on att.CourseRegistrationId equals reg.Id
-                               join st in context.Students on reg.StudentId equals st.Id
-                               join c in context.Courses on reg.CourseId equals c.Id
-                               join s in context.SessionSemesters on reg.SessionSemesterId equals s.Id
-                               join le in context.Levels on reg.LevelId equals le.Id
-                               join dep in context.Departments on st.DepartmentId equals dep.Id
-                               join l in context.Staff on att.MarkedBy equals l.Id
+            
+            var attendances = (from att in _context.Attendances
+                               join reg in _context.CourseRegistrations on att.CourseRegistrationId equals reg.Id
+                               join st in _context.Students on reg.StudentId equals st.Id
+                               join c in _context.Courses on reg.CourseId equals c.Id
+                               join s in _context.SessionSemesters on reg.SessionSemesterId equals s.Id
+                               join le in _context.Levels on reg.LevelId equals le.Id
+                               join dep in _context.Departments on st.DepartmentId equals dep.Id
+                               join l in _context.Staff on att.MarkedBy equals l.Id
                                where (studentId == ""
                                       || reg.StudentId == studentId)
                                      && reg.SessionSemesterId == semesterId
@@ -173,14 +90,14 @@ namespace AttendanceLibrary.Repository
 
         public List<AttendanceReport> GetStaffAttendanceRecord(string semesterId, string courseId, DateTime startDate, DateTime endDate)
         {
-            using var context = new SqliteContext();
-            var attendances = (from att in context.Attendances
-                               join reg in context.CourseRegistrations on att.CourseRegistrationId equals reg.Id
-                               join c in context.Courses on reg.CourseId equals c.Id
-                               join stc in context.StaffCourses on reg.CourseId equals stc.CourseId
-                               join s in context.SessionSemesters on reg.SessionSemesterId equals s.Id
-                               join l in context.Staff on att.MarkedBy equals l.Id
-                               join ti in context.Titles on l.TitleId equals ti.Id
+            
+            var attendances = (from att in _context.Attendances
+                               join reg in _context.CourseRegistrations on att.CourseRegistrationId equals reg.Id
+                               join c in _context.Courses on reg.CourseId equals c.Id
+                               join stc in _context.StaffCourses on reg.CourseId equals stc.CourseId
+                               join s in _context.SessionSemesters on reg.SessionSemesterId equals s.Id
+                               join l in _context.Staff on att.MarkedBy equals l.Id
+                               join ti in _context.Titles on l.TitleId equals ti.Id
                                where reg.SessionSemesterId == semesterId
                                      && reg.CourseId == courseId
                                      && att.DateMarked.Date >= startDate
@@ -215,7 +132,6 @@ namespace AttendanceLibrary.Repository
 
             return dt;
         }
-
 
         #endregion
     }

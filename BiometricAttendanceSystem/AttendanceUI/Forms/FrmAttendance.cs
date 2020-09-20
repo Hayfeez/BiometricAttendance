@@ -20,7 +20,6 @@ namespace AttendanceUI.Forms
     public partial class FrmAttendance : Form
     {
         private static AttendanceRepo _repo;
-        private readonly BiometricsRepo _bioRepo;
         private string _levelId = "";
         private static string _courseId = "";
 
@@ -68,13 +67,12 @@ namespace AttendanceUI.Forms
         {
             InitializeComponent();
             _repo = new AttendanceRepo();
-            _bioRepo = new BiometricsRepo();
         }
 
         private void comboLevel_SelectedIndexChanged(object sender, EventArgs e)
         {
             _levelId = comboLevel.SelectedValue.ToString() == Base.IdForSelect ? "" : comboLevel.SelectedValue.ToString();
-            DropdownControls.LoadStaffCourses(ref comboCourse, LoggedInUser.UserId, _levelId);
+            DropdownControls.LoadStaffCoursesLocal(ref comboCourse, LoggedInUser.UserId, _levelId);
         }
 
         private void comboCourse_SelectedIndexChanged(object sender, EventArgs e)
@@ -87,7 +85,7 @@ namespace AttendanceUI.Forms
             if (comboCourse.SelectedIndex > 0)
             {
                 _courseId = comboCourse.SelectedValue.ToString();
-               _studentFingers = _bioRepo.GetFingersOfCourseStudents(_courseId);
+               _studentFingers = _repo.GetFingersOfCourseStudents(_courseId);
                 if (_studentFingers == null)
                 {
                     Base.ShowError("", "There is no active semester. You cannot take attendance");
@@ -119,7 +117,7 @@ namespace AttendanceUI.Forms
         {
             lblDate.Text = DateTime.Now.ToLongDateString();
             lblDate.Visible = true;
-            DropdownControls.LoadLevels(ref comboLevel, false);
+            DropdownControls.LoadLevelsLocal(ref comboLevel, false);
         }
 
         private void btnTakeAttendance_Click(object sender, EventArgs e)

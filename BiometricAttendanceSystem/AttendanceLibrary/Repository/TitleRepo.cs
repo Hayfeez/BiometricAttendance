@@ -10,19 +10,21 @@ using AttendanceLibrary.DataContext;
 
 namespace AttendanceLibrary.Repository
 {
-    public class TitleRepo
+    public class TitleRepo : DisposeContext
     {
+        private readonly AttendanceContext _context = Helper.GetDataContext();
+
         public string AddTitle(PersonTitle newTitle)
         {
             try
             {
-                using var context = new SqliteContext();
-                if (context.Titles.Any(a => a.Title == newTitle.Title && !a.IsDeleted))
+               
+                if (_context.Titles.Any(a => a.Title == newTitle.Title && !a.IsDeleted))
                     return "Title already exists";
 
                 newTitle.Id = Guid.NewGuid().ToString();
-                context.Titles.Add(newTitle);
-                return context.SaveChanges() > 0 ? "" : "Title could not be added";
+                _context.Titles.Add(newTitle);
+                return _context.SaveChanges() > 0 ? "" : "Title could not be added";
             }
             catch (Exception ex)
             {
@@ -32,15 +34,15 @@ namespace AttendanceLibrary.Repository
 
         public string DeleteTitle(string titleId)
         {
-            using var context = new SqliteContext();
-            if (context.Staff.Any(a => a.TitleId == titleId))
+           
+            if (_context.Staff.Any(a => a.TitleId == titleId))
                 return "Title cannot be deleted because it is in use";
 
-            var title = context.Titles.SingleOrDefault(a => a.Id == titleId);
+            var title = _context.Titles.SingleOrDefault(a => a.Id == titleId);
             if (title != null)
             {
                 title.IsDeleted = true;
-                return context.SaveChanges() > 0 ? "" : "Title could not be deleted";
+                return _context.SaveChanges() > 0 ? "" : "Title could not be deleted";
             }
 
             return "Title not found";
@@ -50,8 +52,8 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using var context = new SqliteContext();
-                return context.Titles.Where(a => !a.IsDeleted).ToList();
+               
+                return _context.Titles.Where(a => !a.IsDeleted).ToList();
             }
             catch (Exception ex)
             {
@@ -63,8 +65,8 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using var context = new SqliteContext();
-                return context.Titles.SingleOrDefault(a => a.Id == titleId && !a.IsDeleted);
+               
+                return _context.Titles.SingleOrDefault(a => a.Id == titleId && !a.IsDeleted);
             }
             catch (Exception ex)
             {
@@ -74,16 +76,16 @@ namespace AttendanceLibrary.Repository
 
         public string UpdateTitle(PersonTitle title)
         {
-            using var context = new SqliteContext();
-            var oldTitle = context.Titles.SingleOrDefault(a => a.Id == title.Id && !a.IsDeleted);
+           
+            var oldTitle = _context.Titles.SingleOrDefault(a => a.Id == title.Id && !a.IsDeleted);
             if (oldTitle == null)
                 return "Title not found";
 
-            if (context.Titles.Any(a => a.Title == title.Title && !a.IsDeleted && a.Id != title.Id))
+            if (_context.Titles.Any(a => a.Title == title.Title && !a.IsDeleted && a.Id != title.Id))
                 return "Title already exist";
 
             oldTitle.Title = title.Title.ToTitleCase();
-            return context.SaveChanges() > 0 ? "" : "Title could not be updated";
+            return _context.SaveChanges() > 0 ? "" : "Title could not be updated";
         }
     }
 }

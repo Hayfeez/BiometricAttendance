@@ -10,19 +10,22 @@ using AttendanceLibrary.DataContext;
 
 namespace AttendanceLibrary.Repository
 {
-   public class SessionSemesterRepo
+   public class SessionSemesterRepo : DisposeContext
     {
+        private readonly AttendanceContext _context = Helper.GetDataContext();
+        private readonly AttendanceContext _localContext = Helper.GetDataContext(true);
+
         public string AddSessionSemester(SessionSemester newSem)
         {
             try
             {
-                using var context = new SqliteContext();
-                if (context.SessionSemesters.Any(a => a.Session == newSem.Session && a.Semester == newSem.Semester && !a.IsDeleted))
+               
+                if (_context.SessionSemesters.Any(a => a.Session == newSem.Session && a.Semester == newSem.Semester && !a.IsDeleted))
                     return "Session and Semester already exist";
 
                 if (newSem.IsActive)
                 {
-                    var allsems = context.SessionSemesters.Where(a => !a.IsDeleted).ToList();
+                    var allsems = _context.SessionSemesters.Where(a => !a.IsDeleted).ToList();
                     foreach (var item in allsems)
                     {
                         item.IsActive = false;
@@ -30,12 +33,30 @@ namespace AttendanceLibrary.Repository
                 }
 
                 newSem.Id = Guid.NewGuid().ToString();
-                context.SessionSemesters.Add(newSem);
+                _context.SessionSemesters.Add(newSem);
 
-                if(newSem.IsActive)
-                    LoggedInUser.ActiveSession = newSem;
 
-                return context.SaveChanges() > 0 ? "" : "Session/Semester could not be added";
+                if (_context.SaveChanges() > 0)
+                {
+                    if (newSem.IsActive)  //change the active semester on local sqlite
+                    {
+                        LoggedInUser.ActiveSession = newSem;
+                        var localSems = _localContext.SessionSemesters.Where(a => !a.IsDeleted).ToList();
+                        foreach (var item in localSems)
+                        {
+                            item.IsActive = false;
+                        }
+
+                        _localContext.SaveChanges();
+                    }
+
+                    return "";
+                }
+                else
+                {
+                    return "Session/Semester could not be added";
+                }
+
             }
             catch (Exception ex)
             {
@@ -45,18 +66,18 @@ namespace AttendanceLibrary.Repository
 
         public string DeleteSessionSemester(string semId)
         {
-            using var context = new SqliteContext();
-            if (context.CourseRegistrations.Any(a => a.SessionSemesterId == semId))
+           
+            if (_context.CourseRegistrations.Any(a => a.SessionSemesterId == semId))
                 return "Session Semester cannot be deleted because it has course registration records";
 
-            var sessionSemester = context.SessionSemesters.SingleOrDefault(a => a.Id == semId);
+            var sessionSemester = _context.SessionSemesters.SingleOrDefault(a => a.Id == semId);
             if (sessionSemester != null)
             {
                 if (sessionSemester.IsActive)
                     return "You cannot delete the active semester";
 
                 sessionSemester.IsDeleted = true;
-                return context.SaveChanges() > 0 ? "" : "Session/Semester could not be deleted";
+                return _context.SaveChanges() > 0 ? "" : "Session/Semester could not be deleted";
             }
 
             return "Session/Semester not found";
@@ -66,8 +87,8 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using var context = new SqliteContext();
-                return context.SessionSemesters.Where(a => !a.IsDeleted).ToList();
+               
+                return _context.SessionSemesters.Where(a => !a.IsDeleted).ToList();
             }
             catch (Exception ex)
             {
@@ -79,8 +100,8 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using var context = new SqliteContext();
-                return context.SessionSemesters.SingleOrDefault(a => a.Id == semId && !a.IsDeleted);
+               
+                return _context.SessionSemesters.SingleOrDefault(a => a.Id == semId && !a.IsDeleted);
             }
             catch (Exception ex)
             {
@@ -92,8 +113,8 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using var context = new SqliteContext();
-                return context.SessionSemesters.SingleOrDefault(a => a.IsActive && !a.IsDeleted);
+               
+                return _context.SessionSemesters.SingleOrDefault(a => a.IsActive && !a.IsDeleted);
             }
             catch (Exception ex)
             {
@@ -103,12 +124,12 @@ namespace AttendanceLibrary.Repository
 
         public string UpdateSessionSemester(SessionSemester sem)
         {
-            using var context = new SqliteContext();
-            var oldSem = context.SessionSemesters.SingleOrDefault(a => a.Id == sem.Id && !a.IsDeleted);
+           
+            var oldSem = _context.SessionSemesters.SingleOrDefault(a => a.Id == sem.Id && !a.IsDeleted);
             if (oldSem == null)
                 return "Session Semester not found";
 
-            if (context.SessionSemesters.Any(a => a.Session == sem.Session && a.Semester == sem.Semester && !a.IsDeleted && a.Id != sem.Id))
+            if (_context.SessionSemesters.Any(a => a.Session == sem.Session && a.Semester == sem.Semester && !a.IsDeleted && a.Id != sem.Id))
                 return "Session Semester already exist";
 
             oldSem.Session = sem.Session;
@@ -117,15 +138,45 @@ namespace AttendanceLibrary.Repository
 
             if(sem.IsActive)
             {
-                LoggedInUser.ActiveSession = sem;
-                var allsems = context.SessionSemesters.Where(a => !a.IsDeleted && a.Id != oldSem.Id ).ToList();
+                var allsems = _context.SessionSemesters.Where(a => !a.IsDeleted && a.Id != oldSem.Id ).ToList();
                 foreach (var item in allsems)
                 {
                     item.IsActive = false;
                 }
             }
 
-            return context.SaveChanges() > 0 ? "" : "Session/Semester could not be updated";
+            if (_context.SaveChanges() > 0)
+            {
+                if (sem.IsActive)  //change the active semester on local sqlite
+                {
+                    LoggedInUser.ActiveSession = sem;
+                    var localSems = _localContext.SessionSemesters.Where(a => !a.IsDeleted && a.Id != oldSem.Id).ToList();
+                    foreach (var item in localSems)
+                    {
+                        item.IsActive = false;
+                    }
+                   
+                    _localContext.SaveChanges();
+                }
+
+                return "";
+            }
+            else
+            {
+                return "Session/Semester could not be updated";
+            }
+        }
+
+        public SessionSemester GetActiveSessionSemesterLocal()
+        {
+            try
+            {
+                return _localContext.SessionSemesters.SingleOrDefault(a => a.IsActive && !a.IsDeleted);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

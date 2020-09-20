@@ -34,6 +34,7 @@ namespace AttendanceUI.Forms
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmContainer));
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.btnSyncData = new XanderUI.XUIButton();
             this.panelActive = new System.Windows.Forms.Panel();
             this.btnStudentMgt = new XanderUI.XUIButton();
             this.btnSession = new XanderUI.XUIButton();
@@ -45,6 +46,7 @@ namespace AttendanceUI.Forms
             this.btnDept = new XanderUI.XUIButton();
             this.btnHome = new XanderUI.XUIButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.iconMenu = new FontAwesome.Sharp.IconPictureBox();
             this.panelRight = new System.Windows.Forms.Panel();
             this.panelControls = new System.Windows.Forms.Panel();
@@ -60,16 +62,17 @@ namespace AttendanceUI.Forms
             this.iconMinimize = new FontAwesome.Sharp.IconPictureBox();
             this.iconExit = new FontAwesome.Sharp.IconPictureBox();
             this.panelFooter = new System.Windows.Forms.Panel();
+            this.btnOpenConnSettings = new FontAwesome.Sharp.IconPictureBox();
+            this.btnRefresh = new FontAwesome.Sharp.IconPictureBox();
             this.lblFooter = new System.Windows.Forms.Label();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.xuiFormHandle1 = new XanderUI.XUIFormHandle();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.btnRefresh = new FontAwesome.Sharp.IconPictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.panelMenu.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconMenu)).BeginInit();
             this.panelRight.SuspendLayout();
             this.panelWelcome.SuspendLayout();
@@ -81,15 +84,16 @@ namespace AttendanceUI.Forms
             ((System.ComponentModel.ISupportInitialize)(this.iconMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconExit)).BeginInit();
             this.panelFooter.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnOpenConnSettings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRefresh)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.Gainsboro;
             this.panelMenu.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelMenu.Controls.Add(this.btnSyncData);
             this.panelMenu.Controls.Add(this.panelActive);
             this.panelMenu.Controls.Add(this.btnStudentMgt);
             this.panelMenu.Controls.Add(this.btnSession);
@@ -108,6 +112,29 @@ namespace AttendanceUI.Forms
             this.panelMenu.Padding = new System.Windows.Forms.Padding(5);
             this.panelMenu.Size = new System.Drawing.Size(345, 954);
             this.panelMenu.TabIndex = 0;
+            // 
+            // btnSyncData
+            // 
+            this.btnSyncData.BackgroundColor = System.Drawing.Color.Transparent;
+            this.btnSyncData.ButtonImage = ((System.Drawing.Image)(resources.GetObject("btnSyncData.ButtonImage")));
+            this.btnSyncData.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnSyncData.ButtonText = "Sync Data";
+            this.btnSyncData.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(201)))), ((int)(((byte)(60)))));
+            this.btnSyncData.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnSyncData.CornerRadius = 5;
+            this.btnSyncData.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSyncData.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnSyncData.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnSyncData.HoverTextColor = System.Drawing.Color.Black;
+            this.btnSyncData.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnSyncData.Location = new System.Drawing.Point(23, 868);
+            this.btnSyncData.Name = "btnSyncData";
+            this.btnSyncData.Size = new System.Drawing.Size(288, 50);
+            this.btnSyncData.TabIndex = 1;
+            this.btnSyncData.TextColor = System.Drawing.Color.Black;
+            this.toolTip1.SetToolTip(this.btnSyncData, "Sync Data");
+            this.btnSyncData.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnSyncData.Click += new System.EventHandler(this.btnSyncData_Click);
             // 
             // panelActive
             // 
@@ -131,7 +158,7 @@ namespace AttendanceUI.Forms
             this.btnStudentMgt.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.btnStudentMgt.HoverTextColor = System.Drawing.Color.Black;
             this.btnStudentMgt.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnStudentMgt.Location = new System.Drawing.Point(23, 609);
+            this.btnStudentMgt.Location = new System.Drawing.Point(23, 665);
             this.btnStudentMgt.Name = "btnStudentMgt";
             this.btnStudentMgt.Size = new System.Drawing.Size(288, 50);
             this.btnStudentMgt.TabIndex = 0;
@@ -154,7 +181,7 @@ namespace AttendanceUI.Forms
             this.btnSession.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.btnSession.HoverTextColor = System.Drawing.Color.Black;
             this.btnSession.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnSession.Location = new System.Drawing.Point(23, 402);
+            this.btnSession.Location = new System.Drawing.Point(23, 458);
             this.btnSession.Name = "btnSession";
             this.btnSession.Size = new System.Drawing.Size(288, 50);
             this.btnSession.TabIndex = 0;
@@ -177,7 +204,7 @@ namespace AttendanceUI.Forms
             this.btnReport.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.btnReport.HoverTextColor = System.Drawing.Color.Black;
             this.btnReport.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnReport.Location = new System.Drawing.Point(23, 816);
+            this.btnReport.Location = new System.Drawing.Point(23, 802);
             this.btnReport.Name = "btnReport";
             this.btnReport.Size = new System.Drawing.Size(288, 50);
             this.btnReport.TabIndex = 0;
@@ -200,7 +227,7 @@ namespace AttendanceUI.Forms
             this.btnAttendance.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.btnAttendance.HoverTextColor = System.Drawing.Color.Black;
             this.btnAttendance.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnAttendance.Location = new System.Drawing.Point(23, 747);
+            this.btnAttendance.Location = new System.Drawing.Point(23, 328);
             this.btnAttendance.Name = "btnAttendance";
             this.btnAttendance.Size = new System.Drawing.Size(288, 50);
             this.btnAttendance.TabIndex = 0;
@@ -223,7 +250,7 @@ namespace AttendanceUI.Forms
             this.btnCourseReg.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.btnCourseReg.HoverTextColor = System.Drawing.Color.Black;
             this.btnCourseReg.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnCourseReg.Location = new System.Drawing.Point(23, 540);
+            this.btnCourseReg.Location = new System.Drawing.Point(23, 596);
             this.btnCourseReg.Name = "btnCourseReg";
             this.btnCourseReg.Size = new System.Drawing.Size(288, 50);
             this.btnCourseReg.TabIndex = 0;
@@ -246,7 +273,7 @@ namespace AttendanceUI.Forms
             this.btnUserMgt.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.btnUserMgt.HoverTextColor = System.Drawing.Color.Black;
             this.btnUserMgt.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnUserMgt.Location = new System.Drawing.Point(23, 678);
+            this.btnUserMgt.Location = new System.Drawing.Point(23, 734);
             this.btnUserMgt.Name = "btnUserMgt";
             this.btnUserMgt.Size = new System.Drawing.Size(288, 50);
             this.btnUserMgt.TabIndex = 0;
@@ -269,7 +296,7 @@ namespace AttendanceUI.Forms
             this.btnCourseMgt.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.btnCourseMgt.HoverTextColor = System.Drawing.Color.Black;
             this.btnCourseMgt.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnCourseMgt.Location = new System.Drawing.Point(23, 471);
+            this.btnCourseMgt.Location = new System.Drawing.Point(23, 527);
             this.btnCourseMgt.Name = "btnCourseMgt";
             this.btnCourseMgt.Size = new System.Drawing.Size(288, 50);
             this.btnCourseMgt.TabIndex = 0;
@@ -292,7 +319,7 @@ namespace AttendanceUI.Forms
             this.btnDept.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.btnDept.HoverTextColor = System.Drawing.Color.Black;
             this.btnDept.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnDept.Location = new System.Drawing.Point(23, 333);
+            this.btnDept.Location = new System.Drawing.Point(23, 389);
             this.btnDept.Name = "btnDept";
             this.btnDept.Size = new System.Drawing.Size(288, 50);
             this.btnDept.TabIndex = 0;
@@ -335,6 +362,16 @@ namespace AttendanceUI.Forms
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(331, 178);
             this.panel1.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(18, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(223, 167);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
             // 
             // iconMenu
             // 
@@ -533,6 +570,7 @@ namespace AttendanceUI.Forms
             // 
             // panelFooter
             // 
+            this.panelFooter.Controls.Add(this.btnOpenConnSettings);
             this.panelFooter.Controls.Add(this.btnRefresh);
             this.panelFooter.Controls.Add(this.lblFooter);
             this.panelFooter.Controls.Add(this.statusStrip1);
@@ -542,6 +580,36 @@ namespace AttendanceUI.Forms
             this.panelFooter.Size = new System.Drawing.Size(733, 38);
             this.panelFooter.TabIndex = 0;
             // 
+            // btnOpenConnSettings
+            // 
+            this.btnOpenConnSettings.BackColor = System.Drawing.Color.White;
+            this.btnOpenConnSettings.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnOpenConnSettings.IconChar = FontAwesome.Sharp.IconChar.Cog;
+            this.btnOpenConnSettings.IconColor = System.Drawing.SystemColors.ControlText;
+            this.btnOpenConnSettings.IconSize = 27;
+            this.btnOpenConnSettings.Location = new System.Drawing.Point(464, 12);
+            this.btnOpenConnSettings.Name = "btnOpenConnSettings";
+            this.btnOpenConnSettings.Size = new System.Drawing.Size(31, 27);
+            this.btnOpenConnSettings.TabIndex = 9;
+            this.btnOpenConnSettings.TabStop = false;
+            this.toolTip1.SetToolTip(this.btnOpenConnSettings, "Open Connection Settings");
+            this.btnOpenConnSettings.Click += new System.EventHandler(this.btnOpenConnSettings_Click);
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.BackColor = System.Drawing.Color.White;
+            this.btnRefresh.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnRefresh.IconChar = FontAwesome.Sharp.IconChar.Retweet;
+            this.btnRefresh.IconColor = System.Drawing.SystemColors.ControlText;
+            this.btnRefresh.IconSize = 27;
+            this.btnRefresh.Location = new System.Drawing.Point(431, 12);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(31, 27);
+            this.btnRefresh.TabIndex = 8;
+            this.btnRefresh.TabStop = false;
+            this.toolTip1.SetToolTip(this.btnRefresh, "Refresh Server Connection Status");
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
             // lblFooter
             // 
             this.lblFooter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -549,30 +617,11 @@ namespace AttendanceUI.Forms
             this.lblFooter.BackColor = System.Drawing.SystemColors.Control;
             this.lblFooter.Font = new System.Drawing.Font("Bookman Old Style", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFooter.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblFooter.Location = new System.Drawing.Point(453, 14);
+            this.lblFooter.Location = new System.Drawing.Point(493, 15);
             this.lblFooter.Name = "lblFooter";
             this.lblFooter.Size = new System.Drawing.Size(100, 21);
             this.lblFooter.TabIndex = 0;
             this.lblFooter.Text = "Copyrights";
-            // 
-            // xuiFormHandle1
-            // 
-            this.xuiFormHandle1.DockAtTop = true;
-            this.xuiFormHandle1.HandleControl = this;
-            // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(18, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(223, 167);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
             // 
             // statusStrip1
             // 
@@ -585,27 +634,21 @@ namespace AttendanceUI.Forms
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // btnRefresh
-            // 
-            this.btnRefresh.BackColor = System.Drawing.SystemColors.Control;
-            this.btnRefresh.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRefresh.IconChar = FontAwesome.Sharp.IconChar.Retweet;
-            this.btnRefresh.IconColor = System.Drawing.SystemColors.ControlText;
-            this.btnRefresh.IconSize = 27;
-            this.btnRefresh.Location = new System.Drawing.Point(221, 12);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(31, 27);
-            this.btnRefresh.TabIndex = 8;
-            this.btnRefresh.TabStop = false;
-            this.toolTip1.SetToolTip(this.btnRefresh, "Refresh Internet Connection Status");
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.BackColor = System.Drawing.SystemColors.Control;
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(151, 20);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            // 
+            // xuiFormHandle1
+            // 
+            this.xuiFormHandle1.DockAtTop = true;
+            this.xuiFormHandle1.HandleControl = this;
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // FrmContainer
             // 
@@ -618,12 +661,15 @@ namespace AttendanceUI.Forms
             this.Font = new System.Drawing.Font("Calisto MT", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmContainer";
             this.Text = "Dashboard";
             this.Load += new System.EventHandler(this.Dashboard_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmContainer_KeyDown);
             this.panelMenu.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconMenu)).EndInit();
             this.panelRight.ResumeLayout(false);
             this.panelWelcome.ResumeLayout(false);
@@ -638,10 +684,10 @@ namespace AttendanceUI.Forms
             ((System.ComponentModel.ISupportInitialize)(this.iconExit)).EndInit();
             this.panelFooter.ResumeLayout(false);
             this.panelFooter.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnOpenConnSettings)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnRefresh)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnRefresh)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -684,5 +730,7 @@ namespace AttendanceUI.Forms
         private IconPictureBox btnRefresh;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private IconPictureBox btnOpenConnSettings;
+        private XanderUI.XUIButton btnSyncData;
     }
 }

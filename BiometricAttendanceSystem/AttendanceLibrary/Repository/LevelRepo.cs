@@ -5,26 +5,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using AttendanceLibrary.BaseClass;
 using AttendanceLibrary.DataContext;
 
 namespace AttendanceLibrary.Repository
 {
-    public class LevelRepo
+    public class LevelRepo : DisposeContext
     {
+        private readonly AttendanceContext _context = Helper.GetDataContext();
+
         public string AddLevel(StudentLevel newLevel)
         {
             try
             {
-                using var context = new SqliteContext();
-                if (context.Levels.Any(a => a.Level == newLevel.Level && !a.IsDeleted))
+               
+                if (_context.Levels.Any(a => a.Level == newLevel.Level && !a.IsDeleted))
                     return "Level already exists";
-                //if (context.Levels.Any(a => a.LevelRank == newLevel.LevelRank && !a.IsDeleted))
+                //if (_context.Levels.Any(a => a.LevelRank == newLevel.LevelRank && !a.IsDeleted))
                 //    return "A Level already exist for this Level rank";
 
                 newLevel.Id = Guid.NewGuid().ToString();
-                context.Levels.Add(newLevel);
+                _context.Levels.Add(newLevel);
 
-                return context.SaveChanges() > 0 ? "" : "Level could not be added";
+                return _context.SaveChanges() > 0 ? "" : "Level could not be added";
             }
             catch (Exception ex)
             {
@@ -34,15 +37,15 @@ namespace AttendanceLibrary.Repository
 
         public string DeleteLevel(string levelId)
         {
-            using var context = new SqliteContext();
-            if (context.CourseRegistrations.Any(a => a.LevelId == levelId))
+           
+            if (_context.CourseRegistrations.Any(a => a.LevelId == levelId))
                 return "Level cannot be deleted because it is in use";
 
-            var level = context.Levels.SingleOrDefault(a => a.Id == levelId);
+            var level = _context.Levels.SingleOrDefault(a => a.Id == levelId);
             if (level != null)
             {
                 level.IsDeleted = true;
-                return context.SaveChanges() > 0 ? "" : "Level could not be deleted";
+                return _context.SaveChanges() > 0 ? "" : "Level could not be deleted";
             }
 
             return "Level not found";
@@ -52,8 +55,8 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using var context = new SqliteContext();
-                return context.Levels.Where(a => !a.IsDeleted).ToList();
+               
+                return _context.Levels.Where(a => !a.IsDeleted).ToList();
             }
             catch (Exception ex)
             {
@@ -65,8 +68,8 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using var context = new SqliteContext();
-                return context.Levels.SingleOrDefault(a => a.Id == levelId && !a.IsDeleted);
+               
+                return _context.Levels.SingleOrDefault(a => a.Id == levelId && !a.IsDeleted);
             }
             catch (Exception ex)
             {
@@ -78,8 +81,8 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using var context = new SqliteContext();
-                return context.Levels.SingleOrDefault(a => a.Level == name && !a.IsDeleted);
+               
+                return _context.Levels.SingleOrDefault(a => a.Level == name && !a.IsDeleted);
             }
             catch (Exception ex)
             {
@@ -89,19 +92,32 @@ namespace AttendanceLibrary.Repository
 
         public string UpdateLevel(StudentLevel level)
         {
-            using var context = new SqliteContext();
-            var oldLevel = context.Levels.SingleOrDefault(a => a.Id == level.Id && !a.IsDeleted);
+           
+            var oldLevel = _context.Levels.SingleOrDefault(a => a.Id == level.Id && !a.IsDeleted);
             if (oldLevel == null)
                 return "Level not found";
 
-            if (context.Levels.Any(a => a.Level == level.Level && !a.IsDeleted && a.Id != level.Id))
+            if (_context.Levels.Any(a => a.Level == level.Level && !a.IsDeleted && a.Id != level.Id))
                 return "Level already exist";
-            //if (context.Levels.Any(a => a.LevelRank == level.LevelRank && !a.IsDeleted && a.Id != level.Id))
+            //if (_context.Levels.Any(a => a.LevelRank == level.LevelRank && !a.IsDeleted && a.Id != level.Id))
             //    return "Rank already exist for another level";
 
             oldLevel.Level = level.Level;
 
-            return context.SaveChanges() > 0 ? "" : "Level could not be updated";
+            return _context.SaveChanges() > 0 ? "" : "Level could not be updated";
+        }
+
+        public List<StudentLevel> GetAllLevelsLocal()
+        {
+            try
+            {
+                using var context = Helper.GetDataContext(true);
+                return _context.Levels.Where(a => !a.IsDeleted).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

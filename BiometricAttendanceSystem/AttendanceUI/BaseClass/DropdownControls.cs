@@ -254,5 +254,65 @@ namespace AttendanceUI.BaseClass
             dropDown.ValueMember = "Value";
             dropDown.SelectedIndex = 0;
         }
+
+
+
+
+        public static void LoadLevelsLocal(ref ComboBox dropDown, bool includeAll = false)
+        {
+            var repo = new LevelRepo();
+            var allItems = repo.GetAllLevelsLocal();
+
+            if (includeAll)
+            {
+                allItems.Insert(0, new StudentLevel()
+                {
+                    Level = "All Levels",
+                    Id = Base.IdForSelectAll
+                });
+            }
+            else
+            {
+                allItems.Insert(0, new StudentLevel()
+                {
+                    Level = "Select Level",
+                    Id = Base.IdForSelect
+                });
+            }
+
+            dropDown.DataSource = allItems;
+            dropDown.DisplayMember = "Level";
+            dropDown.ValueMember = "Id";
+            dropDown.SelectedIndex = 0;
+        }
+
+        public static void LoadStaffCoursesLocal(ref ComboBox dropDown, string staffId, string levelId = "", bool includeAll = false)
+        {
+            var repo = new StaffCourseRepo();
+            var allItems = repo.GetCoursesByStaffLocal(staffId, levelId);
+
+            if (includeAll)
+            {
+                allItems.Insert(0, new StaffCourseList
+                {
+                    CourseTitle = "All Courses",
+                    Id = Base.IdForSelectAll
+                });
+            }
+            else
+            {
+                allItems.Insert(0, new StaffCourseList()
+                {
+                    CourseTitle = "Select Course",
+                    Id = Base.IdForSelect
+                });
+            }
+
+            dropDown.DataSource = allItems;
+            dropDown.DisplayMember = "CourseTitle";
+            dropDown.ValueMember = "CourseId";
+            dropDown.SelectedIndex = 0;
+        }
+
     }
 }

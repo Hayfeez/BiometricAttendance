@@ -5,11 +5,13 @@ using System.Drawing;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using AttendanceLibrary.DataContext;
 using AttendanceLibrary.Model;
 
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace AttendanceLibrary.BaseClass
@@ -17,9 +19,9 @@ namespace AttendanceLibrary.BaseClass
     public enum ReportType
     {
         [Description("Student Attendance Record")]
-        StudentAttendanceByCourse = 1,
+        studentAttendanceByCourse = 1,
         [Description("Staff Attendance Record")]
-        StaffAttendanceByCourse = 2
+        staffAttendanceByCourse = 2
 
     }
 
@@ -32,6 +34,7 @@ namespace AttendanceLibrary.BaseClass
 
     public static class Helper
     {
+
         #region MyRegion
 
         public static bool CheckForInternetConnection()
@@ -48,6 +51,29 @@ namespace AttendanceLibrary.BaseClass
             }
         }
 
+        public static string GetMacAddress()
+        {
+            return NetworkInterface
+                .GetAllNetworkInterfaces()
+                .Where(nic => nic.OperationalStatus == OperationalStatus.Up && nic.NetworkInterfaceType != NetworkInterfaceType.Loopback)
+                .Select(nic => nic.GetPhysicalAddress().ToString())
+                .FirstOrDefault();
+        }
+
+        public const string DatabaseName = "SchoolAttendanceDb";
+        public static string GetConnectionStringFromSettings()
+        {
+            return Properties.Settings.Default.SqlServerConnectionString;
+        }
+
+        public static bool SaveConnectionStringInSettings(string server, string username, string password)
+        {
+            Properties.Settings.Default.SqlServerConnectionString = $"Data Source={server};Initial Catalog={DatabaseName};User Id={username};Password={password}";
+            Properties.Settings.Default.Save();
+
+           return true;
+        }
+
         #endregion
 
         #region Database Helper
@@ -61,44 +87,65 @@ namespace AttendanceLibrary.BaseClass
         private const string SuperAdminFirstname = "Admin";
         private const string SuperAdminLastname = "Admin";
 
+        public static AttendanceContext GetDataContext(bool isSqlite = false)
+        {
+            if (isSqlite)
+                return new SqliteContext();
+
+            return new SqlServerContext();
+        }
+
+        public static bool CheckRemoteServerConnection()
+        {
+            try
+            {
+                // GetDataContext().Database.OpenConnection();
+                var context = GetDataContext();
+                context.Database.SetCommandTimeout(5);
+                return context.Database.CanConnect();
+            }
+            catch (SqlException e)
+            {
+                return false;
+            }
+        }
+
         public static void SeedData()
         {
             try
             {
-                // Initialize the database context (ensure the database is created, if it's a new database)
-                //  using var db = new SqliteContext(SqliteContext.Defaultdbfile);
-                using var db = new SqliteContext();
-                //   db.Database.EnsureCreated();
-                db.Database.Migrate();
+                using var db = GetDataContext();
+                if (CheckRemoteServerConnection())
+                {
+                    //   db.Database.EnsureCreated();
+                    db.Database.Migrate();
 
-                if (!db.SystemSettings.Any())
-                    db.SystemSettings.Add(new SystemSetting
-                    {
-                        Id = SuperAdminId,
-                        NoOfFinger = NoOfFinger,
-                        SuperAdminEmail = SuperAdminEmail,
-                        SuperAdminFirstname = SuperAdminFirstname,
-                        SuperAdminLastname = SuperAdminLastname,
-                        SuperAdminNo = SuperAdminNo,
-                        SuperAdminPassword = PasswordHash.sha256(SuperAdminPassword),
-                        UserDefaultPassword = PasswordHash.sha256(DefaultPassword)
-                    });
+                    if (!db.SystemSettings.Any())
+                        db.SystemSettings.Add(new SystemSetting
+                        {
+                            Id = SuperAdminId,
+                            NoOfFinger = NoOfFinger,
+                            SuperAdminEmail = SuperAdminEmail,
+                            SuperAdminFirstname = SuperAdminFirstname,
+                            SuperAdminLastname = SuperAdminLastname,
+                            SuperAdminNo = SuperAdminNo,
+                            SuperAdminPassword = PasswordHash.sha256(SuperAdminPassword),
+                            UserDefaultPassword = PasswordHash.sha256(DefaultPassword)
+                        });
 
-                if (!db.Levels.Any())
-                    db.Levels.AddRange(Levels());
+                    if (!db.Levels.Any())
+                        db.Levels.AddRange(Levels());
 
-                if (!db.Titles.Any())
-                    db.Titles.AddRange(Titles());
+                    if (!db.Titles.Any())
+                        db.Titles.AddRange(Titles());
 
-                db.SaveChanges();
-
+                    db.SaveChanges();
+                }
             }
             catch (Exception ex)
             {
                 throw new Exception("An error has occured while initializing the database. " + ex.Message + " Inner exception: " + ex.InnerException);
             }
-
-
         }
 
         private static List<PersonTitle> Titles()

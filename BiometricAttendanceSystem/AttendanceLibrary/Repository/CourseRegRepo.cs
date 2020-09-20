@@ -11,20 +11,22 @@ using AttendanceLibrary.DataContext;
 
 namespace AttendanceLibrary.Repository
 {
-   public class CourseRegRepo
+   public class CourseRegRepo : DisposeContext
     {
+        private readonly AttendanceContext _context = Helper.GetDataContext();
+
         public string SaveCourseReg(CourseRegistration model)
         {
             try
             {
-                using var context = new SqliteContext();
-                if (context.CourseRegistrations.Any(a => a.StudentId == model.StudentId && a.CourseId == model.CourseId && a.SessionSemesterId == model.SessionSemesterId))
+                
+                if (_context.CourseRegistrations.Any(a => a.StudentId == model.StudentId && a.CourseId == model.CourseId && a.SessionSemesterId == model.SessionSemesterId))
                     return "Course already registered";
 
                 model.Id = Guid.NewGuid().ToString();
-                context.CourseRegistrations.Add(model);
+                _context.CourseRegistrations.Add(model);
 
-                return context.SaveChanges() > 0 ? "" : "Course could not be registered";
+                return _context.SaveChanges() > 0 ? "" : "Course could not be registered";
             }
             catch (Exception ex)
             {
@@ -40,7 +42,7 @@ namespace AttendanceLibrary.Repository
                 var levelRepo = new LevelRepo();
                // var sessionRepo = new SessionSemesterRepo();
 
-               using var context = new SqliteContext();
+               
                var activeSession = LoggedInUser.ActiveSession; //sessionRepo.GetActiveSessionSemester();
                if (activeSession == null)
                {
@@ -57,7 +59,7 @@ namespace AttendanceLibrary.Repository
                        return "No record saved. At least one student or level does not exist";
                    }
 
-                   if (!context.CourseRegistrations.Any(a => a.StudentId == student.Id && a.CourseId == courseId && a.SessionSemesterId == activeSession.Id))
+                   if (!_context.CourseRegistrations.Any(a => a.StudentId == student.Id && a.CourseId == courseId && a.SessionSemesterId == activeSession.Id))
                    {
                        toAdd.Add(new CourseRegistration
                        {
@@ -71,8 +73,8 @@ namespace AttendanceLibrary.Repository
                        });
                    }
                }
-               context.CourseRegistrations.AddRange(toAdd);
-               return context.SaveChanges() > 0 ? "" : "No record saved";
+               _context.CourseRegistrations.AddRange(toAdd);
+               return _context.SaveChanges() > 0 ? "" : "No record saved";
             }
             catch (Exception ex)
             {
@@ -85,16 +87,16 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using var context = new SqliteContext();
-                if (context.Attendances.Any(a => a.CourseRegistrationId == id))
+                
+                if (_context.Attendances.Any(a => a.CourseRegistrationId == id))
                     return "Registered Course cannot be deleted";
 
-                var item = context.CourseRegistrations.SingleOrDefault(x => x.Id == id);
+                var item = _context.CourseRegistrations.SingleOrDefault(x => x.Id == id);
                 if (item == null)
                     return "Registered course not found";
 
-                context.CourseRegistrations.Remove(item);
-                return context.SaveChanges() > 0 ? "" : "Registered Course could not be deleted";
+                _context.CourseRegistrations.Remove(item);
+                return _context.SaveChanges() > 0 ? "" : "Registered Course could not be deleted";
             }
             catch (Exception ex)
             {
@@ -106,14 +108,14 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using var context = new SqliteContext();
-                var dt = (from att in context.CourseRegistrations
-                          join sem in context.SessionSemesters on att.SessionSemesterId equals sem.Id
-                          join cou in context.Courses on att.CourseId equals cou.Id
-                          join st in context.Students on att.StudentId equals st.Id
-                          join stLev in context.Levels on att.LevelId equals stLev.Id
-                          join sta in context.Staff on att.RegisteredBy equals sta.Id
-                          join ti in context.Titles on sta.TitleId equals ti.Id
+                
+                var dt = (from att in _context.CourseRegistrations
+                          join sem in _context.SessionSemesters on att.SessionSemesterId equals sem.Id
+                          join cou in _context.Courses on att.CourseId equals cou.Id
+                          join st in _context.Students on att.StudentId equals st.Id
+                          join stLev in _context.Levels on att.LevelId equals stLev.Id
+                          join sta in _context.Staff on att.RegisteredBy equals sta.Id
+                          join ti in _context.Titles on sta.TitleId equals ti.Id
                           where att.StudentId == studentId && att.SessionSemesterId == semesterId
                           select new CourseRegistrationList
                           {
@@ -139,15 +141,15 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using var context = new SqliteContext();
-                var dt = (from att in context.CourseRegistrations
-                          join sem in context.SessionSemesters on att.SessionSemesterId equals sem.Id
-                          join cou in context.Courses on att.CourseId equals cou.Id
-                          join st in context.Students on att.StudentId equals st.Id
-                          join stLev in context.Levels on att.LevelId equals stLev.Id
-                          //join sta in context.Staff on att.RegisteredBy equals sta.Id into staff
+                
+                var dt = (from att in _context.CourseRegistrations
+                          join sem in _context.SessionSemesters on att.SessionSemesterId equals sem.Id
+                          join cou in _context.Courses on att.CourseId equals cou.Id
+                          join st in _context.Students on att.StudentId equals st.Id
+                          join stLev in _context.Levels on att.LevelId equals stLev.Id
+                          //join sta in _context.Staff on att.RegisteredBy equals sta.Id into staff
                           //from staf in staff
-                          //join ti in context.Titles on staf.TitleId equals ti.Id
+                          //join ti in _context.Titles on staf.TitleId equals ti.Id
                           where att.CourseId == courseId && att.SessionSemesterId == semesterId
                           select new CourseRegistrationList
                           {

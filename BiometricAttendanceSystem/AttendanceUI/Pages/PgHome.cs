@@ -43,6 +43,9 @@ namespace AttendanceUI.Pages
         {
             try
             {
+                if (LoggedInUser.ActiveSession == null)
+                    return;
+
                 var data = _repo.GetCourseRegCount(LoggedInUser.UserId, LoggedInUser.ActiveSession.Id);
                 if (data != null && data.Count > 0)
                 {
@@ -69,6 +72,9 @@ namespace AttendanceUI.Pages
         {
             try
             {
+                if (LoggedInUser.ActiveSession == null)
+                    return;
+
                 var data = _repo.GetCourseAttendanceCount(LoggedInUser.UserId, LoggedInUser.ActiveSession.Id);
                 if (data != null && data.Count > 0)
                 {

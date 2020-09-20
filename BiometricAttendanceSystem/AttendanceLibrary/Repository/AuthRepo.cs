@@ -12,23 +12,40 @@ using AttendanceLibrary.DataContext;
 
 namespace AttendanceLibrary.Repository
 {
-    public class AuthRepo
+    public class AuthRepo  : DisposeContext
     {
+        private readonly AttendanceContext _localContext = Helper.GetDataContext(true);
+        private readonly AttendanceContext _remoteContext = Helper.GetDataContext();
+
         public string StaffChangePassword(ChangePassword pwd)
         {
             try
             {
                 pwd.OldPassword = PasswordHash.sha256(pwd.OldPassword);
                 pwd.NewPassword = PasswordHash.sha256(pwd.NewPassword);
-                using var context = new SqliteContext();
-                var d = context.Staff.SingleOrDefault(a => a.Email == pwd.Email && a.Password == pwd.OldPassword);
+
+                var d = _remoteContext.Staff.SingleOrDefault(a => a.Email == pwd.Email && a.Password == pwd.OldPassword);
                 if (d == null)
                     return "Current Password is not valid";
 
                 d.Password = pwd.NewPassword;
                 d.PasswordChanged = true;
 
-                return context.SaveChanges() > 0 ? "" : "Password could not be updated";
+                if (_remoteContext.SaveChanges() > 0)
+                {
+                    //change the password on local sqlite
+                    var s = _localContext.Staff.Single(a => a.Email == pwd.Email);
+                   
+                    s.Password = pwd.NewPassword;
+                    s.PasswordChanged = true;
+                    _localContext.SaveChanges();
+
+                    return "";
+                }
+                else
+                {
+                    return "Password could not be updated";
+                }
             }
             catch (Exception ex)
             {
@@ -45,8 +62,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using var context = new SqliteContext();
-                var d = context.Staff.SingleOrDefault(a => a.Email == model.Email);
+                var d = _localContext.Staff.SingleOrDefault(a => a.Email == model.Email);
                 if (d == null) return null;
                 return new ChangePassword
                 {
@@ -65,11 +81,10 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using var context = new SqliteContext();
-                var staff = context.Staff.SingleOrDefault(a => !a.IsDeleted && a.Email == model.Email && a.Password == model.Password);
+                var staff = _localContext.Staff.SingleOrDefault(a => !a.IsDeleted && a.Email == model.Email && a.Password == model.Password);
                 if (staff == null)
                 {
-                    var superAdmin = context.SystemSettings.SingleOrDefault(a => a.SuperAdminEmail == model.Email && a.SuperAdminPassword == model.Password);
+                    var superAdmin = _localContext.SystemSettings.SingleOrDefault(a => a.SuperAdminEmail == model.Email && a.SuperAdminPassword == model.Password);
                     if (superAdmin == null)
                         return false;
 
@@ -79,11 +94,8 @@ namespace AttendanceLibrary.Repository
                     LoggedInUser.IsAdmin = true;
                     LoggedInUser.IsSuperAdmin = true;
                     LoggedInUser.PasswordChanged = true;
-                    LoggedInUser.Department = "System Administrator";
                     return true;
                 }
-
-                var deptRepo = new DepartmentRepo();
 
                 LoggedInUser.UserId = staff.Id;
                 LoggedInUser.Email = staff.Email;
@@ -91,7 +103,6 @@ namespace AttendanceLibrary.Repository
                 LoggedInUser.IsAdmin = staff.IsAdmin;
                 LoggedInUser.IsSuperAdmin = staff.IsSuperAdmin;
                 LoggedInUser.PasswordChanged = staff.PasswordChanged;
-                LoggedInUser.Department = deptRepo.GetDepartment(staff.DepartmentId)?.DepartmentName;
 
                 return true;
             }
@@ -99,7 +110,19 @@ namespace AttendanceLibrary.Repository
             {
                 throw ex;
             }
-        }       
+        }
+
+        public List<StaffFingerprint> GetStaffFingersForSignIn(string id = "")
+        {
+            try
+            {
+                return _localContext.StaffFingers.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
     }
 }

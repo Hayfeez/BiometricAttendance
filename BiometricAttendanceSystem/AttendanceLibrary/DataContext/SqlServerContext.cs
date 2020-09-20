@@ -12,8 +12,10 @@ namespace AttendanceLibrary.DataContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(
-                @"Server=(localdb)\mssqllocaldb;Database=SchoolAttendanceDb;Integrated Security=True");
+            optionsBuilder.UseSqlServer(Properties.Settings.Default.SqlServerConnectionString);
+            //          @"Server=(localdb)\mssqllocaldb;Database=SchoolAttendanceDb;Integrated Security=True");
+           // @"Data Source=192.168.0.137;Initial Catalog=SchoolAttendanceDb;User Id=attendanceLogin;Password=Password@123");
         }
+        //Network Library=DBMSSOCN;
     }
 }

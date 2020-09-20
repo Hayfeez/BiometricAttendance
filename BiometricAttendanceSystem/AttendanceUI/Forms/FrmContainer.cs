@@ -4,12 +4,14 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using AttendanceLibrary.BaseClass;
+using AttendanceLibrary.Model;
 using AttendanceLibrary.Repository;
 
 using AttendanceUI.BaseClass;
@@ -112,7 +114,16 @@ namespace AttendanceUI.Forms
                     ? "Admin User"
                     : "User";
 
-            var activeSession = _sessionRepo.GetActiveSessionSemester();
+            SessionSemester activeSession;
+            if (GetRemoteServerConnectionState())
+                activeSession = _sessionRepo.GetActiveSessionSemester();
+
+            else
+            {
+                activeSession = _sessionRepo.GetActiveSessionSemesterLocal();
+                EnableMenus(false);
+            }
+
             if (activeSession != null)
             {
                 LoggedInUser.ActiveSession = activeSession;
@@ -120,9 +131,7 @@ namespace AttendanceUI.Forms
 
             ShowPage(new PgHome());
             SetActiveMenu(btnHome);
-            GetInternetConnectionState();
         }
-
 
         private void btnHome_Click(object sender, EventArgs e)
         {
@@ -175,23 +184,39 @@ namespace AttendanceUI.Forms
             }
 
             var attendance = new FrmAttendance();
-            attendance.Show();
-            attendance.BringToFront();
+            attendance.ShowDialog();
+          //  attendance.BringToFront();
             SetActiveMenu(btnAttendance);
         }
 
-        private void btnReport_Click(object sender, EventArgs e)
+        private async void btnReport_Click(object sender, EventArgs e)
         {
-            if (GetInternetConnectionState())
+            if (GetRemoteServerConnectionState())
             {
-                ShowPage(new PgReport());
-                SetActiveMenu(btnReport);
+                var syncRepo = new SyncRepo();
+                var s = await syncRepo.UploadAttendanceToRemote();
+                if (s == string.Empty)
+                {
+                    syncRepo.SaveSync(new AppSync
+                    {
+                        Id = Guid.NewGuid().ToString(),
+                        StaffId = LoggedInUser.UserId,
+                        SystemId = Helper.GetMacAddress(),
+                        SyncDate = DateTime.Now
+                    });
+
+                    ShowPage(new PgReport());
+                    SetActiveMenu(btnReport);
+                }
+                else
+                {
+                    Base.ShowError("Error", s);
+                }
             }
             else
             {
-                Base.ShowError("No Internet", "You must be connected to Internet to view reports");
+                Base.ShowError("Connection Failed", "You can only view reports from the remote server. Check your connection settings");
             }
-            
         }
 
         private void iconLogout_Click(object sender, EventArgs e)
@@ -241,13 +266,11 @@ namespace AttendanceUI.Forms
 
         private bool GetInternetConnectionState()
         {
-            int con;
-            var result = InternetGetConnectedState(out con, 0);
+            var result = InternetGetConnectedState(out var con, 0);
             if (result)
             {
                 toolStripStatusLabel1.Text = "Connected to Internet";
                 toolStripStatusLabel1.ForeColor = Color.Green;
-                
             }
             else
             {
@@ -259,9 +282,90 @@ namespace AttendanceUI.Forms
             return result;
         }
 
+        private bool GetRemoteServerConnectionState()
+        {
+            var result = Helper.CheckRemoteServerConnection();
+            if (result)
+            {
+                toolStripStatusLabel1.Text = "Remote server connection established";
+                toolStripStatusLabel1.ForeColor = Color.Green;
+            }
+            else
+            {
+                toolStripStatusLabel1.Text = "Cannot connect to remote server. Check settings";
+                toolStripStatusLabel1.ForeColor = Color.Red;
+            }
+
+            statusStrip1.Refresh();
+            return result;
+        }
+
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            GetInternetConnectionState();
+           var result = GetRemoteServerConnectionState();
+           EnableMenus(result);
+        }
+
+        private void EnableMenus(bool enable)
+        {
+            btnCourseMgt.Enabled = enable;
+            btnCourseReg.Enabled = enable;
+            btnDept.Enabled = enable;
+            btnReport.Enabled = enable;
+            btnSession.Enabled = enable;
+            btnUserMgt.Enabled = enable;
+            btnStudentMgt.Enabled = enable;
+            iconSettings.Enabled = enable;
+            btnSyncData.Enabled = enable;
+
+           // btnAttendance.Enabled = true;
+           // btnHome.Enabled = true;
+        }
+
+        private void btnOpenConnSettings_Click(object sender, EventArgs e)
+        {
+            var frm = new FrmConnection();
+            frm.ShowDialog();
+        }
+
+        private async Task SyncData()
+        {
+            var result = Base.ShowDialog(MessageBoxButtons.YesNo, "Data Download", "Do you want to proceed with data download?");
+            if (result == DialogResult.Yes)
+            {
+                if (GetRemoteServerConnectionState())
+                {
+                    var syncRepo = new SyncRepo();
+                    var s = await syncRepo.SyncAllData();
+                    if (s == string.Empty)
+                    {
+                        Base.ShowSuccess("Success", "Data synchronization successful");
+                    }
+                    else
+                    {
+                        Base.ShowError("Error", s);
+                    }
+                }
+                else
+                {
+                    Base.ShowError("Connection Failed", "Cannot connect to the remote server. Check your connection settings");
+                    var frm = new FrmConnection();
+                    frm.ShowDialog();
+                }
+            }
+        }
+
+        private async void btnSyncData_Click(object sender, EventArgs e)
+        {
+            await SyncData();
+        }
+
+        private async void FrmContainer_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.Alt && e.KeyCode == Keys.D)
+            {
+                await SyncData();
+            }
         }
     }
 }

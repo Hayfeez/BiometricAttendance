@@ -12,22 +12,24 @@ using AttendanceLibrary.DataContext;
 
 namespace AttendanceLibrary.Repository
 {
-    public class StaffRepo
+    public class StaffRepo : DisposeContext
     {
+        private readonly AttendanceContext _context = Helper.GetDataContext();
+
         public string AddStaff(StaffDetail newStaff)
         {
             try
             {
-                using var context = new SqliteContext();
-                if (context.Staff.Any(a => a.StaffNo == newStaff.StaffNo || a.Email == newStaff.Email && !a.IsDeleted))
+                
+                if (_context.Staff.Any(a => a.StaffNo == newStaff.StaffNo || a.Email == newStaff.Email && !a.IsDeleted))
                     return "Staff with this Staff number or Email address exists";
 
-                var defaultPwd = context.SystemSettings.First().UserDefaultPassword;
+                var defaultPwd = _context.SystemSettings.First().UserDefaultPassword;
 
                 newStaff.Id = Guid.NewGuid().ToString();
                 newStaff.Password = defaultPwd;
-                context.Staff.Add(newStaff);
-                return context.SaveChanges() > 0 ? "" : "Staff could not be added";
+                _context.Staff.Add(newStaff);
+                return _context.SaveChanges() > 0 ? "" : "Staff could not be added";
             }
             catch (Exception ex)
             {
@@ -39,7 +41,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using var context = new SqliteContext();
+                
                 return "";
             }
             catch (Exception ex)
@@ -49,16 +51,16 @@ namespace AttendanceLibrary.Repository
         }
         public string DeleteStaff(string staffId)
         {
-            using var context = new SqliteContext();
-            if (context.Attendances.Any(a => a.MarkedBy == staffId))
+            
+            if (_context.Attendances.Any(a => a.MarkedBy == staffId))
                 return "Staff cannot be deleted because (s)he has marked attendance for a course";
 
-            var staff = context.Staff.SingleOrDefault(a => a.Id == staffId);
+            var staff = _context.Staff.SingleOrDefault(a => a.Id == staffId);
             if (staff != null)
             {
-                //context.Staff.Remove(staff);
+                //_context.Staff.Remove(staff);
                 staff.IsDeleted = true;
-                return context.SaveChanges() > 0 ? "" : "Staff could not be updated";
+                return _context.SaveChanges() > 0 ? "" : "Staff could not be updated";
             }
 
             return "Staff not found";
@@ -68,8 +70,8 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using var context = new SqliteContext();
-                return context.Staff.Where(a => !a.IsDeleted).ToList();
+                
+                return _context.Staff.Where(a => !a.IsDeleted).ToList();
             }
             catch (Exception ex)
             {
@@ -81,8 +83,8 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using var context = new SqliteContext();
-                return context.Staff.Where(a => !a.IsDeleted && a.DepartmentId == departmentId).ToList();
+                
+                return _context.Staff.Where(a => !a.IsDeleted && a.DepartmentId == departmentId).ToList();
             }
             catch (Exception ex)
             {
@@ -94,11 +96,11 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using var context = new SqliteContext();
+                
                 var dt = (
-                    from st in context.Staff
-                    join dep in context.Departments on st.DepartmentId equals dep.Id 
-                    join ti in context.Titles on st.TitleId equals ti.Id
+                    from st in _context.Staff
+                    join dep in _context.Departments on st.DepartmentId equals dep.Id 
+                    join ti in _context.Titles on st.TitleId equals ti.Id
                     where (departmentId == "" || st.DepartmentId == departmentId) && !st.IsDeleted
                     select new StaffList
                     {
@@ -125,8 +127,8 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                using var context = new SqliteContext();
-                return context.Staff.SingleOrDefault(a => a.Id == staffId  && !a.IsDeleted);
+                
+                return _context.Staff.SingleOrDefault(a => a.Id == staffId  && !a.IsDeleted);
             }
             catch (Exception ex)
             {
@@ -136,12 +138,12 @@ namespace AttendanceLibrary.Repository
 
         public string UpdateStaff(StaffDetail staff)
         {
-            using var context = new SqliteContext();
-            var oldStaff = context.Staff.SingleOrDefault(a => a.Id == staff.Id && !a.IsDeleted);
+            
+            var oldStaff = _context.Staff.SingleOrDefault(a => a.Id == staff.Id && !a.IsDeleted);
             if (oldStaff == null)
                 return "Staff not found";
 
-            if (context.Staff.Any(a => (a.StaffNo == staff.StaffNo || a.Email == staff.Email && !a.IsDeleted) && a.Id != staff.Id))
+            if (_context.Staff.Any(a => (a.StaffNo == staff.StaffNo || a.Email == staff.Email && !a.IsDeleted) && a.Id != staff.Id))
                 return "Staff with this Staff number or Email address exists";
 
             oldStaff.Email = staff.Email.ToLower();
@@ -155,7 +157,7 @@ namespace AttendanceLibrary.Repository
             oldStaff.StaffNo = staff.StaffNo;
             oldStaff.DepartmentId = staff.DepartmentId;
 
-            if (context.SaveChanges() > 0)
+            if (_context.SaveChanges() > 0)
             {
                 if (LoggedInUser.UserId == staff.Id)
                 {
@@ -170,13 +172,13 @@ namespace AttendanceLibrary.Repository
 
         public string UpdateStaffAdminStatus(string staffId, bool isAdmin)
         {
-            using var context = new SqliteContext();
-            var staff = context.Staff.SingleOrDefault(a => a.Id == staffId && !a.IsDeleted);
+            
+            var staff = _context.Staff.SingleOrDefault(a => a.Id == staffId && !a.IsDeleted);
             if (staff == null)
                 return "Staff not found";
 
             staff.IsAdmin = isAdmin;
-            return context.SaveChanges() > 0 
+            return _context.SaveChanges() > 0 
                 ? ""
                 : "Operation failed";
         }
