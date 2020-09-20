@@ -34,7 +34,7 @@ namespace AttendanceUI.Forms
             if (LoggedInUser.UserId == "")
             {
                 this.Close();
-                var loginForm = new FrmLogin();
+                var loginForm = new FrmLogin(false);
                 loginForm.ShowDialog();
             }
 
@@ -228,8 +228,8 @@ namespace AttendanceUI.Forms
             }
 
             this.Hide();
-            Base.ShowSuccess("Success", "You have been successfully logged out");
-            var loginForm = new FrmLogin();
+           // Base.ShowSuccess("Success", "You have been successfully logged out");
+            var loginForm = new FrmLogin(false);
             loginForm.Show();
         }
 

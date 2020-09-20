@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AttendanceLibrary.BaseClass;
@@ -17,11 +18,28 @@ namespace AttendanceUI.Forms
     public partial class FrmLogin : Form
     {
         private readonly AuthRepo _authRepo;
-        public FrmLogin()
+        public FrmLogin(bool showSplash = true)
         {
-            InitializeComponent();
+            if (showSplash)
+            {
+                var t = new Thread(new ThreadStart(ShowSplashScreen));
+                t.Start();
+                Thread.Sleep(5000);
+                InitializeComponent();
+                t.Abort();
+            }
+            else
+            {
+                InitializeComponent();
+            }
+
             _authRepo = new AuthRepo();
             Helper.GetEnumValuesAndDescriptions<ReportType>();
+        }
+
+        private void ShowSplashScreen()
+        {
+            Application.Run(new SplashScreen());
         }
 
         private void iconExit_Click(object sender, EventArgs e)

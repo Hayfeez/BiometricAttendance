@@ -26,6 +26,7 @@ namespace AttendanceUI
             {
                 Helper.SeedData();
                 Application.Run(new FrmLogin());
+               // Application.Run(new SplashScreen());
             }
             catch (Exception ex)
             {

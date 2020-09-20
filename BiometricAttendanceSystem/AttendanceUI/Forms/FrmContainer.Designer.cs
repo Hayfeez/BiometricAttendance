@@ -415,7 +415,7 @@ namespace AttendanceUI.Forms
             // 
             // panelWelcome
             // 
-            this.panelWelcome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
+            this.panelWelcome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.panelWelcome.Controls.Add(this.iconAlert);
             this.panelWelcome.Controls.Add(this.iconSettings);
             this.panelWelcome.Controls.Add(this.iconLogout);
@@ -658,6 +658,7 @@ namespace AttendanceUI.Forms
             this.ClientSize = new System.Drawing.Size(1092, 954);
             this.Controls.Add(this.panelRight);
             this.Controls.Add(this.panelMenu);
+            this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Calisto MT", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
