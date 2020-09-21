@@ -33,12 +33,42 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public string AddBulkStudent(List<BulkStudent> data, string levelId)
+        public string AddBulkStudent(List<BulkStudent> data, string deptId)
         {
             try
             {
-               
-                return "";
+                var existing = _context.Students.Where(x => x.Email != string.Empty)
+                    .Select(x => new
+                    {
+                        x.MatricNo,
+                        x.Email
+                    })
+                    .ToHashSet();
+
+                var existingMatricNos = existing.Select(x => x.MatricNo).ToHashSet();
+                var existingEmails = existing.Select(x => x.Email).ToHashSet();
+
+                var toAdd = new List<StudentDetail>();
+                foreach (var item in data)
+                {
+                    if ((string.IsNullOrEmpty(item.Email) || !existingEmails.Contains(item.Email)) && !existingMatricNos.Contains(item.MatricNumber))
+                    {
+                        toAdd.Add(new StudentDetail
+                        {
+                            Id = Guid.NewGuid().ToString(),
+                            MatricNo = item.MatricNumber,
+                            Lastname = item.Lastname,
+                            Firstname = item.Firstname,
+                            Othername = item.Othername,
+                            Email = item.Email,
+                            PhoneNo = item.PhoneNo,
+                            DepartmentId = deptId
+                        });
+                    }
+                }
+
+                _context.Students.AddRange(toAdd);
+                return _context.SaveChanges() > 0 ? "" : "No new student added";
             }
             catch (Exception ex)
             {
@@ -62,25 +92,38 @@ namespace AttendanceLibrary.Repository
             return "Student not found";
         }
 
-        public string GraduateStudent(string studentId)
+        public string GraduateStudent(List<BulkGraduateStudent> model, string sessionId)
         {
-           
-            var student = _context.Students.SingleOrDefault(a => a.Id == studentId);
-            if (student != null)
+            try
             {
-                student.IsGraduated = true;
-                return _context.SaveChanges() > 0 ? "" : "Operation failed";
-                 
-            }
+                var matricNos = model.Select(x => x.MatricNumber).ToHashSet();
+                var students = GetStudentByMatricNos(matricNos);
 
-            return "Student not found";
+                if (students.Count < model.Count)
+                {
+                    return "No record processed. At least one student does not exist";
+                }
+
+                foreach (var item in students)
+                {
+                    item.IsGraduated = true;
+                    item.GraduatedSessionId = sessionId;
+                    item.DateGraduated = DateTime.Now.Date;
+                }
+
+                return _context.SaveChanges() > 0 ? "" : "No record saved";
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
+
 
         public List<StudentDetail> GetAllStudents(bool isGraduate = false)
         {
             try
             {
-               
                 return _context.Students.Where(a => !a.IsDeleted && a.IsGraduated == isGraduate).ToList();
             }
             catch (Exception ex)
@@ -138,7 +181,6 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-               
                 return _context.Students.SingleOrDefault(a => a.Id == studentId && !a.IsDeleted);
             }
             catch (Exception ex)
@@ -153,6 +195,18 @@ namespace AttendanceLibrary.Repository
             {
                
                 return _context.Students.SingleOrDefault(a => a.MatricNo == matricNo && !a.IsDeleted);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<StudentDetail> GetStudentByMatricNos(HashSet<string> matricNos)
+        {
+            try
+            {
+                return _context.Students.Where(a => matricNos.Contains(a.MatricNo) && !a.IsDeleted).ToList();
             }
             catch (Exception ex)
             {

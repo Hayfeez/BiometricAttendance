@@ -117,7 +117,7 @@ namespace AttendanceUI.Forms
         {
             lblDate.Text = DateTime.Now.ToLongDateString();
             lblDate.Visible = true;
-            DropdownControls.LoadLevelsLocal(ref comboLevel, false);
+            DropdownControls.LoadLevelsLocal(ref comboLevel);
         }
 
         private void btnTakeAttendance_Click(object sender, EventArgs e)

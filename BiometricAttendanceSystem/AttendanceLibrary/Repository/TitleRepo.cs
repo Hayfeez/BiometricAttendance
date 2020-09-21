@@ -74,6 +74,18 @@ namespace AttendanceLibrary.Repository
             }
         }
 
+        public string GetTitleId(string name)
+        {
+            try
+            {
+                return _context.Titles.SingleOrDefault(a => a.Title == name && !a.IsDeleted)?.Id;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public string UpdateTitle(PersonTitle title)
         {
            

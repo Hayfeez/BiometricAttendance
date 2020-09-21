@@ -42,10 +42,27 @@ namespace AttendanceUI.BaseClass
             dropDown.SelectedIndex = 0;
         }
 
-        public static void LoadSessions(ref ComboBox dropDown, bool includeAll = false)
+        public static void LoadSessions(ref ComboBox dropDown, bool includeAll = false, bool noSemesters = false)
         {
             var repo = new SessionSemesterRepo();
             var allItems = repo.GetAllSessionSemesters();
+
+            var allSessions = new List<SessionSemester>();
+            if (noSemesters)
+            {
+                allSessions = (from x in allItems
+                select new SessionSemester 
+                    {
+                        Id = x.Id,
+                        Session = x.Session
+                    }).ToList();
+
+                allSessions.Insert(0, new SessionSemester
+                {
+                    Session = "Select Session",
+                    Id = Base.IdForSelect
+                });
+            }
 
             if (includeAll)
             {
@@ -64,8 +81,8 @@ namespace AttendanceUI.BaseClass
                 });
             }
 
-            dropDown.DataSource = allItems;
-            dropDown.DisplayMember = "Fullname";
+            dropDown.DataSource = noSemesters ? allSessions : allItems;
+            dropDown.DisplayMember = noSemesters ? "Session" : "Fullname";
             dropDown.ValueMember = "Id";
             dropDown.SelectedIndex = 0;
         }
@@ -254,7 +271,6 @@ namespace AttendanceUI.BaseClass
             dropDown.ValueMember = "Value";
             dropDown.SelectedIndex = 0;
         }
-
 
 
 

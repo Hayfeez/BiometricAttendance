@@ -86,6 +86,7 @@ namespace AttendanceLibrary.Repository
                          join st in _context.StudentFingers on c.StudentId equals st.StudentId into studentFingers
                          from fings in studentFingers
                          join s in _context.Students on fings.StudentId equals s.Id
+                         where !s.IsDeleted && !s.IsGraduated
                          select new StudentFinger
                          {
                              FingerTemplate = fings.FingerTemplate,

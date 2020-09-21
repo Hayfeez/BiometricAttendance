@@ -37,18 +37,58 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public string AddBulkStaff(List<BulkStaff> data)
+        public string AddBulkStaff(List<BulkStaff> data, string deptId)
         {
             try
             {
-                
-                return "";
+                var existing = _context.Staff.Where(x => x.Email != string.Empty)
+                    .Select(x => new
+                    {
+                        x.StaffNo,
+                        x.Email
+                    })
+                    .ToHashSet();
+
+                var existingStaffNos = existing.Select(x => x.StaffNo).ToHashSet();
+                var existingEmails = existing.Select(x => x.Email).ToHashSet();
+
+                var defaultPwd = _context.SystemSettings.First().UserDefaultPassword;
+                var toAdd = new List<StaffDetail>();
+                var titleRepo = new TitleRepo();
+                foreach (var item in data)
+                {
+                    var titleId = titleRepo.GetTitleId(item.Title);
+                    if (titleId == null)
+                    {
+                        return "No record saved. At least one title does not exist";
+                    }
+                    if (!existingEmails.Contains(item.Email) && !existingStaffNos.Contains(item.StaffNo))
+                    {
+                        toAdd.Add(new StaffDetail()
+                        {
+                            Id = Guid.NewGuid().ToString(),
+                            StaffNo = item.StaffNo,
+                            Lastname = item.Lastname,
+                            Firstname = item.Firstname,
+                            Othername = item.Othername,
+                            Email = item.Email,
+                            PhoneNo = item.PhoneNo,
+                            DepartmentId = deptId,
+                            Password = defaultPwd,
+                            TitleId = titleId
+                        });
+                    }
+                }
+
+                _context.Staff.AddRange(toAdd);
+                return _context.SaveChanges() > 0 ? "" : "No new student added";
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
+
         public string DeleteStaff(string staffId)
         {
             
@@ -70,7 +110,6 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                
                 return _context.Staff.Where(a => !a.IsDeleted).ToList();
             }
             catch (Exception ex)

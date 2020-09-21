@@ -175,5 +175,29 @@ namespace AttendanceUI.Pages
                 Base.ShowError("Error occured", ex.Message);
             }
         }
+
+        private void btnUpload_Click(object sender, EventArgs e)
+        {
+            if (!LoggedInUser.IsAdmin)
+            {
+                Base.ShowError("Access Denied", "You do not have the required permission");
+                return;
+            }
+            var studentForm = new FrmUploadStudent();
+            studentForm.ShowDialog();
+            LoadData();
+        }
+
+        private void btnUploadGrad_Click(object sender, EventArgs e)
+        {
+            if (!LoggedInUser.IsAdmin)
+            {
+                Base.ShowError("Access Denied", "You do not have the required permission");
+                return;
+            }
+            var studentForm = new FrmUploadGraduateStudent();
+            studentForm.ShowDialog();
+            LoadData();
+        }
     }
 }

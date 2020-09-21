@@ -17,5 +17,6 @@ namespace AttendanceLibrary.Model
         public string StaffId { get; set; }
         public byte[] Fingerprint { get; set; }
 
+        [NotMapped] public string Email { get; set; }
     }
 }

@@ -253,6 +253,9 @@ namespace AttendanceLibrary.Migrations.Sqlite
                     b.Property<string>("Id")
                         .HasColumnType("TEXT");
 
+                    b.Property<DateTime>("DateGraduated")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("DepartmentId")
                         .HasColumnType("TEXT");
 
@@ -260,6 +263,9 @@ namespace AttendanceLibrary.Migrations.Sqlite
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Firstname")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("GraduatedSessionId")
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("IsDeleted")

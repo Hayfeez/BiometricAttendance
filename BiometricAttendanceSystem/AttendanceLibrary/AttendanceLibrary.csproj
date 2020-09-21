@@ -208,10 +208,18 @@
     <Compile Include="Migrations\Sqlite\20200910233323_initial.designer.cs">
       <DependentUpon>20200910233323_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Sqlite\20200921004030_addgraduateddetails.cs" />
+    <Compile Include="Migrations\Sqlite\20200921004030_addgraduateddetails.designer.cs">
+      <DependentUpon>20200921004030_addgraduateddetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Sqlite\SqliteContextModelSnapshot.cs" />
     <Compile Include="Migrations\SqlServer\20200919083359_initial.cs" />
     <Compile Include="Migrations\SqlServer\20200919083359_initial.designer.cs">
       <DependentUpon>20200919083359_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlServer\20200921004048_addgraduateddetails.cs" />
+    <Compile Include="Migrations\SqlServer\20200921004048_addgraduateddetails.designer.cs">
+      <DependentUpon>20200921004048_addgraduateddetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\SqlServer\SqlServerContextModelSnapshot.cs" />
     <Compile Include="Model\Attendance.cs" />

@@ -25,8 +25,8 @@ namespace AttendanceUI.Forms
 
         private void LoadFilter()
         {
-            DropdownControls.LoadLevels(ref comboLevel, false);
-            DropdownControls.LoadDepartments(ref comboDept, false);
+            DropdownControls.LoadLevels(ref comboLevel);
+            DropdownControls.LoadDepartments(ref comboDept);
         }
 
         private void LoadCourses()
@@ -59,7 +59,7 @@ namespace AttendanceUI.Forms
                 if (_deptId == "")
                     return;
 
-                DropdownControls.LoadStaff(ref comboStaff, _deptId, false);
+                DropdownControls.LoadStaff(ref comboStaff, _deptId);
             }
         }
 

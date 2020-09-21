@@ -74,6 +74,26 @@ namespace AttendanceUI.Forms
         {
             this.Close();
         }
-        
+
+        private void btnTest_Click(object sender, EventArgs e)
+        {
+            var validate = ValidateForm();
+            if (validate == string.Empty)
+            {
+                var test = Helper.TestConnectionString(txtServer.Text.Trim(), txtUsername.Text.Trim(), txtPassword.Text.Trim());
+                if (test)
+                {
+                    Base.ShowSuccess("Success", "Connection established successfully");
+                }
+                else
+                {
+                    Base.ShowError("Failed", "Could not connect to remote server. Check your credentials or the server could be unavailable");
+                }
+            }
+            else
+            {
+                Base.ShowInfo("Validation Failed", validate);
+            }
+        }
     }
 }

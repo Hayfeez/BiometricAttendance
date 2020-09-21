@@ -51,7 +51,6 @@ namespace AttendanceUI.Forms
             this.panelRight = new System.Windows.Forms.Panel();
             this.panelControls = new System.Windows.Forms.Panel();
             this.panelWelcome = new System.Windows.Forms.Panel();
-            this.iconAlert = new FontAwesome.Sharp.IconPictureBox();
             this.iconSettings = new FontAwesome.Sharp.IconPictureBox();
             this.iconLogout = new FontAwesome.Sharp.IconPictureBox();
             this.iconUser = new FontAwesome.Sharp.IconPictureBox();
@@ -76,7 +75,6 @@ namespace AttendanceUI.Forms
             ((System.ComponentModel.ISupportInitialize)(this.iconMenu)).BeginInit();
             this.panelRight.SuspendLayout();
             this.panelWelcome.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconAlert)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconSettings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconLogout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconUser)).BeginInit();
@@ -416,7 +414,6 @@ namespace AttendanceUI.Forms
             // panelWelcome
             // 
             this.panelWelcome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.panelWelcome.Controls.Add(this.iconAlert);
             this.panelWelcome.Controls.Add(this.iconSettings);
             this.panelWelcome.Controls.Add(this.iconLogout);
             this.panelWelcome.Controls.Add(this.iconUser);
@@ -427,22 +424,6 @@ namespace AttendanceUI.Forms
             this.panelWelcome.Name = "panelWelcome";
             this.panelWelcome.Size = new System.Drawing.Size(733, 102);
             this.panelWelcome.TabIndex = 1;
-            // 
-            // iconAlert
-            // 
-            this.iconAlert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.iconAlert.BackColor = System.Drawing.Color.Transparent;
-            this.iconAlert.IconChar = FontAwesome.Sharp.IconChar.Bell;
-            this.iconAlert.IconColor = System.Drawing.Color.White;
-            this.iconAlert.IconSize = 35;
-            this.iconAlert.Location = new System.Drawing.Point(534, 25);
-            this.iconAlert.Name = "iconAlert";
-            this.iconAlert.Size = new System.Drawing.Size(44, 35);
-            this.iconAlert.TabIndex = 8;
-            this.iconAlert.TabStop = false;
-            this.toolTip1.SetToolTip(this.iconAlert, "Notifications");
-            this.iconAlert.Visible = false;
-            this.iconAlert.Click += new System.EventHandler(this.iconAlert_Click);
             // 
             // iconSettings
             // 
@@ -675,7 +656,6 @@ namespace AttendanceUI.Forms
             this.panelRight.ResumeLayout(false);
             this.panelWelcome.ResumeLayout(false);
             this.panelWelcome.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconAlert)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconSettings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconLogout)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconUser)).EndInit();
@@ -722,7 +702,6 @@ namespace AttendanceUI.Forms
         private System.Windows.Forms.Panel panelActive;
         private System.Windows.Forms.Panel panelRight;
         private System.Windows.Forms.Panel panelControls;
-        private IconPictureBox iconAlert;
         private IconPictureBox iconSettings;
         private IconPictureBox iconLogout;
         private IconPictureBox iconUser;

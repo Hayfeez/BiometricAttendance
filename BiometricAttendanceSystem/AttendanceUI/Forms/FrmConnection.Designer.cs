@@ -45,6 +45,7 @@
             this.panelTop = new System.Windows.Forms.Panel();
             this.iconExit = new FontAwesome.Sharp.IconPictureBox();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.btnTest = new System.Windows.Forms.Button();
             this.panelForm.SuspendLayout();
             this.panelBody.SuspendLayout();
             this.panelTop.SuspendLayout();
@@ -67,6 +68,7 @@
             // 
             // panelBody
             // 
+            this.panelBody.Controls.Add(this.btnTest);
             this.panelBody.Controls.Add(this.lblDatabase);
             this.panelBody.Controls.Add(this.txtPassword);
             this.panelBody.Controls.Add(this.label1);
@@ -88,7 +90,7 @@
             this.lblDatabase.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
             this.lblDatabase.Location = new System.Drawing.Point(253, 35);
             this.lblDatabase.Name = "lblDatabase";
-            this.lblDatabase.Size = new System.Drawing.Size(88, 24);
+            this.lblDatabase.Size = new System.Drawing.Size(70, 19);
             this.lblDatabase.TabIndex = 0;
             this.lblDatabase.Text = "Database";
             // 
@@ -99,6 +101,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(331, 31);
             this.txtPassword.TabIndex = 3;
+            this.txtPassword.UseSystemPasswordChar = true;
             // 
             // label1
             // 
@@ -117,7 +120,7 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Bold);
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(350, 226);
+            this.btnSave.Location = new System.Drawing.Point(453, 224);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(135, 33);
             this.btnSave.TabIndex = 4;
@@ -226,9 +229,23 @@
             this.lblTitle.Location = new System.Drawing.Point(10, 78);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(10);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(221, 28);
+            this.lblTitle.Size = new System.Drawing.Size(177, 22);
             this.lblTitle.TabIndex = 4;
             this.lblTitle.Text = "Connection String";
+            // 
+            // btnTest
+            // 
+            this.btnTest.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnTest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTest.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Bold);
+            this.btnTest.ForeColor = System.Drawing.Color.White;
+            this.btnTest.Location = new System.Drawing.Point(257, 224);
+            this.btnTest.Name = "btnTest";
+            this.btnTest.Size = new System.Drawing.Size(171, 33);
+            this.btnTest.TabIndex = 5;
+            this.btnTest.Text = "Test Connection";
+            this.btnTest.UseVisualStyleBackColor = false;
+            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
             // 
             // FrmConnection
             // 
@@ -273,5 +290,6 @@
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblDatabase;
+        private System.Windows.Forms.Button btnTest;
     }
 }

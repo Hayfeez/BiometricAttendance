@@ -20,43 +20,23 @@ using AttendanceUI.BaseClass;
 
 namespace AttendanceUI.Forms
 {
-    public partial class FrmUploadCourseReg : Form
+    public partial class FrmUploadStaff : Form
     {
         private string _deptId = "";
-        private string _levelId = "";
-        private string _courseId = "";
         private string _selectedFile = "";
         private DataTable _data;
-        private List<BulkStudentCourseReg> _dataToUpload;
-        private readonly CourseRegRepo _repo;
+        private List<BulkStaff> _dataToUpload;
+        private StaffRepo _repo;
 
-        private void LoadFilter()
-        {
-            DropdownControls.LoadLevels(ref comboLevel);
-            DropdownControls.LoadDepartments(ref comboDept);
-        }
-
-        private void LoadCourses()
-        {
-            if (comboLevel.Items.Count > 0)
-            {
-                _levelId = comboLevel.SelectedValue.ToString() == Base.IdForSelect ? "" : comboLevel.SelectedValue.ToString();
-                if (comboDept.Items.Count > 0)
-                {
-                    _deptId = comboDept.SelectedValue.ToString() == Base.IdForSelect ? "" : comboDept.SelectedValue.ToString();
-
-                    if (_deptId == "" || _levelId == "")
-                        return;
-
-                    DropdownControls.LoadCourses(ref comboCourse, _deptId, _levelId);
-                }
-            }
-        }
-
-        public FrmUploadCourseReg()
+        public FrmUploadStaff()
         {
             InitializeComponent();
-            _repo = new CourseRegRepo();
+            _repo = new StaffRepo();
+        }
+
+        private void FrmUploadStaff_Load(object sender, EventArgs e)
+        {
+            DropdownControls.LoadDepartments(ref comboDept);
         }
 
         private void iconExit_Click(object sender, EventArgs e)
@@ -64,37 +44,14 @@ namespace AttendanceUI.Forms
             this.Close();
         }
 
-        private void comboDept_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LoadCourses();
-        }
-
-        private void comboLevel_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LoadCourses();
-        }
-
-        private void FrmCourseReg_Load(object sender, EventArgs e)
-        {
-            if (LoggedInUser.ActiveSession == null)
-            {
-                Base.ShowError("No Active Semester", "There is no active semester. You cannot upload Students' Registered Courses");
-                this.Close();
-                return;
-            }
-
-            LoadFilter();
-            lblCurrentSemester.Text = "Active Semester " + LoggedInUser.ActiveSession.Fullname;
-        }
-
         private void btnDownload_Click(object sender, EventArgs e)
         {
             try
             {
-                var template = new List<BulkStudentCourseReg>();
+                var template = new List<BulkStaff>();
                 var dt = template.ConvertToDataTable();
                // dt.Columns["MatricNumber"].DataType = typeof(string);
-                if (Base.SaveAsExcel(dt, "Student Course Register"))
+                if (Base.SaveAsExcel(dt, "Staff Record"))
                 {
                     Base.ShowSuccess("", "File downloaded successfully");
                 }
@@ -144,7 +101,7 @@ namespace AttendanceUI.Forms
                     return;
                 }
 
-                if (_data.Columns.Count == 0 || _data.Columns[0].ColumnName != nameof(BulkStudentCourseReg.MatricNumber))
+                if (_data.Columns.Count == 0 || _data.Columns[0].ColumnName != nameof(BulkStaff.StaffNo))
                 {
                     Base.ShowError("", "Header column could not be read. Please use the template");
                     lblFile.Text = "";
@@ -152,22 +109,13 @@ namespace AttendanceUI.Forms
                     return;
                 }
 
-                //_dataToUpload = (from DataRow row in _data.Rows
-                //            select new BulkStudentCourseReg
-                //            {
-                //                MatricNumber = row["MatricNumber"].ToString(),
-                //                Firstname = row["Firstname"].ToString(),
-                //                Lastname = row["Lastname"].ToString(),
-                //                Othername = row["Othername"].ToString(),
-                //                Level = row["Level"].ToString(),
-                //            }).ToList();
-
-               _dataToUpload = (List<BulkStudentCourseReg>)_data.ConvertToList<BulkStudentCourseReg>();
+                _dataToUpload = (List<BulkStaff>)_data.ConvertToList<BulkStaff>();
                var validation = ValidateData(_dataToUpload);
                if (validation == string.Empty)
                {
                    dataGrid.DataSource = _data;
-                   dataGrid.Columns["MatricNumber"].HeaderText = "Matric Number";
+                   dataGrid.Columns["StaffNo"].HeaderText = "Staff Number";
+                   dataGrid.Columns["PhoneNo"].HeaderText = "Phone Number";
                    btnUpload.Visible = true;
                    btnPreview.Enabled = false;
                 }
@@ -183,10 +131,10 @@ namespace AttendanceUI.Forms
             }
         }
 
-        private string ValidateData(List<BulkStudentCourseReg> data)
+        private string ValidateData(List<BulkStaff> data)
         {
-            if (data.Any(x => string.IsNullOrWhiteSpace(x.MatricNumber)))
-                return "Matric Number cannot be empty";
+            if (data.Any(x => string.IsNullOrWhiteSpace(x.StaffNo)))
+                return "Staff Number cannot be empty";
 
             if (data.Any(x => string.IsNullOrWhiteSpace(x.Lastname)))
                 return "Lastname cannot be empty";
@@ -194,36 +142,28 @@ namespace AttendanceUI.Forms
             if (data.Any(x => string.IsNullOrWhiteSpace(x.Firstname)))
                 return "Firstname cannot be empty";
 
-            if (data.Any(x => string.IsNullOrWhiteSpace(x.Level)))
-                return "Level cannot be empty";
+            if (data.Any(x => string.IsNullOrWhiteSpace(x.Email)))
+                return "Email address cannot be empty";
+
+            if (data.Any(x => string.IsNullOrWhiteSpace(x.Title)))
+                return "Title cannot be empty";
+
+            var distinctStaffNos = data.Select(x => x.StaffNo).ToHashSet();
+            if (distinctStaffNos.Count < data.Count)
+                return "Staff Number cannot contain duplicates";
+
+            var distinctEmail = data.Select(x => x.Email).ToHashSet();
+            if (distinctEmail.Count < data.Count)
+                return "Email address cannot contain duplicates";
 
             return string.Empty;
         }
 
         private void btnUpload_Click(object sender, EventArgs e)
         {
-            if (LoggedInUser.UserId == Helper.SuperAdminId)
-            {
-                Base.ShowError("Access Denied", "You cannot upload course registration");
-                return;
-            }
-
             if (_deptId == "")
             {
                 Base.ShowError("Required", "Please select a department");
-                return;
-            }
-            if (_levelId == "")
-            {
-                Base.ShowError("Required", "Please select a level for the course");
-                return;
-            }
-
-            _courseId = comboCourse.SelectedValue.ToString() == Base.IdForSelect ? "" : comboCourse.SelectedValue.ToString();
-
-            if (_courseId == "")
-            {
-                Base.ShowError("Required", "Please select a course");
                 return;
             }
 
@@ -232,17 +172,17 @@ namespace AttendanceUI.Forms
                 return;
             }
 
-            var upload = _repo.RegisterCourseStudents(_dataToUpload, _courseId);
+            var upload = _repo.AddBulkStaff(_dataToUpload, _deptId);
             if (upload == string.Empty)
             {
-                Base.ShowSuccess("Success", "Record uploaded successfully");
+                Base.ShowSuccess("Success", "Record uploaded successfully.");
                 this.Close();
             }
             else
             {
                 Base.ShowError("Failed", upload);
             }
-
         }
+
     }
 }

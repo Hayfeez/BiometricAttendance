@@ -24,7 +24,7 @@ namespace AttendanceUI.Pages
 
         private void LoadFilter()
         {
-            DropdownControls.LoadSessions(ref comboSemester, false);
+            DropdownControls.LoadSessions(ref comboSemester);
             DropdownControls.LoadLevels(ref comboLevel, true);
             DropdownControls.LoadDepartments(ref comboDept, true);
         }
@@ -87,7 +87,7 @@ namespace AttendanceUI.Pages
                 {
                     _deptId = comboDept.SelectedValue.ToString() == Base.IdForSelectAll ? "" : comboDept.SelectedValue.ToString();
 
-                    DropdownControls.LoadCourses(ref comboCourse, _deptId, _levelId, false);
+                    DropdownControls.LoadCourses(ref comboCourse, _deptId, _levelId);
                 }
             }
         }

@@ -74,6 +74,23 @@ namespace AttendanceLibrary.BaseClass
            return true;
         }
 
+        public static bool TestConnectionString(string server, string username, string password)
+        {
+            var conString = $"Data Source={server};Initial Catalog={DatabaseName};User Id={username};Password={password}";
+            using (var connection = new SqlConnection(conString))
+            {
+                try
+                {
+                    connection.Open();
+                    return true;
+                }
+                catch (SqlException)
+                {
+                    return false;
+                }
+            }
+        }
+
         #endregion
 
         #region Database Helper

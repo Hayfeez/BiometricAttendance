@@ -20,7 +20,10 @@ namespace AttendanceLibrary.Model
         public string Email { get; set; }
         public string DepartmentId { get; set; }
         public string PhoneNo { get; set; }
+        public string GraduatedSessionId { get; set; }
         public bool IsGraduated { get; set; }
+        public DateTime DateGraduated { get; set; }
+
         public bool IsDeleted { get; set; }
 
         [NotMapped] public string Fullname => $"{Lastname}, {Firstname} {Othername}";

@@ -48,6 +48,7 @@ namespace AttendanceLibrary.Repository
                                      && reg.CourseId == courseId
                                      && att.DateMarked.Date >= startDate
                                      && att.DateMarked.Date <= endDate
+                                     && !st.IsDeleted && !st.IsGraduated
                                select new AttendanceList
                                {
                                    StudentMatricNo = st.MatricNo,
@@ -102,6 +103,7 @@ namespace AttendanceLibrary.Repository
                                      && reg.CourseId == courseId
                                      && att.DateMarked.Date >= startDate
                                      && att.DateMarked.Date <= endDate
+                                     && !l.IsDeleted
                                select new AttendanceList
                                {
                                    Course = c.CourseCode + " - " + c.CourseTitle,

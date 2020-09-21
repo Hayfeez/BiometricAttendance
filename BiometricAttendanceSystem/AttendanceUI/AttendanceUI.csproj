@@ -28,7 +28,7 @@
     <ProductName>Biometric Attendance System</ProductName>
     <PublisherName>Dolapo Oguntuga</PublisherName>
     <SuiteName>Biometric Attendance Solution</SuiteName>
-    <ApplicationRevision>8</ApplicationRevision>
+    <ApplicationRevision>9</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -183,17 +183,29 @@
     <Compile Include="Forms\FrmConnection.Designer.cs">
       <DependentUpon>FrmConnection.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FrmUserProfile.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FrmUserProfile.Designer.cs">
-      <DependentUpon>FrmUserProfile.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\FrmSettings.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\FrmSettings.Designer.cs">
       <DependentUpon>FrmSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmUploadStaff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmUploadStaff.Designer.cs">
+      <DependentUpon>FrmUploadStaff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmUploadGraduateStudent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmUploadGraduateStudent.Designer.cs">
+      <DependentUpon>FrmUploadGraduateStudent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmUploadStudent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmUploadStudent.Designer.cs">
+      <DependentUpon>FrmUploadStudent.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FrmUploadCourseReg.cs">
       <SubType>Form</SubType>
@@ -333,11 +345,17 @@
     <EmbeddedResource Include="Forms\FrmConnection.resx">
       <DependentUpon>FrmConnection.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FrmUserProfile.resx">
-      <DependentUpon>FrmUserProfile.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmSettings.resx">
       <DependentUpon>FrmSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmUploadStaff.resx">
+      <DependentUpon>FrmUploadStaff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmUploadGraduateStudent.resx">
+      <DependentUpon>FrmUploadGraduateStudent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmUploadStudent.resx">
+      <DependentUpon>FrmUploadStudent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmUploadCourseReg.resx">
       <DependentUpon>FrmUploadCourseReg.cs</DependentUpon>

@@ -379,10 +379,12 @@ namespace AttendanceUI.BaseClass
                     FileName = $"{reportName}.xlsx"
                 };
 
+                var maxLength = reportName.Length > 20 ? 20 : reportName.Length;
+
                 if (file.ShowDialog() == DialogResult.OK)
                 {
                     XLWorkbook wb = new XLWorkbook();
-                    wb.Worksheets.Add(data, reportName.Substring(0,20));
+                    wb.Worksheets.Add(data, reportName.Substring(0, maxLength));
                     wb.SaveAs(file.FileName);
                     return true;
                 }

@@ -15,35 +15,15 @@ namespace AttendanceLibrary.Repository
     {
         private readonly AttendanceContext _context = Helper.GetDataContext();
 
-        public string SaveCourseReg(CourseRegistration model)
-        {
-            try
-            {
-                
-                if (_context.CourseRegistrations.Any(a => a.StudentId == model.StudentId && a.CourseId == model.CourseId && a.SessionSemesterId == model.SessionSemesterId))
-                    return "Course already registered";
-
-                model.Id = Guid.NewGuid().ToString();
-                _context.CourseRegistrations.Add(model);
-
-                return _context.SaveChanges() > 0 ? "" : "Course could not be registered";
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
         public string RegisterCourseStudents(List<BulkStudentCourseReg> model, string courseId)
         {
             try
             {
                 var studentRepo = new StudentRepo();
                 var levelRepo = new LevelRepo();
-               // var sessionRepo = new SessionSemesterRepo();
+                var sessionRepo = new SessionSemesterRepo();
 
-               
-               var activeSession = LoggedInUser.ActiveSession; //sessionRepo.GetActiveSessionSemester();
+               var activeSession = sessionRepo.GetActiveSessionSemester(); //LoggedInUser.ActiveSession; 
                if (activeSession == null)
                {
                    return "You can't register students for course. There is no active semester";
@@ -53,8 +33,8 @@ namespace AttendanceLibrary.Repository
                foreach (var item in model)
                {
                    var student = studentRepo.GetStudentByMatricNo(item.MatricNumber);
-                   var level = levelRepo.GetLevelByName(item.Level);
-                   if (student == null || level == null)
+                   var levelId = levelRepo.GetLevelId(item.Level);
+                   if (student == null || levelId == null)
                    {
                        return "No record saved. At least one student or level does not exist";
                    }
@@ -67,7 +47,7 @@ namespace AttendanceLibrary.Repository
                            DateRegistered = DateTime.Now,
                            Id = Guid.NewGuid().ToString(),
                            StudentId = student.Id,
-                           LevelId = level.Id,
+                           LevelId = levelId,
                            SessionSemesterId = activeSession.Id,
                            RegisteredBy = LoggedInUser.UserId,
                        });
@@ -81,7 +61,6 @@ namespace AttendanceLibrary.Repository
                 throw ex;
             }
         }
-
 
         public string DeleteCourseReg(string id)
         {

@@ -38,6 +38,7 @@ namespace AttendanceUI.Forms
                 loginForm.ShowDialog();
             }
 
+            btnOpenConnSettings.Visible = LoggedInUser.IsSuperAdmin;
             lblFooter.Text = Convert.ToChar(169) + @" Dolapo Oguntuga 2020";
         }
 
@@ -254,11 +255,6 @@ namespace AttendanceUI.Forms
 
             var settingsForm = new FrmSettings();
             settingsForm.ShowDialog();
-        }
-
-        private void iconAlert_Click(object sender, EventArgs e)
-        {
-
         }
 
         [DllImport("wininet.dll")]

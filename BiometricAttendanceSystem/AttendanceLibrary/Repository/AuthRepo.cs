@@ -112,11 +112,48 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public List<StaffFingerprint> GetStaffFingersForSignIn(string id = "")
+        public bool StaffLoginWithFingerPrint(string email)
         {
             try
             {
-                return _localContext.StaffFingers.ToList();
+                var staff = _localContext.Staff.SingleOrDefault(a => !a.IsDeleted && a.Email == email);
+                if (staff == null)
+                {
+                    return false;
+                }
+
+                LoggedInUser.UserId = staff.Id;
+                LoggedInUser.Email = staff.Email;
+                LoggedInUser.Fullname = staff.Fullname;
+                LoggedInUser.IsAdmin = staff.IsAdmin;
+                LoggedInUser.IsSuperAdmin = staff.IsSuperAdmin;
+                LoggedInUser.PasswordChanged = staff.PasswordChanged;
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<StaffFingerprint> GetStaffFingersForSignIn()
+        {
+            try
+            {
+                var d = (from c in _localContext.Staff
+                         where !c.IsDeleted 
+                         join st in _localContext.StaffFingers on c.Id equals st.StaffId into staffFingers
+                         from fings in staffFingers
+                         select new StaffFingerprint
+                         {
+                             Fingerprint = fings.Fingerprint,
+                             Id = fings.Id,
+                             StaffId = fings.StaffId,
+                             Email = c.Email
+                         }).ToList();
+
+                return d;
             }
             catch (Exception ex)
             {

@@ -77,12 +77,11 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public StudentLevel GetLevelByName(string name)
+        public string GetLevelId(string name)
         {
             try
             {
-               
-                return _context.Levels.SingleOrDefault(a => a.Level == name && !a.IsDeleted);
+                return _context.Levels.SingleOrDefault(a => a.Level == name && !a.IsDeleted)?.Id;
             }
             catch (Exception ex)
             {

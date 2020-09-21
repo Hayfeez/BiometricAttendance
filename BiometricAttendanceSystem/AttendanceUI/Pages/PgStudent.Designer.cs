@@ -35,7 +35,6 @@
             this.panelHeader = new System.Windows.Forms.Panel();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
-            this.btnAdd = new XanderUI.XUIButton();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panelBody = new System.Windows.Forms.Panel();
             this.dataGrid = new System.Windows.Forms.DataGridView();
@@ -43,6 +42,9 @@
             this.comboLevel = new System.Windows.Forms.ComboBox();
             this.btnLoad = new System.Windows.Forms.Button();
             this.comboDept = new System.Windows.Forms.ComboBox();
+            this.btnAdd = new XanderUI.XUIButton();
+            this.btnUpload = new XanderUI.XUIButton();
+            this.btnUploadGrad = new XanderUI.XUIButton();
             this.panelHeader.SuspendLayout();
             this.panelBody.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
@@ -82,6 +84,8 @@
             // panelHeader
             // 
             this.panelHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
+            this.panelHeader.Controls.Add(this.btnUploadGrad);
+            this.panelHeader.Controls.Add(this.btnUpload);
             this.panelHeader.Controls.Add(this.btnSearch);
             this.panelHeader.Controls.Add(this.txtSearch);
             this.panelHeader.Controls.Add(this.btnAdd);
@@ -112,28 +116,6 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(285, 31);
             this.txtSearch.TabIndex = 2;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.BackgroundColor = System.Drawing.Color.Transparent;
-            this.btnAdd.ButtonImage = ((System.Drawing.Image)(resources.GetObject("btnAdd.ButtonImage")));
-            this.btnAdd.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
-            this.btnAdd.ButtonText = "Add New";
-            this.btnAdd.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
-            this.btnAdd.ClickTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnAdd.CornerRadius = 5;
-            this.btnAdd.Font = new System.Drawing.Font("Calisto MT", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnAdd.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.btnAdd.HoverTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnAdd.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnAdd.Location = new System.Drawing.Point(7, 87);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(138, 50);
-            this.btnAdd.TabIndex = 1;
-            this.btnAdd.TextColor = System.Drawing.Color.White;
-            this.btnAdd.Vertical_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // lblTitle
             // 
@@ -221,6 +203,72 @@
             this.comboDept.Size = new System.Drawing.Size(251, 31);
             this.comboDept.TabIndex = 0;
             // 
+            // btnAdd
+            // 
+            this.btnAdd.BackgroundColor = System.Drawing.Color.Transparent;
+            this.btnAdd.ButtonImage = ((System.Drawing.Image)(resources.GetObject("btnAdd.ButtonImage")));
+            this.btnAdd.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnAdd.ButtonText = "Add New";
+            this.btnAdd.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
+            this.btnAdd.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnAdd.CornerRadius = 5;
+            this.btnAdd.Font = new System.Drawing.Font("Calisto MT", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnAdd.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnAdd.HoverTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnAdd.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnAdd.Location = new System.Drawing.Point(7, 87);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(138, 50);
+            this.btnAdd.TabIndex = 1;
+            this.btnAdd.TextColor = System.Drawing.Color.White;
+            this.btnAdd.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnUpload
+            // 
+            this.btnUpload.BackgroundColor = System.Drawing.Color.Transparent;
+            this.btnUpload.ButtonImage = ((System.Drawing.Image)(resources.GetObject("btnUpload.ButtonImage")));
+            this.btnUpload.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnUpload.ButtonText = "Add Bulk";
+            this.btnUpload.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
+            this.btnUpload.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnUpload.CornerRadius = 5;
+            this.btnUpload.Font = new System.Drawing.Font("Calisto MT", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpload.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnUpload.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnUpload.HoverTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnUpload.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnUpload.Location = new System.Drawing.Point(165, 90);
+            this.btnUpload.Name = "btnUpload";
+            this.btnUpload.Size = new System.Drawing.Size(136, 50);
+            this.btnUpload.TabIndex = 5;
+            this.btnUpload.TextColor = System.Drawing.Color.White;
+            this.btnUpload.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
+            // 
+            // btnUploadGrad
+            // 
+            this.btnUploadGrad.BackgroundColor = System.Drawing.Color.Transparent;
+            this.btnUploadGrad.ButtonImage = ((System.Drawing.Image)(resources.GetObject("btnUploadGrad.ButtonImage")));
+            this.btnUploadGrad.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnUploadGrad.ButtonText = "Upload Graduated Students";
+            this.btnUploadGrad.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
+            this.btnUploadGrad.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnUploadGrad.CornerRadius = 5;
+            this.btnUploadGrad.Font = new System.Drawing.Font("Calisto MT", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUploadGrad.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnUploadGrad.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnUploadGrad.HoverTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnUploadGrad.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnUploadGrad.Location = new System.Drawing.Point(318, 91);
+            this.btnUploadGrad.Name = "btnUploadGrad";
+            this.btnUploadGrad.Size = new System.Drawing.Size(214, 50);
+            this.btnUploadGrad.TabIndex = 6;
+            this.btnUploadGrad.TextColor = System.Drawing.Color.White;
+            this.btnUploadGrad.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnUploadGrad.Click += new System.EventHandler(this.btnUploadGrad_Click);
+            // 
             // PgStudent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
@@ -260,5 +308,7 @@
         private System.Windows.Forms.ComboBox comboDept;
         private System.Windows.Forms.Button btnLoad;
         private System.Windows.Forms.ComboBox comboLevel;
+        private XanderUI.XUIButton btnUpload;
+        private XanderUI.XUIButton btnUploadGrad;
     }
 }

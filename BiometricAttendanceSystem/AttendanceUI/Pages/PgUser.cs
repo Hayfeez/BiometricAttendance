@@ -186,5 +186,17 @@ namespace AttendanceUI.Pages
                 Base.ShowError("Error occured", ex.Message);
             }
         }
+
+        private void btnUpload_Click(object sender, EventArgs e)
+        {
+            if (!LoggedInUser.IsSuperAdmin)
+            {
+                Base.ShowError("Access Denied", "You do not have the required permission");
+                return;
+            }
+            var staffForm = new FrmUploadStaff();
+            staffForm.ShowDialog();
+            LoadData();
+        }
     }
 }
