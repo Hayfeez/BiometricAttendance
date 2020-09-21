@@ -90,41 +90,41 @@
             }
 
 
-        // to sign attendance
+            // to sign attendance
         public DigitalPersonaLibrary(TextBox txtLog, PictureBox derivedPic, List<StudentFinger> fingers)
-            {
-                _isEnrollment = false;
-                FingerBitmap = null;
-                _studentFingers = fingers;
-                _txtLog = txtLog;
-                _derivedPic = derivedPic;
+        {
+            _isEnrollment = false;
+            FingerBitmap = null;
+            _studentFingers = fingers;
+            _txtLog = txtLog;
+            _derivedPic = derivedPic;
 
-                Capturer = new DPFP.Capture.Capture();
-                Capturer.EventHandler = this;
+            Capturer = new DPFP.Capture.Capture();
+            Capturer.EventHandler = this;
 
-                Enroller = new DPFP.Processing.Enrollment(); // Create an enrollment.
-                Verificator = new DPFP.Verification.Verification(); // Create a verification.
+            Enroller = new DPFP.Processing.Enrollment(); // Create an enrollment.
+            Verificator = new DPFP.Verification.Verification(); // Create a verification.
 
-                Application.DoEvents();
-            }
+            Application.DoEvents();
+        }
 
-            // to login staff
-            public DigitalPersonaLibrary(TextBox txtLog, PictureBox derivedPic, List<StaffFingerprint> fingers)
-            {
-                _isEnrollment = false;
-                FingerBitmap = null;
-                _staffFingers = fingers;
-                _txtLog = txtLog;
-                _derivedPic = derivedPic;
+        // to login staff
+        public DigitalPersonaLibrary(TextBox txtLog, PictureBox derivedPic, List<StaffFingerprint> fingers)
+        {
+            _isEnrollment = false;
+            FingerBitmap = null;
+            _staffFingers = fingers;
+            _txtLog = txtLog;
+            _derivedPic = derivedPic;
 
-                Capturer = new DPFP.Capture.Capture();
-                Capturer.EventHandler = this;
+            Capturer = new DPFP.Capture.Capture();
+            Capturer.EventHandler = this;
 
-                Enroller = new DPFP.Processing.Enrollment(); // Create an enrollment.
-                Verificator = new DPFP.Verification.Verification(); // Create a verification.
+            Enroller = new DPFP.Processing.Enrollment(); // Create an enrollment.
+            Verificator = new DPFP.Verification.Verification(); // Create a verification.
 
-                Application.DoEvents();
-            }
+            Application.DoEvents();
+        }
 
         #region bitmaps
 
@@ -245,7 +245,7 @@
                             return new VerifiedData
                             {
                                 Id = finger.StaffId,
-                                Number = finger.StaffId,
+                                Number = finger.Email,
                                 Time = TimeToString(sw.Elapsed)
                             };
                         }
@@ -579,23 +579,36 @@
             }
             else
             {
-                var verify = _studentFingers != null
-                    ? VerifyStudentFinger(ref newFingerBitmap)
-                    : VerifyStaffFinger(ref newFingerBitmap);
-
-                if (verify == null)
+                VerifiedData verify;
+                if (_studentFingers != null)
                 {
-                    _txtLog.Invoke((MethodInvoker) delegate { MakeReport("Fingerprint could not be identified. Try again"); });
-                }
-                else
-                {
-                    if (_studentFingers != null)
+                    verify = VerifyStudentFinger(ref newFingerBitmap);
+                    if (verify != null)
                     {
-                        _txtLog.Invoke((MethodInvoker) delegate { MakeReport($"Student {verify.Number} identified in {verify.Time}"); });
+                        _txtLog.Invoke((MethodInvoker)delegate { MakeReport($"Student {verify.Number} identified in {verify.Time}"); });
                         Process(newFingerBitmap);
-                        _txtLog.Invoke((MethodInvoker) delegate { FrmAttendance.SaveAttendance(verify); });
+                        _txtLog.Invoke((MethodInvoker)delegate { FrmAttendance.SaveAttendance(verify); });
                     }
+
+                    else
+                        _txtLog.Invoke((MethodInvoker)delegate { MakeReport("Fingerprint could not be identified. Try again"); });
                 }
+
+                else if (_staffFingers != null)
+                {
+                    verify = VerifyStaffFinger(ref newFingerBitmap);
+                    if (verify != null)
+                    {
+                        _txtLog.Invoke((MethodInvoker)delegate { MakeReport($"Staff {verify.Number} identified in {verify.Time}"); });
+                        Process(newFingerBitmap);
+                        _txtLog.Invoke((MethodInvoker)delegate { FrmFingerprintLogin.Login(verify); });
+                    }
+
+                    else
+                        _txtLog.Invoke((MethodInvoker)delegate { MakeReport("Fingerprint could not be identified. Try again"); });
+                }
+                
+               
             }
         }
 

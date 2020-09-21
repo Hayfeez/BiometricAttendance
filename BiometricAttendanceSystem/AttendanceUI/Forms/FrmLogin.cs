@@ -73,7 +73,7 @@ namespace AttendanceUI.Forms
                 {
                     if (!LoggedInUser.IsSuperAdmin && !LoggedInUser.PasswordChanged) // first time login
                     {
-                        Base.ShowInfo("First time Login", "This is your first login. Kindly change your password");
+                        Base.ShowInfo("First time Login", "This is your first login with the default password. Kindly change your password");
                         var pwdForm = new FrmChangePassword(LoggedInUser.Email);
                         pwdForm.ShowDialog();
                     }
@@ -135,6 +135,19 @@ namespace AttendanceUI.Forms
                 }
             }
             //  
+        }
+
+        private void lnkFingerprint_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Hide();
+            this.ShowInTaskbar = false;
+            var frm = new FrmFingerprintLogin();
+            frm.Show();
+        }
+
+        private void linkForgotPassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
         }
     }
 }

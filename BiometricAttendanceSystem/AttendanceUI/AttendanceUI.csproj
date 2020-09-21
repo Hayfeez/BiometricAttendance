@@ -153,6 +153,12 @@
     <Compile Include="BaseClass\DigitalPersonaLibrary.cs" />
     <Compile Include="BaseClass\DropdownControls.cs" />
     <Compile Include="BaseClass\ErrorLogger.cs" />
+    <Compile Include="Forms\FrmFingerprintLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmFingerprintLogin.Designer.cs">
+      <DependentUpon>FrmFingerprintLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FrmEnrollFinger.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -329,6 +335,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\FrmFingerprintLogin.resx">
+      <DependentUpon>FrmFingerprintLogin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmEnrollFinger.resx">
       <DependentUpon>FrmEnrollFinger.cs</DependentUpon>
     </EmbeddedResource>

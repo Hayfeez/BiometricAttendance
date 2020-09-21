@@ -41,7 +41,10 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.lnkFingerprint = new System.Windows.Forms.LinkLabel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.iconExit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnLogin
@@ -63,15 +66,17 @@
             // 
             this.linkForgotPassword.AutoSize = true;
             this.linkForgotPassword.BackColor = System.Drawing.Color.Transparent;
+            this.linkForgotPassword.Enabled = false;
             this.linkForgotPassword.Font = new System.Drawing.Font("Century Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkForgotPassword.LinkColor = System.Drawing.Color.DodgerBlue;
-            this.linkForgotPassword.Location = new System.Drawing.Point(572, 297);
+            this.linkForgotPassword.Location = new System.Drawing.Point(445, 298);
             this.linkForgotPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.linkForgotPassword.Name = "linkForgotPassword";
             this.linkForgotPassword.Size = new System.Drawing.Size(170, 23);
             this.linkForgotPassword.TabIndex = 3;
             this.linkForgotPassword.TabStop = true;
             this.linkForgotPassword.Text = "Forgot Password?";
+            this.linkForgotPassword.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkForgotPassword_LinkClicked);
             // 
             // txtPassword
             // 
@@ -153,8 +158,8 @@
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Century Gothic", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(39, 164);
+            this.label4.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.label4.Location = new System.Drawing.Point(27, 81);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(196, 40);
@@ -166,8 +171,8 @@
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(153, 242);
+            this.label5.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.label5.Location = new System.Drawing.Point(141, 159);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(137, 40);
@@ -179,8 +184,8 @@
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Century Gothic", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(81, 202);
+            this.label6.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.label6.Location = new System.Drawing.Point(69, 119);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(232, 40);
@@ -192,19 +197,46 @@
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Calisto MT", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(12, 454);
+            this.label7.Location = new System.Drawing.Point(440, 418);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(410, 19);
             this.label7.TabIndex = 15;
             this.label7.Text = "Press CTRL + ALT + D to download data from remote server";
+            // 
+            // lnkFingerprint
+            // 
+            this.lnkFingerprint.AutoSize = true;
+            this.lnkFingerprint.BackColor = System.Drawing.Color.Transparent;
+            this.lnkFingerprint.Enabled = false;
+            this.lnkFingerprint.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lnkFingerprint.LinkColor = System.Drawing.Color.DodgerBlue;
+            this.lnkFingerprint.Location = new System.Drawing.Point(633, 298);
+            this.lnkFingerprint.Name = "lnkFingerprint";
+            this.lnkFingerprint.Size = new System.Drawing.Size(268, 29);
+            this.lnkFingerprint.TabIndex = 16;
+            this.lnkFingerprint.TabStop = true;
+            this.lnkFingerprint.Text = "Login with Fingerprint";
+            this.lnkFingerprint.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkFingerprint_LinkClicked);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(34, 202);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(281, 235);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 17;
+            this.pictureBox1.TabStop = false;
             // 
             // FrmLogin
             // 
             this.AcceptButton = this.btnLogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(865, 482);
+            this.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.ClientSize = new System.Drawing.Size(865, 469);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.lnkFingerprint);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -229,6 +261,7 @@
             this.TopMost = true;
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmLogin_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.iconExit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -248,5 +281,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.LinkLabel lnkFingerprint;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

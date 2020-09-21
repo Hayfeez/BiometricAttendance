@@ -112,11 +112,11 @@ namespace AttendanceLibrary.Repository
             }
         }
 
-        public bool StaffLoginWithFingerPrint(string email)
+        public bool StaffLoginWithFingerPrint(string id)
         {
             try
             {
-                var staff = _localContext.Staff.SingleOrDefault(a => !a.IsDeleted && a.Email == email);
+                var staff = _localContext.Staff.SingleOrDefault(a => !a.IsDeleted && a.Id == id);
                 if (staff == null)
                 {
                     return false;
