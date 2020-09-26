@@ -43,6 +43,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.lnkFingerprint = new System.Windows.Forms.LinkLabel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblConnection = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.iconExit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -119,9 +120,9 @@
             this.label2.Location = new System.Drawing.Point(445, 132);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(108, 23);
+            this.label2.Size = new System.Drawing.Size(78, 29);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Username";
+            this.label2.Text = "Email";
             // 
             // label1
             // 
@@ -212,7 +213,7 @@
             this.lnkFingerprint.LinkColor = System.Drawing.Color.DodgerBlue;
             this.lnkFingerprint.Location = new System.Drawing.Point(633, 298);
             this.lnkFingerprint.Name = "lnkFingerprint";
-            this.lnkFingerprint.Size = new System.Drawing.Size(268, 29);
+            this.lnkFingerprint.Size = new System.Drawing.Size(214, 23);
             this.lnkFingerprint.TabIndex = 16;
             this.lnkFingerprint.TabStop = true;
             this.lnkFingerprint.Text = "Login with Fingerprint";
@@ -228,6 +229,16 @@
             this.pictureBox1.TabIndex = 17;
             this.pictureBox1.TabStop = false;
             // 
+            // lblConnection
+            // 
+            this.lblConnection.AutoSize = true;
+            this.lblConnection.BackColor = System.Drawing.Color.Transparent;
+            this.lblConnection.Font = new System.Drawing.Font("Calisto MT", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConnection.Location = new System.Drawing.Point(440, 441);
+            this.lblConnection.Name = "lblConnection";
+            this.lblConnection.Size = new System.Drawing.Size(0, 24);
+            this.lblConnection.TabIndex = 18;
+            // 
             // FrmLogin
             // 
             this.AcceptButton = this.btnLogin;
@@ -235,6 +246,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(865, 469);
+            this.Controls.Add(this.lblConnection);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lnkFingerprint);
             this.Controls.Add(this.label7);
@@ -283,5 +295,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.LinkLabel lnkFingerprint;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label lblConnection;
     }
 }

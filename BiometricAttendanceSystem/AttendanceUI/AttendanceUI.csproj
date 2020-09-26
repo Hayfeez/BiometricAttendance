@@ -28,7 +28,7 @@
     <ProductName>Biometric Attendance System</ProductName>
     <PublisherName>Dolapo Oguntuga</PublisherName>
     <SuiteName>Biometric Attendance Solution</SuiteName>
-    <ApplicationRevision>9</ApplicationRevision>
+    <ApplicationRevision>14</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>

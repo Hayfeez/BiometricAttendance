@@ -32,9 +32,12 @@ namespace AttendanceUI.Forms
             {
                 InitializeComponent();
             }
-
+            
+            this.BringToFront();
+            //this.Show();
             _authRepo = new AuthRepo();
-            Helper.GetEnumValuesAndDescriptions<ReportType>();
+            GetRemoteServerConnectionState();
+           // Helper.GetEnumValuesAndDescriptions<ReportType>();
         }
 
         private void ShowSplashScreen()
@@ -71,11 +74,12 @@ namespace AttendanceUI.Forms
 
                 if (_authRepo.StaffLogin(model))
                 {
-                    if (!LoggedInUser.IsSuperAdmin && !LoggedInUser.PasswordChanged) // first time login
+                    if (!LoggedInUser.PasswordChanged) // first time login
                     {
                         Base.ShowInfo("First time Login", "This is your first login with the default password. Kindly change your password");
                         var pwdForm = new FrmChangePassword(LoggedInUser.Email);
                         pwdForm.ShowDialog();
+                        pwdForm.BringToFront();
                     }
 
                     using (var dashboard = new FrmContainer())
@@ -83,6 +87,7 @@ namespace AttendanceUI.Forms
                         this.Hide();
                         this.ShowInTaskbar = false;
                         dashboard.ShowDialog();
+                        dashboard.BringToFront();
                     }
 
                 }
@@ -108,33 +113,40 @@ namespace AttendanceUI.Forms
             //}
 
            // if (e.Modifiers == Keys.Control && e.KeyCode == Keys.Alt && e.KeyCode == Keys.D)
-                if (e.Control && e.Alt && e.KeyCode == Keys.D)
-                {
-                var result = Base.ShowDialog(MessageBoxButtons.YesNo, "Data Download", "Do you want to proceed with data download?");
-                if (result == DialogResult.Yes)
-                {
-                    if (Helper.CheckRemoteServerConnection())
-                    {
-                        var syncRepo = new SyncRepo();
-                        var s = await syncRepo.SyncAllData();
-                        if (s == string.Empty)
-                        {
-                            Base.ShowSuccess("Success", "Data synchronization successful");
-                        }
-                        else
-                        {
-                            Base.ShowError("Error", s);
-                        }
-                    }
-                    else
-                    {
-                        Base.ShowError("Connection Failed", "Cannot connect to the remote server. Check your connection settings");
-                        var frm = new FrmConnection();
-                        frm.ShowDialog();
-                    }
-                }
-            }
-            //  
+           if (e.Control && e.Alt && e.KeyCode == Keys.D)
+           {
+               var result = Base.ShowDialog(MessageBoxButtons.YesNo, "Data Download", "Do you want to proceed with data download?");
+               if (result == DialogResult.Yes)
+               {
+                   if (Helper.CheckRemoteServerConnection())
+                   {
+                       var syncRepo = new SyncRepo();
+                       var s = await syncRepo.SyncAllData();
+                       if (s == string.Empty)
+                       {
+                           Base.ShowSuccess("Success", "Data synchronization successful");
+                       }
+                       else
+                       {
+                           Base.ShowError("Error", s);
+                       }
+                   }
+                   else
+                   {
+                       Base.ShowError("Connection Failed", "Cannot connect to the remote server. Check your connection settings");
+                       var frm = new FrmConnection();
+                       frm.ShowDialog();
+                   }
+               }
+           }
+
+           if (e.Control && e.Alt && e.KeyCode == Keys.O)  //open connection string
+           {
+               var frm = new FrmConnection();
+               frm.ShowDialog();
+               GetRemoteServerConnectionState();
+               Helper.SeedData();
+           }
         }
 
         private void lnkFingerprint_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -148,6 +160,21 @@ namespace AttendanceUI.Forms
         private void linkForgotPassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
 
+        }
+
+        private void GetRemoteServerConnectionState()
+        {
+            var result = Helper.CheckRemoteServerConnection();
+            if (result)
+            {
+                lblConnection.Text = "Remote server connection established";
+                lblConnection.ForeColor = Color.Green;
+            }
+            else
+            {
+                lblConnection.Text = "Cannot connect to remote server";
+                lblConnection.ForeColor = Color.Red;
+            }
         }
     }
 }

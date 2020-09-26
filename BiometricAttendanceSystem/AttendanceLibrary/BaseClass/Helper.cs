@@ -131,6 +131,10 @@ namespace AttendanceLibrary.BaseClass
         {
             try
             {
+                using var localDb = GetDataContext(true);
+                localDb.Database.EnsureCreated();
+                //localDb.Database.Migrate();
+
                 using var db = GetDataContext();
                 if (CheckRemoteServerConnection())
                 {

@@ -77,7 +77,7 @@
             this.panelForm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelForm.Location = new System.Drawing.Point(0, 0);
             this.panelForm.Name = "panelForm";
-            this.panelForm.Size = new System.Drawing.Size(781, 807);
+            this.panelForm.Size = new System.Drawing.Size(781, 672);
             this.panelForm.TabIndex = 0;
             // 
             // panelBody
@@ -86,18 +86,18 @@
             this.panelBody.Controls.Add(this.panel5);
             this.panelBody.Controls.Add(this.panel4);
             this.panelBody.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelBody.Location = new System.Drawing.Point(11, 119);
+            this.panelBody.Location = new System.Drawing.Point(14, 149);
             this.panelBody.Name = "panelBody";
-            this.panelBody.Size = new System.Drawing.Size(759, 677);
+            this.panelBody.Size = new System.Drawing.Size(753, 509);
             this.panelBody.TabIndex = 1;
             // 
             // panel6
             // 
             this.panel6.Controls.Add(this.btnUpload);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel6.Location = new System.Drawing.Point(0, 620);
+            this.panel6.Location = new System.Drawing.Point(0, 452);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(759, 57);
+            this.panel6.Size = new System.Drawing.Size(753, 57);
             this.panel6.TabIndex = 0;
             // 
             // btnUpload
@@ -121,7 +121,7 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(0, 249);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(759, 428);
+            this.panel5.Size = new System.Drawing.Size(753, 260);
             this.panel5.TabIndex = 6;
             // 
             // dataGrid
@@ -139,7 +139,7 @@
             this.dataGrid.RowHeadersWidth = 51;
             this.dataGrid.RowTemplate.Height = 24;
             this.dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGrid.Size = new System.Drawing.Size(759, 428);
+            this.dataGrid.Size = new System.Drawing.Size(753, 260);
             this.dataGrid.TabIndex = 0;
             // 
             // panel4
@@ -158,7 +158,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(759, 249);
+            this.panel4.Size = new System.Drawing.Size(753, 249);
             this.panel4.TabIndex = 0;
             // 
             // btnDownload
@@ -287,27 +287,27 @@
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(11, 796);
+            this.panel3.Location = new System.Drawing.Point(14, 658);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(759, 11);
+            this.panel3.Size = new System.Drawing.Size(753, 14);
             this.panel3.TabIndex = 3;
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(770, 119);
+            this.panel2.Location = new System.Drawing.Point(767, 149);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(11, 688);
+            this.panel2.Size = new System.Drawing.Size(14, 523);
             this.panel2.TabIndex = 2;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 119);
+            this.panel1.Location = new System.Drawing.Point(0, 149);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(11, 688);
+            this.panel1.Size = new System.Drawing.Size(14, 523);
             this.panel1.TabIndex = 1;
             // 
             // panelTop
@@ -319,7 +319,7 @@
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Location = new System.Drawing.Point(0, 0);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(781, 119);
+            this.panelTop.Size = new System.Drawing.Size(781, 149);
             this.panelTop.TabIndex = 0;
             // 
             // lblPageTitle
@@ -379,7 +379,8 @@
             this.AcceptButton = this.btnPreview;
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(781, 807);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(781, 672);
             this.Controls.Add(this.panelForm);
             this.Font = new System.Drawing.Font("Calisto MT", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
