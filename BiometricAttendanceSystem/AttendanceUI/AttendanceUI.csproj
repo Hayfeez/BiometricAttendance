@@ -153,6 +153,12 @@
     <Compile Include="BaseClass\DigitalPersonaLibrary.cs" />
     <Compile Include="BaseClass\DropdownControls.cs" />
     <Compile Include="BaseClass\ErrorLogger.cs" />
+    <Compile Include="Forms\FrmResetPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmResetPassword.Designer.cs">
+      <DependentUpon>FrmResetPassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FrmFingerprintLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -194,6 +200,12 @@
     </Compile>
     <Compile Include="Forms\FrmSettings.Designer.cs">
       <DependentUpon>FrmSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmPasswordReset.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmPasswordReset.Designer.cs">
+      <DependentUpon>FrmPasswordReset.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FrmUploadStaff.cs">
       <SubType>Form</SubType>
@@ -335,6 +347,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\FrmResetPassword.resx">
+      <DependentUpon>FrmResetPassword.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmFingerprintLogin.resx">
       <DependentUpon>FrmFingerprintLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -356,6 +371,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmSettings.resx">
       <DependentUpon>FrmSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmPasswordReset.resx">
+      <DependentUpon>FrmPasswordReset.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmUploadStaff.resx">
       <DependentUpon>FrmUploadStaff.cs</DependentUpon>

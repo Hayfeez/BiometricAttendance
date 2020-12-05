@@ -1,6 +1,6 @@
 ﻿namespace AttendanceUI.Forms
 {
-    partial class FrmChangePassword
+    partial class FrmResetPassword
     {
         /// <summary>
         /// Required designer variable.
@@ -28,14 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmChangePassword));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmResetPassword));
             this.panelForm = new System.Windows.Forms.Panel();
             this.panelBody = new System.Windows.Forms.Panel();
-            this.checkPwd = new XanderUI.XUICheckBox();
-            this.txtNew = new System.Windows.Forms.TextBox();
+            this.txtStaffNo = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
-            this.txtOld = new System.Windows.Forms.TextBox();
+            this.txtEmail = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -66,11 +65,10 @@
             // 
             // panelBody
             // 
-            this.panelBody.Controls.Add(this.checkPwd);
-            this.panelBody.Controls.Add(this.txtNew);
+            this.panelBody.Controls.Add(this.txtStaffNo);
             this.panelBody.Controls.Add(this.label2);
             this.panelBody.Controls.Add(this.btnSave);
-            this.panelBody.Controls.Add(this.txtOld);
+            this.panelBody.Controls.Add(this.txtEmail);
             this.panelBody.Controls.Add(this.label3);
             this.panelBody.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelBody.Location = new System.Drawing.Point(11, 119);
@@ -78,31 +76,13 @@
             this.panelBody.Size = new System.Drawing.Size(410, 254);
             this.panelBody.TabIndex = 1;
             // 
-            // checkPwd
+            // txtStaffNo
             // 
-            this.checkPwd.CheckboxCheckColor = System.Drawing.Color.White;
-            this.checkPwd.CheckboxColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(162)))), ((int)(((byte)(250)))));
-            this.checkPwd.CheckboxHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(55)))), ((int)(((byte)(98)))));
-            this.checkPwd.CheckboxStyle = XanderUI.XUICheckBox.Style.Material;
-            this.checkPwd.Checked = false;
-            this.checkPwd.Font = new System.Drawing.Font("Calisto MT", 10F);
-            this.checkPwd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
-            this.checkPwd.Location = new System.Drawing.Point(162, 135);
-            this.checkPwd.Name = "checkPwd";
-            this.checkPwd.Size = new System.Drawing.Size(188, 20);
-            this.checkPwd.TabIndex = 3;
-            this.checkPwd.Text = "Show Passwords";
-            this.checkPwd.TickThickness = 2;
-            this.checkPwd.CheckedStateChanged += new System.EventHandler(this.checkPwd_CheckedStateChanged);
-            // 
-            // txtNew
-            // 
-            this.txtNew.Font = new System.Drawing.Font("Calisto MT", 12F);
-            this.txtNew.Location = new System.Drawing.Point(162, 84);
-            this.txtNew.Name = "txtNew";
-            this.txtNew.Size = new System.Drawing.Size(203, 31);
-            this.txtNew.TabIndex = 2;
-            this.txtNew.UseSystemPasswordChar = true;
+            this.txtStaffNo.Font = new System.Drawing.Font("Calisto MT", 12F);
+            this.txtStaffNo.Location = new System.Drawing.Point(162, 84);
+            this.txtStaffNo.Name = "txtStaffNo";
+            this.txtStaffNo.Size = new System.Drawing.Size(203, 31);
+            this.txtStaffNo.TabIndex = 2;
             // 
             // label2
             // 
@@ -111,9 +91,9 @@
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
             this.label2.Location = new System.Drawing.Point(14, 95);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(121, 20);
+            this.label2.Size = new System.Drawing.Size(69, 20);
             this.label2.TabIndex = 0;
-            this.label2.Text = "New Password";
+            this.label2.Text = "Staff No";
             // 
             // btnSave
             // 
@@ -121,22 +101,21 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Bold);
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(162, 173);
+            this.btnSave.Location = new System.Drawing.Point(162, 153);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(203, 34);
-            this.btnSave.TabIndex = 4;
-            this.btnSave.Text = "Change Password";
+            this.btnSave.TabIndex = 3;
+            this.btnSave.Text = "Reset Password";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // txtOld
+            // txtEmail
             // 
-            this.txtOld.Font = new System.Drawing.Font("Calisto MT", 12F);
-            this.txtOld.Location = new System.Drawing.Point(162, 37);
-            this.txtOld.Name = "txtOld";
-            this.txtOld.Size = new System.Drawing.Size(203, 31);
-            this.txtOld.TabIndex = 1;
-            this.txtOld.UseSystemPasswordChar = true;
+            this.txtEmail.Font = new System.Drawing.Font("Calisto MT", 12F);
+            this.txtEmail.Location = new System.Drawing.Point(162, 37);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(203, 31);
+            this.txtEmail.TabIndex = 1;
             // 
             // label3
             // 
@@ -145,9 +124,9 @@
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
             this.label3.Location = new System.Drawing.Point(14, 48);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(142, 20);
+            this.label3.Size = new System.Drawing.Size(115, 20);
             this.label3.TabIndex = 0;
-            this.label3.Text = "Current Password";
+            this.label3.Text = "Email Address";
             // 
             // panel3
             // 
@@ -226,11 +205,11 @@
             this.lblTitle.Location = new System.Drawing.Point(10, 78);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(10);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(172, 22);
+            this.lblTitle.Size = new System.Drawing.Size(171, 22);
             this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "Change Password";
+            this.lblTitle.Text = "Forgot Password?";
             // 
-            // FrmChangePassword
+            // FrmResetPassword
             // 
             this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
@@ -241,10 +220,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.MaximizeBox = false;
-            this.Name = "FrmChangePassword";
+            this.Name = "FrmResetPassword";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Change Password";
+            this.Text = "Reset Password";
             this.TopMost = true;
             this.panelForm.ResumeLayout(false);
             this.panelBody.ResumeLayout(false);
@@ -267,11 +245,10 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panelBody;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.TextBox txtOld;
+        private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Label label3;
         private FontAwesome.Sharp.IconPictureBox iconExit;
-        private System.Windows.Forms.TextBox txtNew;
+        private System.Windows.Forms.TextBox txtStaffNo;
         private System.Windows.Forms.Label label2;
-        private XanderUI.XUICheckBox checkPwd;
     }
 }

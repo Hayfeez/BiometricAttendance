@@ -71,14 +71,34 @@
 
             private Label _fingerCount;
 
-            // to enroll 
-            public DigitalPersonaLibrary(TextBox txtLog, PictureBox derivedPic, Label fingerCount)
+            // to enroll student
+            public DigitalPersonaLibrary(TextBox txtLog, PictureBox derivedPic, Label fingerCount, List<StudentFinger> fingers)
             {
                 _isEnrollment = true;
                 FingerBitmaps = new List<Bitmap>();
                 _txtLog = txtLog;
                 _derivedPic = derivedPic;
                 _fingerCount = fingerCount;
+                _studentFingers = fingers;
+
+            Capturer = new DPFP.Capture.Capture();
+                Capturer.EventHandler = this;
+
+                Enroller = new DPFP.Processing.Enrollment(); // Create an enrollment.
+                Verificator = new DPFP.Verification.Verification(); // Create a verification.
+
+                Application.DoEvents();
+            }
+
+            // to enroll staff
+            public DigitalPersonaLibrary(TextBox txtLog, PictureBox derivedPic, Label fingerCount, List<StaffFingerprint> fingers)
+            {
+                _isEnrollment = true;
+                FingerBitmaps = new List<Bitmap>();
+                _txtLog = txtLog;
+                _derivedPic = derivedPic;
+                _fingerCount = fingerCount;
+                _staffFingers = fingers;
 
                 Capturer = new DPFP.Capture.Capture();
                 Capturer.EventHandler = this;
@@ -89,8 +109,7 @@
                 Application.DoEvents();
             }
 
-
-            // to sign attendance
+        // to sign attendance
         public DigitalPersonaLibrary(TextBox txtLog, PictureBox derivedPic, List<StudentFinger> fingers)
         {
             _isEnrollment = false;
@@ -564,25 +583,31 @@
             Bitmap newFingerBitmap = null;
             convertor.ConvertToPicture(sample, ref newFingerBitmap);
 
-            if (_isEnrollment)
+            if (_studentFingers != null)
             {
-                //  if (IsUnique(ref FingerBitmaps, ref sample))
-                if (IsUnique(ref newFingerBitmap))
+                if (_isEnrollment)
                 {
-                    _txtLog.Invoke((MethodInvoker) delegate { MakeReport("The fingerprint was captured. Capture the next finger"); });
-                    Process(newFingerBitmap);
+                    if (IsUnique(ref newFingerBitmap)) // ensures the same finger isn't captured twice
+                    {
+                        var verify = VerifyStudentFinger(ref newFingerBitmap); // verify if finger has already been captured in the db
+                        if (verify == null)
+                        {
+                            _txtLog.Invoke((MethodInvoker) delegate { MakeReport("The fingerprint was captured. Capture the next finger"); });
+                            Process(newFingerBitmap);
+                        }
+                        else
+                        {
+                            _txtLog.Invoke((MethodInvoker)delegate { MakeReport("This fingerprint has already been captured for another student"); });
+                        }
+                    }
+                    else
+                    {
+                        _txtLog.Invoke((MethodInvoker)delegate { MakeReport("This fingerprint has already been captured. Use another finger"); });
+                    }
                 }
                 else
                 {
-                    _txtLog.Invoke((MethodInvoker) delegate { MakeReport("This fingerprint has already been captured. Use another finger"); });
-                }
-            }
-            else
-            {
-                VerifiedData verify;
-                if (_studentFingers != null)
-                {
-                    verify = VerifyStudentFinger(ref newFingerBitmap);
+                    var verify = VerifyStudentFinger(ref newFingerBitmap);
                     if (verify != null)
                     {
                         _txtLog.Invoke((MethodInvoker)delegate { MakeReport($"Student {verify.Number} identified in {verify.Time}"); });
@@ -593,10 +618,32 @@
                     else
                         _txtLog.Invoke((MethodInvoker)delegate { MakeReport("Fingerprint could not be identified. Try again"); });
                 }
-
-                else if (_staffFingers != null)
+            }
+            else if (_staffFingers != null)
+            {
+                if (_isEnrollment)
                 {
-                    verify = VerifyStaffFinger(ref newFingerBitmap);
+                    if (IsUnique(ref newFingerBitmap)) // ensures the same finger isn't captured twice
+                    {
+                        var verify = VerifyStaffFinger(ref newFingerBitmap); // verify if finger has already been captured in the db
+                        if (verify == null)
+                        {
+                            _txtLog.Invoke((MethodInvoker)delegate { MakeReport("The fingerprint was captured. Capture the next finger"); });
+                            Process(newFingerBitmap);
+                        }
+                        else
+                        {
+                            _txtLog.Invoke((MethodInvoker)delegate { MakeReport("This fingerprint has already been captured for another staff"); });
+                        }
+                    }
+                    else
+                    {
+                        _txtLog.Invoke((MethodInvoker)delegate { MakeReport("This fingerprint has already been captured. Use another finger"); });
+                    }
+                }
+                else
+                {
+                    var verify = VerifyStaffFinger(ref newFingerBitmap);
                     if (verify != null)
                     {
                         _txtLog.Invoke((MethodInvoker)delegate { MakeReport($"Staff {verify.Number} identified in {verify.Time}"); });
@@ -607,8 +654,6 @@
                     else
                         _txtLog.Invoke((MethodInvoker)delegate { MakeReport("Fingerprint could not be identified. Try again"); });
                 }
-                
-               
             }
         }
 

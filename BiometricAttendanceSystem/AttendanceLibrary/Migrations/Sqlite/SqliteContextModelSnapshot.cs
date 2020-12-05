@@ -142,6 +142,25 @@ namespace AttendanceLibrary.Migrations.Sqlite
                     b.ToTable("PersonTitle");
                 });
 
+            modelBuilder.Entity("AttendanceLibrary.Model.ServerSetting", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DatabaseName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ServerName")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ServerSettings");
+                });
+
             modelBuilder.Entity("AttendanceLibrary.Model.SessionSemester", b =>
                 {
                     b.Property<string>("Id")

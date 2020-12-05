@@ -36,16 +36,16 @@
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.iconExit = new FontAwesome.Sharp.IconPictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.lnkFingerprint = new System.Windows.Forms.LinkLabel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblConnection = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.iconExit)).BeginInit();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.iconExit = new FontAwesome.Sharp.IconPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconExit)).BeginInit();
             this.SuspendLayout();
             // 
             // btnLogin
@@ -67,7 +67,6 @@
             // 
             this.linkForgotPassword.AutoSize = true;
             this.linkForgotPassword.BackColor = System.Drawing.Color.Transparent;
-            this.linkForgotPassword.Enabled = false;
             this.linkForgotPassword.Font = new System.Drawing.Font("Century Gothic", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkForgotPassword.LinkColor = System.Drawing.Color.DodgerBlue;
             this.linkForgotPassword.Location = new System.Drawing.Point(445, 298);
@@ -120,7 +119,7 @@
             this.label2.Location = new System.Drawing.Point(445, 132);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 29);
+            this.label2.Size = new System.Drawing.Size(62, 23);
             this.label2.TabIndex = 0;
             this.label2.Text = "Email";
             // 
@@ -136,23 +135,6 @@
             this.label1.Size = new System.Drawing.Size(74, 23);
             this.label1.TabIndex = 0;
             this.label1.Text = "LOGIN";
-            // 
-            // iconExit
-            // 
-            this.iconExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.iconExit.BackColor = System.Drawing.Color.Transparent;
-            this.iconExit.ForeColor = System.Drawing.Color.Red;
-            this.iconExit.IconChar = FontAwesome.Sharp.IconChar.TimesCircle;
-            this.iconExit.IconColor = System.Drawing.Color.Red;
-            this.iconExit.IconSize = 65;
-            this.iconExit.Location = new System.Drawing.Point(785, 13);
-            this.iconExit.Margin = new System.Windows.Forms.Padding(4);
-            this.iconExit.Name = "iconExit";
-            this.iconExit.Size = new System.Drawing.Size(65, 65);
-            this.iconExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.iconExit.TabIndex = 14;
-            this.iconExit.TabStop = false;
-            this.iconExit.Click += new System.EventHandler(this.iconExit_Click);
             // 
             // label4
             // 
@@ -208,7 +190,6 @@
             // 
             this.lnkFingerprint.AutoSize = true;
             this.lnkFingerprint.BackColor = System.Drawing.Color.Transparent;
-            this.lnkFingerprint.Enabled = false;
             this.lnkFingerprint.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lnkFingerprint.LinkColor = System.Drawing.Color.DodgerBlue;
             this.lnkFingerprint.Location = new System.Drawing.Point(633, 298);
@@ -218,6 +199,16 @@
             this.lnkFingerprint.TabStop = true;
             this.lnkFingerprint.Text = "Login with Fingerprint";
             this.lnkFingerprint.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkFingerprint_LinkClicked);
+            // 
+            // lblConnection
+            // 
+            this.lblConnection.AutoSize = true;
+            this.lblConnection.BackColor = System.Drawing.Color.Transparent;
+            this.lblConnection.Font = new System.Drawing.Font("Calisto MT", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConnection.Location = new System.Drawing.Point(440, 441);
+            this.lblConnection.Name = "lblConnection";
+            this.lblConnection.Size = new System.Drawing.Size(0, 19);
+            this.lblConnection.TabIndex = 18;
             // 
             // pictureBox1
             // 
@@ -229,15 +220,22 @@
             this.pictureBox1.TabIndex = 17;
             this.pictureBox1.TabStop = false;
             // 
-            // lblConnection
+            // iconExit
             // 
-            this.lblConnection.AutoSize = true;
-            this.lblConnection.BackColor = System.Drawing.Color.Transparent;
-            this.lblConnection.Font = new System.Drawing.Font("Calisto MT", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConnection.Location = new System.Drawing.Point(440, 441);
-            this.lblConnection.Name = "lblConnection";
-            this.lblConnection.Size = new System.Drawing.Size(0, 24);
-            this.lblConnection.TabIndex = 18;
+            this.iconExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.iconExit.BackColor = System.Drawing.Color.Transparent;
+            this.iconExit.ForeColor = System.Drawing.Color.Red;
+            this.iconExit.IconChar = FontAwesome.Sharp.IconChar.TimesCircle;
+            this.iconExit.IconColor = System.Drawing.Color.Red;
+            this.iconExit.IconSize = 65;
+            this.iconExit.Location = new System.Drawing.Point(785, 13);
+            this.iconExit.Margin = new System.Windows.Forms.Padding(4);
+            this.iconExit.Name = "iconExit";
+            this.iconExit.Size = new System.Drawing.Size(65, 65);
+            this.iconExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.iconExit.TabIndex = 14;
+            this.iconExit.TabStop = false;
+            this.iconExit.Click += new System.EventHandler(this.iconExit_Click);
             // 
             // FrmLogin
             // 
@@ -272,8 +270,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.TopMost = true;
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmLogin_KeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.iconExit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconExit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

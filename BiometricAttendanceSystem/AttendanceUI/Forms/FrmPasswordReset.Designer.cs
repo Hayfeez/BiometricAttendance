@@ -1,6 +1,6 @@
 ﻿namespace AttendanceUI.Forms
 {
-    partial class FrmStaffCourse
+    partial class FrmPasswordReset
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmStaffCourse));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPasswordReset));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -38,17 +38,10 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.panelBody = new System.Windows.Forms.Panel();
             this.dataGrid = new System.Windows.Forms.DataGridView();
-            this.btnCourse = new XanderUI.XUIButton();
-            this.comboDept = new System.Windows.Forms.ComboBox();
-            this.btnLoad = new System.Windows.Forms.Button();
-            this.comboLevel = new System.Windows.Forms.ComboBox();
-            this.comboCourse = new System.Windows.Forms.ComboBox();
-            this.panelFilter = new System.Windows.Forms.Panel();
-            this.btnAddNew = new XanderUI.XUIButton();
+            this.btnBack = new XanderUI.XUIButton();
             this.panelHeader.SuspendLayout();
             this.panelBody.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
-            this.panelFilter.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -84,8 +77,7 @@
             // panelHeader
             // 
             this.panelHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
-            this.panelHeader.Controls.Add(this.btnCourse);
-            this.panelHeader.Controls.Add(this.btnAddNew);
+            this.panelHeader.Controls.Add(this.btnBack);
             this.panelHeader.Controls.Add(this.btnSearch);
             this.panelHeader.Controls.Add(this.txtSearch);
             this.panelHeader.Controls.Add(this.lblTitle);
@@ -126,14 +118,13 @@
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(10);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(175, 31);
+            this.lblTitle.Size = new System.Drawing.Size(202, 31);
             this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "Staff Courses";
+            this.lblTitle.Text = "Reset Password";
             // 
             // panelBody
             // 
             this.panelBody.Controls.Add(this.dataGrid);
-            this.panelBody.Controls.Add(this.panelFilter);
             this.panelBody.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelBody.Location = new System.Drawing.Point(18, 161);
             this.panelBody.Margin = new System.Windows.Forms.Padding(4);
@@ -149,115 +140,40 @@
             this.dataGrid.BackgroundColor = System.Drawing.Color.White;
             this.dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGrid.Location = new System.Drawing.Point(0, 79);
+            this.dataGrid.Location = new System.Drawing.Point(0, 0);
             this.dataGrid.Margin = new System.Windows.Forms.Padding(4);
             this.dataGrid.Name = "dataGrid";
             this.dataGrid.ReadOnly = true;
             this.dataGrid.RowHeadersWidth = 51;
             this.dataGrid.RowTemplate.Height = 24;
             this.dataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGrid.Size = new System.Drawing.Size(904, 315);
+            this.dataGrid.Size = new System.Drawing.Size(904, 394);
             this.dataGrid.TabIndex = 2;
             this.dataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGrid_CellContentClick);
             // 
-            // btnCourse
+            // btnBack
             // 
-            this.btnCourse.BackgroundColor = System.Drawing.Color.Transparent;
-            this.btnCourse.ButtonImage = ((System.Drawing.Image)(resources.GetObject("btnCourse.ButtonImage")));
-            this.btnCourse.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
-            this.btnCourse.ButtonText = "Back to Courses";
-            this.btnCourse.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
-            this.btnCourse.ClickTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnCourse.CornerRadius = 5;
-            this.btnCourse.Font = new System.Drawing.Font("Calisto MT", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCourse.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnCourse.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.btnCourse.HoverTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnCourse.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnCourse.Location = new System.Drawing.Point(7, 88);
-            this.btnCourse.Name = "btnCourse";
-            this.btnCourse.Size = new System.Drawing.Size(192, 50);
-            this.btnCourse.TabIndex = 1;
-            this.btnCourse.TextColor = System.Drawing.Color.White;
-            this.btnCourse.Vertical_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnCourse.Click += new System.EventHandler(this.btnCourse_Click);
+            this.btnBack.BackgroundColor = System.Drawing.Color.Transparent;
+            this.btnBack.ButtonImage = global::AttendanceUI.Properties.Resources.user1;
+            this.btnBack.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnBack.ButtonText = "Back to Users";
+            this.btnBack.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
+            this.btnBack.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnBack.CornerRadius = 5;
+            this.btnBack.Font = new System.Drawing.Font("Calisto MT", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBack.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnBack.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnBack.HoverTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnBack.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnBack.Location = new System.Drawing.Point(7, 88);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(192, 50);
+            this.btnBack.TabIndex = 1;
+            this.btnBack.TextColor = System.Drawing.Color.White;
+            this.btnBack.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
-            // comboDept
-            // 
-            this.comboDept.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboDept.FormattingEnabled = true;
-            this.comboDept.Location = new System.Drawing.Point(17, 26);
-            this.comboDept.Name = "comboDept";
-            this.comboDept.Size = new System.Drawing.Size(251, 31);
-            this.comboDept.TabIndex = 0;
-            this.comboDept.SelectedIndexChanged += new System.EventHandler(this.comboDept_SelectedIndexChanged);
-            // 
-            // btnLoad
-            // 
-            this.btnLoad.Location = new System.Drawing.Point(738, 26);
-            this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(76, 31);
-            this.btnLoad.TabIndex = 1;
-            this.btnLoad.Text = "Load";
-            this.btnLoad.UseVisualStyleBackColor = true;
-            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
-            // 
-            // comboLevel
-            // 
-            this.comboLevel.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboLevel.FormattingEnabled = true;
-            this.comboLevel.Location = new System.Drawing.Point(283, 26);
-            this.comboLevel.Name = "comboLevel";
-            this.comboLevel.Size = new System.Drawing.Size(140, 31);
-            this.comboLevel.TabIndex = 2;
-            this.comboLevel.SelectedIndexChanged += new System.EventHandler(this.comboLevel_SelectedIndexChanged);
-            // 
-            // comboCourse
-            // 
-            this.comboCourse.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboCourse.FormattingEnabled = true;
-            this.comboCourse.Location = new System.Drawing.Point(431, 26);
-            this.comboCourse.Name = "comboCourse";
-            this.comboCourse.Size = new System.Drawing.Size(270, 31);
-            this.comboCourse.TabIndex = 3;
-            // 
-            // panelFilter
-            // 
-            this.panelFilter.BackColor = System.Drawing.Color.White;
-            this.panelFilter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelFilter.Controls.Add(this.comboCourse);
-            this.panelFilter.Controls.Add(this.comboLevel);
-            this.panelFilter.Controls.Add(this.btnLoad);
-            this.panelFilter.Controls.Add(this.comboDept);
-            this.panelFilter.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelFilter.Location = new System.Drawing.Point(0, 0);
-            this.panelFilter.Name = "panelFilter";
-            this.panelFilter.Size = new System.Drawing.Size(904, 79);
-            this.panelFilter.TabIndex = 1;
-            // 
-            // btnAddNew
-            // 
-            this.btnAddNew.BackgroundColor = System.Drawing.Color.Transparent;
-            this.btnAddNew.ButtonImage = ((System.Drawing.Image)(resources.GetObject("btnAddNew.ButtonImage")));
-            this.btnAddNew.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
-            this.btnAddNew.ButtonText = "Assign Courses";
-            this.btnAddNew.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
-            this.btnAddNew.ClickTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnAddNew.CornerRadius = 5;
-            this.btnAddNew.Font = new System.Drawing.Font("Calisto MT", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddNew.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnAddNew.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.btnAddNew.HoverTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnAddNew.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnAddNew.Location = new System.Drawing.Point(205, 87);
-            this.btnAddNew.Name = "btnAddNew";
-            this.btnAddNew.Size = new System.Drawing.Size(183, 50);
-            this.btnAddNew.TabIndex = 2;
-            this.btnAddNew.TextColor = System.Drawing.Color.White;
-            this.btnAddNew.Vertical_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnAddNew.Click += new System.EventHandler(this.btnAddNew_Click);
-            // 
-            // FrmStaffCourse
+            // FrmPasswordReset
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -271,14 +187,13 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "FrmStaffCourse";
+            this.Name = "FrmPasswordReset";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.FrmStaffCourse_Load);
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();
             this.panelBody.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
-            this.panelFilter.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -294,12 +209,6 @@
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.DataGridView dataGrid;
-        private XanderUI.XUIButton btnCourse;
-        private System.Windows.Forms.Panel panelFilter;
-        private System.Windows.Forms.ComboBox comboCourse;
-        private System.Windows.Forms.ComboBox comboLevel;
-        private System.Windows.Forms.Button btnLoad;
-        private System.Windows.Forms.ComboBox comboDept;
-        private XanderUI.XUIButton btnAddNew;
+        private XanderUI.XUIButton btnBack;
     }
 }

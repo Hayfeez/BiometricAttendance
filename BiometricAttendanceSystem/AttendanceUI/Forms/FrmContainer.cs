@@ -241,8 +241,16 @@ namespace AttendanceUI.Forms
                 Base.ShowError("Access Denied", "You cannot change system admin password from here. Go to Settings");
                 return;
             }
-            var frm = new FrmChangePassword(LoggedInUser.Email);
-            frm.ShowDialog();
+
+            if (GetRemoteServerConnectionState())
+            {
+                var frm = new FrmChangePassword(LoggedInUser.Email);
+                frm.ShowDialog();
+            }
+            else
+            {
+                Base.ShowError("Connection Failed", "You can only change passwords while connected to the remote server. Check your connection settings");
+            }
         }
 
         private void iconSettings_Click(object sender, EventArgs e)

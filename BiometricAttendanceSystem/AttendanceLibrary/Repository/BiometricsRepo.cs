@@ -89,6 +89,29 @@ namespace AttendanceLibrary.Repository
 			}
 		}
 
+        public List<StudentFinger> GetAllStudentFingers()
+        {
+            try
+            {
+                var d = (from fings in _context.StudentFingers
+                         join s in _context.Students on fings.StudentId equals s.Id
+                         where !s.IsDeleted
+                         select new StudentFinger
+                         {
+                             FingerTemplate = fings.FingerTemplate,
+                             Id = fings.Id,
+                             StudentId = fings.StudentId,
+                             MatricNo = s.MatricNo
+                         }).ToList();
+
+                return d;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public List<StaffFingerprint> GetStaffFingers(string id = "")
         {
             try

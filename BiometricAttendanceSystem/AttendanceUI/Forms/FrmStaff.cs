@@ -176,7 +176,7 @@ namespace AttendanceUI.Forms
             }
             else
             {
-                checkIsAdmin.Checked = false;
+               // checkIsAdmin.Checked = false;
                 checkIsAdmin.Enabled = true;
             }
         }

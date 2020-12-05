@@ -10,10 +10,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Data.Sqlite;
 using System.Windows.Forms;
 
+using AttendanceLibrary.Model;
+
 namespace AttendanceLibrary.DataContext
 {
     public class SqliteContext : AttendanceContext
     {
+        public DbSet<ServerSetting> ServerSettings { get; set; }
+
         public readonly string Defaultdbfile = Properties.Settings.Default.DatabaseFile; //"SchoolAttendanceDb.sqlite";
         private readonly string _dbFile;
         private SqliteConnection _connection;

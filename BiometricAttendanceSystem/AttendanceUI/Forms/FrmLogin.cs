@@ -154,12 +154,21 @@ namespace AttendanceUI.Forms
             this.Hide();
             this.ShowInTaskbar = false;
             var frm = new FrmFingerprintLogin();
-            frm.Show();
+            frm.ShowDialog();
         }
 
         private void linkForgotPassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            if (Helper.CheckRemoteServerConnection())
+            {
+                var frm = new FrmResetPassword(txtUsername.Text);
+                frm.BringToFront();
+                frm.ShowDialog();
+            }
+            else
+            {
+                Base.ShowError("Connection Failed", "You can only reset passwords while connected to the remote server. Check your connection settings");
+            }
         }
 
         private void GetRemoteServerConnectionState()

@@ -17,32 +17,26 @@ using AttendanceUI.BaseClass;
 
 namespace AttendanceUI.Forms
 {
-    public partial class FrmChangePassword : Form
+    public partial class FrmResetPassword : Form
     {
         private readonly AuthRepo _repo;
-
-        private readonly string _id;
-
+        
         private string ValidateForm()
         {
-            if (txtOld.Text == "")
-                return "Current password is required";
+            if (txtEmail.Text == "")
+                return "Email address is required";
 
-            if (txtNew.Text == "")
-                return "New password is required";
-
-            if (txtOld.Text == txtNew.Text)
-                return "Current password cannot be the same as New password";
+            if (txtStaffNo.Text == "")
+                return "Staff Number is required";
 
             return "";
         }
 
-        public FrmChangePassword(string userEmail)
+        public FrmResetPassword(string userEmail)
         {
             InitializeComponent();
             _repo = new AuthRepo();
-            _id = userEmail;
-
+            txtEmail.Text = userEmail;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -50,18 +44,18 @@ namespace AttendanceUI.Forms
             var validate = ValidateForm();
             if (validate == string.Empty)
             {
-                var item = new ChangePassword()
+                var item = new ForgotPassword
                 {
-                    Email = _id,
-                    OldPassword = txtOld.Text,
-                    NewPassword = txtNew.Text
+                    Email = txtEmail.Text.Trim().ToLower(),
+                    StaffNo = txtStaffNo.Text.Trim(),
+                    SystemId = Helper.GetMacAddress()
                 };
 
-                var saveItem = _repo.StaffChangePassword(item);
+                var saveItem = _repo.StaffForgotPassword(item);
 
                 if (saveItem == string.Empty)
                 {
-                    Base.ShowSuccess("Success", "Password changed successfully");
+                    Base.ShowSuccess("Success", "Password reset request saved successfully. An admin will reset the password as soon as possible");
                     this.Close();
                 }
                 else
@@ -80,10 +74,5 @@ namespace AttendanceUI.Forms
             this.Close();
         }
 
-        private void checkPwd_CheckedStateChanged(object sender, EventArgs e)
-        {
-            txtNew.UseSystemPasswordChar = !checkPwd.Checked;
-            txtOld.UseSystemPasswordChar = !checkPwd.Checked;
-        }
     }
 }

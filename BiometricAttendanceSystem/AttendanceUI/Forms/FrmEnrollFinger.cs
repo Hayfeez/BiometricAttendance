@@ -124,11 +124,13 @@ namespace AttendanceUI.Forms
                 {
                     if (_isStudent)
                     {
-                        _digitalPersona = new DigitalPersonaLibrary(txtLog, PicAnalyzed, lblFingerCount);
+                        var fingers = _bioRepo.GetAllStudentFingers();
+                        _digitalPersona = new DigitalPersonaLibrary(txtLog, PicAnalyzed, lblFingerCount, fingers);
                     }
                     else
                     {
-                        _digitalPersona = new DigitalPersonaLibrary(txtLog, PicAnalyzed, lblFingerCount);
+                        var fingers = _bioRepo.GetStaffFingers();
+                        _digitalPersona = new DigitalPersonaLibrary(txtLog, PicAnalyzed, lblFingerCount, fingers);
                     }
                     
                     if (_digitalPersona.Capturer == null)
@@ -293,6 +295,7 @@ namespace AttendanceUI.Forms
                 {
                     Base.ShowInfo("Success", "All fingerprints deleted successfully");
                     btnDeleteEnrolled.Enabled = false;
+                    lblFingersEnrolled.Text = "0";
                 }
 
                 else

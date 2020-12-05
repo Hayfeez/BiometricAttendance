@@ -58,18 +58,108 @@ namespace AttendanceLibrary.Repository
             return "";
         }
 
-        public ChangePassword StaffForgotPassword(ForgotPassword model)
+        public string StaffForgotPassword(ForgotPassword model)
         {
             try
             {
-                var d = _localContext.Staff.SingleOrDefault(a => a.Email == model.Email);
-                if (d == null) return null;
-                return new ChangePassword
+                var remoteOnlyContext = Helper.GetRemoteOnlyContext();
+                var d = remoteOnlyContext.Staff.SingleOrDefault(a => a.Email == model.Email 
+                                                                     && a.StaffNo.ToLower() == model.StaffNo.ToLower());
+                if (d == null)
+                    return "Incorrect credentials";
+
+                if (remoteOnlyContext.PasswordResets.Any(x => x.UserId == d.Id && !x.IsReset))
                 {
-                    Email = d.Email,
-                    IsReset = true,
-                    OldPassword = d.Password
-                };
+                    return "There is a pending password reset request awaiting admin action";
+                }
+
+                remoteOnlyContext.PasswordResets.Add(new PasswordReset
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    UserId = d.Id,
+                    RequestingSystemId = model.SystemId,
+                    DateRequested = DateTime.Now
+                });
+
+                if (remoteOnlyContext.SaveChanges() > 0)
+                {
+                    return "";
+                }
+                
+                return "An error occured";
+                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public string AdminResetPassword(string userId, string resetBy)
+        {
+            try
+            {
+                if (string.Equals(userId, resetBy))
+                {
+                    return "You cannot reset your own password";
+                }
+
+                var remoteOnlyContext = Helper.GetRemoteOnlyContext();
+                var d = remoteOnlyContext.Staff.SingleOrDefault(a => a.Id == userId);
+                if (d == null)
+                    return "User not found";
+
+                var resetRequest = remoteOnlyContext.PasswordResets.SingleOrDefault(x => x.UserId == userId && !x.IsReset);
+                if (resetRequest == null)
+                {
+                    return "There is no pending password reset request for this user";
+                }
+
+                var systemSetting = remoteOnlyContext.SystemSettings.Single();
+                d.Password = systemSetting.UserDefaultPassword;
+                d.PasswordChanged = false;
+
+                resetRequest.IsReset = true;
+                resetRequest.ResetBy = resetBy;
+                resetRequest.DateReset = DateTime.Now;
+
+                if (remoteOnlyContext.SaveChanges() > 0)
+                {
+                    return "";
+                }
+
+                return "An error occured while resetting password";
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<PasswordResetList> GetPasswordResetRequests()
+        {
+            try
+            {
+                var remoteOnlyContext = Helper.GetRemoteOnlyContext();
+                var resetRequests = (from request in remoteOnlyContext.PasswordResets
+                                     join user in remoteOnlyContext.Staff on request.UserId equals user.Id
+                                     join resetBy in remoteOnlyContext.Staff on request.ResetBy equals resetBy.Id into resetByUser
+                                     from resetBy in resetByUser.DefaultIfEmpty()
+                                     orderby request.DateRequested descending 
+                                     select new PasswordResetList
+                                     {
+                                         DateRequested = request.DateRequested,
+                                         DateReset = request.DateReset,
+                                         IsReset = request.IsReset,
+                                         Id = request.Id,
+                                         UserId = request.UserId,
+                                         RequestingSystemId = request.RequestingSystemId,
+                                         ResetBy = resetBy.Lastname + ", " + resetBy.Firstname + " " + resetBy.Othername,
+                                         User = user.Lastname + ", " + user.Firstname + " " + user.Othername,
+                                     }).ToList();
+                
+                return resetRequests;
             }
             catch (Exception ex)
             {
@@ -160,6 +250,5 @@ namespace AttendanceLibrary.Repository
                 throw ex;
             }
         }
-
     }
 }

@@ -41,6 +41,7 @@
             this.panelFilter = new System.Windows.Forms.Panel();
             this.btnLoad = new System.Windows.Forms.Button();
             this.comboDept = new System.Windows.Forms.ComboBox();
+            this.btnPasswordReset = new XanderUI.XUIButton();
             this.btnUpload = new XanderUI.XUIButton();
             this.btnAdd = new XanderUI.XUIButton();
             this.panelHeader.SuspendLayout();
@@ -82,6 +83,7 @@
             // panelHeader
             // 
             this.panelHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
+            this.panelHeader.Controls.Add(this.btnPasswordReset);
             this.panelHeader.Controls.Add(this.btnUpload);
             this.panelHeader.Controls.Add(this.btnSearch);
             this.panelHeader.Controls.Add(this.txtSearch);
@@ -189,6 +191,28 @@
             this.comboDept.Size = new System.Drawing.Size(251, 31);
             this.comboDept.TabIndex = 0;
             // 
+            // btnPasswordReset
+            // 
+            this.btnPasswordReset.BackgroundColor = System.Drawing.Color.Transparent;
+            this.btnPasswordReset.ButtonImage = global::AttendanceUI.Properties.Resources.user;
+            this.btnPasswordReset.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnPasswordReset.ButtonText = "Password Reset";
+            this.btnPasswordReset.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
+            this.btnPasswordReset.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnPasswordReset.CornerRadius = 5;
+            this.btnPasswordReset.Font = new System.Drawing.Font("Calisto MT", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPasswordReset.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnPasswordReset.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnPasswordReset.HoverTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnPasswordReset.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnPasswordReset.Location = new System.Drawing.Point(306, 87);
+            this.btnPasswordReset.Name = "btnPasswordReset";
+            this.btnPasswordReset.Size = new System.Drawing.Size(190, 50);
+            this.btnPasswordReset.TabIndex = 5;
+            this.btnPasswordReset.TextColor = System.Drawing.Color.White;
+            this.btnPasswordReset.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnPasswordReset.Click += new System.EventHandler(this.btnPasswordReset_Click);
+            // 
             // btnUpload
             // 
             this.btnUpload.BackgroundColor = System.Drawing.Color.Transparent;
@@ -272,5 +296,6 @@
         private System.Windows.Forms.ComboBox comboDept;
         private System.Windows.Forms.Button btnLoad;
         private XanderUI.XUIButton btnUpload;
+        private XanderUI.XUIButton btnPasswordReset;
     }
 }

@@ -212,6 +212,14 @@
     <Compile Include="Migrations\Sqlite\20200921004030_addgraduateddetails.designer.cs">
       <DependentUpon>20200921004030_addgraduateddetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Sqlite\20201204190157_Update.cs" />
+    <Compile Include="Migrations\Sqlite\20201204190157_Update.designer.cs">
+      <DependentUpon>20201204190157_Update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Sqlite\20201204205925_AddServerSettingTable.cs" />
+    <Compile Include="Migrations\Sqlite\20201204205925_AddServerSettingTable.designer.cs">
+      <DependentUpon>20201204205925_AddServerSettingTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Sqlite\SqliteContextModelSnapshot.cs" />
     <Compile Include="Migrations\SqlServer\20200919083359_initial.cs" />
     <Compile Include="Migrations\SqlServer\20200919083359_initial.designer.cs">
@@ -221,6 +229,10 @@
     <Compile Include="Migrations\SqlServer\20200921004048_addgraduateddetails.designer.cs">
       <DependentUpon>20200921004048_addgraduateddetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\SqlServer\20201204213257_AddPasswordResetTable.cs" />
+    <Compile Include="Migrations\SqlServer\20201204213257_AddPasswordResetTable.designer.cs">
+      <DependentUpon>20201204213257_AddPasswordResetTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\SqlServer\SqlServerContextModelSnapshot.cs" />
     <Compile Include="Model\Attendance.cs" />
     <Compile Include="DataContext\SqliteContext.cs" />
@@ -228,6 +240,7 @@
     <Compile Include="Model\StaffCourse.cs" />
     <Compile Include="Model\CourseRegistration.cs" />
     <Compile Include="Model\Department.cs" />
+    <Compile Include="Model\PasswordReset.cs" />
     <Compile Include="Model\StaffDetail.cs" />
     <Compile Include="Model\PersonTitle.cs" />
     <Compile Include="Model\SessionSemester.cs" />
@@ -236,7 +249,9 @@
     <Compile Include="Model\StudentFinger.cs" />
     <Compile Include="Model\StudentLevel.cs" />
     <Compile Include="Model\AppSync.cs" />
+    <Compile Include="Model\ServerSetting.cs" />
     <Compile Include="Model\SystemSetting.cs" />
+    <Compile Include="Model\ViewModels\PasswordResetList.cs" />
     <Compile Include="Model\ViewModels\StaffCourseList.cs" />
     <Compile Include="Model\ViewModels\CourseRegistrationList.cs" />
     <Compile Include="Model\ViewModels\CourseList.cs" />

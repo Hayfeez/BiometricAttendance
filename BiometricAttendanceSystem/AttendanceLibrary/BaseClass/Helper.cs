@@ -104,12 +104,24 @@ namespace AttendanceLibrary.BaseClass
         private const string SuperAdminFirstname = "Admin";
         private const string SuperAdminLastname = "Admin";
 
+        public static string RemoteServerConnectionString = "";
+
         public static AttendanceContext GetDataContext(bool isSqlite = false)
         {
             if (isSqlite)
                 return new SqliteContext();
 
             return new SqlServerContext();
+        }
+
+        public static SqlServerContext GetRemoteOnlyContext()
+        {
+            return new SqlServerContext();
+        }
+
+        public static SqliteContext GetLocalOnlyContext()
+        {
+            return new SqliteContext();
         }
 
         public static bool CheckRemoteServerConnection()
@@ -132,8 +144,8 @@ namespace AttendanceLibrary.BaseClass
             try
             {
                 using var localDb = GetDataContext(true);
-                localDb.Database.EnsureCreated();
-                //localDb.Database.Migrate();
+                //localDb.Database.EnsureCreated();
+                localDb.Database.Migrate();
 
                 using var db = GetDataContext();
                 if (CheckRemoteServerConnection())

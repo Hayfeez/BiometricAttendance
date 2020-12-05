@@ -76,7 +76,6 @@ namespace AttendanceLibrary.Repository
                _localContext.StaffFingers.AddRange(remoteStaffFingers);
                _localContext.SystemSettings.AddRange(remoteSettings);
 
-
                //var remoteAttendanceIds = _remoteContext.Attendances.Select(x => x.Id).ToHashSet();
                //var toUpload = _localContext.Attendances.Where(x => !remoteAttendanceIds.Contains(x.Id)).AsNoTracking().ToList();
 

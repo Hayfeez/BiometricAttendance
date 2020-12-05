@@ -109,10 +109,12 @@ namespace AttendanceUI.Forms
                     t.Abort();
                     
                     var dashboard = new FrmContainer();
-                    dashboard.ShowDialog();
+                    dashboard.Show();
 
                     foreach (var form in Application.OpenForms.OfType<FrmFingerprintLogin>().ToList())
-                        form.Hide();
+                    {
+                        form.Close();
+                    }
                 }
                 else
                 {

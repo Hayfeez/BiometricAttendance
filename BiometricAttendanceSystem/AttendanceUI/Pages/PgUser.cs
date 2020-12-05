@@ -198,5 +198,22 @@ namespace AttendanceUI.Pages
             staffForm.ShowDialog();
             LoadData();
         }
+
+        private void btnPasswordReset_Click(object sender, EventArgs e)
+        {
+            if (LoggedInUser.UserId == Helper.SuperAdminId)
+            {
+                Base.ShowError("Access Denied", "You cannot reset user passwords");
+                return;
+            }
+
+            if (!LoggedInUser.IsSuperAdmin)
+            {
+                Base.ShowError("Access Denied", "You do not have the required permission");
+                return;
+            }
+            var staffForm = new FrmPasswordReset();
+            staffForm.ShowDialog();
+        }
     }
 }
