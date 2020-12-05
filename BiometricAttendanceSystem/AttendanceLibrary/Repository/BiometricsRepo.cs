@@ -3,12 +3,8 @@ using AttendanceLibrary.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using AttendanceLibrary.DataContext;
-
-using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 
 namespace AttendanceLibrary.Repository
 {

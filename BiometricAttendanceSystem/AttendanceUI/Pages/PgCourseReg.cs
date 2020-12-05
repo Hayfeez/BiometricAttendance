@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Drawing.Text;
 using System.Windows.Forms;
 
 using AttendanceLibrary.BaseClass;
