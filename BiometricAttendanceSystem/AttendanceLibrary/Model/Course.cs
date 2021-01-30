@@ -13,5 +13,7 @@ namespace AttendanceLibrary.Model
         public string CourseTitle { get; set; }
         public string CourseCode { get; set; }
         public bool IsDeleted { get; set; }
+
+        [NotMapped] public string Fullname => $"{CourseCode} - {CourseTitle}";
     }
 }

@@ -230,11 +230,11 @@
             this.btnUpload.BackgroundColor = System.Drawing.Color.Transparent;
             this.btnUpload.ButtonImage = ((System.Drawing.Image)(resources.GetObject("btnUpload.ButtonImage")));
             this.btnUpload.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
-            this.btnUpload.ButtonText = "Add Bulk";
+            this.btnUpload.ButtonText = "Upload Bulk";
             this.btnUpload.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
             this.btnUpload.ClickTextColor = System.Drawing.Color.DodgerBlue;
             this.btnUpload.CornerRadius = 5;
-            this.btnUpload.Font = new System.Drawing.Font("Calisto MT", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpload.Font = new System.Drawing.Font("Calisto MT", 9.0F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpload.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
             this.btnUpload.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.btnUpload.HoverTextColor = System.Drawing.Color.DodgerBlue;

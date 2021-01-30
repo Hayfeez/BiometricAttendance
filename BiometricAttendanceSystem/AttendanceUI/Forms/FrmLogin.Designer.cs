@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLogin));
             this.btnLogin = new System.Windows.Forms.Button();
             this.linkForgotPassword = new System.Windows.Forms.LinkLabel();
@@ -42,10 +43,13 @@
             this.label7 = new System.Windows.Forms.Label();
             this.lnkFingerprint = new System.Windows.Forms.LinkLabel();
             this.lblConnection = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.iconExit = new FontAwesome.Sharp.IconPictureBox();
+            this.showPassword = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconExit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.showPassword)).BeginInit();
             this.SuspendLayout();
             // 
             // btnLogin
@@ -84,7 +88,7 @@
             this.txtPassword.Location = new System.Drawing.Point(449, 243);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(392, 32);
+            this.txtPassword.Size = new System.Drawing.Size(358, 32);
             this.txtPassword.TabIndex = 2;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
@@ -237,6 +241,18 @@
             this.iconExit.TabStop = false;
             this.iconExit.Click += new System.EventHandler(this.iconExit_Click);
             // 
+            // showPassword
+            // 
+            this.showPassword.Image = global::AttendanceUI.Properties.Resources.show_hide_password;
+            this.showPassword.Location = new System.Drawing.Point(814, 243);
+            this.showPassword.Name = "showPassword";
+            this.showPassword.Size = new System.Drawing.Size(27, 31);
+            this.showPassword.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.showPassword.TabIndex = 20;
+            this.showPassword.TabStop = false;
+            this.toolTip1.SetToolTip(this.showPassword, "Show/Hide Password");
+            this.showPassword.Click += new System.EventHandler(this.showPassword_Click);
+            // 
             // FrmLogin
             // 
             this.AcceptButton = this.btnLogin;
@@ -244,6 +260,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(865, 469);
+            this.Controls.Add(this.showPassword);
             this.Controls.Add(this.lblConnection);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lnkFingerprint);
@@ -272,6 +289,7 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmLogin_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconExit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.showPassword)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -294,5 +312,7 @@
         private System.Windows.Forms.LinkLabel lnkFingerprint;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblConnection;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.PictureBox showPassword;
     }
 }

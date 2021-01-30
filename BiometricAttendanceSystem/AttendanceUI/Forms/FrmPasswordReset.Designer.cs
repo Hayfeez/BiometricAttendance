@@ -33,12 +33,12 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panelHeader = new System.Windows.Forms.Panel();
+            this.btnBack = new XanderUI.XUIButton();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panelBody = new System.Windows.Forms.Panel();
             this.dataGrid = new System.Windows.Forms.DataGridView();
-            this.btnBack = new XanderUI.XUIButton();
             this.panelHeader.SuspendLayout();
             this.panelBody.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
@@ -87,6 +87,28 @@
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(904, 144);
             this.panelHeader.TabIndex = 1;
+            // 
+            // btnBack
+            // 
+            this.btnBack.BackgroundColor = System.Drawing.Color.Transparent;
+            this.btnBack.ButtonImage = global::AttendanceUI.Properties.Resources.user1;
+            this.btnBack.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
+            this.btnBack.ButtonText = "Back to Users";
+            this.btnBack.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
+            this.btnBack.ClickTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnBack.CornerRadius = 5;
+            this.btnBack.Font = new System.Drawing.Font("Calisto MT", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBack.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnBack.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.btnBack.HoverTextColor = System.Drawing.Color.DodgerBlue;
+            this.btnBack.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
+            this.btnBack.Location = new System.Drawing.Point(7, 88);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(192, 50);
+            this.btnBack.TabIndex = 1;
+            this.btnBack.TextColor = System.Drawing.Color.White;
+            this.btnBack.Vertical_Alignment = System.Drawing.StringAlignment.Center;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // btnSearch
             // 
@@ -150,28 +172,6 @@
             this.dataGrid.Size = new System.Drawing.Size(904, 394);
             this.dataGrid.TabIndex = 2;
             this.dataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGrid_CellContentClick);
-            // 
-            // btnBack
-            // 
-            this.btnBack.BackgroundColor = System.Drawing.Color.Transparent;
-            this.btnBack.ButtonImage = global::AttendanceUI.Properties.Resources.user1;
-            this.btnBack.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
-            this.btnBack.ButtonText = "Back to Users";
-            this.btnBack.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
-            this.btnBack.ClickTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnBack.CornerRadius = 5;
-            this.btnBack.Font = new System.Drawing.Font("Calisto MT", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBack.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnBack.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.btnBack.HoverTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnBack.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnBack.Location = new System.Drawing.Point(7, 88);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(192, 50);
-            this.btnBack.TabIndex = 1;
-            this.btnBack.TextColor = System.Drawing.Color.White;
-            this.btnBack.Vertical_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // FrmPasswordReset
             // 

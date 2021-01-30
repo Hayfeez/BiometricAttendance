@@ -60,12 +60,12 @@ namespace AttendanceLibrary.Repository
                     {
                         return "No record saved. At least one title does not exist";
                     }
-                    if (!existingEmails.Contains(item.Email) && !existingStaffNos.Contains(item.StaffNo))
+                    if (!existingEmails.Contains(item.Email) && !existingStaffNos.Contains(item.StaffNumber))
                     {
                         toAdd.Add(new StaffDetail()
                         {
                             Id = Guid.NewGuid().ToString(),
-                            StaffNo = item.StaffNo,
+                            StaffNo = item.StaffNumber,
                             Lastname = item.Lastname,
                             Firstname = item.Firstname,
                             Othername = item.Othername,
@@ -108,7 +108,8 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                return _context.Staff.Where(a => !a.IsDeleted).ToList();
+                return _context.Staff.Where(a => !a.IsDeleted)
+                    .OrderBy(x => x.Lastname).ToList();
             }
             catch (Exception ex)
             {
@@ -121,7 +122,7 @@ namespace AttendanceLibrary.Repository
             try
             {
                 
-                return _context.Staff.Where(a => !a.IsDeleted && a.DepartmentId == departmentId).ToList();
+                return _context.Staff.Where(a => !a.IsDeleted && a.DepartmentId == departmentId).OrderBy(x => x.Lastname).ToList();
             }
             catch (Exception ex)
             {
@@ -150,7 +151,7 @@ namespace AttendanceLibrary.Repository
                         Title = ti.Title,
                         IsSuperAdmin = st.IsSuperAdmin,
                         IsAdmin = st.IsAdmin
-                    }).ToList();
+                    }).OrderBy(x => x.Fullname).ToList();
 
                 return dt;
             }
@@ -192,6 +193,7 @@ namespace AttendanceLibrary.Repository
             oldStaff.StaffNo = staff.StaffNo;
             oldStaff.TitleId = staff.TitleId;
             oldStaff.StaffNo = staff.StaffNo;
+            oldStaff.PhoneNo = staff.PhoneNo;
             oldStaff.DepartmentId = staff.DepartmentId;
 
             if (_context.SaveChanges() > 0)
@@ -204,7 +206,7 @@ namespace AttendanceLibrary.Repository
                 return "";
             }
 
-            return  "Staff could not be updated";
+            return  "No changes made";
         }
 
         public string UpdateStaffAdminStatus(string staffId, bool isAdmin)

@@ -39,6 +39,18 @@ namespace AttendanceLibrary.Repository
             }
         }
 
+        public int GetCourseCount()
+        {
+            try
+            {
+                return _context.Courses.Count(a => !a.IsDeleted);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public List<StaffCourseRegCount> GetCourseAttendanceCount(string userId, string semesterId)
         {
             var startDate = DateTime.MinValue.Date;

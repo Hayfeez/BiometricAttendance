@@ -100,7 +100,8 @@ namespace AttendanceLibrary.Repository
                               Fullname = st.Lastname + ", " + st.Firstname + " "  + st.Othername,
                               Title =ti.Title,
                               DateAssigned = att.DateAssigned
-                          }).ToList();
+                          })
+                    .OrderBy(x => x.CourseTitle).ToList();
 
                 return dt;
             }
@@ -156,7 +157,8 @@ namespace AttendanceLibrary.Repository
                               Fullname = st.Lastname + ", " + st.Firstname + " " + st.Othername,
                               Title = ti.Title,
                               DateAssigned = att.DateAssigned
-                          }).ToList();
+                          })
+                    .OrderBy(x => x.CourseTitle).ToList();
 
                 return dt;
             }

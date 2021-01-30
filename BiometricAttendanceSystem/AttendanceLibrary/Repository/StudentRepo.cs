@@ -124,7 +124,7 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-                return _context.Students.Where(a => !a.IsDeleted && a.IsGraduated == isGraduate).ToList();
+                return _context.Students.Where(a => !a.IsDeleted && a.IsGraduated == isGraduate).OrderBy(x => x.MatricNo).ToList();
             }
             catch (Exception ex)
             {
@@ -138,7 +138,8 @@ namespace AttendanceLibrary.Repository
             {
                 //TODO: get student level id from current session and courseregistration
                
-                return _context.Students.Where(a => !a.IsDeleted && a.DepartmentId == departmentId && a.IsGraduated == isGraduate).ToList();
+                return _context.Students.Where(a => !a.IsDeleted && a.DepartmentId == departmentId && a.IsGraduated == isGraduate)
+                    .OrderBy(x => x.MatricNo).ToList();
             }
             catch (Exception ex)
             {
@@ -167,7 +168,7 @@ namespace AttendanceLibrary.Repository
                         PhoneNo = x.st.PhoneNo,
                         MatricNo = x.st.MatricNo,
                         Fullname = x.st.Lastname + ", " + x.st.Firstname + " " + x.st.Othername
-                    })).ToList();
+                    })).OrderBy(x => x.MatricNo).ToList();
 
                 return dt;
             }

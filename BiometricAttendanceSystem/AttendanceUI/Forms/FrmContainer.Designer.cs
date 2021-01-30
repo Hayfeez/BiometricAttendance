@@ -263,7 +263,7 @@ namespace AttendanceUI.Forms
             this.btnUserMgt.BackgroundColor = System.Drawing.Color.Transparent;
             this.btnUserMgt.ButtonImage = ((System.Drawing.Image)(resources.GetObject("btnUserMgt.ButtonImage")));
             this.btnUserMgt.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
-            this.btnUserMgt.ButtonText = "Manage Users";
+            this.btnUserMgt.ButtonText = "Manage Staff";
             this.btnUserMgt.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(201)))), ((int)(((byte)(60)))));
             this.btnUserMgt.ClickTextColor = System.Drawing.Color.DodgerBlue;
             this.btnUserMgt.CornerRadius = 5;
@@ -376,6 +376,7 @@ namespace AttendanceUI.Forms
             // 
             this.iconMenu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.iconMenu.BackColor = System.Drawing.Color.Transparent;
+            this.iconMenu.Enabled = false;
             this.iconMenu.ForeColor = System.Drawing.Color.Black;
             this.iconMenu.IconChar = FontAwesome.Sharp.IconChar.Bars;
             this.iconMenu.IconColor = System.Drawing.Color.Black;

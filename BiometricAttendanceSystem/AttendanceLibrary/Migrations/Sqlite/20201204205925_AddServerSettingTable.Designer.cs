@@ -242,7 +242,7 @@ namespace AttendanceLibrary.Migrations.Sqlite
                     b.Property<string>("PhoneNo")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("StaffNo")
+                    b.Property<string>("StaffNumber")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("TitleId")

@@ -50,7 +50,6 @@ namespace AttendanceUI.Forms
             {
                 var template = new List<BulkStaff>();
                 var dt = template.ConvertToDataTable();
-               // dt.Columns["MatricNumber"].DataType = typeof(string);
                 if (Base.SaveAsExcel(dt, "Staff Record"))
                 {
                     Base.ShowSuccess("", "File downloaded successfully");
@@ -101,7 +100,7 @@ namespace AttendanceUI.Forms
                     return;
                 }
 
-                if (_data.Columns.Count == 0 || _data.Columns[0].ColumnName != nameof(BulkStaff.StaffNo))
+                if (_data.Columns.Count == 0 || _data.Columns[0].ColumnName != nameof(BulkStaff.StaffNumber))
                 {
                     Base.ShowError("", "Header column could not be read. Please use the template");
                     lblFile.Text = "";
@@ -114,7 +113,7 @@ namespace AttendanceUI.Forms
                if (validation == string.Empty)
                {
                    dataGrid.DataSource = _data;
-                   dataGrid.Columns["StaffNo"].HeaderText = "Staff Number";
+                   dataGrid.Columns["StaffNumber"].HeaderText = "Staff Number";
                    dataGrid.Columns["PhoneNo"].HeaderText = "Phone Number";
                    btnUpload.Visible = true;
                    btnPreview.Enabled = false;
@@ -133,7 +132,7 @@ namespace AttendanceUI.Forms
 
         private string ValidateData(List<BulkStaff> data)
         {
-            if (data.Any(x => string.IsNullOrWhiteSpace(x.StaffNo)))
+            if (data.Any(x => string.IsNullOrWhiteSpace(x.StaffNumber)))
                 return "Staff Number cannot be empty";
 
             if (data.Any(x => string.IsNullOrWhiteSpace(x.Lastname)))
@@ -148,7 +147,7 @@ namespace AttendanceUI.Forms
             if (data.Any(x => string.IsNullOrWhiteSpace(x.Title)))
                 return "Title cannot be empty";
 
-            var distinctStaffNos = data.Select(x => x.StaffNo).ToHashSet();
+            var distinctStaffNos = data.Select(x => x.StaffNumber).ToHashSet();
             if (distinctStaffNos.Count < data.Count)
                 return "Staff Number cannot contain duplicates";
 

@@ -432,6 +432,9 @@
             // 
             // comboCourse
             // 
+            this.comboCourse.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboCourse.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboCourse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboCourse.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboCourse.FormattingEnabled = true;
             this.comboCourse.Location = new System.Drawing.Point(277, 25);

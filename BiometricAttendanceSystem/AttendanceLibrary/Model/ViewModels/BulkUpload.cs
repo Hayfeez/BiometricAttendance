@@ -18,7 +18,7 @@ namespace AttendanceLibrary.Model.ViewModels
 
     public class BulkStaff
     {
-        public string StaffNo { get; set; }
+        public string StaffNumber { get; set; }
         public string Title { get; set; }
         public string Lastname { get; set; }
         public string Firstname { get; set; }

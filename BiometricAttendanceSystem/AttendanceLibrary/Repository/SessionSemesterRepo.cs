@@ -88,7 +88,8 @@ namespace AttendanceLibrary.Repository
             try
             {
                
-                return _context.SessionSemesters.Where(a => !a.IsDeleted).ToList();
+                return _context.SessionSemesters.Where(a => !a.IsDeleted)
+                    .OrderBy(x => x.Session).ToList();
             }
             catch (Exception ex)
             {

@@ -54,7 +54,8 @@ namespace AttendanceLibrary.Repository
             try
             {
                 
-                return _context.Departments.Where(a => !a.IsDeleted).ToList();
+                return _context.Departments.Where(a => !a.IsDeleted)
+                    .OrderBy(x => x.DepartmentName).ToList();
             }
             catch (Exception ex)
             {

@@ -252,7 +252,7 @@ namespace AttendanceLibrary.Migrations.SqlServer
                     b.Property<string>("PhoneNo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("StaffNo")
+                    b.Property<string>("StaffNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TitleId")

@@ -179,5 +179,10 @@ namespace AttendanceUI.Forms
                 lblConnection.ForeColor = Color.Red;
             }
         }
+
+        private void showPassword_Click(object sender, EventArgs e)
+        {
+            txtPassword.UseSystemPasswordChar = !txtPassword.UseSystemPasswordChar;
+        }
     }
 }

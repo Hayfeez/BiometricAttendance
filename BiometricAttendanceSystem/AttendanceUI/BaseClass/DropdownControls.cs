@@ -166,7 +166,7 @@ namespace AttendanceUI.BaseClass
             }
 
             dropDown.DataSource = allItems;
-            dropDown.DisplayMember = "CourseTitle";
+            dropDown.DisplayMember = "Fullname";
             dropDown.ValueMember = "Id";
             dropDown.SelectedIndex = 0;
         }
@@ -271,8 +271,6 @@ namespace AttendanceUI.BaseClass
             dropDown.ValueMember = "Value";
             dropDown.SelectedIndex = 0;
         }
-
-
 
         public static void LoadLevelsLocal(ref ComboBox dropDown, bool includeAll = false)
         {

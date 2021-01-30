@@ -58,6 +58,9 @@ namespace AttendanceLibrary.BaseClass
 
         public static bool IsDigitsOnly(string str)
         {
+            if (str == "")
+                return true;
+
             foreach (char c in str)
             {
                 if (c < '0' || c > '9')

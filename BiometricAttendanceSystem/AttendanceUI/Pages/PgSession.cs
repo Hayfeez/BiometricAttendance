@@ -121,8 +121,8 @@ namespace AttendanceUI.Pages
                         updateForm.ShowDialog();
                         LoadData();
                     }
-
                 }
+                LoadData();
 
                 //delete column
                 if (e.ColumnIndex == 1)

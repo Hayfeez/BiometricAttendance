@@ -53,7 +53,7 @@ namespace AttendanceLibrary.Repository
             try
             {
                
-                return _context.Titles.Where(a => !a.IsDeleted).ToList();
+                return _context.Titles.Where(a => !a.IsDeleted).OrderBy(x => x.Title).ToList();
             }
             catch (Exception ex)
             {

@@ -27,6 +27,7 @@ namespace AttendanceUI.Pages
         {
             var studentCount = _repo.GetStudentCount();
             var staffCount = _repo.GetStaffCount();
+            var courseCount = _repo.GetCourseCount();
 
             cardDate.Text2 = DateTime.Now.ToShortDateString();
             cardDate.Text3 = DateTime.Now.DayOfWeek.ToString();
@@ -34,6 +35,7 @@ namespace AttendanceUI.Pages
             cardSession.Text3 = LoggedInUser.ActiveSession == null ? "None Active" : LoggedInUser.ActiveSession.Semester;
             cardStudent.Text2 = studentCount.ToString();
             cardUsers.Text2 = staffCount.ToString();
+            cardCourses.Text2 = courseCount.ToString();
 
             LoadCourseRegData();
             LoadCourseAttendanceData();

@@ -67,7 +67,9 @@ namespace AttendanceLibrary.Repository
                             Id = c.Id,
                             Department = d.DepartmentName,
                             Level = l.Level
-                        }).ToList();
+                        })
+                    .OrderBy(x => x.CourseCode)
+                    .ToList();
             }
             catch (Exception ex)
             {
@@ -82,6 +84,7 @@ namespace AttendanceLibrary.Repository
                 
                 return _context.Courses
                     .Where(c => !c.IsDeleted && (departmentId == "" || c.DepartmentId == departmentId) && (levelId == "" || c.LevelId == levelId))
+                    .OrderBy(x => x.CourseCode)
                     .ToList();
             }
             catch (Exception ex)

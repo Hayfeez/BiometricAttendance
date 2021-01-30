@@ -28,7 +28,7 @@
     <ProductName>Biometric Attendance System</ProductName>
     <PublisherName>Dolapo Oguntuga</PublisherName>
     <SuiteName>Biometric Attendance Solution</SuiteName>
-    <ApplicationRevision>14</ApplicationRevision>
+    <ApplicationRevision>19</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -575,6 +575,7 @@
     <Content Include="Resources\Overlay Add.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\show_hide_password.png" />
     <Content Include="Resources\university.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

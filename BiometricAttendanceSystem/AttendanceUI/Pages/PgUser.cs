@@ -38,7 +38,7 @@ namespace AttendanceUI.Pages
                     dataGrid.Columns["PhoneNo"].HeaderText = "Phone Number";
 
                     dataGrid.Columns["IsAdmin"].HeaderText = "Admin User?";
-                    dataGrid.Columns["IsSUperAdmin"].HeaderText = "System Admin?";
+                    dataGrid.Columns["IsSuperAdmin"].HeaderText = "System Admin?";
                 }
                 else
                 {

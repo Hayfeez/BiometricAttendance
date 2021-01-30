@@ -40,16 +40,17 @@
             this.panelBody = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelAttendance = new System.Windows.Forms.Panel();
+            this.dataGridAttendance = new System.Windows.Forms.DataGridView();
             this.panelCourseReg = new System.Windows.Forms.Panel();
             this.dataGridCourses = new System.Windows.Forms.DataGridView();
-            this.dataGridAttendance = new System.Windows.Forms.DataGridView();
+            this.cardCourses = new XanderUI.XUICard();
             this.panelHeader.SuspendLayout();
             this.panelBody.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelAttendance.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridAttendance)).BeginInit();
             this.panelCourseReg.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridCourses)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridAttendance)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -59,7 +60,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(958, 17);
+            this.panel1.Size = new System.Drawing.Size(1140, 17);
             this.panel1.TabIndex = 0;
             // 
             // panel3
@@ -76,7 +77,7 @@
             // 
             this.panel4.BackColor = System.Drawing.Color.White;
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(940, 17);
+            this.panel4.Location = new System.Drawing.Point(1122, 17);
             this.panel4.Margin = new System.Windows.Forms.Padding(4);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(18, 585);
@@ -85,6 +86,7 @@
             // panelHeader
             // 
             this.panelHeader.BackColor = System.Drawing.Color.White;
+            this.panelHeader.Controls.Add(this.cardCourses);
             this.panelHeader.Controls.Add(this.cardStudent);
             this.panelHeader.Controls.Add(this.cardUsers);
             this.panelHeader.Controls.Add(this.cardSession);
@@ -94,7 +96,7 @@
             this.panelHeader.Location = new System.Drawing.Point(18, 17);
             this.panelHeader.Margin = new System.Windows.Forms.Padding(4);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(922, 144);
+            this.panelHeader.Size = new System.Drawing.Size(1104, 144);
             this.panelHeader.TabIndex = 1;
             // 
             // cardStudent
@@ -123,7 +125,7 @@
             this.cardUsers.Name = "cardUsers";
             this.cardUsers.Size = new System.Drawing.Size(169, 114);
             this.cardUsers.TabIndex = 3;
-            this.cardUsers.Text1 = "Users";
+            this.cardUsers.Text1 = "Staff";
             this.cardUsers.Text2 = "";
             this.cardUsers.Text3 = "";
             // 
@@ -186,7 +188,7 @@
             this.panelBody.Location = new System.Drawing.Point(18, 161);
             this.panelBody.Margin = new System.Windows.Forms.Padding(4);
             this.panelBody.Name = "panelBody";
-            this.panelBody.Size = new System.Drawing.Size(922, 441);
+            this.panelBody.Size = new System.Drawing.Size(1104, 441);
             this.panelBody.TabIndex = 2;
             // 
             // tableLayoutPanel1
@@ -201,17 +203,35 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(922, 441);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1104, 441);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panelAttendance
             // 
             this.panelAttendance.Controls.Add(this.dataGridAttendance);
             this.panelAttendance.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelAttendance.Location = new System.Drawing.Point(464, 3);
+            this.panelAttendance.Location = new System.Drawing.Point(555, 3);
             this.panelAttendance.Name = "panelAttendance";
-            this.panelAttendance.Size = new System.Drawing.Size(455, 435);
+            this.panelAttendance.Size = new System.Drawing.Size(546, 435);
             this.panelAttendance.TabIndex = 1;
+            // 
+            // dataGridAttendance
+            // 
+            this.dataGridAttendance.AllowUserToAddRows = false;
+            this.dataGridAttendance.AllowUserToDeleteRows = false;
+            this.dataGridAttendance.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridAttendance.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridAttendance.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridAttendance.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridAttendance.Location = new System.Drawing.Point(0, 0);
+            this.dataGridAttendance.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridAttendance.Name = "dataGridAttendance";
+            this.dataGridAttendance.ReadOnly = true;
+            this.dataGridAttendance.RowHeadersWidth = 51;
+            this.dataGridAttendance.RowTemplate.Height = 24;
+            this.dataGridAttendance.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridAttendance.Size = new System.Drawing.Size(546, 435);
+            this.dataGridAttendance.TabIndex = 1;
             // 
             // panelCourseReg
             // 
@@ -220,7 +240,7 @@
             this.panelCourseReg.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelCourseReg.Location = new System.Drawing.Point(3, 3);
             this.panelCourseReg.Name = "panelCourseReg";
-            this.panelCourseReg.Size = new System.Drawing.Size(455, 435);
+            this.panelCourseReg.Size = new System.Drawing.Size(546, 435);
             this.panelCourseReg.TabIndex = 0;
             // 
             // dataGridCourses
@@ -238,26 +258,23 @@
             this.dataGridCourses.RowHeadersWidth = 51;
             this.dataGridCourses.RowTemplate.Height = 24;
             this.dataGridCourses.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridCourses.Size = new System.Drawing.Size(455, 435);
+            this.dataGridCourses.Size = new System.Drawing.Size(546, 435);
             this.dataGridCourses.TabIndex = 1;
             // 
-            // dataGridAttendance
+            // cardCourses
             // 
-            this.dataGridAttendance.AllowUserToAddRows = false;
-            this.dataGridAttendance.AllowUserToDeleteRows = false;
-            this.dataGridAttendance.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridAttendance.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridAttendance.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridAttendance.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridAttendance.Location = new System.Drawing.Point(0, 0);
-            this.dataGridAttendance.Margin = new System.Windows.Forms.Padding(4);
-            this.dataGridAttendance.Name = "dataGridAttendance";
-            this.dataGridAttendance.ReadOnly = true;
-            this.dataGridAttendance.RowHeadersWidth = 51;
-            this.dataGridAttendance.RowTemplate.Height = 24;
-            this.dataGridAttendance.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridAttendance.Size = new System.Drawing.Size(455, 435);
-            this.dataGridAttendance.TabIndex = 1;
+            this.cardCourses.BackColor = System.Drawing.Color.Transparent;
+            this.cardCourses.Color1 = System.Drawing.Color.DodgerBlue;
+            this.cardCourses.Color2 = System.Drawing.Color.LimeGreen;
+            this.cardCourses.Font = new System.Drawing.Font("Calisto MT", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cardCourses.ForeColor = System.Drawing.Color.White;
+            this.cardCourses.Location = new System.Drawing.Point(921, 23);
+            this.cardCourses.Name = "cardCourses";
+            this.cardCourses.Size = new System.Drawing.Size(169, 114);
+            this.cardCourses.TabIndex = 5;
+            this.cardCourses.Text1 = "Courses";
+            this.cardCourses.Text2 = "";
+            this.cardCourses.Text3 = "";
             // 
             // PgHome
             // 
@@ -271,15 +288,15 @@
             this.Font = new System.Drawing.Font("Calisto MT", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "PgHome";
-            this.Size = new System.Drawing.Size(958, 602);
+            this.Size = new System.Drawing.Size(1140, 602);
             this.Load += new System.EventHandler(this.PgHome_Load);
             this.panelHeader.ResumeLayout(false);
             this.panelBody.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panelAttendance.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridAttendance)).EndInit();
             this.panelCourseReg.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridCourses)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridAttendance)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -301,5 +318,6 @@
         private System.Windows.Forms.Panel panelCourseReg;
         private System.Windows.Forms.DataGridView dataGridAttendance;
         private System.Windows.Forms.DataGridView dataGridCourses;
+        private XanderUI.XUICard cardCourses;
     }
 }

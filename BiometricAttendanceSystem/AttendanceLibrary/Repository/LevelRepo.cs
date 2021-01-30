@@ -56,7 +56,7 @@ namespace AttendanceLibrary.Repository
             try
             {
                
-                return _context.Levels.Where(a => !a.IsDeleted).ToList();
+                return _context.Levels.Where(a => !a.IsDeleted).OrderBy(x=>x.Level).ToList();
             }
             catch (Exception ex)
             {
@@ -111,7 +111,7 @@ namespace AttendanceLibrary.Repository
             try
             {
                 using var context = Helper.GetDataContext(true);
-                return _context.Levels.Where(a => !a.IsDeleted).ToList();
+                return context.Levels.Where(a => !a.IsDeleted).OrderBy(x => x.Level).ToList();
             }
             catch (Exception ex)
             {
