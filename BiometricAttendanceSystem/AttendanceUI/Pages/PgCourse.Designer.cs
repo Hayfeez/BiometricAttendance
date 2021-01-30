@@ -218,11 +218,12 @@
             // 
             // comboLevel
             // 
+            this.comboLevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboLevel.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboLevel.FormattingEnabled = true;
-            this.comboLevel.Location = new System.Drawing.Point(274, 26);
+            this.comboLevel.Location = new System.Drawing.Point(372, 26);
             this.comboLevel.Name = "comboLevel";
-            this.comboLevel.Size = new System.Drawing.Size(251, 31);
+            this.comboLevel.Size = new System.Drawing.Size(153, 31);
             this.comboLevel.TabIndex = 1;
             // 
             // btnLoad
@@ -237,11 +238,14 @@
             // 
             // comboDept
             // 
+            this.comboDept.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboDept.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboDept.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboDept.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboDept.FormattingEnabled = true;
             this.comboDept.Location = new System.Drawing.Point(17, 26);
             this.comboDept.Name = "comboDept";
-            this.comboDept.Size = new System.Drawing.Size(251, 31);
+            this.comboDept.Size = new System.Drawing.Size(329, 31);
             this.comboDept.TabIndex = 0;
             // 
             // PgCourse

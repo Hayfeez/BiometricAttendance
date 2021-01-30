@@ -123,7 +123,7 @@ namespace AttendanceUI.Forms
             }
         }
 
-        private void btnBack_Click(object sender, EventArgs e)
+        private void iconExit_Click_1(object sender, EventArgs e)
         {
             this.Close();
         }

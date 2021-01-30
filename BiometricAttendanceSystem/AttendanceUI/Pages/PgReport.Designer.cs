@@ -257,6 +257,7 @@
             // 
             // comboSemester
             // 
+            this.comboSemester.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboSemester.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboSemester.FormattingEnabled = true;
             this.comboSemester.Location = new System.Drawing.Point(29, 72);
@@ -266,6 +267,7 @@
             // 
             // comboReportType
             // 
+            this.comboReportType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboReportType.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboReportType.FormattingEnabled = true;
             this.comboReportType.Location = new System.Drawing.Point(29, 24);
@@ -275,6 +277,9 @@
             // 
             // comboCourse
             // 
+            this.comboCourse.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboCourse.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboCourse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboCourse.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboCourse.FormattingEnabled = true;
             this.comboCourse.Location = new System.Drawing.Point(383, 72);
@@ -294,6 +299,9 @@
             // 
             // comboDept
             // 
+            this.comboDept.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboDept.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboDept.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboDept.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboDept.FormattingEnabled = true;
             this.comboDept.Location = new System.Drawing.Point(383, 24);

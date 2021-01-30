@@ -33,6 +33,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panelHeader = new System.Windows.Forms.Panel();
+            this.iconExit = new FontAwesome.Sharp.IconPictureBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panelBody = new System.Windows.Forms.Panel();
             this.grpMain = new System.Windows.Forms.GroupBox();
@@ -41,13 +42,12 @@
             this.comboScanner = new System.Windows.Forms.ComboBox();
             this.GroupBox3 = new System.Windows.Forms.GroupBox();
             this.PicAnalyzed = new System.Windows.Forms.PictureBox();
-            this.iconExit = new FontAwesome.Sharp.IconPictureBox();
             this.panelHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconExit)).BeginInit();
             this.panelBody.SuspendLayout();
             this.grpMain.SuspendLayout();
             this.GroupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicAnalyzed)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconExit)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -91,6 +91,23 @@
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(596, 62);
             this.panelHeader.TabIndex = 1;
+            // 
+            // iconExit
+            // 
+            this.iconExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.iconExit.BackColor = System.Drawing.Color.Transparent;
+            this.iconExit.ForeColor = System.Drawing.Color.Red;
+            this.iconExit.IconChar = FontAwesome.Sharp.IconChar.TimesCircle;
+            this.iconExit.IconColor = System.Drawing.Color.Red;
+            this.iconExit.IconSize = 54;
+            this.iconExit.Location = new System.Drawing.Point(540, 0);
+            this.iconExit.Margin = new System.Windows.Forms.Padding(4);
+            this.iconExit.Name = "iconExit";
+            this.iconExit.Size = new System.Drawing.Size(54, 54);
+            this.iconExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.iconExit.TabIndex = 15;
+            this.iconExit.TabStop = false;
+            this.iconExit.Click += new System.EventHandler(this.iconExit_Click);
             // 
             // lblTitle
             // 
@@ -192,23 +209,6 @@
             this.PicAnalyzed.TabIndex = 1;
             this.PicAnalyzed.TabStop = false;
             // 
-            // iconExit
-            // 
-            this.iconExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.iconExit.BackColor = System.Drawing.Color.Transparent;
-            this.iconExit.ForeColor = System.Drawing.Color.Red;
-            this.iconExit.IconChar = FontAwesome.Sharp.IconChar.TimesCircle;
-            this.iconExit.IconColor = System.Drawing.Color.Red;
-            this.iconExit.IconSize = 54;
-            this.iconExit.Location = new System.Drawing.Point(540, 0);
-            this.iconExit.Margin = new System.Windows.Forms.Padding(4);
-            this.iconExit.Name = "iconExit";
-            this.iconExit.Size = new System.Drawing.Size(54, 54);
-            this.iconExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.iconExit.TabIndex = 15;
-            this.iconExit.TabStop = false;
-            this.iconExit.Click += new System.EventHandler(this.iconExit_Click);
-            // 
             // FrmFingerprintLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
@@ -231,12 +231,12 @@
             this.Load += new System.EventHandler(this.FrmAttendance_Load);
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconExit)).EndInit();
             this.panelBody.ResumeLayout(false);
             this.grpMain.ResumeLayout(false);
             this.grpMain.PerformLayout();
             this.GroupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PicAnalyzed)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconExit)).EndInit();
             this.ResumeLayout(false);
 
         }

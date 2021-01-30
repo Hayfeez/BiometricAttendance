@@ -355,23 +355,18 @@ namespace AttendanceUI.Forms
 
         private void FrmContainer_Shown(object sender, EventArgs e)
         {
-            SessionSemester activeSession;
-            if (GetRemoteServerConnectionState())
-                activeSession = _sessionRepo.GetActiveSessionSemester();
-
-            else
-            {
-                activeSession = _sessionRepo.GetActiveSessionSemesterLocal();
-                EnableMenus(false);
-            }
-
+            var activeSession = _sessionRepo.GetActiveSessionSemesterLocal();
             if (activeSession != null)
             {
                 LoggedInUser.ActiveSession = activeSession;
             }
-
+            
+            EnableMenus(false);
             ShowPage(new PgHome());
             SetActiveMenu(btnHome);
+
+            GetRemoteServerConnectionState();
+
         }
     }
 }

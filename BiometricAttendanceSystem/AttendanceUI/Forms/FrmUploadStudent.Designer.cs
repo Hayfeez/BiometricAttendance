@@ -36,6 +36,7 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.dataGrid = new System.Windows.Forms.DataGridView();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.btnDownload = new System.Windows.Forms.Button();
             this.lblFile = new System.Windows.Forms.Label();
             this.btnChooseFile = new System.Windows.Forms.Button();
@@ -50,7 +51,6 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.label2 = new System.Windows.Forms.Label();
             this.panelForm.SuspendLayout();
             this.panelBody.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -152,6 +152,16 @@
             this.panel4.Size = new System.Drawing.Size(759, 197);
             this.panel4.TabIndex = 0;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Calisto MT", 8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(332, 177);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(227, 17);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Existing Matric Numbers will be skipped";
+            // 
             // btnDownload
             // 
             this.btnDownload.BackColor = System.Drawing.Color.Green;
@@ -189,6 +199,9 @@
             // 
             // comboDept
             // 
+            this.comboDept.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboDept.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboDept.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboDept.Font = new System.Drawing.Font("Calisto MT", 12F);
             this.comboDept.FormattingEnabled = true;
             this.comboDept.Location = new System.Drawing.Point(168, 34);
@@ -296,16 +309,6 @@
             // 
             this.saveFileDialog.FileName = "CourseRegisterTemplate";
             this.saveFileDialog.Filter = "Excel files|*.xlsx";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Calisto MT", 8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(332, 177);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(284, 21);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Existing Matric Numbers will be skipped";
             // 
             // FrmUploadStudent
             // 

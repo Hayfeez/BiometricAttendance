@@ -199,6 +199,9 @@
             // 
             // comboDept
             // 
+            this.comboDept.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboDept.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboDept.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboDept.Font = new System.Drawing.Font("Calisto MT", 12F);
             this.comboDept.FormattingEnabled = true;
             this.comboDept.Location = new System.Drawing.Point(168, 34);
@@ -294,7 +297,7 @@
             this.lblTitle.Location = new System.Drawing.Point(10, 78);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(10);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(155, 28);
+            this.lblTitle.Size = new System.Drawing.Size(124, 22);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Upload Staff";
             // 

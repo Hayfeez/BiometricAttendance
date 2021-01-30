@@ -33,15 +33,16 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panelHeader = new System.Windows.Forms.Panel();
-            this.btnBack = new XanderUI.XUIButton();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panelBody = new System.Windows.Forms.Panel();
             this.dataGrid = new System.Windows.Forms.DataGridView();
+            this.iconExit = new FontAwesome.Sharp.IconPictureBox();
             this.panelHeader.SuspendLayout();
             this.panelBody.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconExit)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -77,7 +78,7 @@
             // panelHeader
             // 
             this.panelHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
-            this.panelHeader.Controls.Add(this.btnBack);
+            this.panelHeader.Controls.Add(this.iconExit);
             this.panelHeader.Controls.Add(this.btnSearch);
             this.panelHeader.Controls.Add(this.txtSearch);
             this.panelHeader.Controls.Add(this.lblTitle);
@@ -87,28 +88,6 @@
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(904, 144);
             this.panelHeader.TabIndex = 1;
-            // 
-            // btnBack
-            // 
-            this.btnBack.BackgroundColor = System.Drawing.Color.Transparent;
-            this.btnBack.ButtonImage = global::AttendanceUI.Properties.Resources.user1;
-            this.btnBack.ButtonStyle = XanderUI.XUIButton.Style.MaterialRounded;
-            this.btnBack.ButtonText = "Back to Users";
-            this.btnBack.ClickBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(195)))), ((int)(((byte)(195)))));
-            this.btnBack.ClickTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnBack.CornerRadius = 5;
-            this.btnBack.Font = new System.Drawing.Font("Calisto MT", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBack.Horizontal_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnBack.HoverBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.btnBack.HoverTextColor = System.Drawing.Color.DodgerBlue;
-            this.btnBack.ImagePosition = XanderUI.XUIButton.imgPosition.Left;
-            this.btnBack.Location = new System.Drawing.Point(7, 88);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(192, 50);
-            this.btnBack.TabIndex = 1;
-            this.btnBack.TextColor = System.Drawing.Color.White;
-            this.btnBack.Vertical_Alignment = System.Drawing.StringAlignment.Center;
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // btnSearch
             // 
@@ -173,6 +152,22 @@
             this.dataGrid.TabIndex = 2;
             this.dataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGrid_CellContentClick);
             // 
+            // iconExit
+            // 
+            this.iconExit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.iconExit.BackColor = System.Drawing.Color.Transparent;
+            this.iconExit.ForeColor = System.Drawing.Color.Red;
+            this.iconExit.IconChar = FontAwesome.Sharp.IconChar.TimesCircle;
+            this.iconExit.IconColor = System.Drawing.Color.Red;
+            this.iconExit.IconSize = 60;
+            this.iconExit.Location = new System.Drawing.Point(830, 0);
+            this.iconExit.Name = "iconExit";
+            this.iconExit.Size = new System.Drawing.Size(74, 60);
+            this.iconExit.TabIndex = 6;
+            this.iconExit.TabStop = false;
+            this.iconExit.Click += new System.EventHandler(this.iconExit_Click_1);
+            // 
             // FrmPasswordReset
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
@@ -194,6 +189,7 @@
             this.panelHeader.PerformLayout();
             this.panelBody.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconExit)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -209,6 +205,6 @@
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.DataGridView dataGrid;
-        private XanderUI.XUIButton btnBack;
+        private FontAwesome.Sharp.IconPictureBox iconExit;
     }
 }

@@ -187,6 +187,7 @@
             // 
             // comboSession
             // 
+            this.comboSession.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboSession.Font = new System.Drawing.Font("Calisto MT", 12F);
             this.comboSession.FormattingEnabled = true;
             this.comboSession.Location = new System.Drawing.Point(168, 34);
@@ -201,7 +202,7 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
             this.label1.Location = new System.Drawing.Point(12, 43);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(98, 28);
+            this.label1.Size = new System.Drawing.Size(78, 22);
             this.label1.TabIndex = 0;
             this.label1.Text = "Session";
             // 

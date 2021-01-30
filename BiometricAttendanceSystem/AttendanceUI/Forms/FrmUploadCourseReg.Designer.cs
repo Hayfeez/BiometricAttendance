@@ -209,6 +209,9 @@
             // 
             // comboDept
             // 
+            this.comboDept.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboDept.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboDept.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboDept.Font = new System.Drawing.Font("Calisto MT", 12F);
             this.comboDept.FormattingEnabled = true;
             this.comboDept.Location = new System.Drawing.Point(144, 63);
@@ -230,6 +233,9 @@
             // 
             // comboCourse
             // 
+            this.comboCourse.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboCourse.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboCourse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboCourse.Font = new System.Drawing.Font("Calisto MT", 12F);
             this.comboCourse.FormattingEnabled = true;
             this.comboCourse.Location = new System.Drawing.Point(144, 113);
@@ -250,6 +256,7 @@
             // 
             // comboLevel
             // 
+            this.comboLevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboLevel.Font = new System.Drawing.Font("Calisto MT", 12F);
             this.comboLevel.FormattingEnabled = true;
             this.comboLevel.Location = new System.Drawing.Point(482, 62);

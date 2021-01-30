@@ -87,11 +87,6 @@ namespace AttendanceUI.Forms
         }
 
 
-        private void btnCourse_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void btnAddNew_Click(object sender, EventArgs e)
         {
             if (!LoggedInUser.IsAdmin)
@@ -180,6 +175,11 @@ namespace AttendanceUI.Forms
         private void comboLevel_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadCourses();
+        }
+
+        private void iconExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -198,18 +198,22 @@
             // 
             // comboCourse
             // 
+            this.comboCourse.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboCourse.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboCourse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboCourse.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboCourse.FormattingEnabled = true;
-            this.comboCourse.Location = new System.Drawing.Point(564, 27);
+            this.comboCourse.Location = new System.Drawing.Point(580, 27);
             this.comboCourse.Name = "comboCourse";
-            this.comboCourse.Size = new System.Drawing.Size(239, 31);
+            this.comboCourse.Size = new System.Drawing.Size(252, 31);
             this.comboCourse.TabIndex = 3;
             // 
             // comboLevel
             // 
+            this.comboLevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboLevel.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboLevel.FormattingEnabled = true;
-            this.comboLevel.Location = new System.Drawing.Point(411, 27);
+            this.comboLevel.Location = new System.Drawing.Point(427, 26);
             this.comboLevel.Name = "comboLevel";
             this.comboLevel.Size = new System.Drawing.Size(147, 31);
             this.comboLevel.TabIndex = 2;
@@ -217,17 +221,20 @@
             // 
             // comboDept
             // 
+            this.comboDept.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboDept.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboDept.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboDept.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboDept.FormattingEnabled = true;
             this.comboDept.Location = new System.Drawing.Point(192, 27);
             this.comboDept.Name = "comboDept";
-            this.comboDept.Size = new System.Drawing.Size(213, 31);
+            this.comboDept.Size = new System.Drawing.Size(229, 31);
             this.comboDept.TabIndex = 1;
             this.comboDept.SelectedValueChanged += new System.EventHandler(this.comboDept_SelectedValueChanged);
             // 
             // btnLoad
             // 
-            this.btnLoad.Location = new System.Drawing.Point(809, 27);
+            this.btnLoad.Location = new System.Drawing.Point(838, 27);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(76, 31);
             this.btnLoad.TabIndex = 4;
@@ -237,6 +244,7 @@
             // 
             // comboSemester
             // 
+            this.comboSemester.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboSemester.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboSemester.FormattingEnabled = true;
             this.comboSemester.Location = new System.Drawing.Point(17, 26);

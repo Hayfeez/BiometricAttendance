@@ -622,8 +622,8 @@ namespace AttendanceUI.Forms
             // 
             this.toolStripStatusLabel1.BackColor = System.Drawing.SystemColors.Control;
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(151, 20);
-            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(122, 20);
+            this.toolStripStatusLabel1.Text = "Connection State";
             // 
             // xuiFormHandle1
             // 

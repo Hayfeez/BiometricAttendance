@@ -27,14 +27,12 @@ namespace AttendanceUI.Pages
         private void LoadFilter()
         {
             DropdownControls.LoadDepartments(ref comboDept, true);
-            DropdownControls.LoadLevels(ref comboLevel, true);
         }
 
         private void LoadData()
         {
             try
             {
-                _levelId = comboLevel.SelectedValue.ToString() == Base.IdForSelectAll ? "" : comboLevel.SelectedValue.ToString();
                 _deptId = comboDept.SelectedValue.ToString() == Base.IdForSelectAll ? "" : comboDept.SelectedValue.ToString();
 
                 var data = _repo.GetDepartmentStudents(_deptId, _levelId);
