@@ -59,14 +59,15 @@ namespace AttendanceLibrary.Repository
 
             var attendances = (from att in _context.Attendances
                                join reg in _context.CourseRegistrations on att.CourseRegistrationId equals reg.Id
-                               join st in _context.StaffCourses on reg.CourseId equals st.CourseId
                                join c in _context.Courses on reg.CourseId equals c.Id
+                               join st in _context.StaffCourses on c.Id equals st.CourseId
                                join s in _context.SessionSemesters on reg.SessionSemesterId equals s.Id
                                join l in _context.Staff on att.MarkedBy equals l.Id
                                join ti in _context.Titles on l.TitleId equals ti.Id
                                where reg.SessionSemesterId == semesterId
                                      && att.DateMarked.Date >= startDate
                                      && att.DateMarked.Date <= endDate
+                                     && st.StaffId == userId
                                      && !c.IsDeleted
                                select new AttendanceList
                                {

@@ -126,9 +126,9 @@ namespace AttendanceUI.Pages
                                 break;
 
                             case (int)ReportType.staffAttendanceByCourse:
-                                dataGrid.Columns["StudentLevel"].Visible = false;
-                                dataGrid.Columns["StudentName"].Visible = false;
-                                dataGrid.Columns["StudentMatricNo"].Visible = false;
+                                dataGrid.Columns["StudentLevel"].Visible = true;
+                                dataGrid.Columns["StudentName"].Visible = true;
+                                dataGrid.Columns["StudentMatricNo"].Visible = true;
                                 dataGrid.Columns["MarkedBy"].HeaderText = "Staff Name";
                                 dataGrid.Columns["MarkedBy"].Visible = true;
                                 break;

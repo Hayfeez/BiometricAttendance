@@ -95,7 +95,7 @@ namespace AttendanceUI.Forms
                 btnTakeAttendance.Enabled = true;
                 lblCourse.Text = comboCourse.SelectedText;
                 lblCourse.Visible = true;
-                lblRegistered.Text = "Registered Students: " + _studentFingers.Select(x=>x.StudentId).Distinct().Count().ToString();
+                lblRegistered.Text = "Registered Students (with Fingerprints enrolled): " + _studentFingers.Select(x=>x.StudentId).Distinct().Count().ToString();
                 lblRegistered.Visible = true;
 
                 comboScanner.Items.Clear();

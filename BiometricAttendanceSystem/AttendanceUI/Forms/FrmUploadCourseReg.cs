@@ -150,7 +150,7 @@ namespace AttendanceUI.Forms
                 //_dataToUpload = (from DataRow row in _data.Rows
                 //            select new BulkStudentCourseReg
                 //            {
-                //                MatricNumber = row["MatricNumber"].ToString(),
+                //                MatricNumber = row["MatricNumber"].ToString(),Pg
                 //                Firstname = row["Firstname"].ToString(),
                 //                Lastname = row["Lastname"].ToString(),
                 //                Othername = row["Othername"].ToString(),
@@ -202,6 +202,9 @@ namespace AttendanceUI.Forms
                 Base.ShowError("Access Denied", "You cannot upload course registration");
                 return;
             }
+
+            _deptId = comboDept.SelectedValue.ToString();
+            _levelId = comboLevel.SelectedValue.ToString();
 
             if (_deptId == "")
             {

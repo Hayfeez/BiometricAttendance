@@ -47,16 +47,19 @@ namespace AttendanceLibrary.Repository
                     if (_context.StaffCourses.Any(a => a.StaffId == staffId && a.CourseId == courseId))
                         skipped.Add(courseId);
 
-                    toAdd.Add(new StaffCourse
+                    else
                     {
-                        CourseId = courseId,
-                        DateAssigned = DateTime.Now,
-                        Id = Guid.NewGuid().ToString(),
-                        StaffId = staffId
-                    });
+                        toAdd.Add(new StaffCourse
+                        {
+                            CourseId = courseId,
+                            DateAssigned = DateTime.Now,
+                            Id = Guid.NewGuid().ToString(),
+                            StaffId = staffId
+                        });
+                    }
                 }
                 _context.StaffCourses.AddRange(toAdd);
-                return _context.SaveChanges() > 0 ? "" : "Course could not be assigned to staff";
+                return _context.SaveChanges() > 0 ? "" : "No new course(s) assigned";
             }
             catch (Exception ex)
             {
@@ -68,7 +71,6 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-               
                 var item = _context.StaffCourses.SingleOrDefault(x => x.Id == id);
                 if (item == null)
                     return "Staff course not found";
@@ -86,7 +88,6 @@ namespace AttendanceLibrary.Repository
         {
             try
             {
-               
                 var dt = (from att in _context.StaffCourses
                           join cou in _context.Courses on att.CourseId equals cou.Id
                           join st in _context.Staff on att.StaffId equals st.Id

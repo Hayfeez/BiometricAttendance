@@ -396,6 +396,7 @@
             this.Name = "FrmUploadCourseReg";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FrmCourse";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.FrmCourseReg_Load);
             this.panelForm.ResumeLayout(false);
             this.panelBody.ResumeLayout(false);

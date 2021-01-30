@@ -390,11 +390,12 @@
             // 
             // btnLoad
             // 
-            this.btnLoad.Location = new System.Drawing.Point(979, 41);
+            this.btnLoad.Font = new System.Drawing.Font("Calisto MT", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLoad.Location = new System.Drawing.Point(979, 25);
             this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(171, 31);
+            this.btnLoad.Size = new System.Drawing.Size(171, 47);
             this.btnLoad.TabIndex = 4;
-            this.btnLoad.Text = "Load Attendance";
+            this.btnLoad.Text = "Show All Attendance Today";
             this.btnLoad.UseVisualStyleBackColor = true;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 

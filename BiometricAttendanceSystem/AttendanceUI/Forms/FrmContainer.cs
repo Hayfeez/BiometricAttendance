@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -147,7 +148,7 @@ namespace AttendanceUI.Forms
             var attendance = new FrmAttendance();
             attendance.ShowDialog();
           //  attendance.BringToFront();
-            SetActiveMenu(btnAttendance);
+         //   SetActiveMenu(btnAttendance);
         }
 
         private async void btnReport_Click(object sender, EventArgs e)
@@ -202,7 +203,7 @@ namespace AttendanceUI.Forms
                 return;
             }
 
-            if (GetRemoteServerConnectionState())
+            if (Helper.CheckRemoteServerConnection())
             {
                 var frm = new FrmChangePassword(LoggedInUser.Email);
                 frm.ShowDialog();
@@ -251,23 +252,23 @@ namespace AttendanceUI.Forms
             var result = Helper.CheckRemoteServerConnection();
             if (result)
             {
-                toolStripStatusLabel1.Text = "Remote server connection established";
+                toolStripStatusLabel1.Text = "Online - Remote server connection established";
                 toolStripStatusLabel1.ForeColor = Color.Green;
             }
             else
             {
-                toolStripStatusLabel1.Text = "Cannot connect to remote server. Check settings";
+                toolStripStatusLabel1.Text = "Offline - Cannot connect to remote server. Check settings";
                 toolStripStatusLabel1.ForeColor = Color.Red;
             }
 
             statusStrip1.Refresh();
+            EnableMenus(result);
             return result;
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-           var result = GetRemoteServerConnectionState();
-           EnableMenus(result);
+           GetRemoteServerConnectionState();
         }
 
         private void EnableMenus(bool enable)
@@ -290,6 +291,7 @@ namespace AttendanceUI.Forms
         {
             var frm = new FrmConnection();
             frm.ShowDialog();
+            GetRemoteServerConnectionState();
         }
 
         private async Task SyncData()
@@ -346,6 +348,8 @@ namespace AttendanceUI.Forms
                 : LoggedInUser.IsAdmin
                     ? "Admin User"
                     : "User";
+
+            labelToday.Text = DateTime.Now.ToLongDateString();
         }
 
         private void FrmContainer_FormClosed(object sender, FormClosedEventArgs e)
@@ -361,12 +365,9 @@ namespace AttendanceUI.Forms
                 LoggedInUser.ActiveSession = activeSession;
             }
             
-            EnableMenus(false);
             ShowPage(new PgHome());
             SetActiveMenu(btnHome);
-
-            GetRemoteServerConnectionState();
-
+            EnableMenus(false);
         }
     }
 }
