@@ -411,6 +411,7 @@
             // 
             // comboLevel
             // 
+            this.comboLevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboLevel.Font = new System.Drawing.Font("Calisto MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboLevel.FormattingEnabled = true;
             this.comboLevel.Location = new System.Drawing.Point(6, 25);

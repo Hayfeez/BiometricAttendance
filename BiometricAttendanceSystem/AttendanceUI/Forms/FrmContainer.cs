@@ -94,40 +94,6 @@ namespace AttendanceUI.Forms
             timer1.Start();
         }
 
-        private void Dashboard_Load(object sender, EventArgs e)
-        {
-            this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
-             this.WindowState = FormWindowState.Maximized;
-            //Left = Top = 0;
-            //Width = Screen.PrimaryScreen.WorkingArea.Width;
-            //Height = Screen.PrimaryScreen.WorkingArea.Height;
-
-            lblUsername.Text = $@"Welcome, {LoggedInUser.Fullname}";
-            lblRole.Text = LoggedInUser.IsSuperAdmin
-                ? "System Admin"
-                : LoggedInUser.IsAdmin
-                    ? "Admin User"
-                    : "User";
-
-            SessionSemester activeSession;
-            if (GetRemoteServerConnectionState())
-                activeSession = _sessionRepo.GetActiveSessionSemester();
-
-            else
-            {
-                activeSession = _sessionRepo.GetActiveSessionSemesterLocal();
-                EnableMenus(false);
-            }
-
-            if (activeSession != null)
-            {
-                LoggedInUser.ActiveSession = activeSession;
-            }
-
-            ShowPage(new PgHome());
-            SetActiveMenu(btnHome);
-        }
-
         private void btnHome_Click(object sender, EventArgs e)
         {
             ShowPage(new PgHome());
@@ -364,6 +330,48 @@ namespace AttendanceUI.Forms
             {
                 await SyncData();
             }
+        }
+
+        private void FrmContainer_Load(object sender, EventArgs e)
+        {
+            this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+            this.WindowState = FormWindowState.Maximized;
+            //Left = Top = 0;
+            //Width = Screen.PrimaryScreen.WorkingArea.Width;
+            //Height = Screen.PrimaryScreen.WorkingArea.Height;
+
+            lblUsername.Text = $@"Welcome, {LoggedInUser.Fullname}";
+            lblRole.Text = LoggedInUser.IsSuperAdmin
+                ? "System Admin"
+                : LoggedInUser.IsAdmin
+                    ? "Admin User"
+                    : "User";
+        }
+
+        private void FrmContainer_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void FrmContainer_Shown(object sender, EventArgs e)
+        {
+            SessionSemester activeSession;
+            if (GetRemoteServerConnectionState())
+                activeSession = _sessionRepo.GetActiveSessionSemester();
+
+            else
+            {
+                activeSession = _sessionRepo.GetActiveSessionSemesterLocal();
+                EnableMenus(false);
+            }
+
+            if (activeSession != null)
+            {
+                LoggedInUser.ActiveSession = activeSession;
+            }
+
+            ShowPage(new PgHome());
+            SetActiveMenu(btnHome);
         }
     }
 }

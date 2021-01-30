@@ -650,7 +650,9 @@ namespace AttendanceUI.Forms
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmContainer";
             this.Text = "Dashboard";
-            this.Load += new System.EventHandler(this.Dashboard_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmContainer_FormClosed);
+            this.Load += new System.EventHandler(this.FrmContainer_Load);
+            this.Shown += new System.EventHandler(this.FrmContainer_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmContainer_KeyDown);
             this.panelMenu.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
