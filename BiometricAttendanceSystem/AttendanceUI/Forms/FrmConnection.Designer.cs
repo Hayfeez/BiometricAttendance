@@ -260,7 +260,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmConnection";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "FrmCourse";
+            this.Text = "Database Connection";
             this.Load += new System.EventHandler(this.FrmConnection_Load);
             this.panelForm.ResumeLayout(false);
             this.panelBody.ResumeLayout(false);

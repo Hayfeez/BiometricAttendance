@@ -490,7 +490,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmSettings";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "FrmCourse";
+            this.Text = "Settings";
             this.Load += new System.EventHandler(this.FrmSettings_Load);
             this.panelForm.ResumeLayout(false);
             this.panelBody.ResumeLayout(false);

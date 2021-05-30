@@ -33,16 +33,16 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panelHeader = new System.Windows.Forms.Panel();
+            this.iconExit = new FontAwesome.Sharp.IconPictureBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panelBody = new System.Windows.Forms.Panel();
             this.dataGrid = new System.Windows.Forms.DataGridView();
-            this.iconExit = new FontAwesome.Sharp.IconPictureBox();
             this.panelHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconExit)).BeginInit();
             this.panelBody.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconExit)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -88,6 +88,22 @@
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(904, 144);
             this.panelHeader.TabIndex = 1;
+            // 
+            // iconExit
+            // 
+            this.iconExit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.iconExit.BackColor = System.Drawing.Color.Transparent;
+            this.iconExit.ForeColor = System.Drawing.Color.Red;
+            this.iconExit.IconChar = FontAwesome.Sharp.IconChar.TimesCircle;
+            this.iconExit.IconColor = System.Drawing.Color.Red;
+            this.iconExit.IconSize = 60;
+            this.iconExit.Location = new System.Drawing.Point(830, 0);
+            this.iconExit.Name = "iconExit";
+            this.iconExit.Size = new System.Drawing.Size(74, 60);
+            this.iconExit.TabIndex = 6;
+            this.iconExit.TabStop = false;
+            this.iconExit.Click += new System.EventHandler(this.iconExit_Click_1);
             // 
             // btnSearch
             // 
@@ -152,22 +168,6 @@
             this.dataGrid.TabIndex = 2;
             this.dataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGrid_CellContentClick);
             // 
-            // iconExit
-            // 
-            this.iconExit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.iconExit.BackColor = System.Drawing.Color.Transparent;
-            this.iconExit.ForeColor = System.Drawing.Color.Red;
-            this.iconExit.IconChar = FontAwesome.Sharp.IconChar.TimesCircle;
-            this.iconExit.IconColor = System.Drawing.Color.Red;
-            this.iconExit.IconSize = 60;
-            this.iconExit.Location = new System.Drawing.Point(830, 0);
-            this.iconExit.Name = "iconExit";
-            this.iconExit.Size = new System.Drawing.Size(74, 60);
-            this.iconExit.TabIndex = 6;
-            this.iconExit.TabStop = false;
-            this.iconExit.Click += new System.EventHandler(this.iconExit_Click_1);
-            // 
             // FrmPasswordReset
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
@@ -184,12 +184,13 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmPasswordReset";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Reset Password";
             this.Load += new System.EventHandler(this.FrmStaffCourse_Load);
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconExit)).EndInit();
             this.panelBody.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconExit)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -535,7 +535,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmEnrollFinger";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "FrmCourse";
+            this.Text = "Finger Enrollment";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmEnrollFinger_FormClosed);
             this.Load += new System.EventHandler(this.FrmEnrollFinger_Load);
             this.panelForm.ResumeLayout(false);

@@ -323,7 +323,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmUploadStaff";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "FrmCourse";
+            this.Text = "Upload Staff";
             this.Load += new System.EventHandler(this.FrmUploadStaff_Load);
             this.panelForm.ResumeLayout(false);
             this.panelBody.ResumeLayout(false);

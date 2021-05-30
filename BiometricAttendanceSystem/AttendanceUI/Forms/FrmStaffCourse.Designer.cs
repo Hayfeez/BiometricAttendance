@@ -33,6 +33,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panelHeader = new System.Windows.Forms.Panel();
+            this.iconExit = new FontAwesome.Sharp.IconPictureBox();
             this.btnAddNew = new XanderUI.XUIButton();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
@@ -44,12 +45,11 @@
             this.comboLevel = new System.Windows.Forms.ComboBox();
             this.btnLoad = new System.Windows.Forms.Button();
             this.comboDept = new System.Windows.Forms.ComboBox();
-            this.iconExit = new FontAwesome.Sharp.IconPictureBox();
             this.panelHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconExit)).BeginInit();
             this.panelBody.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             this.panelFilter.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconExit)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -96,6 +96,22 @@
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(904, 144);
             this.panelHeader.TabIndex = 1;
+            // 
+            // iconExit
+            // 
+            this.iconExit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.iconExit.BackColor = System.Drawing.Color.Transparent;
+            this.iconExit.ForeColor = System.Drawing.Color.Red;
+            this.iconExit.IconChar = FontAwesome.Sharp.IconChar.TimesCircle;
+            this.iconExit.IconColor = System.Drawing.Color.Red;
+            this.iconExit.IconSize = 60;
+            this.iconExit.Location = new System.Drawing.Point(830, 0);
+            this.iconExit.Name = "iconExit";
+            this.iconExit.Size = new System.Drawing.Size(74, 60);
+            this.iconExit.TabIndex = 5;
+            this.iconExit.TabStop = false;
+            this.iconExit.Click += new System.EventHandler(this.iconExit_Click);
             // 
             // btnAddNew
             // 
@@ -243,22 +259,6 @@
             this.comboDept.TabIndex = 0;
             this.comboDept.SelectedIndexChanged += new System.EventHandler(this.comboDept_SelectedIndexChanged);
             // 
-            // iconExit
-            // 
-            this.iconExit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.iconExit.BackColor = System.Drawing.Color.Transparent;
-            this.iconExit.ForeColor = System.Drawing.Color.Red;
-            this.iconExit.IconChar = FontAwesome.Sharp.IconChar.TimesCircle;
-            this.iconExit.IconColor = System.Drawing.Color.Red;
-            this.iconExit.IconSize = 60;
-            this.iconExit.Location = new System.Drawing.Point(830, 0);
-            this.iconExit.Name = "iconExit";
-            this.iconExit.Size = new System.Drawing.Size(74, 60);
-            this.iconExit.TabIndex = 5;
-            this.iconExit.TabStop = false;
-            this.iconExit.Click += new System.EventHandler(this.iconExit_Click);
-            // 
             // FrmStaffCourse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
@@ -275,13 +275,14 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmStaffCourse";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Staff Courses";
             this.Load += new System.EventHandler(this.FrmStaffCourse_Load);
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconExit)).EndInit();
             this.panelBody.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
             this.panelFilter.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.iconExit)).EndInit();
             this.ResumeLayout(false);
 
         }

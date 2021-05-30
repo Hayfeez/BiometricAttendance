@@ -461,6 +461,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmAttendance";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Take Attendance";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmAttendance_FormClosed);
             this.Load += new System.EventHandler(this.FrmAttendance_Load);
             this.panelHeader.ResumeLayout(false);

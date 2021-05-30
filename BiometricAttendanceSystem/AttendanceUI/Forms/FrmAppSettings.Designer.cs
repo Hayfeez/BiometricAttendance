@@ -294,6 +294,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmAppSettings";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Application Settings";
             this.Load += new System.EventHandler(this.FrmAppSettings_Load);
             this.panelForm.ResumeLayout(false);
             this.panelBody.ResumeLayout(false);

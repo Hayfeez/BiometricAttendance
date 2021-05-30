@@ -395,7 +395,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmUploadCourseReg";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "FrmCourse";
+            this.Text = "Upload Course Registration";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.FrmCourseReg_Load);
             this.panelForm.ResumeLayout(false);

@@ -288,7 +288,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmAssignStaffCourse";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "FrmCourse";
+            this.Text = "Assign Course";
             this.Load += new System.EventHandler(this.FrmAssignStaffCourse_Load);
             this.panelForm.ResumeLayout(false);
             this.panelBody.ResumeLayout(false);

@@ -200,7 +200,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmTitle";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "FrmCourse";
+            this.Text = "Title";
             this.panelForm.ResumeLayout(false);
             this.panelBody.ResumeLayout(false);
             this.panelBody.PerformLayout();

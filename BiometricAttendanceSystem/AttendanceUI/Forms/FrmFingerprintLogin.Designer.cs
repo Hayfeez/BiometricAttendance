@@ -227,6 +227,7 @@
             this.MinimizeBox = false;
             this.Name = "FrmFingerprintLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Login";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmAttendance_FormClosed);
             this.Load += new System.EventHandler(this.FrmAttendance_Load);
             this.panelHeader.ResumeLayout(false);
