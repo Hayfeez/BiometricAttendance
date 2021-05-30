@@ -114,6 +114,8 @@ namespace AttendanceUI.Forms
                {
                    if (Helper.CheckRemoteServerConnection())
                    {
+                       Helper.MigrateAndSeedRemoteDb(); //seed remote if there's no data
+
                        var syncRepo = new SyncRepo();
                        var s = await syncRepo.SyncAllData();
                        if (s == string.Empty)
@@ -129,6 +131,7 @@ namespace AttendanceUI.Forms
                    {
                        Base.ShowError("Connection Failed", "Cannot connect to the remote server. Check your connection settings");
                        var frm = new FrmConnection();
+                       frm.BringToFront();
                        frm.ShowDialog();
                    }
                }
@@ -137,9 +140,9 @@ namespace AttendanceUI.Forms
            if (e.Control && e.Alt && e.KeyCode == Keys.O)  //open connection string
            {
                var frm = new FrmConnection();
+               frm.BringToFront();
                frm.ShowDialog();
                GetRemoteServerConnectionState();
-               Helper.SeedData();
            }
         }
 

@@ -283,9 +283,6 @@ namespace AttendanceLibrary.Migrations.Sqlite
                     b.Property<string>("StaffNo")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("StaffNumber")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("TitleId")
                         .HasColumnType("TEXT");
 

@@ -21,7 +21,7 @@ namespace AttendanceUI
             Application.SetCompatibleTextRenderingDefault(false);
             try
             {
-                Helper.SeedData();
+                Helper.SeedLocalData();
                 Helper.SetApplicationSettings();
                 Application.Run(new FrmLogin());
                // Application.Run(new SplashScreen());

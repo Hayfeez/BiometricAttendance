@@ -2,26 +2,30 @@
 using System.Windows.Forms;
 
 using AttendanceLibrary.BaseClass;
+using AttendanceLibrary.Repository;
 
 using AttendanceUI.BaseClass;
+
+using DocumentFormat.OpenXml.Office2016.Drawing.Charts;
 
 namespace AttendanceUI.Forms
 {
     public partial class FrmConnection : Form
     {
+        private readonly AppSettingsRepo _repo;
         public FrmConnection()
         {
             InitializeComponent();
+            _repo = new AppSettingsRepo();
+            btnSave.Enabled = false;
         }
 
         private void FrmConnection_Load(object sender, EventArgs e)
         {
-            var item = Helper.GetRemoteConnectionString();
-            var conString = item.Split(';');
-            lblDatabase.Text = "Database: " + Helper.DatabaseName;
-            txtServer.Text = conString[0].Split('=')[1];
-            txtUsername.Text = conString[2].Split('=')[1];
-            txtPassword.Text = conString[3].Split('=')[1];
+            lblDatabase.Text = "Database: " + ApplicationSetting.DatabaseName;
+            txtServer.Text = ApplicationSetting.DatabaseServer;
+            txtUsername.Text = ApplicationSetting.DbUsername;
+            txtPassword.Text = ApplicationSetting.DbPassword;
         }
 
         private string ValidateForm()
@@ -44,11 +48,20 @@ namespace AttendanceUI.Forms
             var validate = ValidateForm();
             if (validate == string.Empty)
             {
-                var saveItem = Helper.SaveConnectionStringInSettings(txtServer.Text.Trim(), txtUsername.Text.Trim(), txtPassword.Text.Trim());
-                if (saveItem)
+               // var saveItem = Helper.SaveConnectionStringInSettings(txtServer.Text.Trim(), txtUsername.Text.Trim(), txtPassword.Text.Trim());
+                var saveItem = _repo.SaveConnectionString(txtServer.Text.Trim(), Helper.DatabaseName, txtUsername.Text.Trim(), txtPassword.Text.Trim());
+                if (saveItem == string.Empty)
                 {
-                    Base.ShowSuccess("Success", "Connection String saved successfully");
-                    this.Close();
+                    var saveRemote = new SyncRepo().UploadConnectionStringToRemote();
+                    if (saveRemote == string.Empty)
+                    {
+                        Base.ShowSuccess("Success", "Connection String saved successfully");
+                        this.Close();
+                    }
+                    else
+                    {
+                        Base.ShowError("Failed", saveRemote);
+                    }
                 }
                 else
                 {
@@ -74,10 +87,12 @@ namespace AttendanceUI.Forms
                 var test = Helper.TestConnectionString(txtServer.Text.Trim(), txtUsername.Text.Trim(), txtPassword.Text.Trim());
                 if (test)
                 {
+                    btnSave.Enabled = true;
                     Base.ShowSuccess("Success", "Connection established successfully");
                 }
                 else
                 {
+                    btnSave.Enabled = false;
                     Base.ShowError("Failed", "Could not connect to remote server. Check your credentials or the server could be unavailable");
                 }
             }

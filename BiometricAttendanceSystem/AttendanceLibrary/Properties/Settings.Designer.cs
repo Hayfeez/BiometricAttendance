@@ -25,7 +25,7 @@ namespace AttendanceLibrary.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("SchoolAttendanceDb.sqlite")]
+        [global::System.Configuration.DefaultSettingValueAttribute("BiometricClassAttendanceDb.sqlite")]
         public string DatabaseFile {
             get {
                 return ((string)(this["DatabaseFile"]));
@@ -34,8 +34,8 @@ namespace AttendanceLibrary.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.0.137;Initial Catalog=SchoolAttendanceDb;User Id=attendanceLo" +
-            "gin;Password=Password@123")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.;Initial Catalog=BiometricClassAttendanceDb;User Id=attendanceLogin;" +
+            "Password=Password@123")]
         public string SqlServerConnectionString {
             get {
                 return ((string)(this["SqlServerConnectionString"]));

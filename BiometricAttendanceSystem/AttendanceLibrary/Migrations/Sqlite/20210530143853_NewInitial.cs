@@ -1,12 +1,33 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace AttendanceLibrary.Migrations.SqlServer
+namespace AttendanceLibrary.Migrations.Sqlite
 {
-    public partial class initial : Migration
+    public partial class NewInitial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "AppSettings",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    ApplicationName = table.Column<string>(nullable: true),
+                    Title = table.Column<string>(nullable: true),
+                    SubTitle = table.Column<string>(nullable: true),
+                    LogoBase64 = table.Column<string>(nullable: true),
+                    PrimaryColor = table.Column<string>(nullable: true),
+                    SecondaryColor = table.Column<string>(nullable: true),
+                    DatabaseName = table.Column<string>(nullable: true),
+                    DatabaseServer = table.Column<string>(nullable: true),
+                    DbUsername = table.Column<string>(nullable: true),
+                    DbPassword = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppSettings", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "AppSyncs",
                 columns: table => new
@@ -96,6 +117,20 @@ namespace AttendanceLibrary.Migrations.SqlServer
                 });
 
             migrationBuilder.CreateTable(
+                name: "ServerSettings",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    DatabaseName = table.Column<string>(nullable: true),
+                    ServerName = table.Column<string>(nullable: true),
+                    Password = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ServerSettings", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "SessionSemester",
                 columns: table => new
                 {
@@ -149,7 +184,9 @@ namespace AttendanceLibrary.Migrations.SqlServer
                     Email = table.Column<string>(nullable: true),
                     DepartmentId = table.Column<string>(nullable: true),
                     PhoneNo = table.Column<string>(nullable: true),
+                    GraduatedSessionId = table.Column<string>(nullable: true),
                     IsGraduated = table.Column<bool>(nullable: false),
+                    DateGraduated = table.Column<DateTime>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -229,6 +266,9 @@ namespace AttendanceLibrary.Migrations.SqlServer
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "AppSettings");
+
+            migrationBuilder.DropTable(
                 name: "AppSyncs");
 
             migrationBuilder.DropTable(
@@ -245,6 +285,9 @@ namespace AttendanceLibrary.Migrations.SqlServer
 
             migrationBuilder.DropTable(
                 name: "PersonTitle");
+
+            migrationBuilder.DropTable(
+                name: "ServerSettings");
 
             migrationBuilder.DropTable(
                 name: "SessionSemester");

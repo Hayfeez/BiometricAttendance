@@ -45,7 +45,7 @@ namespace AttendanceLibrary.Repository
                 var remoteStudentFingers = _remoteContext.StudentFingers.ToList();
                 var remoteStaffFingers = _remoteContext.StaffFingers.ToList();
                 var remoteSetting = _remoteContext.SystemSettings.First();
-                var appSetting = _remoteContext.AppSettings.First();
+                var remoteAppSetting = _remoteContext.AppSettings.First();
 
                 //sqlite doesn't support truncate statement
                _localContext.Database.ExecuteSqlRaw("DELETE FROM Course");
@@ -74,7 +74,7 @@ namespace AttendanceLibrary.Repository
                _localContext.StudentFingers.AddRange(remoteStudentFingers);
                _localContext.StaffFingers.AddRange(remoteStaffFingers);
                _localContext.SystemSettings.Add(remoteSetting);
-               _localContext.AppSettings.Add(appSetting);
+               _localContext.AppSettings.Add(remoteAppSetting);
 
                //var remoteAttendanceIds = _remoteContext.Attendances.Select(x => x.Id).ToHashSet();
                //var toUpload = _localContext.Attendances.Where(x => !remoteAttendanceIds.Contains(x.Id)).AsNoTracking().ToList();
@@ -87,7 +87,17 @@ namespace AttendanceLibrary.Repository
 
                 var i = await _localContext.SaveChangesAsync();
 
-                return i > 0 ? "" : "Synchronization failed. Try again";
+                if (i > 0)
+                {
+                    ApplicationSetting.DatabaseServer = remoteAppSetting.DatabaseServer;
+                    ApplicationSetting.DatabaseName = remoteAppSetting.DatabaseName;
+                    ApplicationSetting.DbPassword = StringCipher.Decrypt(remoteAppSetting.DbPassword);
+                    ApplicationSetting.DbUsername = remoteAppSetting.DbUsername;
+
+                    return "";
+                }
+
+                return "Synchronization failed. Try again";
             }
             catch (Exception e)
             {
@@ -108,5 +118,23 @@ namespace AttendanceLibrary.Repository
 
             return i > 0 ? "" : "Uploading local attendance record failed. Report cannot be generated";
         }
+
+        public string UploadConnectionStringToRemote()
+        {
+            Helper.MigrateAndSeedRemoteDb();
+
+            var remoteSetting = _remoteContext.AppSettings.FirstOrDefault();
+            var localSetting = _localContext.AppSettings.First();
+
+            remoteSetting ??= Helper.BuildAppSetting();
+            
+            remoteSetting.DatabaseServer = localSetting.DatabaseServer;
+            remoteSetting.DatabaseName = localSetting.DatabaseName;
+            remoteSetting.DbUsername = localSetting.DbUsername;
+            remoteSetting.DbPassword = localSetting.DbPassword;
+
+            return _remoteContext.SaveChanges() > 0 ? "" : "Updating Database settings failed. Try again";
+        }
+
     }
 }

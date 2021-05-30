@@ -39,34 +39,44 @@ namespace AttendanceLibrary.Repository
             oldSetting.PrimaryColor = setting.PrimaryColor;
             oldSetting.SecondaryColor = setting.SecondaryColor;
 
-            return _context.SaveChanges() > 0 ? "" : "Settings could not be updated";
-        }
+            // do on local
+            var _localContext = Helper.GetDataContext(true);
+            var oldSettingLocal = _localContext.AppSettings.First();
 
-        public string GetConnectionString()
-        {
-            try
-            {
-                var setting = _context.AppSettings.FirstOrDefault();
-                return $"Data Source={setting?.DatabaseServer};Initial Catalog={setting?.DatabaseName};User Id={setting?.DbUsername};Password={setting?.DbPassword}";
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            oldSettingLocal.ApplicationName = setting.ApplicationName;
+            oldSettingLocal.Title = setting.Title;
+            oldSettingLocal.SubTitle = setting.SubTitle;
+            oldSettingLocal.LogoBase64 = setting.LogoBase64;
+            oldSettingLocal.PrimaryColor = setting.PrimaryColor;
+            oldSettingLocal.SecondaryColor = setting.SecondaryColor;
+            _localContext.SaveChanges();
+
+            return _context.SaveChanges() > 0 ? "" : "Settings could not be updated";
         }
 
         public string SaveConnectionString(string server, string dbname, string username, string password)
         {
-            var oldSetting = _context.AppSettings.FirstOrDefault();
+            var localContext = Helper.GetDataContext(true);
+            var oldSetting = localContext.AppSettings.FirstOrDefault();
             if (oldSetting == null)
                 return "Setting not found";
 
             oldSetting.DatabaseServer = server;
             oldSetting.DbUsername = username;
             oldSetting.DatabaseName = dbname;
-            oldSetting.DbPassword = password;
+            oldSetting.DbPassword = StringCipher.Encrypt(password);
 
-            return _context.SaveChanges() > 0 ? "" : "Settings could not be updated";
+            if (localContext.SaveChanges() > 0)
+            {
+                ApplicationSetting.DatabaseServer = server;
+                ApplicationSetting.DatabaseName = dbname;
+                ApplicationSetting.DbPassword = password;
+                ApplicationSetting.DbUsername = username;
+
+                return "";
+            }
+
+            return "Settings could not be updated";
         }
 
     }

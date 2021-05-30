@@ -1,12 +1,33 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace AttendanceLibrary.Migrations.Sqlite
+namespace AttendanceLibrary.Migrations.SqlServer
 {
-    public partial class initial : Migration
+    public partial class NewInitial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "AppSettings",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    ApplicationName = table.Column<string>(nullable: true),
+                    Title = table.Column<string>(nullable: true),
+                    SubTitle = table.Column<string>(nullable: true),
+                    LogoBase64 = table.Column<string>(nullable: true),
+                    PrimaryColor = table.Column<string>(nullable: true),
+                    SecondaryColor = table.Column<string>(nullable: true),
+                    DatabaseName = table.Column<string>(nullable: true),
+                    DatabaseServer = table.Column<string>(nullable: true),
+                    DbUsername = table.Column<string>(nullable: true),
+                    DbPassword = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppSettings", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "AppSyncs",
                 columns: table => new
@@ -83,6 +104,23 @@ namespace AttendanceLibrary.Migrations.Sqlite
                 });
 
             migrationBuilder.CreateTable(
+                name: "PasswordReset",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    UserId = table.Column<string>(nullable: true),
+                    RequestingSystemId = table.Column<string>(nullable: true),
+                    DateRequested = table.Column<DateTime>(nullable: false),
+                    IsReset = table.Column<bool>(nullable: false),
+                    ResetBy = table.Column<string>(nullable: true),
+                    DateReset = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PasswordReset", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PersonTitle",
                 columns: table => new
                 {
@@ -149,7 +187,9 @@ namespace AttendanceLibrary.Migrations.Sqlite
                     Email = table.Column<string>(nullable: true),
                     DepartmentId = table.Column<string>(nullable: true),
                     PhoneNo = table.Column<string>(nullable: true),
+                    GraduatedSessionId = table.Column<string>(nullable: true),
                     IsGraduated = table.Column<bool>(nullable: false),
+                    DateGraduated = table.Column<DateTime>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -229,6 +269,9 @@ namespace AttendanceLibrary.Migrations.Sqlite
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "AppSettings");
+
+            migrationBuilder.DropTable(
                 name: "AppSyncs");
 
             migrationBuilder.DropTable(
@@ -242,6 +285,9 @@ namespace AttendanceLibrary.Migrations.Sqlite
 
             migrationBuilder.DropTable(
                 name: "Department");
+
+            migrationBuilder.DropTable(
+                name: "PasswordReset");
 
             migrationBuilder.DropTable(
                 name: "PersonTitle");

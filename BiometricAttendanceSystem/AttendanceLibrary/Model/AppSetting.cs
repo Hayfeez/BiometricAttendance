@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using AttendanceLibrary.BaseClass;
+
 namespace AttendanceLibrary.Model
 {
     public class AppSetting
@@ -24,6 +26,12 @@ namespace AttendanceLibrary.Model
         public string DatabaseServer { get; set; }
         public string DbUsername { get; set; }
         public string DbPassword { get; set; }
+        //{
+        //    get => StringCipher.Decrypt(_dbPassword);
+        //    set => _dbPassword = StringCipher.Encrypt(value);
+        //}
+
+        //private string _dbPassword;
 
     }
 }

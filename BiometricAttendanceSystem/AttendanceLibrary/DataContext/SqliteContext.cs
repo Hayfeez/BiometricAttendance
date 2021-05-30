@@ -11,7 +11,7 @@ namespace AttendanceLibrary.DataContext
     {
         public DbSet<ServerSetting> ServerSettings { get; set; }
 
-        public readonly string Defaultdbfile = Properties.Settings.Default.DatabaseFile; //"SchoolAttendanceDb.sqlite";
+        public readonly string Defaultdbfile = "BiometricClassAttendanceDb.sqlite";
         private readonly string _dbFile;
         private SqliteConnection _connection;
 

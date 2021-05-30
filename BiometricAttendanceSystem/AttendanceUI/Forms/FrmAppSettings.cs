@@ -35,6 +35,18 @@ namespace AttendanceUI.Forms
                 _secondaryColor = setting?.SecondaryColor ?? Helper.SecondaryColor;
                 _logobase64 = setting?.LogoBase64 ?? "";
 
+                txtApplication.Text = ApplicationSetting.ApplicationName;
+                txtMainTitle.Text = ApplicationSetting.Title;
+                txtSubTitle.Text = ApplicationSetting.SubTitle;
+
+                btnPrimaryColor.BackColor = Color.FromArgb(ApplicationSetting.PrimaryColorRed, ApplicationSetting.PrimaryColorGreen, ApplicationSetting.PrimaryColorBlue);
+                btnSecondaryColor.BackColor = Color.FromArgb(ApplicationSetting.SecondaryColorRed, ApplicationSetting.SecondaryColorGreen, ApplicationSetting.SecondaryColorBlue);
+                
+                using (MemoryStream ms = new MemoryStream(ApplicationSetting.LogoBytes))
+                {
+                    picLogo.Image = Image.FromStream(ms);
+                }
+
             }
             catch (Exception ex)
             {
@@ -80,6 +92,7 @@ namespace AttendanceUI.Forms
                     if (saveItem == string.Empty)
                     {
                         Base.ShowSuccess("Success", "Application settings saved successfully");
+                        Helper.SetApplicationSettings();
                         this.Close();
                     }
                     else

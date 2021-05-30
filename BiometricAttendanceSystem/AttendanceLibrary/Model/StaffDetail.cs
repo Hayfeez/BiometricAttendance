@@ -14,9 +14,6 @@ namespace AttendanceLibrary.Model
         [Key]
         public string Id { get; set; }
 
-        [Obsolete]
-        public string StaffNumber { get; set; }
-
         public string StaffNo { get; set; }
         public string Firstname { get; set; }
         public string Othername { get; set; }

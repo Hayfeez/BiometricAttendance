@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAppSettings));
             this.panelForm = new System.Windows.Forms.Panel();
             this.panelBody = new System.Windows.Forms.Panel();
-            this.picLogo = new FontAwesome.Sharp.IconPictureBox();
             this.btnChooseFile = new System.Windows.Forms.Button();
             this.btnSecondaryColor = new System.Windows.Forms.Button();
             this.btnPrimaryColor = new System.Windows.Forms.Button();
@@ -50,11 +49,12 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.picLogo = new System.Windows.Forms.PictureBox();
             this.panelForm.SuspendLayout();
             this.panelBody.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconExit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // panelForm
@@ -90,23 +90,10 @@
             this.panelBody.Size = new System.Drawing.Size(740, 311);
             this.panelBody.TabIndex = 1;
             // 
-            // picLogo
-            // 
-            this.picLogo.BackColor = System.Drawing.Color.White;
-            this.picLogo.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.picLogo.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.picLogo.IconColor = System.Drawing.SystemColors.ControlText;
-            this.picLogo.IconSize = 112;
-            this.picLogo.Location = new System.Drawing.Point(542, 35);
-            this.picLogo.Name = "picLogo";
-            this.picLogo.Size = new System.Drawing.Size(145, 112);
-            this.picLogo.TabIndex = 11;
-            this.picLogo.TabStop = false;
-            // 
             // btnChooseFile
             // 
             this.btnChooseFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
-            this.btnChooseFile.Location = new System.Drawing.Point(540, 164);
+            this.btnChooseFile.Location = new System.Drawing.Point(546, 181);
             this.btnChooseFile.Name = "btnChooseFile";
             this.btnChooseFile.Size = new System.Drawing.Size(147, 31);
             this.btnChooseFile.TabIndex = 10;
@@ -157,9 +144,9 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
             this.label1.Location = new System.Drawing.Point(26, 127);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 20);
+            this.label1.Size = new System.Drawing.Size(115, 25);
             this.label1.TabIndex = 0;
-            this.label1.Text = "SubTitle";
+            this.label1.Text = "Title Line 2";
             // 
             // btnSave
             // 
@@ -209,9 +196,9 @@
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(78)))), ((int)(((byte)(114)))));
             this.label2.Location = new System.Drawing.Point(26, 87);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(85, 20);
+            this.label2.Size = new System.Drawing.Size(114, 25);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Main Title";
+            this.label2.Text = "Title Line 1";
             // 
             // panel3
             // 
@@ -285,6 +272,15 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Filter = "Image Files(*.jpg; *.jpeg; *.png;)|*.jpg; *.jpeg; *.png";
             // 
+            // picLogo
+            // 
+            this.picLogo.Location = new System.Drawing.Point(491, 6);
+            this.picLogo.Name = "picLogo";
+            this.picLogo.Size = new System.Drawing.Size(246, 171);
+            this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picLogo.TabIndex = 12;
+            this.picLogo.TabStop = false;
+            // 
             // FrmAppSettings
             // 
             this.AcceptButton = this.btnSave;
@@ -302,10 +298,10 @@
             this.panelForm.ResumeLayout(false);
             this.panelBody.ResumeLayout(false);
             this.panelBody.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconExit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -332,6 +328,6 @@
         private System.Windows.Forms.Button btnSecondaryColor;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button btnChooseFile;
-        private FontAwesome.Sharp.IconPictureBox picLogo;
+        private System.Windows.Forms.PictureBox picLogo;
     }
 }

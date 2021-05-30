@@ -201,50 +201,19 @@
     <Compile Include="BaseClass\ApplicationSetting.cs" />
     <Compile Include="BaseClass\LoggedInUser.cs" />
     <Compile Include="BaseClass\PasswordHash.cs" />
+    <Compile Include="BaseClass\StringCipher.cs" />
     <Compile Include="BaseClass\StringExtension.cs" />
     <Compile Include="BaseClass\Validations.cs" />
     <Compile Include="DataContext\AttendanceContext.cs" />
     <Compile Include="DataContext\SqlServerContext.cs" />
-    <Compile Include="Migrations\Sqlite\20200910233323_initial.cs" />
-    <Compile Include="Migrations\Sqlite\20200910233323_initial.designer.cs">
-      <DependentUpon>20200910233323_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Sqlite\20200921004030_addgraduateddetails.cs" />
-    <Compile Include="Migrations\Sqlite\20200921004030_addgraduateddetails.designer.cs">
-      <DependentUpon>20200921004030_addgraduateddetails.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Sqlite\20201204190157_Update.cs" />
-    <Compile Include="Migrations\Sqlite\20201204190157_Update.designer.cs">
-      <DependentUpon>20201204190157_Update.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Sqlite\20201204205925_AddServerSettingTable.cs" />
-    <Compile Include="Migrations\Sqlite\20201204205925_AddServerSettingTable.designer.cs">
-      <DependentUpon>20201204205925_AddServerSettingTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Sqlite\20210530110145_AddAppSettings.cs" />
-    <Compile Include="Migrations\Sqlite\20210530110145_AddAppSettings.designer.cs">
-      <DependentUpon>20210530110145_AddAppSettings.cs</DependentUpon>
+    <Compile Include="Migrations\Sqlite\20210530143853_NewInitial.cs" />
+    <Compile Include="Migrations\Sqlite\20210530143853_NewInitial.designer.cs">
+      <DependentUpon>20210530143853_NewInitial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Sqlite\SqliteContextModelSnapshot.cs" />
-    <Compile Include="Migrations\SqlServer\20200919083359_initial.cs" />
-    <Compile Include="Migrations\SqlServer\20200919083359_initial.designer.cs">
-      <DependentUpon>20200919083359_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\SqlServer\20200921004048_addgraduateddetails.cs" />
-    <Compile Include="Migrations\SqlServer\20200921004048_addgraduateddetails.designer.cs">
-      <DependentUpon>20200921004048_addgraduateddetails.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\SqlServer\20201204213257_AddPasswordResetTable.cs" />
-    <Compile Include="Migrations\SqlServer\20201204213257_AddPasswordResetTable.designer.cs">
-      <DependentUpon>20201204213257_AddPasswordResetTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\SqlServer\20210530101524_AddAppSettings.cs" />
-    <Compile Include="Migrations\SqlServer\20210530101524_AddAppSettings.designer.cs">
-      <DependentUpon>20210530101524_AddAppSettings.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\SqlServer\20210530105734_AddAppSettingsFix.cs" />
-    <Compile Include="Migrations\SqlServer\20210530105734_AddAppSettingsFix.designer.cs">
-      <DependentUpon>20210530105734_AddAppSettingsFix.cs</DependentUpon>
+    <Compile Include="Migrations\SqlServer\20210530143951_NewInitial.cs" />
+    <Compile Include="Migrations\SqlServer\20210530143951_NewInitial.designer.cs">
+      <DependentUpon>20210530143951_NewInitial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\SqlServer\SqlServerContextModelSnapshot.cs" />
     <Compile Include="Model\Attendance.cs" />

@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace AttendanceLibrary.Migrations.Sqlserver
+namespace AttendanceLibrary.Migrations.SqlServer
 {
     [DbContext(typeof(SqlServerContext))]
-    [Migration("20201204213257_AddPasswordResetTable")]
-    partial class AddPasswordResetTable
+    [Migration("20210530143951_NewInitial")]
+    partial class NewInitial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,46 @@ namespace AttendanceLibrary.Migrations.Sqlserver
                 .HasAnnotation("ProductVersion", "3.1.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("AttendanceLibrary.Model.AppSetting", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ApplicationName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DatabaseName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DatabaseServer")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DbPassword")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DbUsername")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LogoBase64")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PrimaryColor")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SecondaryColor")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SubTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AppSettings");
+                });
 
             modelBuilder.Entity("AttendanceLibrary.Model.AppSync", b =>
                 {
@@ -254,7 +294,7 @@ namespace AttendanceLibrary.Migrations.Sqlserver
                     b.Property<string>("PhoneNo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("StaffNumber")
+                    b.Property<string>("StaffNo")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TitleId")

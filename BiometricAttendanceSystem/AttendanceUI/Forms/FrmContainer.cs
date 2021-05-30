@@ -155,6 +155,8 @@ namespace AttendanceUI.Forms
         {
             if (GetRemoteServerConnectionState())
             {
+                Helper.MigrateAndSeedRemoteDb(); // 
+
                 var syncRepo = new SyncRepo();
                 var s = await syncRepo.UploadAttendanceToRemote();
                 if (s == string.Empty)
@@ -331,6 +333,26 @@ namespace AttendanceUI.Forms
             if (e.Control && e.Alt && e.KeyCode == Keys.D)
             {
                 await SyncData();
+            }
+
+            if (e.Control && e.Alt && e.KeyCode == Keys.S) // open application settings
+            {
+                if (!LoggedInUser.IsSuperAdmin)
+                {
+                    Base.ShowError("Access Denied", "You do not have the required permission");
+                    return;
+                }
+
+                if (GetRemoteServerConnectionState())
+                {
+                    var settingsForm = new FrmAppSettings();
+                    settingsForm.ShowDialog();
+                }
+                else
+                {
+                    Base.ShowError("Connection Failed", "Cannot connect to the remote server. Check your connection settings");
+                    return;
+                }
             }
         }
 
