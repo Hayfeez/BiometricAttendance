@@ -19,6 +19,46 @@ namespace AttendanceLibrary.Migrations.SqlServer
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("AttendanceLibrary.Model.AppSetting", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ApplicationName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DatabaseName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DatabaseServer")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DbPassword")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DbUsername")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LogoBase64")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PrimaryColor")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SecondaryColor")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SubTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AppSettings");
+                });
+
             modelBuilder.Entity("AttendanceLibrary.Model.AppSync", b =>
                 {
                     b.Property<string>("Id")
@@ -252,7 +292,7 @@ namespace AttendanceLibrary.Migrations.SqlServer
                     b.Property<string>("PhoneNo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("StaffNumber")
+                    b.Property<string>("StaffNo")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TitleId")
