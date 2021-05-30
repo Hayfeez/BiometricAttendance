@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 
 using AttendanceLibrary.BaseClass;
@@ -21,6 +22,7 @@ namespace AttendanceUI
             try
             {
                 Helper.SeedData();
+                Helper.SetApplicationSettings();
                 Application.Run(new FrmLogin());
                // Application.Run(new SplashScreen());
             }

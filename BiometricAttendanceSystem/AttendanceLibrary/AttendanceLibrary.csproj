@@ -198,6 +198,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseClass\Helper.cs" />
+    <Compile Include="BaseClass\ApplicationSetting.cs" />
     <Compile Include="BaseClass\LoggedInUser.cs" />
     <Compile Include="BaseClass\PasswordHash.cs" />
     <Compile Include="BaseClass\StringExtension.cs" />
@@ -250,6 +251,7 @@
     <Compile Include="Model\StudentLevel.cs" />
     <Compile Include="Model\AppSync.cs" />
     <Compile Include="Model\ServerSetting.cs" />
+    <Compile Include="Model\AppSetting.cs" />
     <Compile Include="Model\SystemSetting.cs" />
     <Compile Include="Model\ViewModels\PasswordResetList.cs" />
     <Compile Include="Model\ViewModels\StaffCourseList.cs" />
@@ -272,6 +274,7 @@
     <Compile Include="Repository\AuthRepo.cs" />
     <Compile Include="Repository\BiometricsRepo.cs" />
     <Compile Include="Repository\DashboardRepo.cs" />
+    <Compile Include="Repository\AppSettingsRepo.cs" />
     <Compile Include="Repository\StaffCourseRepo.cs" />
     <Compile Include="Repository\CourseRegRepo.cs" />
     <Compile Include="Repository\CourseRepo.cs" />

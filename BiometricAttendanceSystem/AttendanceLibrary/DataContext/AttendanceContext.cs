@@ -20,6 +20,7 @@ namespace AttendanceLibrary.DataContext
         public DbSet<AppSync> AppSyncs { get; set; }
         public DbSet<StaffCourse> StaffCourses { get; set; }
         public DbSet<StaffFingerprint> StaffFingers { get; set; }
+        public DbSet<AppSetting> AppSettings { get; set; }
 
     }
 }

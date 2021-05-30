@@ -153,6 +153,12 @@
     <Compile Include="BaseClass\DigitalPersonaLibrary.cs" />
     <Compile Include="BaseClass\DropdownControls.cs" />
     <Compile Include="BaseClass\ErrorLogger.cs" />
+    <Compile Include="Forms\FrmAppSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmAppSettings.Designer.cs">
+      <DependentUpon>FrmAppSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FrmResetPassword.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -347,6 +353,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\FrmAppSettings.resx">
+      <DependentUpon>FrmAppSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmResetPassword.resx">
       <DependentUpon>FrmResetPassword.cs</DependentUpon>
     </EmbeddedResource>

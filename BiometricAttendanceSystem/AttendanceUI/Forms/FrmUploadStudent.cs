@@ -73,6 +73,7 @@ namespace AttendanceUI.Forms
                 if (string.IsNullOrEmpty(_selectedFile) || _selectedFile.Contains(".lnk"))
                 {
                     Base.ShowInfo("", "Please select a valid Excel File");
+                    return;
                 }
 
                 lblFile.Text = _selectedFile;

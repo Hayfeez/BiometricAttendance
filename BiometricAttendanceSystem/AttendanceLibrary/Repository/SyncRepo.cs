@@ -44,7 +44,8 @@ namespace AttendanceLibrary.Repository
                 var remoteCourseReg = _remoteContext.CourseRegistrations.ToList();
                 var remoteStudentFingers = _remoteContext.StudentFingers.ToList();
                 var remoteStaffFingers = _remoteContext.StaffFingers.ToList();
-                var remoteSettings = _remoteContext.SystemSettings.ToList();
+                var remoteSetting = _remoteContext.SystemSettings.First();
+                var appSetting = _remoteContext.AppSettings.First();
 
                 //sqlite doesn't support truncate statement
                _localContext.Database.ExecuteSqlRaw("DELETE FROM Course");
@@ -59,6 +60,7 @@ namespace AttendanceLibrary.Repository
                _localContext.Database.ExecuteSqlRaw("DELETE FROM StudentFinger");
                _localContext.Database.ExecuteSqlRaw("DELETE FROM StaffFingerprint");
                _localContext.Database.ExecuteSqlRaw("DELETE FROM SystemSettings");
+               _localContext.Database.ExecuteSqlRaw("DELETE FROM AppSettings");
 
                _localContext.Courses.AddRange(remoteCourse);
                _localContext.CourseRegistrations.AddRange(remoteCourseReg);
@@ -71,7 +73,8 @@ namespace AttendanceLibrary.Repository
                _localContext.Levels.AddRange(remoteLevels);
                _localContext.StudentFingers.AddRange(remoteStudentFingers);
                _localContext.StaffFingers.AddRange(remoteStaffFingers);
-               _localContext.SystemSettings.AddRange(remoteSettings);
+               _localContext.SystemSettings.Add(remoteSetting);
+               _localContext.AppSettings.Add(appSetting);
 
                //var remoteAttendanceIds = _remoteContext.Attendances.Select(x => x.Id).ToHashSet();
                //var toUpload = _localContext.Attendances.Where(x => !remoteAttendanceIds.Contains(x.Id)).AsNoTracking().ToList();

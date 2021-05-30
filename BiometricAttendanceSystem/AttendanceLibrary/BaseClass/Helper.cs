@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
@@ -35,6 +36,18 @@ namespace AttendanceLibrary.BaseClass
 
         #region MyRegion
 
+        public const string DatabaseName = "SchoolAttendanceDb";
+        public const string SuperAdminId = "45da7b79-a641-4f9d-971a-8c85c7c516ab";
+        private const int NoOfFinger = 2;
+        private const string DefaultPassword = "12345678";
+        private const string SuperAdminNo = "000001";
+        private const string SuperAdminPassword = "password123";
+        private const string SuperAdminEmail = "admin@abc.com";
+        private const string SuperAdminFirstname = "Admin";
+        private const string SuperAdminLastname = "Admin";
+        public const string PrimaryColor = "54,78,114";
+        public const string SecondaryColor = "152,201,60";
+
         public static bool CheckForInternetConnection()
         {
             try
@@ -58,7 +71,6 @@ namespace AttendanceLibrary.BaseClass
                 .FirstOrDefault();
         }
 
-        public const string DatabaseName = "SchoolAttendanceDb";
         public static string GetConnectionStringFromSettings()
         {
             return Properties.Settings.Default.SqlServerConnectionString;
@@ -72,37 +84,24 @@ namespace AttendanceLibrary.BaseClass
            return true;
         }
 
-        public static bool TestConnectionString(string server, string username, string password)
+        public static bool TestConnectionString(string server, string username, string password, string dbName = DatabaseName)
         {
-            var conString = $"Data Source={server};Initial Catalog={DatabaseName};User Id={username};Password={password}";
-            using (var connection = new SqlConnection(conString))
+            var conString = $"Data Source={server};Initial Catalog={dbName};User Id={username};Password={password}";
+            using var connection = new SqlConnection(conString);
+            try
             {
-                try
-                {
-                    connection.Open();
-                    return true;
-                }
-                catch (SqlException)
-                {
-                    return false;
-                }
+                connection.Open();
+                return true;
+            }
+            catch (SqlException)
+            {
+                return false;
             }
         }
 
         #endregion
 
         #region Database Helper
-
-        public const string SuperAdminId = "45da7b79-a641-4f9d-971a-8c85c7c516ab";
-        private const int NoOfFinger = 2;
-        private const string DefaultPassword = "12345678";
-        private const string SuperAdminNo = "000001";
-        private const string SuperAdminPassword = "password123";
-        private const string SuperAdminEmail = "admin@abc.com";
-        private const string SuperAdminFirstname = "Admin";
-        private const string SuperAdminLastname = "Admin";
-
-        public static string RemoteServerConnectionString = "";
 
         public static AttendanceContext GetDataContext(bool isSqlite = false)
         {
@@ -128,7 +127,7 @@ namespace AttendanceLibrary.BaseClass
             {
                 // GetDataContext().Database.OpenConnection();
                 var context = GetDataContext();
-                context.Database.SetCommandTimeout(5);
+                context.Database.SetCommandTimeout(3);
                 return context.Database.CanConnect();
             }
             catch (SqlException e)
@@ -145,11 +144,21 @@ namespace AttendanceLibrary.BaseClass
                 //localDb.Database.EnsureCreated();
                 localDb.Database.Migrate();
 
+                if (!localDb.AppSettings.Any())
+                {
+                    localDb.AppSettings.Add(SeedAppSetting());
+                }
+
                 using var db = GetDataContext();
                 if (CheckRemoteServerConnection())
                 {
                     //   db.Database.EnsureCreated();
                     db.Database.Migrate();
+
+                    if (!db.AppSettings.Any())
+                    {
+                        db.AppSettings.Add(SeedAppSetting());
+                    }
 
                     if (!db.SystemSettings.Any())
                         db.SystemSettings.Add(new SystemSetting
@@ -177,6 +186,26 @@ namespace AttendanceLibrary.BaseClass
             {
                 throw new Exception("An error has occured while initializing the database. " + ex.Message + " Inner exception: " + ex.InnerException);
             }
+        }
+
+        private static AppSetting SeedAppSetting()
+        {
+            var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            var imagePath = $"{Path.GetFullPath(Path.Combine(baseDirectory, @"..\..\"))}Resources\\biometric.png";
+
+            var imageArray = File.ReadAllBytes(imagePath);
+            var base64ImageRepresentation = Convert.ToBase64String(imageArray);
+
+            return new AppSetting
+            {
+                Id = SuperAdminId,
+                ApplicationName = "Biometric Attendance System",
+                Title = "University of Ilorin",
+                SubTitle = "Information and Communication Science",
+                PrimaryColor = PrimaryColor,
+                SecondaryColor = SecondaryColor,
+                LogoBase64 = base64ImageRepresentation
+            };
         }
 
         private static List<PersonTitle> Titles()
@@ -211,11 +240,38 @@ namespace AttendanceLibrary.BaseClass
         }
 
         #endregion
-        
+
+        public static void SetApplicationSettings()
+        {
+            using var localDb = GetDataContext(true);
+            var appSetting = localDb.AppSettings.Single();
+            ApplicationSetting.ApplicationName = appSetting.ApplicationName;
+            ApplicationSetting.Title = appSetting.Title;
+            ApplicationSetting.SubTitle = appSetting.SubTitle;
+            ApplicationSetting.LogoBytes  = Convert.FromBase64String(appSetting.LogoBase64);
+
+            var primaryColor = appSetting.PrimaryColor.Split(',');
+            var primaryColorInt = Array.ConvertAll(primaryColor, int.Parse);
+
+            // int[] myInts = Array.ConvertAll(primaryColor, s => int.Parse(s));
+            //int[] myInts = primaryColor.Select(int.Parse).ToArray();
+
+            var secColor = appSetting.SecondaryColor.Split(',');
+            var secColorInt = Array.ConvertAll(secColor, int.Parse);
+
+            ApplicationSetting.PrimaryColorRed = primaryColorInt[0];
+            ApplicationSetting.PrimaryColorGreen = primaryColorInt[1];
+            ApplicationSetting.PrimaryColorBlue = primaryColorInt[2];
+
+            ApplicationSetting.SecondaryColorRed = secColorInt[0];
+            ApplicationSetting.SecondaryColorGreen = secColorInt[1];
+            ApplicationSetting.SecondaryColorBlue = secColorInt[2];
+        }
+
         public static byte[] ConvertToByteArray(Bitmap value)
         {
             byte[] bitmapBytes;
-            using (System.IO.MemoryStream stream = new System.IO.MemoryStream())
+            using (var stream = new MemoryStream())
             {
                 value.Save(stream, System.Drawing.Imaging.ImageFormat.Bmp);
                 bitmapBytes = stream.ToArray();
