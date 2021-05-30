@@ -71,17 +71,24 @@ namespace AttendanceLibrary.BaseClass
                 .FirstOrDefault();
         }
 
-        public static string GetConnectionStringFromSettings()
-        {
-            return Properties.Settings.Default.SqlServerConnectionString;
-        }
+
+        #endregion
+
+
+        #region Remote Connection String
 
         public static bool SaveConnectionStringInSettings(string server, string username, string password)
         {
             Properties.Settings.Default.SqlServerConnectionString = $"Data Source={server};Initial Catalog={DatabaseName};User Id={username};Password={password}";
             Properties.Settings.Default.Save();
 
-           return true;
+            return true;
+        }
+
+
+        public static string GetRemoteConnectionString()
+        {
+            return Properties.Settings.Default.SqlServerConnectionString;
         }
 
         public static bool TestConnectionString(string server, string username, string password, string dbName = DatabaseName)
@@ -100,6 +107,7 @@ namespace AttendanceLibrary.BaseClass
         }
 
         #endregion
+
 
         #region Database Helper
 
@@ -146,8 +154,11 @@ namespace AttendanceLibrary.BaseClass
 
                 if (!localDb.AppSettings.Any())
                 {
-                    localDb.AppSettings.Add(SeedAppSetting());
+                    localDb.AppSettings.Add(BuildAppSetting());
+                    
                 }
+
+                localDb.SaveChanges();
 
                 using var db = GetDataContext();
                 if (CheckRemoteServerConnection())
@@ -157,7 +168,7 @@ namespace AttendanceLibrary.BaseClass
 
                     if (!db.AppSettings.Any())
                     {
-                        db.AppSettings.Add(SeedAppSetting());
+                        db.AppSettings.Add(BuildAppSetting());
                     }
 
                     if (!db.SystemSettings.Any())
@@ -188,7 +199,7 @@ namespace AttendanceLibrary.BaseClass
             }
         }
 
-        private static AppSetting SeedAppSetting()
+        private static AppSetting BuildAppSetting()
         {
             var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
             var imagePath = $"{Path.GetFullPath(Path.Combine(baseDirectory, @"..\..\"))}Resources\\biometric.png";

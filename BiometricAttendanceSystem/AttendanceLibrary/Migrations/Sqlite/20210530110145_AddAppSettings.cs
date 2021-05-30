@@ -6,15 +6,6 @@ namespace AttendanceLibrary.Migrations.Sqlite
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "StaffNumber",
-                table: "User");
-
-            migrationBuilder.AddColumn<string>(
-                name: "StaffNo",
-                table: "User",
-                nullable: true);
-
             migrationBuilder.CreateTable(
                 name: "AppSettings",
                 columns: table => new
@@ -42,15 +33,6 @@ namespace AttendanceLibrary.Migrations.Sqlite
             migrationBuilder.DropTable(
                 name: "AppSettings");
 
-            migrationBuilder.DropColumn(
-                name: "StaffNo",
-                table: "User");
-
-            migrationBuilder.AddColumn<string>(
-                name: "StaffNumber",
-                table: "User",
-                type: "TEXT",
-                nullable: true);
         }
     }
 }

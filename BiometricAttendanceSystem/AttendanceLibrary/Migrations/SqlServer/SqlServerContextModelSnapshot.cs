@@ -295,6 +295,9 @@ namespace AttendanceLibrary.Migrations.SqlServer
                     b.Property<string>("StaffNo")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("StaffNumber")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("TitleId")
                         .HasColumnType("nvarchar(max)");
 

@@ -28,7 +28,7 @@ namespace AttendanceLibrary.DataContext
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(Properties.Settings.Default.SqlServerConnectionString);
+            optionsBuilder.UseSqlServer(Helper.GetRemoteConnectionString());
             //          @"Server=(localdb)\mssqllocaldb;Database=SchoolAttendanceDb;Integrated Security=True");
            // @"Data Source=192.168.0.137;Initial Catalog=SchoolAttendanceDb;User Id=attendanceLogin;Password=Password@123");
         }

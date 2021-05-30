@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AttendanceLibrary.Migrations.Sqlite
 {
     [DbContext(typeof(SqliteContext))]
-    [Migration("20210530101418_AddAppSettings")]
+    [Migration("20210530110145_AddAppSettings")]
     partial class AddAppSettings
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -283,6 +283,9 @@ namespace AttendanceLibrary.Migrations.Sqlite
                         .HasColumnType("TEXT");
 
                     b.Property<string>("StaffNo")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("StaffNumber")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("TitleId")

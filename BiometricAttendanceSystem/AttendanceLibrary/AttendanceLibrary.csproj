@@ -221,9 +221,9 @@
     <Compile Include="Migrations\Sqlite\20201204205925_AddServerSettingTable.designer.cs">
       <DependentUpon>20201204205925_AddServerSettingTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Sqlite\20210530101418_AddAppSettings.cs" />
-    <Compile Include="Migrations\Sqlite\20210530101418_AddAppSettings.designer.cs">
-      <DependentUpon>20210530101418_AddAppSettings.cs</DependentUpon>
+    <Compile Include="Migrations\Sqlite\20210530110145_AddAppSettings.cs" />
+    <Compile Include="Migrations\Sqlite\20210530110145_AddAppSettings.designer.cs">
+      <DependentUpon>20210530110145_AddAppSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Sqlite\SqliteContextModelSnapshot.cs" />
     <Compile Include="Migrations\SqlServer\20200919083359_initial.cs" />
@@ -241,6 +241,10 @@
     <Compile Include="Migrations\SqlServer\20210530101524_AddAppSettings.cs" />
     <Compile Include="Migrations\SqlServer\20210530101524_AddAppSettings.designer.cs">
       <DependentUpon>20210530101524_AddAppSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SqlServer\20210530105734_AddAppSettingsFix.cs" />
+    <Compile Include="Migrations\SqlServer\20210530105734_AddAppSettingsFix.designer.cs">
+      <DependentUpon>20210530105734_AddAppSettingsFix.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\SqlServer\SqlServerContextModelSnapshot.cs" />
     <Compile Include="Model\Attendance.cs" />

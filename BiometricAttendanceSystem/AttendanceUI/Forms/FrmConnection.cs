@@ -16,7 +16,7 @@ namespace AttendanceUI.Forms
 
         private void FrmConnection_Load(object sender, EventArgs e)
         {
-            var item = Helper.GetConnectionStringFromSettings();
+            var item = Helper.GetRemoteConnectionString();
             var conString = item.Split(';');
             lblDatabase.Text = "Database: " + Helper.DatabaseName;
             txtServer.Text = conString[0].Split('=')[1];
