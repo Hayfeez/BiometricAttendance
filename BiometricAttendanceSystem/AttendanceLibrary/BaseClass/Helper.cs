@@ -244,7 +244,7 @@ namespace AttendanceLibrary.BaseClass
         public static AppSetting BuildAppSetting()
         {
             var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            var imagePath = $"{Path.GetFullPath(Path.Combine(baseDirectory, @"..\..\"))}Resources\\biometric.png";
+            var imagePath = $"{Path.GetFullPath(baseDirectory)}\\biometric.png";  //Path.Combine(baseDirectory, @"..\..\"
 
             var imageArray = File.ReadAllBytes(imagePath);
             var base64ImageRepresentation = Convert.ToBase64String(imageArray);

@@ -21,6 +21,7 @@ namespace AttendanceUI
             Application.SetCompatibleTextRenderingDefault(false);
             try
             {
+                Helper.BuildAppSetting();
                 Helper.SeedLocalData();
                 Helper.SetApplicationSettings();
                 Application.Run(new FrmLogin());
@@ -28,7 +29,7 @@ namespace AttendanceUI
             }
             catch (Exception ex)
             {
-                Base.ShowError("ERROR", "An error has occured" + ex.Message + " Inner exception: " + ex.InnerException);
+                Base.ShowError("ERROR", ex.Message + " Inner exception: " + ex.InnerException);
             }
         }
     }
