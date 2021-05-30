@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -34,6 +35,17 @@ namespace AttendanceUI.Forms
             }
 
             btnOpenConnSettings.Visible = LoggedInUser.IsSuperAdmin;
+
+            lblTitle.Text = ApplicationSetting.ApplicationName;
+            lblTitle.ForeColor = ApplicationSetting.PrimaryColor;
+            panelActive.BackColor = ApplicationSetting.SecondaryColor;
+            panelWelcome.BackColor = ApplicationSetting.SecondaryColor;
+
+            using (MemoryStream ms = new MemoryStream(ApplicationSetting.LogoBytes))
+            {
+                pictureBox1.Image = Image.FromStream(ms);
+            }
+
             lblFooter.Text = Convert.ToChar(169) + @" Dolapo Oguntuga 2020";
         }
 

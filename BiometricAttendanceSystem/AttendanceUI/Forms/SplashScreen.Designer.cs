@@ -31,9 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SplashScreen));
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblAppName = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.lblSubTitle = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,35 +56,35 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
-            // label1
+            // lblAppName
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("NSimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(86, 259);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(306, 20);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Biometric Attendance System";
+            this.lblAppName.AutoSize = true;
+            this.lblAppName.Font = new System.Drawing.Font("NSimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAppName.Location = new System.Drawing.Point(86, 259);
+            this.lblAppName.Name = "lblAppName";
+            this.lblAppName.Size = new System.Drawing.Size(306, 20);
+            this.lblAppName.TabIndex = 0;
+            this.lblAppName.Text = "Biometric Attendance System";
             // 
-            // label2
+            // lblTitle
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("NSimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(122, 288);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(229, 20);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "University of Ilorin";
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("NSimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Location = new System.Drawing.Point(122, 288);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(229, 20);
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Text = "University of Ilorin";
             // 
-            // label3
+            // lblSubTitle
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("NSimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(28, 320);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(520, 25);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Information and Communication Science";
+            this.lblSubTitle.AutoSize = true;
+            this.lblSubTitle.Font = new System.Drawing.Font("NSimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubTitle.Location = new System.Drawing.Point(28, 320);
+            this.lblSubTitle.Name = "lblSubTitle";
+            this.lblSubTitle.Size = new System.Drawing.Size(416, 20);
+            this.lblSubTitle.TabIndex = 2;
+            this.lblSubTitle.Text = "Information and Communication Science";
             // 
             // SplashScreen
             // 
@@ -92,9 +92,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(539, 396);
             this.ControlBox = false;
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblSubTitle);
+            this.Controls.Add(this.lblTitle);
+            this.Controls.Add(this.lblAppName);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.progressBar1);
             this.DoubleBuffered = true;
@@ -117,8 +117,8 @@
 
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblAppName;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Label lblSubTitle;
     }
 }

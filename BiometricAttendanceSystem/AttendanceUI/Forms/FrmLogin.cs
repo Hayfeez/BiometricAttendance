@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using AttendanceLibrary.BaseClass;
@@ -30,6 +31,22 @@ namespace AttendanceUI.Forms
             this.BringToFront();
             //this.Show();
             _authRepo = new AuthRepo();
+
+            lblTitle.Text = ApplicationSetting.ApplicationName;
+            lblTitle.ForeColor = ApplicationSetting.PrimaryColor;
+            btnLogin.BackColor = ApplicationSetting.PrimaryColor;
+
+            lblLogin.ForeColor = ApplicationSetting.SecondaryColor;
+            lblEmail.ForeColor = ApplicationSetting.SecondaryColor;
+            lblPassword.ForeColor = ApplicationSetting.SecondaryColor;
+            lnkFingerprint.LinkColor = ApplicationSetting.SecondaryColor;
+            linkForgotPassword.LinkColor = ApplicationSetting.SecondaryColor;
+            
+            using (MemoryStream ms = new MemoryStream(ApplicationSetting.LogoBytes))
+            {
+                pictureBox1.Image = Image.FromStream(ms);
+            }
+
             GetRemoteServerConnectionState();
            // Helper.GetEnumValuesAndDescriptions<ReportType>();
         }
